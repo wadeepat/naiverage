@@ -14,66 +14,86 @@ namespace StarterAssets
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
-        [Header("Player")]
-        [Tooltip("Move speed of the character in m/s")]
-        public float MoveSpeed = 2.0f;
-
-        [Tooltip("Sprint speed of the character in m/s")]
-        public float SprintSpeed = 5.335f;
-
-        [Tooltip("How fast the character turns to face movement direction")]
-        [Range(0.0f, 0.3f)]
-        public float RotationSmoothTime = 0.12f;
-
-        [Tooltip("Acceleration and deceleration")]
-        public float SpeedChangeRate = 10.0f;
-
-        public AudioClip LandingAudioClip;
-        public AudioClip[] FootstepAudioClips;
-        [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
-
-        [Space(10)]
-        [Tooltip("The height the player can jump")]
-        public float JumpHeight = 1.2f;
-
-        [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
-        public float Gravity = -15.0f;
-
-        [Space(10)]
-        [Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
-        public float JumpTimeout = 0.50f;
-
-        [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
-        public float FallTimeout = 0.15f;
-
         [Header("Player Grounded")]
         [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
         public bool Grounded = true;
 
+        [Header("Player")]
+        [Tooltip("Move speed of the character in m/s")]
+        [SerializeField]
+        private float MoveSpeed = 2.0f;
+
+        [Tooltip("Sprint speed of the character in m/s")]
+        [SerializeField]
+        private float SprintSpeed = 5.335f;
+
+        [Tooltip("How fast the character turns to face movement direction")]
+        [Range(0.0f, 0.3f)]
+        [SerializeField]
+        private float RotationSmoothTime = 0.12f;
+
+        [Tooltip("Acceleration and deceleration")]
+        [SerializeField]
+        private float SpeedChangeRate = 10.0f;
+        [SerializeField]
+        private AudioClip LandingAudioClip;
+        [SerializeField]
+        private AudioClip[] FootstepAudioClips;
+        [SerializeField]
+        [Range(0, 1)] private float FootstepAudioVolume = 0.5f;
+
+        [SerializeField]
+        [Space(10)]
+        [Tooltip("The height the player can jump")]
+        private float JumpHeight = 1.2f;
+
+        [SerializeField]
+        [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
+        private float Gravity = -15.0f;
+
+        [SerializeField]
+        [Space(10)]
+        [Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
+        private float JumpTimeout = 0.50f;
+
+        [SerializeField]
+        [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
+        private float FallTimeout = 0.15f;
+
+
+
+        [SerializeField]
         [Tooltip("Useful for rough ground")]
-        public float GroundedOffset = -0.14f;
+        private float GroundedOffset = -0.14f;
 
+        [SerializeField]
         [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
-        public float GroundedRadius = 0.28f;
+        private float GroundedRadius = 0.28f;
 
+        [SerializeField]
         [Tooltip("What layers the character uses as ground")]
-        public LayerMask GroundLayers;
+        private LayerMask GroundLayers;
 
+        [SerializeField]
         [Header("Cinemachine")]
         [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
-        public GameObject CinemachineCameraTarget;
+        private GameObject CinemachineCameraTarget;
 
+        [SerializeField]
         [Tooltip("How far in degrees can you move the camera up")]
-        public float TopClamp = 70.0f;
+        private float TopClamp = 70.0f;
 
+        [SerializeField]
         [Tooltip("How far in degrees can you move the camera down")]
-        public float BottomClamp = -30.0f;
+        private float BottomClamp = -30.0f;
 
+        [SerializeField]
         [Tooltip("Additional degress to override the camera. Useful for fine tuning camera position when locked")]
-        public float CameraAngleOverride = 0.0f;
+        private float CameraAngleOverride = 0.0f;
 
+        [SerializeField]
         [Tooltip("For locking the camera position on all axis")]
-        public bool LockCameraPosition = false;
+        private bool LockCameraPosition = false;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -105,7 +125,7 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
-
+        private PlayerAttackController _attackInfo;
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
@@ -134,8 +154,9 @@ namespace StarterAssets
 
         private void Start()
         {
+            _attackInfo = GetComponent<PlayerAttackController>();
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -156,11 +177,16 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
 
-            JumpAndGravity();
             GroundedCheck();
-            Move();
-        }
 
+            if (_attackInfo.noOfClicks == 0)
+            {
+                JumpAndGravity();
+                Move();
+            }
+            // Debug.Log("test" + _attackInfo.noOfClicks);
+
+        }
         private void LateUpdate()
         {
             CameraRotation();
