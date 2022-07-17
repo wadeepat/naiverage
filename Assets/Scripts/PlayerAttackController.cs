@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
 {
+    public Camera cam;
+    public GameObject projectile;
+    public Transform LHFirePoint, RHFirePoint;
+    public float projectileSpeed = 30;
     public int noOfClicks = 0;
     public float cooldownTime = 2f;
     private Animator _anim;
     private float _nextFireTime = 0f;
     private float _lastClickedTime = 0;
     private float _maxComboDelay = 1;
-
+    private Vector3 destination;
     private void Start()
     {
         _anim = GetComponent<Animator>();
@@ -58,6 +62,7 @@ public class PlayerAttackController : MonoBehaviour
         if (noOfClicks == 1)
         {
             _anim.SetBool("Hit1", true);
+            ShootProjectile();
         }
         noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
 
@@ -65,11 +70,30 @@ public class PlayerAttackController : MonoBehaviour
         {
             _anim.SetBool("Hit1", false);
             _anim.SetBool("Hit2", true);
+            ShootProjectile();
         }
         if (noOfClicks >= 3 && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
         {
             _anim.SetBool("Hit2", false);
             _anim.SetBool("Hit3", true);
+            ShootProjectile();
         }
+    }
+    void ShootProjectile()
+    {
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+            destination = hit.point;
+        else
+            destination = ray.GetPoint(1000);
+        InstantiateProjectile(LHFirePoint);
+    }
+    void InstantiateProjectile(Transform firepoint)
+    {
+        // GameObject projectileObj = Instantiate(projectile, firepoint.position, Quaternion.identity) as GameObject;
+        GameObject projectileObj = Instantiate(projectile, firepoint.position, transform.rotation);
+        // projectileObj.GetComponent<Rigidbody>().velocity = (destination - firepoint.position).normalized * projectileSpeed;
+        // projectileObj.GetComponent<Rigidbody>().AddForce(transform.forward * 15f, ForceMode.Impulse);
     }
 }
