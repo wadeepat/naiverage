@@ -4,8 +4,8 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
-    public float lookRadius = 10f;
-    public float stopRadius = 2f;
+    [SerializeField] private float lookRadius = 10f;
+    [SerializeField] private float stopRadius = 2f;
     Transform target;
     NavMeshAgent agent;
     private Animator _anim;
@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
         float distance = Vector3.Distance(target.position, transform.position);
         if (distance <= lookRadius && distance >= stopRadius)
         {
-            _anim.SetBool("isWalking", true);
+            // _anim.SetBool("isWalking", true);
 
             agent.SetDestination(target.position);
 
@@ -39,7 +39,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            _anim.SetBool("isWalking", false);
+            // _anim.SetBool("isWalking", false);
         }
     }
 
