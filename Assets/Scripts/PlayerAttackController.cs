@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class PlayerAttackController : MonoBehaviour
 {
     // public Camera cam;
+    public float checkRadius;
+    public LayerMask checkLayers;
     public GameObject prefabCom1, prefabCom2, prefabCom3;
     public Transform LHFirePoint, RHFirePoint;
     public float projectileSpeed = 30;
@@ -37,6 +39,7 @@ public class PlayerAttackController : MonoBehaviour
         }
 
 
+
         if (Time.time - _lastClickedTime > _maxComboDelay)
         {
             noOfClicks = 0;
@@ -48,6 +51,7 @@ public class PlayerAttackController : MonoBehaviour
             // Check for mouse input
             if (_anim.GetBool("Grounded") && Input.GetMouseButtonDown(0))
             {
+                FaceToClosestEnemy();
                 OnClick();
 
             }
@@ -98,6 +102,24 @@ public class PlayerAttackController : MonoBehaviour
     {
         GameObject projectileObj3 = Instantiate(prefabCom3, LHFirePoint.position, transform.rotation);
     }
+    private void FaceToClosestEnemy()
+    {
+        // if (Input.GetKeyDown(KeyCode.E))
+        // {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, checkRadius, checkLayers);
+        Array.Sort(colliders, new DistanceComparer(transform));
+
+        if (colliders.Length != 0)
+        {
+            // Debug.Log(colliders[0].name);
+            transform.LookAt(colliders[0].transform);
+        }
+        // foreach (Collider item in colliders)
+        // {
+        //     Debug.Log(item.);
+        // }
+        // }
+    }
     // public void InstantiateProjectile(Transform firepoint)
     // {
     // GameObject projectileObj = Instantiate(projectile, firepoint.position, Quaternion.identity) as GameObject;
@@ -105,4 +127,9 @@ public class PlayerAttackController : MonoBehaviour
     // projectileObj.GetComponent<Rigidbody>().velocity = (destination - firepoint.position).normalized * projectileSpeed;
     // projectileObj.GetComponent<Rigidbody>().AddForce(transform.forward * 15f, ForceMode.Impulse);
     // }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, checkRadius);
+    }
 }

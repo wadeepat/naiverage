@@ -22,8 +22,6 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         float distance = Vector3.Distance(target.position, transform.position);
-        Debug.Log("distance" + distance);
-        Debug.Log("lookRadius" + lookRadius);
         if (distance <= lookRadius && distance >= stopRadius)
         {
             _anim.SetBool("isWalking", true);
