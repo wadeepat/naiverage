@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
-  - enemy
   - WayPoints
+  - Fire
+  - Enemy
   layers:
   - Default
   - TransparentFX
