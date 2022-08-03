@@ -19,11 +19,14 @@ public class Spider : MonoBehaviour
     }
     public void TakeDamage(int damageAmount)
     {
+        // Debug.Log("damaged");
+        // animator.SetTrigger("damaged");
         HP -= damageAmount;
         if (HP <= 0)
         {
             animator.SetTrigger("die");
             GetComponent<Collider>().enabled = false;
+            GetComponent<BoxCollider>().enabled = false;
         }
         else
         {
