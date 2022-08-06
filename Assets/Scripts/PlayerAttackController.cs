@@ -84,21 +84,18 @@ public class PlayerAttackController : MonoBehaviour
         if (noOfClicks == 1)
         {
             _anim.SetBool("Hit1", true);
-            // ShootProjectile();
         }
         noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
 
         if (noOfClicks >= 2 && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
         {
-            _anim.SetBool("Hit1", false);
             _anim.SetBool("Hit2", true);
-            // ShootProjectile();
+            _anim.SetBool("Hit1", false);
         }
         if (noOfClicks >= 3 && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
         {
-            _anim.SetBool("Hit2", false);
             _anim.SetBool("Hit3", true);
-            // ShootProjectile();
+            _anim.SetBool("Hit2", false);
         }
     }
     public void ShootCom1()
