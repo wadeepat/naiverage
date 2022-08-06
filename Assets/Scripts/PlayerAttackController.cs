@@ -7,7 +7,7 @@ public class PlayerAttackController : MonoBehaviour
     // public Camera cam;
     public float checkRadius;
     public LayerMask checkLayers;
-    public GameObject prefabCom1, prefabCom2, prefabCom3;
+    public GameObject fireCom1, fireCom2, fireCom3, waterCom1, waterCom2, waterCom3, windCom1, windCom2, windCom3;
     public Transform LHFirePoint, RHFirePoint;
     public float projectileSpeed = 30;
     public int noOfClicks = 0;
@@ -17,12 +17,21 @@ public class PlayerAttackController : MonoBehaviour
     private float _lastClickedTime = 0;
     private float _maxComboDelay = 1;
     // private Vector3 destination;
+
+    private int element = 0;
+    enum Element
+    {
+        Fire,
+        Water,
+        Wind
+    }
     private void Start()
     {
         _anim = GetComponent<Animator>();
     }
     void Update()
     {
+        Debug.Log("Elemt" + (Element)element);
 
         if (_anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
         {
@@ -38,7 +47,16 @@ public class PlayerAttackController : MonoBehaviour
             noOfClicks = 0;
         }
 
-
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (element == 0) element = 2;
+            else element -= 1;
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (element == 2) element = 0;
+            else element += 1;
+        }
 
         if (Time.time - _lastClickedTime > _maxComboDelay)
         {
@@ -92,15 +110,57 @@ public class PlayerAttackController : MonoBehaviour
         // else
         //     destination = ray.GetPoint(1000);
         // InstantiateProjectile(LHFirePoint);
-        GameObject projectileObj1 = Instantiate(prefabCom1, LHFirePoint.position, transform.rotation);
+        if (element == 0)
+        {
+            GameObject projectileObj1 = Instantiate(fireCom1, LHFirePoint.position, transform.rotation);
+
+        }
+        else if (element == 1)
+        {
+            GameObject projectileObj1 = Instantiate(waterCom1, LHFirePoint.position, transform.rotation);
+
+        }
+        else
+        {
+            GameObject projectileObj1 = Instantiate(windCom1, LHFirePoint.position, transform.rotation);
+
+        }
     }
     public void ShootCom2()
     {
-        GameObject projectileObj2 = Instantiate(prefabCom2, LHFirePoint.position, transform.rotation);
+        if (element == 0)
+        {
+            GameObject projectileObj1 = Instantiate(fireCom2, LHFirePoint.position, transform.rotation);
+
+        }
+        else if (element == 1)
+        {
+            GameObject projectileObj1 = Instantiate(waterCom2, LHFirePoint.position, transform.rotation);
+
+        }
+        else
+        {
+            GameObject projectileObj1 = Instantiate(windCom2, LHFirePoint.position, transform.rotation);
+
+        }
     }
     public void ShootCom3()
     {
-        GameObject projectileObj3 = Instantiate(prefabCom3, LHFirePoint.position, transform.rotation);
+        if (element == 0)
+        {
+            GameObject projectileObj1 = Instantiate(fireCom3, LHFirePoint.position, transform.rotation);
+
+        }
+        else if (element == 1)
+        {
+            GameObject projectileObj1 = Instantiate(waterCom3, LHFirePoint.position, transform.rotation);
+
+        }
+        else
+        {
+            GameObject projectileObj1 = Instantiate(windCom3, LHFirePoint.position, transform.rotation);
+
+        }
     }
     private void FaceToClosestEnemy()
     {

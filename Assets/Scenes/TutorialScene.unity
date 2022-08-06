@@ -2439,6 +2439,42 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6114414481495098942, guid: 50d92285390d4644b9f08161deb93990, type: 3}
+      propertyPath: fireCom1
+      value: 
+      objectReference: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
+    - target: {fileID: 6114414481495098942, guid: 50d92285390d4644b9f08161deb93990, type: 3}
+      propertyPath: fireCom2
+      value: 
+      objectReference: {fileID: 121802, guid: 8f18e1d8c46c51f429429815455062fc, type: 3}
+    - target: {fileID: 6114414481495098942, guid: 50d92285390d4644b9f08161deb93990, type: 3}
+      propertyPath: fireCom3
+      value: 
+      objectReference: {fileID: 100008, guid: 6ff1350c2a91520479532984ca642474, type: 3}
+    - target: {fileID: 6114414481495098942, guid: 50d92285390d4644b9f08161deb93990, type: 3}
+      propertyPath: windCom1
+      value: 
+      objectReference: {fileID: 100006, guid: 3fb31ce22fa348f49a27f87a5b0adcbe, type: 3}
+    - target: {fileID: 6114414481495098942, guid: 50d92285390d4644b9f08161deb93990, type: 3}
+      propertyPath: windCom2
+      value: 
+      objectReference: {fileID: 100012, guid: 4e354172ca9de2e45b3021f36963f995, type: 3}
+    - target: {fileID: 6114414481495098942, guid: 50d92285390d4644b9f08161deb93990, type: 3}
+      propertyPath: windCom3
+      value: 
+      objectReference: {fileID: 100004, guid: 48dfdee99b415924b9bc9473c8ab3be8, type: 3}
+    - target: {fileID: 6114414481495098942, guid: 50d92285390d4644b9f08161deb93990, type: 3}
+      propertyPath: waterCom1
+      value: 
+      objectReference: {fileID: 100008, guid: 4248ba95366d5904686c308a47794818, type: 3}
+    - target: {fileID: 6114414481495098942, guid: 50d92285390d4644b9f08161deb93990, type: 3}
+      propertyPath: waterCom2
+      value: 
+      objectReference: {fileID: 100006, guid: 4a208ba3b61f6e24595fe9f17926de8e, type: 3}
+    - target: {fileID: 6114414481495098942, guid: 50d92285390d4644b9f08161deb93990, type: 3}
+      propertyPath: waterCom3
+      value: 
+      objectReference: {fileID: 100010, guid: b97184e0833ffba4ca32beb2bc860a7c, type: 3}
+    - target: {fileID: 6114414481495098942, guid: 50d92285390d4644b9f08161deb93990, type: 3}
       propertyPath: prefabCom1
       value: 
       objectReference: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
