@@ -180,7 +180,8 @@ namespace StarterAssets
             GroundedCheck();
 
             // if (_attackInfo.noOfClicks == 0)
-            if (!_animator.GetBool("Hit1") && !_animator.GetBool("Hit2") && !_animator.GetBool("Hit3"))
+            // if (!_animator.GetBool("Hit1") && !_animator.GetBool("Hit2") && !_animator.GetBool("Hit3"))
+            if (_attackInfo.noOfClicks == 0)
             {
                 JumpAndGravity();
                 Move();

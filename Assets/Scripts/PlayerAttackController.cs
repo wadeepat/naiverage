@@ -31,7 +31,7 @@ public class PlayerAttackController : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log("Elemt" + (Element)element);
+        // Debug.Log("Elemt" + (Element)element);
 
         if (_anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
         {
@@ -89,13 +89,13 @@ public class PlayerAttackController : MonoBehaviour
 
         if (noOfClicks >= 2 && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
         {
-            _anim.SetBool("Hit2", true);
             _anim.SetBool("Hit1", false);
+            _anim.SetBool("Hit2", true);
         }
         if (noOfClicks >= 3 && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
         {
-            _anim.SetBool("Hit3", true);
             _anim.SetBool("Hit2", false);
+            _anim.SetBool("Hit3", true);
         }
     }
     public void ShootCom1()
