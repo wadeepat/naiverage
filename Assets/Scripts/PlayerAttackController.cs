@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
 {
+    public bool attackAble = true;
     // public Camera cam;
     public GameObject prefabCom1, prefabCom2, prefabCom3;
     public Transform LHFirePoint, RHFirePoint;
     public float projectileSpeed = 30;
     public int noOfClicks = 0;
     public float cooldownTime = 2f;
+
     private Animator _anim;
     private float _nextFireTime = 0f;
     private float _lastClickedTime = 0;
@@ -46,7 +48,7 @@ public class PlayerAttackController : MonoBehaviour
         if (Time.time > _nextFireTime)
         {
             // Check for mouse input
-            if (_anim.GetBool("Grounded") && Input.GetMouseButtonDown(0))
+            if (_anim.GetBool("Grounded") && Input.GetMouseButtonDown(0) && attackAble)
             {
                 OnClick();
 

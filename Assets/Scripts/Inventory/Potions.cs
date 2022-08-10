@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
+
+public class Potions : MonoBehaviour
 {
-    public List<Item> yourInventory = new List<Item>();
+    public List<Item> yourPotions = new List<Item>();
     public List<Item> draggedItem = new List<Item>();
 
-    public int slotsNumber = 28;
+    public int slotsNumber = 16;
     public GameObject x;
     public int n;
 
@@ -27,20 +28,25 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
+
         for(int i=0; i < slotsNumber; i++){
-            yourInventory[i] = Database.itemList[0];
+            yourPotions[i] = Database.potionList[0];
         }
-        //test
-        yourInventory[0] = Database.itemList[1];
-        slotStack[0] += 98;
+        // test
+        yourPotions[0] = Database.potionList[1];
+        slotStack[0] += 5;
+        yourPotions[1] = Database.potionList[2];
+        slotStack[1] += 2;
+
         a = -1;
         b = -1;
+
     }
 
     void Update()
     {
         for(int i=0; i < slotsNumber; i++){
-            if(yourInventory[i].id == 0 || slotStack[i] == 1){
+            if(yourPotions[i].id == 0 || slotStack[i] == 1){
                 stackText[i].text = "";
             }else{
                 stackText[i].text = ""+ slotStack[i];
@@ -52,38 +58,7 @@ public class Inventory : MonoBehaviour
         }
 
         for(int i=0; i < slotsNumber; i++){
-            slotSprite[i] = yourInventory[i].itemSprite;
-        }
-
-        if(ItemPickUp.y != null){
-            x = ItemPickUp.y;
-            n = x.GetComponent<ThisItem>().thisId;
-        }else{
-            x = null;
-        }
-
-        if(ItemPickUp.pick == true){
-            for(int i=0; i < slotsNumber; i++){
-                if(yourInventory[i].id == n){
-                    if(slotStack[i] == maxStacks){
-                        continue;
-                    }else{
-                        slotStack[i] += 1;
-                        i = slotsNumber;
-                        ItemPickUp.pick = false;
-                    }
-                    
-                }
-            }
-
-            for(int i=0; i < slotsNumber; i++){
-                if(yourInventory[i].id == 0 && ItemPickUp.pick == true){
-                    yourInventory[i] = Database.itemList[n];
-                    slotStack[i] += 1;
-                    ItemPickUp.pick = false;
-                }
-            }
-            ItemPickUp.pick = false;
+            slotSprite[i] = yourPotions[i].itemSprite;
         }
 
     }
@@ -98,11 +73,11 @@ public class Inventory : MonoBehaviour
 
     public void Drop(Image slotX){
         if(a!=b && a != -1 && b !=-1){
-            draggedItem[0] = yourInventory[a];
+            draggedItem[0] = yourPotions[a];
             slotTemporary = slotStack[a];
-            yourInventory[a] = yourInventory[b];
+            yourPotions[a] = yourPotions[b];
             slotStack[a] = slotStack[b];
-            yourInventory[b] = draggedItem[0];
+            yourPotions[b] = draggedItem[0];
             slotStack[b] = slotTemporary;
         }
         a=-1;
