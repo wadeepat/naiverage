@@ -8,6 +8,9 @@ TagManager:
   - item
   - Potion
   - Quest
+  - WayPoints
+  - Fire
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -15,8 +18,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Enemy
+  - FireLayer
   - 
   - 
   - 
