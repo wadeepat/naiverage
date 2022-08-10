@@ -3851,7 +3851,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7608498752739167463}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4072,9 +4072,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b46dabc20972147bdbd724e33db3c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabCom1: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
-  prefabCom2: {fileID: 121802, guid: 8f18e1d8c46c51f429429815455062fc, type: 3}
-  prefabCom3: {fileID: 163286, guid: 50daa816369323b42b56093bb108296f, type: 3}
+  attackAble: 1
+  checkRadius: 15
+  checkLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  fireCom1: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
+  fireCom2: {fileID: 121802, guid: 8f18e1d8c46c51f429429815455062fc, type: 3}
+  fireCom3: {fileID: 141530, guid: bdd2d8449b20d084d87ae92acb295d2d, type: 3}
+  waterCom1: {fileID: 100008, guid: 4248ba95366d5904686c308a47794818, type: 3}
+  waterCom2: {fileID: 100006, guid: 4a208ba3b61f6e24595fe9f17926de8e, type: 3}
+  waterCom3: {fileID: 100010, guid: b97184e0833ffba4ca32beb2bc860a7c, type: 3}
+  windCom1: {fileID: 100006, guid: 3fb31ce22fa348f49a27f87a5b0adcbe, type: 3}
+  windCom2: {fileID: 100012, guid: 4e354172ca9de2e45b3021f36963f995, type: 3}
+  windCom3: {fileID: 100004, guid: 48dfdee99b415924b9bc9473c8ab3be8, type: 3}
   LHFirePoint: {fileID: 6114414481901227699}
   RHFirePoint: {fileID: 6114414481901227699}
   projectileSpeed: 30
