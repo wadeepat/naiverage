@@ -3838,6 +3838,7 @@ GameObject:
   - component: {fileID: 113415303023662358}
   - component: {fileID: 5487459041045927128}
   - component: {fileID: 1303724688}
+  - component: {fileID: 2529000608590630142}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -4127,6 +4128,19 @@ MonoBehaviour:
   canPickUp: 0
   mushroom: 0
   pickUpText: {fileID: 0}
+--- !u!114 &2529000608590630142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608498752739167463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23d26b4ccbeb4342b325133b96fdfa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 100
 --- !u!1 &7609061255944158761
 GameObject:
   m_ObjectHideFlags: 0
