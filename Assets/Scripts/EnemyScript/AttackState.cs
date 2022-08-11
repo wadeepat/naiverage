@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class AttackState : StateMachineBehaviour
 {
     float cannotAttackRange = 3.5f;
+    NavMeshAgent agent;
     Transform player;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        agent = animator.GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -19,15 +21,19 @@ public class AttackState : StateMachineBehaviour
         float distance = Vector3.Distance(player.position, animator.transform.position);
         if (distance < cannotAttackRange)
         {
-            animator.SetBool("isAttacking", false);
+            animator.SetBool("isCooldowning", true);
         }
+        animator.SetBool("isAttacking", false);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if (agent.GetComponent<NavMeshAgent>().enabled)
+        {
+            agent.SetDestination(animator.transform.position);
+        }
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

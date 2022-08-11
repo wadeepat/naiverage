@@ -25,6 +25,7 @@ public class PlayerStatus : MonoBehaviour
     public void TakeDamaged(int damageAmount)
     {
         hp -= damageAmount;
+        Debug.Log("Hited left" + hp);
         if (hp <= 0)
         {
             // healthBar.SetActive(false);
