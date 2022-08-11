@@ -613,6 +613,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
     Standalone: STARTER_ASSETS_PACKAGES_CHECKED
+    Windows Store Apps: STARTER_ASSETS_PACKAGES_CHECKED
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
