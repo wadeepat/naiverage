@@ -9,6 +9,7 @@ public class DamageToEnemy : MonoBehaviour
     {
         // Debug.Log("Collision");
         Destroy(transform.parent.gameObject);
+        // print(co.gameObject.name);
         if (co.gameObject.tag.Contains("Enemy"))
         {
             co.gameObject.GetComponent<Spider>().TakeDamage(damageAmount);
