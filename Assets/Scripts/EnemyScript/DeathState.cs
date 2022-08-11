@@ -10,6 +10,7 @@ public class DeathState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        animator.gameObject.GetComponent<EnemyController>().enabled = false;
         Destroy(animator.gameObject, 7f + timer);
     }
 
