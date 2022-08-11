@@ -2769,7 +2769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8223152666969521672, guid: 11fab6cc247f5f940a486d717be76b6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -65.85285
+      value: -21.03
       objectReference: {fileID: 0}
     - target: {fileID: 8223152666969521672, guid: 11fab6cc247f5f940a486d717be76b6b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2777,7 +2777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8223152666969521672, guid: 11fab6cc247f5f940a486d717be76b6b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -29.844917
+      value: -34.02
       objectReference: {fileID: 0}
     - target: {fileID: 8223152666969521672, guid: 11fab6cc247f5f940a486d717be76b6b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9764,7 +9764,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.486
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -15660,7 +15660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3963139206386116357, guid: ba50bec4912380a42864e0ef9effe3c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -65.552
+      value: -14.21
       objectReference: {fileID: 0}
     - target: {fileID: 3963139206386116357, guid: ba50bec4912380a42864e0ef9effe3c9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15668,7 +15668,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3963139206386116357, guid: ba50bec4912380a42864e0ef9effe3c9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -29.173
+      value: -32.85
       objectReference: {fileID: 0}
     - target: {fileID: 3963139206386116357, guid: ba50bec4912380a42864e0ef9effe3c9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -19897,7 +19897,7 @@ MonoBehaviour:
   Item: {fileID: 0}
   canPickUp: 0
   mushroom: 0
-  pickUpText: {fileID: 0}
+  pickUpText: {fileID: 807611723}
 --- !u!1 &1423922386
 GameObject:
   m_ObjectHideFlags: 0
@@ -26502,7 +26502,7 @@ MonoBehaviour:
   Matarials: {fileID: 788453911}
   Potions: {fileID: 1315266067}
   Quests: {fileID: 542269441}
-  Player: {fileID: 0}
+  Player: {fileID: 1387217223}
   invenIsClose: 1
 --- !u!114 &1858016161
 MonoBehaviour:
