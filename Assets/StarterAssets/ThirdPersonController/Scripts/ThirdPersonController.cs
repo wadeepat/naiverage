@@ -178,11 +178,17 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
 
             GroundedCheck();
-
+            
             // if (_attackInfo.noOfClicks == 0)
             // if (!_animator.GetBool("Hit1") && !_animator.GetBool("Hit2") && !_animator.GetBool("Hit3"))
-            if (_attackInfo.noOfClicks == 0)
-            {
+            // if (_attackInfo.noOfClicks == 0)
+            // {
+            //     JumpAndGravity();
+            //     Move();
+            // }
+            if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Hit1") || _animator.GetCurrentAnimatorStateInfo(0).IsName("Hit2") || _animator.GetCurrentAnimatorStateInfo(0).IsName("Hit3")){
+                _attackInfo.GetComponent<PlayerAttackController>().FaceToClosestEnemy();
+            }else{
                 JumpAndGravity();
                 Move();
             }

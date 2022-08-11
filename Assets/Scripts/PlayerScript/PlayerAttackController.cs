@@ -34,10 +34,10 @@ public class PlayerAttackController : MonoBehaviour
     void Update()
     {
         // Debug.Log("Elemt" + (Element)element);
-
         if (_anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
         {
             _anim.SetBool("Hit1", false);
+
         }
         if (_anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
         {
@@ -76,6 +76,7 @@ public class PlayerAttackController : MonoBehaviour
 
             }
         }
+        
     }
 
     void OnClick()
@@ -83,22 +84,24 @@ public class PlayerAttackController : MonoBehaviour
         //so it looks at how many clicks have been made and if one animation has finished playing starts another one.
         _lastClickedTime = Time.time;
         noOfClicks++;
+        
         if (noOfClicks == 1)
         {
             _anim.SetBool("Hit1", true);
         }
         noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
 
-        if (noOfClicks >= 2 && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
+        if (noOfClicks >= 2 && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.3f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
         {
             _anim.SetBool("Hit1", false);
             _anim.SetBool("Hit2", true);
         }
-        if (noOfClicks >= 3 && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
+        if (noOfClicks >= 3 && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.3f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
         {
             _anim.SetBool("Hit2", false);
             _anim.SetBool("Hit3", true);
         }
+        _anim.SetFloat("Speed", 0f);
     }
     public void ShootCom1()
     {
@@ -161,7 +164,7 @@ public class PlayerAttackController : MonoBehaviour
 
         }
     }
-    private void FaceToClosestEnemy()
+    public void FaceToClosestEnemy()
     {
         // if (Input.GetKeyDown(KeyCode.E))
         // {
@@ -170,6 +173,7 @@ public class PlayerAttackController : MonoBehaviour
 
         if (colliders.Length != 0)
         {
+
             // Debug.Log(colliders[0].name);
             transform.LookAt(colliders[0].transform);
         }
