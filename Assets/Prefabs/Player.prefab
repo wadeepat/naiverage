@@ -3835,8 +3835,9 @@ GameObject:
   - component: {fileID: 7608498752739167468}
   - component: {fileID: 393711016401085975}
   - component: {fileID: 7608498752739167467}
-  - component: {fileID: 6114414481495098942}
   - component: {fileID: 113415303023662358}
+  - component: {fileID: 5487459041045927128}
+  - component: {fileID: 1303724688}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -4060,7 +4061,26 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &6114414481495098942
+--- !u!114 &113415303023662358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608498752739167463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f824d3fa055d8aa43af7a4785f401917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  move: {x: 0, y: 0}
+  look: {x: 0, y: 0}
+  jump: 0
+  sprint: 0
+  analogMovement: 0
+  cursorLocked: 1
+  cursorInputForLook: 1
+--- !u!114 &5487459041045927128
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4091,7 +4111,7 @@ MonoBehaviour:
   projectileSpeed: 30
   noOfClicks: 0
   cooldownTime: 2
---- !u!114 &113415303023662358
+--- !u!114 &1303724688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4100,16 +4120,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7608498752739167463}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f824d3fa055d8aa43af7a4785f401917, type: 3}
+  m_Script: {fileID: 11500000, guid: bc2d23cd36c4ef14a86c6cb7e4cfc59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move: {x: 0, y: 0}
-  look: {x: 0, y: 0}
-  jump: 0
-  sprint: 0
-  analogMovement: 0
-  cursorLocked: 1
-  cursorInputForLook: 1
+  Item: {fileID: 0}
+  canPickUp: 0
+  mushroom: 0
+  pickUpText: {fileID: 0}
 --- !u!1 &7609061255944158761
 GameObject:
   m_ObjectHideFlags: 0
