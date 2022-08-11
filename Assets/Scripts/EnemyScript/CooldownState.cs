@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public class CooldownState : StateMachineBehaviour
 {
-    private float COOLDOWN_TIME = 3f;
+    private float COOLDOWN_TIME = 1.5f;
     private float timer;
     // private NavMeshAgent agent;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
