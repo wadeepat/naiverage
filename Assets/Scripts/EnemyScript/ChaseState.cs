@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class ChaseState : StateMachineBehaviour
 {
-    float tryToAttackRange = 15;
+    [SerializeField] private float tryToAttackRange = 15f;
+    [SerializeField] private float AttackRange = 2.5f;
     NavMeshAgent agent;
     Transform player;
 
@@ -28,7 +29,7 @@ public class ChaseState : StateMachineBehaviour
             {
                 animator.SetBool("isChasing", false);
             }
-            if (distance < 2.5f)
+            if (distance < AttackRange)
             {
                 animator.SetBool("isChasing", false);
                 animator.SetBool("isAttacking", true);
