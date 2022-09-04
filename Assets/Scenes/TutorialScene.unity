@@ -11199,13 +11199,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Venom
       objectReference: {fileID: 0}
+    - target: {fileID: 4044926641317089671, guid: 669ffb1af85ba3c4182e3e02b00f996e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4044926641317579879, guid: 669ffb1af85ba3c4182e3e02b00f996e, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4044926641317579879, guid: 669ffb1af85ba3c4182e3e02b00f996e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -62.78
+      value: -60.01
       objectReference: {fileID: 0}
     - target: {fileID: 4044926641317579879, guid: 669ffb1af85ba3c4182e3e02b00f996e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11213,7 +11217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4044926641317579879, guid: 669ffb1af85ba3c4182e3e02b00f996e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -36.18
+      value: -30.53
       objectReference: {fileID: 0}
     - target: {fileID: 4044926641317579879, guid: 669ffb1af85ba3c4182e3e02b00f996e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11247,6 +11251,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c41f44edbdfc7db428276b609f9987a3, type: 2}
+    - target: {fileID: 4044926641380375067, guid: 669ffb1af85ba3c4182e3e02b00f996e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 669ffb1af85ba3c4182e3e02b00f996e, type: 3}
 --- !u!114 &5692455173845756524

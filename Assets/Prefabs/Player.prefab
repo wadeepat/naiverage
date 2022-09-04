@@ -4101,12 +4101,12 @@ MonoBehaviour:
   fireCom1: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
   fireCom2: {fileID: 121802, guid: 8f18e1d8c46c51f429429815455062fc, type: 3}
   fireCom3: {fileID: 141530, guid: bdd2d8449b20d084d87ae92acb295d2d, type: 3}
-  waterCom1: {fileID: 100008, guid: 4248ba95366d5904686c308a47794818, type: 3}
-  waterCom2: {fileID: 100006, guid: 4a208ba3b61f6e24595fe9f17926de8e, type: 3}
-  waterCom3: {fileID: 100010, guid: b97184e0833ffba4ca32beb2bc860a7c, type: 3}
-  windCom1: {fileID: 100006, guid: 3fb31ce22fa348f49a27f87a5b0adcbe, type: 3}
-  windCom2: {fileID: 100012, guid: 4e354172ca9de2e45b3021f36963f995, type: 3}
-  windCom3: {fileID: 100004, guid: 48dfdee99b415924b9bc9473c8ab3be8, type: 3}
+  waterCom1: {fileID: 2681805889513376796, guid: 3d9bbf737d97cf44d828e02bc43cc4f1, type: 3}
+  waterCom2: {fileID: 844755845074389993, guid: 5efc2452c4feedf419fada86ed8fec6c, type: 3}
+  waterCom3: {fileID: 7980320630895154149, guid: 5c291deeb4d172049bb6bac8c29b5538, type: 3}
+  windCom1: {fileID: 100006, guid: 03a6d3e57cc4e884ca87bf57eab1de51, type: 3}
+  windCom2: {fileID: 1390511056907837137, guid: 6e4c3d551e3a68e48830fefe14334b23, type: 3}
+  windCom3: {fileID: 6797893857435576222, guid: 3b7a6e405c381bc44897145215fc3b31, type: 3}
   LHFirePoint: {fileID: 6114414481901227699}
   RHFirePoint: {fileID: 6114414481901227699}
   projectileSpeed: 30
@@ -4141,6 +4141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 100
+  healthBar: {fileID: 0}
 --- !u!1 &7609061255944158761
 GameObject:
   m_ObjectHideFlags: 0
