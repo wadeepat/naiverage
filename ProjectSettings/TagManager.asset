@@ -11,6 +11,7 @@ TagManager:
   - WayPoints
   - Fire
   - Enemy
+  - Water
   layers:
   - Default
   - TransparentFX

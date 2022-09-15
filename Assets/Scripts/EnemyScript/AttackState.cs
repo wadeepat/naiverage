@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 public class AttackState : StateMachineBehaviour
 {
+    [SerializeField] private string attackType = "close";
+    [SerializeField] private float attackRange = 10f;
     float cannotAttackRange = 3.5f;
     NavMeshAgent agent;
     Transform player;
@@ -19,11 +21,23 @@ public class AttackState : StateMachineBehaviour
     {
         animator.transform.LookAt(player);
         float distance = Vector3.Distance(player.position, animator.transform.position);
-        if (distance < cannotAttackRange)
+        if (attackType == "range")
         {
-            animator.SetBool("isCooldowning", true);
+            if (distance < attackRange)
+            {
+                animator.SetBool("isCooldowning", true);
+            }
+            animator.SetBool("isAttacking", false);
         }
-        animator.SetBool("isAttacking", false);
+        else
+        {
+            if (distance < cannotAttackRange)
+            {
+                animator.SetBool("isCooldowning", true);
+            }
+            animator.SetBool("isAttacking", false);
+        }
+
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

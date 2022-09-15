@@ -5,14 +5,15 @@ using UnityEngine;
 public class DamageToEnemy : MonoBehaviour
 {
     [SerializeField] private int damageAmount = 20;
-    private void OnCollisionEnter(Collision co)
+    private void OnTriggerEnter(Collider target)
     {
-        // Debug.Log("Collision");
-        Destroy(transform.parent.gameObject);
-        // print(co.gameObject.name);
-        if (co.gameObject.tag.Contains("Enemy"))
+        // Debug.Log(target.gameObject.name);
+        if (target.gameObject.tag.Contains("Enemy"))
         {
-            co.gameObject.GetComponent<Spider>().TakeDamage(damageAmount);
-        };
+            Destroy(transform.parent.gameObject);
+            target.gameObject.GetComponent<Spider>().TakeDamage(damageAmount);
+        }
+        else if (target.gameObject.name == "Terrain")
+            Destroy(transform.parent.gameObject);
     }
 }
