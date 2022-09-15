@@ -98,12 +98,37 @@ public class Inventory : MonoBehaviour
 
     public void Drop(Image slotX){
         if(a!=b && a != -1 && b !=-1){
-            draggedItem[0] = yourInventory[a];
-            slotTemporary = slotStack[a];
-            yourInventory[a] = yourInventory[b];
-            slotStack[a] = slotStack[b];
-            yourInventory[b] = draggedItem[0];
-            slotStack[b] = slotTemporary;
+            if(yourInventory[a].id == yourInventory[b].id){
+                if(slotStack[b] == maxStacks){
+                    draggedItem[0] = yourInventory[a];
+                    slotTemporary = slotStack[a];
+                    yourInventory[a] = yourInventory[b];
+                    slotStack[a] = slotStack[b];
+                    yourInventory[b] = draggedItem[0];
+                    slotStack[b] = slotTemporary;
+                }else{
+                    slotStack[b] += slotStack[a];
+                    if(slotStack[b] > maxStacks){
+                        slotStack[a] = slotStack[b] - maxStacks;
+                        slotStack[b] = maxStacks;
+                    }else if(slotStack[b] == maxStacks){
+                        slotStack[a] = 0;
+                        yourInventory[a] = Database.itemList[0];
+                    }else{
+                        slotStack[a] = 0;
+                        yourInventory[a] = Database.itemList[0];
+                    }
+                }
+                
+            }else{
+                draggedItem[0] = yourInventory[a];
+                slotTemporary = slotStack[a];
+                yourInventory[a] = yourInventory[b];
+                slotStack[a] = slotStack[b];
+                yourInventory[b] = draggedItem[0];
+                slotStack[b] = slotTemporary;
+            }
+            
         }
         a=-1;
         b=-1;

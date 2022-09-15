@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class Potions : MonoBehaviour
 {
-    public List<Item> yourPotions = new List<Item>();
-    public List<Item> draggedItem = new List<Item>();
+    public List<Potion> yourPotions = new List<Potion>();
+    public List<Potion> draggedItem = new List<Potion>();
 
     public int slotsNumber = 16;
     public GameObject x;
@@ -34,7 +34,7 @@ public class Potions : MonoBehaviour
         }
         // test
         yourPotions[0] = Database.potionList[1];
-        slotStack[0] += 5;
+        slotStack[0] += 16;
         yourPotions[1] = Database.potionList[2];
         slotStack[1] += 2;
 
@@ -73,12 +73,36 @@ public class Potions : MonoBehaviour
 
     public void Drop(Image slotX){
         if(a!=b && a != -1 && b !=-1){
-            draggedItem[0] = yourPotions[a];
-            slotTemporary = slotStack[a];
-            yourPotions[a] = yourPotions[b];
-            slotStack[a] = slotStack[b];
-            yourPotions[b] = draggedItem[0];
-            slotStack[b] = slotTemporary;
+            if(yourPotions[a].id == yourPotions[b].id){
+                if(slotStack[b] == maxStacks){
+                    draggedItem[0] = yourPotions[a];
+                    slotTemporary = slotStack[a];
+                    yourPotions[a] = yourPotions[b];
+                    slotStack[a] = slotStack[b];
+                    yourPotions[b] = draggedItem[0];
+                    slotStack[b] = slotTemporary;
+                }else{
+                    slotStack[b] += slotStack[a];
+                    if(slotStack[b] > maxStacks){
+                        slotStack[a] = slotStack[b] - maxStacks;
+                        slotStack[b] = maxStacks;
+                    }else if(slotStack[b] == maxStacks){
+                        slotStack[a] = 0;
+                        yourPotions[a] = Database.potionList[0];
+                    }else{
+                        slotStack[a] = 0;
+                        yourPotions[a] = Database.potionList[0];
+                    }
+                }
+                
+            }else{
+                draggedItem[0] = yourPotions[a];
+                slotTemporary = slotStack[a];
+                yourPotions[a] = yourPotions[b];
+                slotStack[a] = slotStack[b];
+                yourPotions[b] = draggedItem[0];
+                slotStack[b] = slotTemporary;
+            }
         }
         a=-1;
         b=-1;
