@@ -7,6 +7,10 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject LoadingScreen;
     public Slider sliderLoading;
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
     public void PlayGame()
     {
         Debug.Log("play");
@@ -15,8 +19,8 @@ public class MainMenu : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        Cursor.visible = false;
         int sceneIndex = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), sceneName);
-        // Debug.Log(sceneIndex);
         StartCoroutine(LoadAsynchronously(sceneIndex));
     }
     IEnumerator LoadAsynchronously(int sceneIndex)
