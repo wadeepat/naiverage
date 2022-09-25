@@ -5,11 +5,15 @@ using UnityEngine.UI;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
+using Ink.UnityIntegration;
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Globals Ink File")]
+    [SerializeField] private InkFile globalsInkFile;
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
+    [SerializeField] private TextMeshProUGUI displayNameText;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
@@ -17,8 +21,9 @@ public class DialogueManager : MonoBehaviour
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
     private static DialogueManager instance;
+    private DialogueVariables dialogueVariables;
 
-
+    private const string SPEAKER_TAG = "speaker";
     private void Awake()
     {
         Debug.Log("Awake");
@@ -27,6 +32,8 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("Found more than one Dialog Manager in the scene.");
         }
         instance = this;
+        dialogueVariables = new DialogueVariables(globalsInkFile.filePath);
+
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         choicesText = new TextMeshProUGUI[choices.Length];
@@ -79,11 +86,18 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(true);
         // Debug.Log("active " + dialoguePanel.active);
 
+        dialogueVariables.StartListenning(currentStory);
+
+        //reset name, sound ...etc.
+        displayNameText.text = "???";
+
         ContinueStory();
     }
-    private void ExitDialogueMode()
+    private IEnumerator ExitDialogueMode()
     {
-        // yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.2f);
+
+        dialogueVariables.StopListening(currentStory);
 
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
@@ -96,14 +110,37 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueText.text = currentStory.Continue();
             DisplayChoices();
+            //handle tags
+            HandleTags(currentStory.currentTags);
         }
         else
         {
-            ExitDialogueMode();
-            // StartCoroutine(ExitDialogueMode());
+            StartCoroutine(ExitDialogueMode());
         }
     }
+    private void HandleTags(List<string> currentTags)
+    {
+        foreach (string tag in currentTags)
+        {
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length != 2)
+            {
+                Debug.LogError("Tag could not be appropriately parsed: " + tag);
+            }
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
 
+            switch (tagKey)
+            {
+                case SPEAKER_TAG:
+                    displayNameText.text = tagValue;
+                    break;
+                default:
+                    Debug.LogWarning("Tag cam in but is not being handled: " + tag);
+                    break;
+            }
+        }
+    }
     private void DisplayChoices()
     {
         List<Choice> currentChoices = currentStory.currentChoices;
@@ -133,37 +170,21 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
     }
-    // public Text nameText;
-    // public Text dialogueText;
-    // private Queue<string> sentences;
-    // void Start()
-    // {
-    //     sentences = new Queue<string>();
-    // }
 
-    // public void StartDialogue(Dialogue dialogue)
-    // {
-    //     nameText.text = dialogue.name;
-    //     sentences.Clear();
-    //     foreach (string sentence in dialogue.sentences)
-    //     {
-    //         sentences.Enqueue(sentence);
-    //     }
-    //     DisplayNextSentence();
-    // }
-    // private void DisplayNextSentence()
-    // {
-    //     if (sentences.Count == 0)
-    //     {
-    //         EndDialogue();
-    //         return;
-    //     }
-    //     string sentence = sentences.Dequeue();
-    //     dialogueText.text = sentence;
-    // }
+    public void MakeChoice(int choiceIdx)
+    {
+        currentStory.ChooseChoiceIndex(choiceIdx);
+        ContinueStory();
+    }
 
-    // private void EndDialogue()
-    // {
-    //     Debug.Log("End");
-    // }
+    public Ink.Runtime.Object GetVariableState(string variableName)
+    {
+        Ink.Runtime.Object variableValue = null;
+        dialogueVariables.variables.TryGetValue(variableName, out variableValue);
+        if (variableValue == null)
+        {
+            Debug.LogWarning("Ink Variable was found to be null: " + variableName);
+        }
+        return variableValue;
+    }
 }
