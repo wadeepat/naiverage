@@ -20,9 +20,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
+    public static bool dialogueIsPlaying { get; private set; }
     private TextMeshProUGUI[] choicesText;
     private Story currentStory;
-    public bool dialogueIsPlaying { get; private set; }
     private bool canContinueToNextLine = false;
     private Coroutine displayLineCoroutine;
     private static DialogueManager instance;
@@ -175,6 +175,7 @@ public class DialogueManager : MonoBehaviour
     }
     private void DisplayChoices()
     {
+        Cursor.visible = true;
         List<Choice> currentChoices = currentStory.currentChoices;
         if (currentChoices.Count > choices.Length)
         {
@@ -205,6 +206,7 @@ public class DialogueManager : MonoBehaviour
 
     public void MakeChoice(int choiceIdx)
     {
+        Cursor.visible = false;
         if (canContinueToNextLine)
         {
             currentStory.ChooseChoiceIndex(choiceIdx);

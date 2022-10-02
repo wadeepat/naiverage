@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     private Vector2 lookDirection = Vector2.zero;
     private Vector2 moveDirection = Vector2.zero;
     private bool interactPressed = false;
+    private bool jumpPressed = false;
     private bool nextPressed = false;
     private bool submitPressed = false;
 
@@ -59,6 +60,17 @@ public class InputManager : MonoBehaviour
             interactPressed = false;
         }
     }
+    public void JumpPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            jumpPressed = true;
+        }
+        else if (context.canceled)
+        {
+            jumpPressed = false;
+        }
+    }
     public void NextPressed(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -93,6 +105,12 @@ public class InputManager : MonoBehaviour
     {
         bool result = interactPressed;
         interactPressed = false;
+        return result;
+    }
+    public bool GetJumpPressed()
+    {
+        bool result = jumpPressed;
+        jumpPressed = false;
         return result;
     }
     public bool GetNextPressed()

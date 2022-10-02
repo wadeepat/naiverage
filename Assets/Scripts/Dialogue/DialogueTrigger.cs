@@ -20,10 +20,10 @@ public class DialogueTrigger : MonoBehaviour
         if (playerInRange)
         {
             visualCue.SetActive(true);
-            if (Input.GetKeyDown("F"))
+            if (InputManager.GetInstance().GetInteractPressed())
             {
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
-                Debug.Log(inkJSON.text);
+                // Debug.Log(inkJSON.text);
             }
         }
         else
@@ -35,6 +35,21 @@ public class DialogueTrigger : MonoBehaviour
     // {
     //     FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     // }
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("test");
+        if (collision.gameObject.tag == "Player")
+        {
+            playerInRange = true;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            playerInRange = false;
+        }
+    }
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "Player")
