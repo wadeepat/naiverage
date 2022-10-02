@@ -11,6 +11,7 @@ public class DialogueVariables : MonoBehaviour
         //compile the story
         string inkFileContents = File.ReadAllText(globalsFilePath);
         Ink.Compiler compiler = new Ink.Compiler(inkFileContents);
+        // Ink.Compiler compiler = gameObject.AddComponent<Ink.Compiler>(glo);
         Story globalVariablesStory = compiler.Compile();
 
         //initialize the dictionary
@@ -19,7 +20,7 @@ public class DialogueVariables : MonoBehaviour
         {
             Ink.Runtime.Object value = globalVariablesStory.variablesState.GetVariableWithName(name);
             variables.Add(name, value);
-            Debug.Log("Initailized global dialogue variable: " + name + " = " + value);
+            // Debug.Log("Initailized global dialogue variable: " + name + " = " + value);
         }
     }
     public void StartListenning(Story story)
