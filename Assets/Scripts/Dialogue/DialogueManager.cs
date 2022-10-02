@@ -29,6 +29,7 @@ public class DialogueManager : MonoBehaviour
     private DialogueVariables dialogueVariables;
 
     private const string SPEAKER_TAG = "speaker";
+    private const string SOUND_TAG = "sound";
     private void Awake()
     {
         if (instance != null)
@@ -160,8 +161,11 @@ public class DialogueManager : MonoBehaviour
                 case SPEAKER_TAG:
                     displayNameText.text = tagValue;
                     break;
+                case SOUND_TAG:
+                    AudioManager.GetInstance().Play(tagValue);
+                    break;
                 default:
-                    Debug.LogWarning("Tag cam in but is not being handled: " + tag);
+                    Debug.LogWarning("Tag came in but is not being handled: " + tag);
                     break;
             }
         }

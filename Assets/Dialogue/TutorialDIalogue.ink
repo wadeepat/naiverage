@@ -5,6 +5,7 @@ VAR name = "Liw"
 #speaker:???
 Don't judge the book by its cover.
 The answers were already there.
+#sound:singleFootstepInGrass
 Open and find it.
 ->DONE
 

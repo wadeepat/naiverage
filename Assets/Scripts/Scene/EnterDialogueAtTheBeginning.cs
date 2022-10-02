@@ -6,21 +6,18 @@ public class EnterDialogueAtTheBeginning : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private TextAsset inkJSON;
+    private float time = 1.5f;
     void Start()
     {
-        // GetComponent<DialogueTrigger>().EnterDialogueMode();
-        // Debug.Log("Start from Tutorial Script");
         DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
-        // Debug.Log("Start Dialogue");
+        AudioManager.GetInstance().Play("forestBackground");
+        // StartCoroutine(Prepare());
     }
 
-    // Update is called once per frame
-    // void Update()
-    // {
-
-    // }
-    public void testClick()
+    private IEnumerator Prepare()
     {
-        Debug.Log("Click");
+        yield return new WaitForSeconds(time);
+        DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+        AudioManager.GetInstance().Play("forestBackground");
     }
 }

@@ -9,7 +9,6 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
     private bool playerInRange;
-    // public Dialogue dialogue;
     private void Awake()
     {
         playerInRange = false;
@@ -29,25 +28,6 @@ public class DialogueTrigger : MonoBehaviour
         else
         {
             visualCue.SetActive(false);
-        }
-    }
-    // public void TriggerDialogue()
-    // {
-    //     FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
-    // }
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("test");
-        if (collision.gameObject.tag == "Player")
-        {
-            playerInRange = true;
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            playerInRange = false;
         }
     }
     private void OnTriggerEnter(Collider collider)
