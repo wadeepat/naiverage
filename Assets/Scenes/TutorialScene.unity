@@ -11269,6 +11269,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5692455173845756528}
     m_Modifications:
     - target: {fileID: 1374411293204347148, guid: 4477deec801e55240838d419d582462f, type: 3}
+      propertyPath: typingSpeed
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374411293204347148, guid: 4477deec801e55240838d419d582462f, type: 3}
       propertyPath: continueText
       value: 
       objectReference: {fileID: 1515524572}
