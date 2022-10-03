@@ -30,6 +30,7 @@ public class DialogueManager : MonoBehaviour
 
     private const string SPEAKER_TAG = "speaker";
     private const string SOUND_TAG = "sound";
+    private GameObject _player;
     private void Awake()
     {
         if (instance != null)
@@ -41,6 +42,7 @@ public class DialogueManager : MonoBehaviour
     }
     private void Start()
     {
+        _player = GameObject.FindGameObjectWithTag("Player");
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         choicesText = new TextMeshProUGUI[choices.Length];
@@ -77,6 +79,9 @@ public class DialogueManager : MonoBehaviour
     {
         // Debug.Log("EnterDialogue");
         // Debug.Log(inkJSON.text);
+        _player.GetComponent<Animator>().SetFloat("Speed", 0f);
+        _player.GetComponent<Animator>().SetTrigger("reset");
+        Debug.Log("reset");
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
@@ -170,20 +175,18 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
-    private void HideChoices()
-    {
-        foreach (GameObject choiceBtn in choices)
-        {
-            choiceBtn.SetActive(false);
-        }
-    }
+
     private void DisplayChoices()
     {
-        Cursor.visible = true;
+
         List<Choice> currentChoices = currentStory.currentChoices;
         if (currentChoices.Count > choices.Length)
         {
             Debug.LogError("More choices were given than the UI can support. Number of choices given: " + currentChoices.Count);
+        }
+        else if (currentChoices.Count > 0)
+        {
+            EnablePlayerControll();
         }
 
         int index = 0;
@@ -201,6 +204,15 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(SelectFirstChoice());
     }
 
+    private void HideChoices()
+    {
+        DisablePlayerControll();
+        foreach (GameObject choiceBtn in choices)
+        {
+            choiceBtn.SetActive(false);
+        }
+    }
+
     private IEnumerator SelectFirstChoice()
     {
         EventSystem.current.SetSelectedGameObject(null);
@@ -210,7 +222,6 @@ public class DialogueManager : MonoBehaviour
 
     public void MakeChoice(int choiceIdx)
     {
-        Cursor.visible = false;
         if (canContinueToNextLine)
         {
             currentStory.ChooseChoiceIndex(choiceIdx);
@@ -228,5 +239,15 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("Ink Variable was found to be null: " + variableName);
         }
         return variableValue;
+    }
+    private void EnablePlayerControll()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+    private void DisablePlayerControll()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

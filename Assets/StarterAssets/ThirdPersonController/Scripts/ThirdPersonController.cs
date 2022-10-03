@@ -186,10 +186,6 @@ namespace StarterAssets
             //     JumpAndGravity();
             //     Move();
             // }
-            if (DialogueManager.dialogueIsPlaying)
-            {
-                return;
-            }
             if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Hit1") || _animator.GetCurrentAnimatorStateInfo(0).IsName("Hit2") || _animator.GetCurrentAnimatorStateInfo(0).IsName("Hit3"))
             {
                 _attackInfo.GetComponent<PlayerAttackController>().FaceToClosestEnemy();
@@ -254,6 +250,7 @@ namespace StarterAssets
 
         private void Move()
         {
+            if (DialogueManager.dialogueIsPlaying) _input.move = Vector2.zero;
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
@@ -261,6 +258,7 @@ namespace StarterAssets
 
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is no input, set the target speed to 0
+
             if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
             // a reference to the players current horizontal velocity
@@ -342,7 +340,7 @@ namespace StarterAssets
 
                 // Jump
                 // if (_input.jump && _jumpTimeoutDelta <= 0.0f)
-                if (InputManager.GetInstance().GetJumpPressed() && _jumpTimeoutDelta <= 0.0f)
+                if (InputManager.GetInstance().GetJumpPressed() && _jumpTimeoutDelta <= 0.0f && !DialogueManager.dialogueIsPlaying)
                 {
                     // the square root of H * -2 * G = how much velocity needed to reach desired height
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
