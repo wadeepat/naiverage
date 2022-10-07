@@ -11350,6 +11350,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1515524571}
     - target: {fileID: 1374411293204347148, guid: 4477deec801e55240838d419d582462f, type: 3}
+      propertyPath: loadGlobalsJSON
+      value: 
+      objectReference: {fileID: 4900000, guid: 2cd70cfe227d9d849b0dac664fa5c6ef, type: 3}
+    - target: {fileID: 1374411293204347148, guid: 4477deec801e55240838d419d582462f, type: 3}
       propertyPath: choices.Array.data[0]
       value: 
       objectReference: {fileID: 206178457}

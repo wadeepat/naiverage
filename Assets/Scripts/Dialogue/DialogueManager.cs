@@ -4,15 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Ink.Runtime;
-using UnityEngine.EventSystems;
-using Ink.UnityIntegration;
 
 public class DialogueManager : MonoBehaviour
 {
     [Header("Params")]
     [SerializeField] private float typingSpeed = 0.06f;
     [Header("Globals Ink File")]
-    [SerializeField] private InkFile globalsInkFile;
+    [SerializeField] private TextAsset loadGlobalsJSON;
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI continueText;
@@ -38,7 +36,7 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("Found more than one Dialog Manager in the scene.");
         }
         instance = this;
-        dialogueVariables = new DialogueVariables(globalsInkFile.filePath);
+        dialogueVariables = new DialogueVariables(loadGlobalsJSON);
     }
     private void Start()
     {
@@ -61,7 +59,6 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        // Debug.Log("playing " + dialogueIsPlaying);
         if (!dialogueIsPlaying)
         {
             return;
@@ -77,15 +74,12 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterDialogueMode(TextAsset inkJSON)
     {
-        // Debug.Log("EnterDialogue");
-        // Debug.Log(inkJSON.text);
         _player.GetComponent<Animator>().SetFloat("Speed", 0f);
         _player.GetComponent<Animator>().SetTrigger("reset");
         Debug.Log("reset");
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
-        // Debug.Log("active " + dialoguePanel.active);
 
         dialogueVariables.StartListenning(currentStory);
 
@@ -125,23 +119,41 @@ public class DialogueManager : MonoBehaviour
     }
     private IEnumerator DisplayLine(string line)
     {
-        dialogueText.text = "";
+        //set text to full line, but set the visible characters to 0 for hiding
+        dialogueText.text = line;
+        dialogueText.maxVisibleCharacters = 0;
+
+        //hide UI that don't want to show while typing
         continueText.gameObject.SetActive(false);
         HideChoices();
 
         canContinueToNextLine = false;
 
+        bool isAddingRichTextTag = false;
         foreach (char letter in line.ToCharArray())
         {
 
             if (InputManager.GetInstance().GetNextPressed())
             {
-                // Debug.Log("Skip");
-                dialogueText.text = line;
+                dialogueText.maxVisibleCharacters = line.Length;
                 break;
             }
-            dialogueText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+
+            //check for rich text tag
+            if (letter == '<' || isAddingRichTextTag)
+            {
+                isAddingRichTextTag = true;
+                if (letter == '>')
+                {
+                    isAddingRichTextTag = false;
+                }
+            }
+            //normal text
+            else
+            {
+                dialogueText.maxVisibleCharacters++;
+                yield return new WaitForSeconds(typingSpeed);
+            }
         }
 
         continueText.gameObject.SetActive(true);
@@ -201,7 +213,7 @@ public class DialogueManager : MonoBehaviour
             choices[i].gameObject.SetActive(false);
         }
 
-        StartCoroutine(SelectFirstChoice());
+        // StartCoroutine(SelectFirstChoice());
     }
 
     private void HideChoices()
@@ -213,12 +225,12 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private IEnumerator SelectFirstChoice()
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-        yield return new WaitForEndOfFrame();
-        EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
-    }
+    // private IEnumerator SelectFirstChoice()
+    // {
+    //     EventSystem.current.SetSelectedGameObject(null);
+    //     yield return new WaitForEndOfFrame();
+    //     EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
+    // }
 
     public void MakeChoice(int choiceIdx)
     {
@@ -250,4 +262,7 @@ public class DialogueManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
+    // private void OnApplicationQuit() {
+    //     dialogueVariables.SaveVariables();
+    // }
 }

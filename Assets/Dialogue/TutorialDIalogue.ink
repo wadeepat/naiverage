@@ -3,14 +3,13 @@ VAR name = "Liw"
 
 === Opening ===
 #speaker:???
-Don't judge the book by its cover.
-The answers were already there.
-#sound:singleFootstepInGrass
+Don't <color=\#40FF6F>judge</color> the book by its cover.
+The answers were <b>already</b> there.
 Open and find it.
 ->DONE
 
 === SataCall ===
-Hey you!!! #speaker:???
+Hey you!!! #speaker:??? #sound:singleFootstepInGrass
 ->SataFirstMet
 
 === SataFirstMet ===
@@ -66,5 +65,8 @@ Are you interested ?
         ->DONE
     +[Let me think]
         I'm looking forward to it.
+        ->DONE
+->DONE
+ it.
         ->DONE
 ->DONE

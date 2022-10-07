@@ -6,13 +6,24 @@ using System.IO;
 public class DialogueVariables : MonoBehaviour
 {
     public Dictionary<string, Ink.Runtime.Object> variables { get; private set; }
-    public DialogueVariables(string globalsFilePath)
+    private const string saveVariablesKey = "INK_VARIABLES";
+    private Story globalVariablesStory;
+    public DialogueVariables(TextAsset loadGlobalsJSON)
     {
         //compile the story
-        string inkFileContents = File.ReadAllText(globalsFilePath);
-        Ink.Compiler compiler = new Ink.Compiler(inkFileContents);
+        // string inkFileContents = File.ReadAllText(globalsFilePath);
+        // Ink.Compiler compiler = new Ink.Compiler(inkFileContents);
         // Ink.Compiler compiler = gameObject.AddComponent<Ink.Compiler>(glo);
-        Story globalVariablesStory = compiler.Compile();
+        // Story globalVariablesStory = compiler.Compile();
+
+        //create the story
+        globalVariablesStory = new Story(loadGlobalsJSON.text);
+        //if we have saved data then load it
+        if (PlayerPrefs.HasKey(saveVariablesKey))
+        {
+            string jsonState = PlayerPrefs.GetString(saveVariablesKey);
+            globalVariablesStory.state.LoadJson(jsonState);
+        }
 
         //initialize the dictionary
         variables = new Dictionary<string, Ink.Runtime.Object>();
@@ -21,6 +32,16 @@ public class DialogueVariables : MonoBehaviour
             Ink.Runtime.Object value = globalVariablesStory.variablesState.GetVariableWithName(name);
             variables.Add(name, value);
             // Debug.Log("Initailized global dialogue variable: " + name + " = " + value);
+        }
+    }
+
+    public void SaveVariables()
+    {
+        if (globalVariablesStory != null)
+        {
+            //load current state of all our variables to globals story
+            VariablesToStory(globalVariablesStory);
+            PlayerPrefs.SetString(saveVariablesKey, globalVariablesStory.state.ToJson());
         }
     }
     public void StartListenning(Story story)
