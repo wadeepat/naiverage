@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
 using System.IO;
-public class DialogueVariables : MonoBehaviour
+public class DialogueVariables
 {
     public Dictionary<string, Ink.Runtime.Object> variables { get; private set; }
     private const string saveVariablesKey = "INK_VARIABLES";
