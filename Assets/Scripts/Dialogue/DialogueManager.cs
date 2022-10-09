@@ -179,7 +179,7 @@ public class DialogueManager : MonoBehaviour
                     displayNameText.text = tagValue;
                     break;
                 case SOUND_TAG:
-                    AudioManager.GetInstance().Play(tagValue);
+                    AudioManager.instance.Play(tagValue);
                     break;
                 default:
                     Debug.LogWarning("Tag came in but is not being handled: " + tag);

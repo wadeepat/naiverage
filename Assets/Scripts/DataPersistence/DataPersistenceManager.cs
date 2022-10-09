@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 public class DataPersistenceManager : MonoBehaviour
 {
+    [Header("Debugging")]
+    [SerializeField] private bool initializeDataIfNull = false;
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
     [SerializeField] private bool useEncryption;
@@ -16,30 +19,57 @@ public class DataPersistenceManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogError("Found more than one Data Persistence Manager in the scene");
+            Debug.Log("Found more than one Data Persistence Manager in the scene. Destroying the newest one.");
+            Destroy(this.gameObject);
+            return;
         }
         instance = this;
+        DontDestroyOnLoad(this.gameObject);
+
+        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+    }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+    }
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
+        LoadGame();
+    }
+    public void OnSceneUnloaded(Scene scene)
+    {
+        SaveGame();
     }
     private void Start()
     {
-        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
-        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        LoadGame();
+
     }
     public void NewGame()
     {
         this.gameData = new GameData();
+        Debug.Log("gameData new");
     }
     public void LoadGame()
     {
         //load any saved data from a data handler
         this.gameData = dataHandler.Load();
 
+        if (initializeDataIfNull)
+        {
+            NewGame();
+        }
         //if no data can be loaded, initialize to a new game
         if (this.gameData == null)
         {
-            Debug.Log("No data was found. Initializing data to defaults");
-            NewGame();
+            Debug.Log("No data was found. Need to go to NewGame");
+            return;
         }
 
         //push the loaded data to all other scripts that need it
@@ -52,6 +82,11 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void SaveGame()
     {
+        //if don't have any data to save, log a warning 
+        if (this.gameData == null)
+        {
+            Debug.LogWarning("No data was found, NewGame is needed");
+        }
         //pass the data to other scripts so they can update it
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
@@ -71,5 +106,9 @@ public class DataPersistenceManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         SaveGame();
+    }
+    public bool HasGameData()
+    {
+        return gameData != null;
     }
 }
