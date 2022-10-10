@@ -34,6 +34,10 @@ public class PlayerAttackController : MonoBehaviour
     void Update()
     {
         // Debug.Log("Elemt" + (Element)element);
+        if (DialogueManager.dialogueIsPlaying)
+        {
+            return;
+        }
         if (_anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
         {
             _anim.SetBool("Hit1", false);
@@ -76,7 +80,7 @@ public class PlayerAttackController : MonoBehaviour
 
             }
         }
-        
+
     }
 
     void OnClick()
@@ -84,7 +88,7 @@ public class PlayerAttackController : MonoBehaviour
         //so it looks at how many clicks have been made and if one animation has finished playing starts another one.
         _lastClickedTime = Time.time;
         noOfClicks++;
-        
+
         if (noOfClicks == 1)
         {
             _anim.SetBool("Hit1", true);

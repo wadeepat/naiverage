@@ -6,5 +6,5 @@ public enum SceneIndex
 {
     MainMenu = 0,
     Tutorial = 1,
-    Map = 2
+    Test = 2
 }
