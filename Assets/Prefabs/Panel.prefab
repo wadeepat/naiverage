@@ -4302,7 +4302,6 @@ MonoBehaviour:
   bSlot: 0
   slotP: 00000000000000000000000000000000
   slotStack: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  slotPotionStack: 00000000000000000000000000000000
   maxStacks: 16
   slotTemporary: 0
 --- !u!114 &4388282034011254540
@@ -5422,6 +5421,10 @@ MonoBehaviour:
   - {fileID: 2255870442460104057}
   - {fileID: 2672871082256320962}
   - {fileID: 1504499015268868066}
+  slotSkills:
+  - {fileID: 7792748260924722669}
+  - {fileID: 4283302860048882727}
+  - {fileID: 8562147653685971504}
   slotSprite:
   - {fileID: 0}
   - {fileID: 0}
@@ -5437,7 +5440,10 @@ MonoBehaviour:
   - {fileID: 0}
   a: 0
   b: 0
+  aSlot: 0
+  bSlot: 0
   slotStack: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  slotStackSkills: 000000000000000000000000
   maxStacks: 1
   slotTemporary: 0
 --- !u!114 &7767358178348346822
@@ -5706,7 +5712,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8836674569497641790
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5725,7 +5731,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40, y: 40}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6599908615704059363
 CanvasRenderer:
@@ -5782,9 +5788,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: StartDrag
+        - m_Target: {fileID: 7206948900674487937}
+          m_TargetAssemblyTypeName: SkillsUnlock, Assembly-CSharp
+          m_MethodName: StartDragSlot
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 7792748260924722669}
@@ -5798,9 +5804,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: Drop
+        - m_Target: {fileID: 7206948900674487937}
+          m_TargetAssemblyTypeName: SkillsUnlock, Assembly-CSharp
+          m_MethodName: DropSlot
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 7792748260924722669}
@@ -5814,9 +5820,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: Enter
+        - m_Target: {fileID: 7206948900674487937}
+          m_TargetAssemblyTypeName: SkillsUnlock, Assembly-CSharp
+          m_MethodName: EnterSlot
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 7792748260924722669}
@@ -5830,9 +5836,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-          m_MethodName: Exit
+        - m_Target: {fileID: 7206948900674487937}
+          m_TargetAssemblyTypeName: SkillsUnlock, Assembly-CSharp
+          m_MethodName: ExitSlot
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 7792748260924722669}
@@ -6246,7 +6252,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40, y: 40}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5360348070449331847
 CanvasRenderer:
@@ -6303,9 +6309,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: StartDrag
+        - m_Target: {fileID: 7206948900674487937}
+          m_TargetAssemblyTypeName: SkillsUnlock, Assembly-CSharp
+          m_MethodName: StartDragSlot
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 4283302860048882727}
@@ -6319,9 +6325,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: Drop
+        - m_Target: {fileID: 7206948900674487937}
+          m_TargetAssemblyTypeName: SkillsUnlock, Assembly-CSharp
+          m_MethodName: DropSlot
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 4283302860048882727}
@@ -6335,9 +6341,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: Enter
+        - m_Target: {fileID: 7206948900674487937}
+          m_TargetAssemblyTypeName: SkillsUnlock, Assembly-CSharp
+          m_MethodName: EnterSlot
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 4283302860048882727}
@@ -6351,9 +6357,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-          m_MethodName: Exit
+        - m_Target: {fileID: 7206948900674487937}
+          m_TargetAssemblyTypeName: SkillsUnlock, Assembly-CSharp
+          m_MethodName: ExitSlot
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 4283302860048882727}
@@ -18506,7 +18512,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40, y: 40}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7320998721639708635
 CanvasRenderer:
@@ -18563,9 +18569,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: StartDrag
+        - m_Target: {fileID: 7206948900674487937}
+          m_TargetAssemblyTypeName: SkillsUnlock, Assembly-CSharp
+          m_MethodName: StartDragSlot
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 8562147653685971504}
@@ -18579,9 +18585,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: Drop
+        - m_Target: {fileID: 7206948900674487937}
+          m_TargetAssemblyTypeName: SkillsUnlock, Assembly-CSharp
+          m_MethodName: DropSlot
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 8562147653685971504}
@@ -18595,9 +18601,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: Enter
+        - m_Target: {fileID: 7206948900674487937}
+          m_TargetAssemblyTypeName: SkillsUnlock, Assembly-CSharp
+          m_MethodName: EnterSlot
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 8562147653685971504}
@@ -18611,9 +18617,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-          m_MethodName: Exit
+        - m_Target: {fileID: 7206948900674487937}
+          m_TargetAssemblyTypeName: SkillsUnlock, Assembly-CSharp
+          m_MethodName: ExitSlot
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 8562147653685971504}
