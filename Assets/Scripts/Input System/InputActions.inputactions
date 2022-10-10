@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "e457d190-9148-4c22-9117-309324b698ed",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -176,7 +185,7 @@
                     "id": "2a332c97-739a-415f-a3b4-04723ba9600b",
                     "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "ScaleVector2",
+                    "processors": "InvertVector2(invertX=false),ScaleVector2(x=10,y=10)",
                     "groups": "",
                     "action": "Look",
                     "isComposite": false,
@@ -190,6 +199,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fafe1b32-5406-49ac-8377-c72ffadeff4e",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

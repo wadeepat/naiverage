@@ -230,13 +230,14 @@ namespace StarterAssets
         private void CameraRotation()
         {
             // if there is an input and camera position is not fixed
-            if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
+            Vector2 look = InputManager.GetInstance().GetLookDirection();
+            if (look.sqrMagnitude >= _threshold && !LockCameraPosition)
             {
                 //Don't multiply mouse input by Time.deltaTime;
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
+                _cinemachineTargetYaw += look.x * deltaTimeMultiplier;
+                _cinemachineTargetPitch += look.y * deltaTimeMultiplier;
             }
 
             // clamp our rotations so our values are limited 360 degrees
@@ -250,9 +251,11 @@ namespace StarterAssets
 
         private void Move()
         {
-            if (DialogueManager.dialogueIsPlaying) _input.move = Vector2.zero;
+            Vector2 move = InputManager.GetInstance().GetMoveDirection();
+            if (DialogueManager.dialogueIsPlaying) move = Vector2.zero;
             // set target speed based on move speed, sprint speed and if sprint is pressed
-            float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+            // float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+            float targetSpeed = InputManager.GetInstance().GetSprintPressed() ? SprintSpeed : MoveSpeed;
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 

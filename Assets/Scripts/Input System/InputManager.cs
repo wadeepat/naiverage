@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     private bool interactPressed = false;
     private bool jumpPressed = false;
     private bool nextPressed = false;
+    private bool sprintPressed = false;
     private bool submitPressed = false;
 
     private static InputManager instance;
@@ -82,6 +83,17 @@ public class InputManager : MonoBehaviour
             nextPressed = false;
         }
     }
+    public void SprintPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            sprintPressed = true;
+        }
+        else if (context.canceled)
+        {
+            sprintPressed = false;
+        }
+    }
     public void SubmitPressed(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -120,6 +132,11 @@ public class InputManager : MonoBehaviour
         return result;
     }
 
+    public bool GetSprintPressed()
+    {
+        bool result = sprintPressed;
+        return result;
+    }
     public bool GetSubmitPressed()
     {
         bool result = submitPressed;

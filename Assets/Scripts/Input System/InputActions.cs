@@ -80,6 +80,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""e457d190-9148-4c22-9117-309324b698ed"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -198,7 +207,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""id"": ""2a332c97-739a-415f-a3b4-04723ba9600b"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
-                    ""processors"": ""ScaleVector2"",
+                    ""processors"": ""InvertVector2(invertX=false),ScaleVector2(x=10,y=10)"",
                     ""groups"": """",
                     ""action"": ""Look"",
                     ""isComposite"": false,
@@ -212,6 +221,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fafe1b32-5406-49ac-8377-c72ffadeff4e"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -228,6 +248,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
         m_Player_Submit = m_Player.FindAction("Submit", throwIfNotFound: true);
+        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,6 +314,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Next;
     private readonly InputAction m_Player_Submit;
+    private readonly InputAction m_Player_Sprint;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -303,6 +325,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Next => m_Wrapper.m_Player_Next;
         public InputAction @Submit => m_Wrapper.m_Player_Submit;
+        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -330,6 +353,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Submit.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSubmit;
                 @Submit.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSubmit;
                 @Submit.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSubmit;
+                @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -352,6 +378,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Submit.started += instance.OnSubmit;
                 @Submit.performed += instance.OnSubmit;
                 @Submit.canceled += instance.OnSubmit;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
             }
         }
     }
@@ -364,5 +393,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnNext(InputAction.CallbackContext context);
         void OnSubmit(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
     }
 }
