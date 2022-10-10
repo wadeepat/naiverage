@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ItemQuests : MonoBehaviour
 {
- public List<Item> yourItemQuests = new List<Item>();
+    public List<Item> yourItemQuests = new List<Item>();
     public List<Item> draggedItem = new List<Item>();
 
     public int slotsNumber = 8;

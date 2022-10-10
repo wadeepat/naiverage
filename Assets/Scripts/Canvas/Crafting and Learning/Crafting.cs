@@ -36,7 +36,6 @@ public class Crafting : MonoBehaviour
     }
 
     void Load(int craftableItemId, Text craftedItemName, Sprite craftedItemSprite, Image craftedItem, Sprite[] SlotInCraftingSprite, Image[] SlotInCrafting, Text[] craftingText){
-        print(craftableItemId);
         craftedItemName.text = "" + Database.potionList[craftableItemId].name;
 
         craftedItemSprite = Database.potionList[craftableItemId].itemSprite;

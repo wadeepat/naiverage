@@ -14,13 +14,17 @@ public class Potions : MonoBehaviour
     public int n;
 
     public Image[] slot;
+    public Image[] slotPotion;
     public Sprite[] slotSprite;
 
     public Text[] stackText;
-
+    public Text[] stackSlotPotionText;
     public int a;
     public int b;
+    public int aSlot;
+    public int bSlot;
 
+    public int[] slotP;
     public int[] slotStack;
     public int maxStacks;
 
@@ -32,15 +36,18 @@ public class Potions : MonoBehaviour
         for(int i=0; i < slotsNumber; i++){
             yourPotions[i] = Database.potionList[0];
         }
+
         // test
         yourPotions[0] = Database.potionList[1];
         slotStack[0] += 16;
         yourPotions[1] = Database.potionList[2];
-        slotStack[1] += 2;
-
+        slotStack[1] += 1;
+        for(int j=0; j<4; j++) slotP[j] = -1;
         a = -1;
         b = -1;
-
+        aSlot = -1;
+        bSlot = -1;
+        
     }
 
     void Update()
@@ -51,14 +58,22 @@ public class Potions : MonoBehaviour
             }else{
                 stackText[i].text = ""+ slotStack[i];
             }
-        }
-
-        for(int i=0; i < slotsNumber; i++){
             slot[i].sprite = slotSprite[i];
-        }
-
-        for(int i=0; i < slotsNumber; i++){
             slotSprite[i] = yourPotions[i].itemSprite;
+
+        }
+        for(int i=0; i < 4; i++){
+            if(slotP[i] == -1){
+                stackSlotPotionText[i].text = "";
+                slotPotion[i].sprite = Database.potionList[0].itemSprite;
+                continue;
+            }else if(yourPotions[slotP[i]].id == 0 || slotStack[slotP[i]] == 1){
+                stackSlotPotionText[i].text = "";
+                slotPotion[i].sprite = slotSprite[slotP[i]];
+            }else{
+                stackSlotPotionText[i].text = ""+ slotStack[slotP[i]];
+                slotPotion[i].sprite = slotSprite[slotP[i]];
+            }
         }
 
     }
@@ -118,5 +133,53 @@ public class Potions : MonoBehaviour
 
     public void Exit(Image slotX){
         b = -1;
+    }
+
+    public void StartDragSlot(Image slotX){
+        for(int i=0; i < 4; i++){
+            if(slotPotion[i] == slotX){
+                aSlot = i;
+            }
+        }
+    }
+
+    public void EnterSlot(Image slotX){
+        for(int i=0; i < 4; i++){
+            if(slotPotion[i] == slotX){
+                bSlot = i;
+            }
+        }
+    }
+
+    public void DropSlot(Image slotX){
+        if(a>=0){
+            for(int i = 0; i<4; i++){
+                if(slotP[i] == a){
+                    slotP[i] = -1;
+                }
+            }
+            slotP[bSlot] = a;
+            a = -1;
+        }
+        if(aSlot >= 0 && bSlot >=0){
+            int tem = slotP[aSlot];
+            slotP[aSlot] = slotP[bSlot];
+            slotP[bSlot] = tem;
+        }else if(aSlot >= 0 && bSlot == -1){
+            slotP[aSlot] = -1;
+        }
+        aSlot=-1;
+        bSlot=-1;
+    }
+
+    public void ExitSlot(Image slotX){
+        bSlot = -1;
+    }
+    public void DropOut(){
+        if(aSlot >= 0 && bSlot == -1){
+            slotP[aSlot] = -1;
+        }
+        aSlot=-1;
+        bSlot=-1;
     }
 }

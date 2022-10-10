@@ -7,6 +7,10 @@ public class Database : MonoBehaviour
     public static List<Item> itemList = new List<Item> ();
     public static List<Potion> potionList = new List<Potion> ();
     public static List<Item> itemQuestList = new List<Item> ();
+    public static List<SkillBook> skillBookList = new List<SkillBook>();
+    public static Pearl magicPearl = new Pearl();
+
+    public static List<Skill> skillList = new List<Skill>();
 
     void Awake(){
         // (id,name,description)
@@ -27,6 +31,21 @@ public class Database : MonoBehaviour
         itemQuestList.Add(new Item(0, "None", "None", Resources.Load<Sprite>("0"), 0));
         itemQuestList.Add(new Item(1, "Quest1", "Quest", Resources.Load<Sprite>("q1"), 0));
         itemQuestList.Add(new Item(2, "Quest2", "Quest", Resources.Load<Sprite>("q2"), 0));
+
+        skillBookList.Add(new SkillBook(0, "None", "None", Resources.Load<Sprite>("0"), 0));
+        skillBookList.Add(new SkillBook(1, "SKB1", "None", Resources.Load<Sprite>("skb1"), 0));
+        skillBookList.Add(new SkillBook(2, "SKB2", "None", Resources.Load<Sprite>("skb2"), 0));
+        skillBookList.Add(new SkillBook(3, "SKB3", "None", Resources.Load<Sprite>("skb3"), 0));
+        skillBookList.Add(new SkillBook(4, "SKB4", "None", Resources.Load<Sprite>("skb4"), 0));
+
+        magicPearl = new Pearl(0, "Magic Pearl", "None", Resources.Load<Sprite>("Pearl"), 0);
+
+        skillList.Add(new Skill(0, "None", "None", Resources.Load<Sprite>("0"), 0, true, 0, 0, 0, 0));
+        skillList.Add(new Skill(1, "SK1", "None", Resources.Load<Sprite>("sk1"), 0, false, 1, 0, 1, 500));
+        skillList.Add(new Skill(2, "SK2", "None", Resources.Load<Sprite>("sk2"), 0, false, 2, 0, 1, 1000));
+        skillList.Add(new Skill(3, "SK3", "None", Resources.Load<Sprite>("sk3"), 0, false, 3, 0, 1, 1500));
+        skillList.Add(new Skill(4, "SK4", "None", Resources.Load<Sprite>("sk4"), 0, false, 4, 0, 1, 2000));
+
 
     }
 }
