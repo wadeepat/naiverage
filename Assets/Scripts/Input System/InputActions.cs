@@ -207,7 +207,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""id"": ""2a332c97-739a-415f-a3b4-04723ba9600b"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
-                    ""processors"": ""InvertVector2(invertX=false),ScaleVector2(x=10,y=10)"",
+                    ""processors"": ""InvertVector2(invertX=false),ScaleVector2(x=0.05,y=0.05)"",
                     ""groups"": """",
                     ""action"": ""Look"",
                     ""isComposite"": false,
