@@ -6,14 +6,18 @@ using UnityEngine.SceneManagement;
 public class DataPersistenceManager : MonoBehaviour
 {
     [Header("Debugging")]
+    [SerializeField] private bool disableDataPersistence = false;
     [SerializeField] private bool initializeDataIfNull = false;
+    [SerializeField] private bool overrideSelectedProfileId = false;
+    [SerializeField] private string testSelectedProfileId = "test";
+
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
     [SerializeField] private bool useEncryption;
     private GameData gameData;
     private List<IDataPersistence> dataPersistenceObjects;
     private FileDataHandler dataHandler;
-    private string selectedProfileId = "test";
+    private string selectedProfileId = "";
     public static DataPersistenceManager instance { get; private set; }
 
     private void Awake()
@@ -27,7 +31,19 @@ public class DataPersistenceManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this.gameObject);
 
+        if (disableDataPersistence)
+        {
+            Debug.LogWarning("Data Persistence is disabled.");
+        }
+
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+        this.selectedProfileId = dataHandler.GetMostRecentlyUpdateProfileId();
+
+        if (overrideSelectedProfileId)
+        {
+            this.selectedProfileId = testSelectedProfileId;
+            Debug.LogWarning("Override selected profile id with test id: " + testSelectedProfileId);
+        }
     }
     private void OnEnable()
     {
@@ -61,6 +77,8 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void LoadGame()
     {
+        if (disableDataPersistence) return;
+
         //load any saved data from a data handler
         this.gameData = dataHandler.Load(selectedProfileId);
 
@@ -85,6 +103,7 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void SaveGame()
     {
+        if (disableDataPersistence) return;
         //if don't have any data to save, log a warning 
         if (this.gameData == null)
         {
@@ -95,8 +114,9 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.SaveData(ref gameData);
         }
-
-        Debug.Log("Saved finished turtorial = " + gameData.finishedTutorial);
+        //time stamp
+        gameData.lastUpdated = System.DateTime.Now.ToBinary();
+        // Debug.Log("Saved finished turtorial = " + gameData.finishedTutorial);
 
         //save that data to a file using the data handler
         dataHandler.Save(gameData, selectedProfileId);

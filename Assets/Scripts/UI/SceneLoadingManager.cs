@@ -26,6 +26,7 @@ public class SceneLoadingManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        AudioManager.instance.StopAllTrack();
         AudioManager.instance.Play("loading");
         Cursor.visible = false;
         int sceneIndex = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), sceneName);

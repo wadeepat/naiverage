@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
@@ -20,24 +17,13 @@ public class MainMenu : MonoBehaviour
     }
     public void NewGame()
     {
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         AudioManager.instance.Play("click");
-        DisableMenuButton();
-        Debug.Log("Click NewGame");
-
-        DataPersistenceManager.instance.NewGame();
-        // LoadScene("Tutorial");
-        SceneLoadingManager.instance.LoadScene("Tutorial");
-        AudioManager.instance.Stop("medievalTheme");
+        saveSlotsMenu.ActivateMenu(false);
     }
     public void LoadGame()
     {
         AudioManager.instance.Play("click");
-        saveSlotsMenu.ActivateMenu();
-        DisableMenuButton();
-        // SceneLoadingManager.instance.LoadScene("Tutorial");
-        // AudioManager.instance.Stop("medievalTheme");
-
+        saveSlotsMenu.ActivateMenu(true);
     }
 
     private void DisableMenuButton()

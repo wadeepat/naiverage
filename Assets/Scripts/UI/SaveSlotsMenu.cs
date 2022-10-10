@@ -8,8 +8,10 @@ public class SaveSlotsMenu : MonoBehaviour
     [Header("Menu Navigation")]
     [SerializeField] private MainMenu mainMenu;
     [SerializeField] private GameObject saveSlotsObject;
-    [Header("Menu Buttons")] private Button backBtn;
+    [Header("Menu Buttons")]
+    [SerializeField] private Button backBtn;
     private SaveSlot[] saveSlots;
+    private bool isLoadingGame = false;
 
     private void Awake()
     {
@@ -17,25 +19,41 @@ public class SaveSlotsMenu : MonoBehaviour
     }
     public void OnSaveSlotClicked(SaveSlot saveSlot)
     {
+        AudioManager.instance.Play("click");
         DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
 
-
+        //if newGame
+        if (!isLoadingGame)
+        {
+            DataPersistenceManager.instance.NewGame();
+        }
+        SceneLoadingManager.instance.LoadScene("Tutorial");
     }
     public void onBackClicked()
     {
+        AudioManager.instance.Play("click");
         mainMenu.ActivateMenu();
         this.DeactivateMenu();
     }
-    public void ActivateMenu()
+    public void ActivateMenu(bool isLoadingGame)
     {
         this.gameObject.SetActive(true);
+        this.isLoadingGame = isLoadingGame;
         Dictionary<string, GameData> profilesGameData = DataPersistenceManager.instance.GetAllProfilesGameData();
-
         foreach (SaveSlot saveSlot in saveSlots)
         {
             GameData profileData = null;
             profilesGameData.TryGetValue(saveSlot.GetProfileId(), out profileData);
             saveSlot.SetData(profileData);
+
+            if (isLoadingGame && profileData == null)
+            {
+                saveSlot.SetInteractable(false);
+            }
+            else
+            {
+                saveSlot.SetInteractable(true);
+            }
         }
     }
 

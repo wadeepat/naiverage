@@ -91,4 +91,15 @@ public class AudioManager : MonoBehaviour
         _playingSoundName = newSound;
         yield return null;
     }
+
+    public void StopAllTrack()
+    {
+        foreach (Sound sound in sounds)
+        {
+            if (sound.source.isPlaying && sound.source.loop)
+            {
+                sound.source.Stop();
+            }
+        }
+    }
 }
