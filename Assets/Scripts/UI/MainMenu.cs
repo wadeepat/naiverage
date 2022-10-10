@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
+    [Header("Menu Navigation")]
+    [SerializeField] private SaveSlotsMenu saveSlotsMenu;
     [Header("Menu Buttons")]
     [SerializeField] private Button[] buttons;
-    public GameObject LoadingScreen;
-    public Slider sliderLoading;
     private void Start()
     {
         Cursor.visible = true;
@@ -26,43 +26,20 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Click NewGame");
 
         DataPersistenceManager.instance.NewGame();
-        LoadScene("Tutorial");
+        // LoadScene("Tutorial");
+        SceneLoadingManager.instance.LoadScene("Tutorial");
+        AudioManager.instance.Stop("medievalTheme");
     }
     public void LoadGame()
     {
         AudioManager.instance.Play("click");
+        saveSlotsMenu.ActivateMenu();
         DisableMenuButton();
-        LoadScene("Tutorial");
-    }
-    public void LoadScene(string sceneName)
-    {
-        AudioManager.instance.SwapTrack("loading");
+        // SceneLoadingManager.instance.LoadScene("Tutorial");
         // AudioManager.instance.Stop("medievalTheme");
-        // AudioManager.instance.Play("loading");
-        Cursor.visible = false;
-        int sceneIndex = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), sceneName);
-        StartCoroutine(LoadAsynchronously(sceneIndex));
-    }
-    IEnumerator LoadAsynchronously(int sceneIndex)
-    {
-        sliderLoading.value = 0;
-        LoadingScreen.SetActive(true);
-        yield return new WaitForSeconds(2);
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-        operation.allowSceneActivation = false;
 
-        while (!operation.isDone)
-        {
-            sliderLoading.value = operation.progress;
-            if (operation.progress >= .9f)
-            {
-                yield return new WaitForSeconds(1);
-                operation.allowSceneActivation = true;
-                AudioManager.instance.Stop("loading");
-            }
-            yield return null;
-        }
     }
+
     private void DisableMenuButton()
     {
         foreach (Button btn in buttons)
@@ -73,5 +50,14 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void ActivateMenu()
+    {
+        this.gameObject.SetActive(true);
+    }
+    public void DeactivateMenu()
+    {
+        this.gameObject.SetActive(false);
     }
 }
