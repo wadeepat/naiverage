@@ -22,7 +22,7 @@ public class SataFirstMetNPC : MonoBehaviour, IDataPersistence
     {
         this.finishedTutorial = data.finishedTutorial;
     }
-    public void SaveData(ref GameData data)
+    public void SaveData(GameData data)
     {
         data.finishedTutorial = this.finishedTutorial;
     }

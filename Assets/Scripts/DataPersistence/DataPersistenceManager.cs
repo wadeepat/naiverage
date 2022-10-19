@@ -37,6 +37,44 @@ public class DataPersistenceManager : MonoBehaviour
         }
 
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+
+        InitializeSelectedProfiledId();
+    }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        // SceneManager.sceneUnloaded += OnSceneUnloaded;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        // SceneManager.sceneUnloaded -= OnSceneUnloaded;
+    }
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
+        LoadGame();
+    }
+    // public void OnSceneUnloaded(Scene scene)
+    // {
+    //     SaveGame();
+    // }
+    public void ChangeSelectedProfileId(string selectedProfileId)
+    {
+        this.selectedProfileId = selectedProfileId;
+
+        LoadGame();
+    }
+    public void DeleteProfileData(string profileId)
+    {
+        dataHandler.Delete(profileId);
+
+        InitializeSelectedProfiledId();
+
+        LoadGame();
+    }
+    private void InitializeSelectedProfiledId()
+    {
         this.selectedProfileId = dataHandler.GetMostRecentlyUpdateProfileId();
 
         if (overrideSelectedProfileId)
@@ -44,31 +82,6 @@ public class DataPersistenceManager : MonoBehaviour
             this.selectedProfileId = testSelectedProfileId;
             Debug.LogWarning("Override selected profile id with test id: " + testSelectedProfileId);
         }
-    }
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
-    }
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneUnloaded -= OnSceneUnloaded;
-    }
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        LoadGame();
-    }
-    public void OnSceneUnloaded(Scene scene)
-    {
-        SaveGame();
-    }
-    public void ChangeSelectedProfileId(string selectedProfileId)
-    {
-        this.selectedProfileId = selectedProfileId;
-
-        LoadGame();
     }
     public void NewGame()
     {
@@ -112,7 +125,7 @@ public class DataPersistenceManager : MonoBehaviour
         //pass the data to other scripts so they can update it
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
-            dataPersistenceObj.SaveData(ref gameData);
+            dataPersistenceObj.SaveData(gameData);
         }
         //time stamp
         gameData.lastUpdated = System.DateTime.Now.ToBinary();
@@ -123,7 +136,7 @@ public class DataPersistenceManager : MonoBehaviour
     }
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
-        IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
+        IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>(true).OfType<IDataPersistence>();
         return new List<IDataPersistence>(dataPersistenceObjects);
     }
     private void OnApplicationQuit()
