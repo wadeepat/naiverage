@@ -1,4 +1,5 @@
-INCLUDE globals.ink
+INCLUDE tutorial_globals.ink
+
 VAR name = "Liw"
 
 === Opening ===
@@ -13,6 +14,7 @@ Hey you!!! #speaker:??? #sound:singleFootstepInGrass
 ->SataFirstMet
 
 === SataFirstMet ===
+{sataAskToJoin: -> SataAskToJoin} 
 I'm Sata, a solider in Naver town. #speaker:???
 What's your name ? #speaker:Sata
 (...My name ?) #speaker:Me
@@ -40,33 +42,30 @@ Answer Sata "What's your name ?"
     I'm {name}.
     #speaker:Sata
     Well {name} Nice to meet you.
-    ->SataInviteToTown
+->SataInviteToTown
 
 === SataInviteToTown ===
-#speaker:Sata
-I have something to talk with you.
-We're hiring many soliders.
-Are you interested ?
-    +[No]
-        #speaker:Me
-        Thanks but I don't interested.     
-        #speaker:Sata
-        Such a shame..
-        Okay I'll go.
-        #speaker:Ending
-        Ending 0: Know Nothing
-        ->DONE
-    +[Yes]
-        #speaker:Me
-        I'll go with you.
-        #speaker:Sata
-        Good!!!
-        We must become good friends {name}.
-        ->DONE
-    +[Let me think]
-        I'm looking forward to it.
-        ->DONE
-->DONE
- it.
-        ->DONE
+    #speaker:Sata
+    I have something to talk with you.
+    We're hiring many soliders.
+->SataAskToJoin
+        
+=== SataAskToJoin ===
+    #speaker:Sata
+    Are you interested ?
+        +[No]
+            #speaker:Me
+            Thanks but I don't interested.     
+            #speaker:Sata
+            Such a shame..
+            Okay I'll go.
+        +[Yes]
+            #speaker:Me
+            I'll go with you.
+            #speaker:Sata
+            Good!!!
+            We must become good friends {name}.
+        +[Let me think]
+            I'm looking forward to it.
+    - ~sataAskToJoin = true
 ->DONE

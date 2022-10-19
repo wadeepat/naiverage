@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class TutorialScene : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        // AudioManager.GetInstance().Play("forestBackground");
-    }
+    // [Header("InkJSON")]
+    // [SerializeField] private TextAsset introJSON;
+    // [SerializeField] private TextAsset metSataJSON;
+    // // private float time = 1.5f;
+    // void Start()
+    // {
+    //     DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+    //     AudioManager.instance.Play("forestBackground");
+    //     // StartCoroutine(Prepare());
+    // }
 }

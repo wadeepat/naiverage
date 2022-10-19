@@ -9,6 +9,7 @@ public class FileDataHandler
     private string dataFileName = "";
     private bool useEncryption = false;
     private readonly string secretCode = "dontttknoww";
+    private const string saveVariablesKey = "INK_VARIABLES";
     public FileDataHandler(string dataDirPath, string dataFileName, bool useEncryption)
     {
         this.dataDirPath = dataDirPath;
@@ -93,7 +94,7 @@ public class FileDataHandler
             if (File.Exists(fullPath))
             {
                 Directory.Delete(Path.GetDirectoryName(fullPath), true);
-
+                PlayerPrefs.DeleteKey(saveVariablesKey + profileId);
             }
             else
             {

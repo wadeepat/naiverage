@@ -23,8 +23,8 @@ public class DialogueManager : MonoBehaviour
     private Story currentStory;
     private bool canContinueToNextLine = false;
     private Coroutine displayLineCoroutine;
-    private static DialogueManager instance;
-    private DialogueVariables dialogueVariables;
+    public static DialogueManager instance { get; private set; }
+    public DialogueVariables dialogueVariables { get; private set; }
 
     private const string SPEAKER_TAG = "speaker";
     private const string SOUND_TAG = "sound";
@@ -51,11 +51,14 @@ public class DialogueManager : MonoBehaviour
             index++;
         }
     }
-    public static DialogueManager GetInstance()
+    // public static DialogueManager GetInstance()
+    // {
+    //     return instance;
+    // }
+    public DialogueVariables GetDialogueVariables()
     {
-        return instance;
+        return dialogueVariables;
     }
-
 
     private void Update()
     {
@@ -97,6 +100,7 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+        dialogueVariables.SaveVariables();
     }
 
     private void ContinueStory()
@@ -239,7 +243,7 @@ public class DialogueManager : MonoBehaviour
             currentStory.ChooseChoiceIndex(choiceIdx);
             ContinueStory();
         }
-
+        dialogueVariables.SaveVariables();
     }
 
     public Ink.Runtime.Object GetVariableState(string variableName)
@@ -262,7 +266,8 @@ public class DialogueManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-    // private void OnApplicationQuit() {
+    // private void OnApplicationQuit()
+    // {
     //     dialogueVariables.SaveVariables();
     // }
 }

@@ -17,7 +17,7 @@ public class DataPersistenceManager : MonoBehaviour
     private GameData gameData;
     private List<IDataPersistence> dataPersistenceObjects;
     private FileDataHandler dataHandler;
-    private string selectedProfileId = "";
+    public string selectedProfileId { get; private set; } = "";
     public static DataPersistenceManager instance { get; private set; }
 
     private void Awake()
@@ -112,7 +112,6 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.LoadData(gameData);
         }
 
-        Debug.Log("Loaded finished tutorial = " + gameData.finishedTutorial);
     }
     public void SaveGame()
     {

@@ -8662,7 +8662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6427024724384000629, guid: 96d9dd04f6a281a4f88cb195218cefe7, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6427024724384000629, guid: 96d9dd04f6a281a4f88cb195218cefe7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11366,7 +11366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1374411293204347151, guid: 4477deec801e55240838d419d582462f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1374411293204347151, guid: 4477deec801e55240838d419d582462f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20049,7 +20049,6 @@ GameObject:
   - component: {fileID: 5692455173845756524}
   - component: {fileID: 5692455173845756525}
   - component: {fileID: 5692455173845756535}
-  - component: {fileID: 5692455173845756536}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -20070,18 +20069,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inkJSON: {fileID: 4900000, guid: 10c947e5b552e3c47aefc3724293edb3, type: 3}
---- !u!114 &5692455173845756536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5692455173845756534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e510e1c515986194d9c8d75acf47d702, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5718188092061803852
 GameObject:
   m_ObjectHideFlags: 0

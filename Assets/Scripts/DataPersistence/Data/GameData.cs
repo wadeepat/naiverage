@@ -6,12 +6,15 @@ using UnityEngine;
 public class GameData
 {
     public long lastUpdated;
-    public bool finishedTutorial;
     public Vector3 playerPosition;
+    public SerializableDictionary<string, bool> tutorialEvents;
+    // public Dictionary<string, bool> tutorialEvents;
     //if want to use dictionary use SeriablizableDictionary instead
     public GameData()
     {
-        this.finishedTutorial = false;
         playerPosition = Vector3.zero;
+        tutorialEvents = new SerializableDictionary<string, bool>{
+            {"sataAskToJoin",false}
+        };
     }
 }

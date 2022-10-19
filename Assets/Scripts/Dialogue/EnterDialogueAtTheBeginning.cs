@@ -9,7 +9,7 @@ public class EnterDialogueAtTheBeginning : MonoBehaviour
     // private float time = 1.5f;
     void Start()
     {
-        DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+        DialogueManager.instance.EnterDialogueMode(inkJSON);
         AudioManager.instance.Play("forestBackground");
         // StartCoroutine(Prepare());
     }

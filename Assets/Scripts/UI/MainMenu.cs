@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button[] buttons;
     private void Start()
     {
+        // PlayerPrefs.DeleteAll();
         Cursor.visible = true;
         AudioManager.instance.Play("medievalTheme");
         if (!DataPersistenceManager.instance.HasGameData())
