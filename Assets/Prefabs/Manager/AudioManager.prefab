@@ -49,13 +49,13 @@ MonoBehaviour:
   sounds:
   - s_name: forestBackground
     clip: {fileID: 8300000, guid: 40324742e7d740d428fc192465423902, type: 3}
-    volume: 0.25
+    volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: singleFootstepInGrass
     clip: {fileID: 8300000, guid: c59555e5e17f2b24db9e6235197f9db1, type: 3}
-    volume: 0.3
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}

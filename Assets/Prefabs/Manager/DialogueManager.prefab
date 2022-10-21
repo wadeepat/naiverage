@@ -44,21 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83aa76daa428df74496dbf69aded10cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typingSpeed: 0.08
-  globalsInkFile:
-    compileAutomatically: 0
-    inkAsset: {fileID: 102900000, guid: 35eeaa71533ae9741bbbe825d552742e, type: 3}
-    jsonAssetDirectory: {fileID: 0}
-    jsonAsset: {fileID: 0}
-    unhandledCompileErrors: []
-    errors: []
-    warnings: []
-    todos: []
-    parents: []
-    masterInkAssets: []
-    masterInkAsset: {fileID: 0}
-    includePaths: []
-    includes: []
+  typingSpeed: 0.06
+  loadGlobalsJSON: {fileID: 4900000, guid: 2cd70cfe227d9d849b0dac664fa5c6ef, type: 3}
   dialoguePanel: {fileID: 0}
   continueText: {fileID: 0}
   displayNameText: {fileID: 0}

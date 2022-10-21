@@ -92,7 +92,7 @@ public class SaveSlotsMenu : MonoBehaviour
                 ActivateMenu(isLoadingGame);
             }
         );
-        DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
+        // DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
         ActivateMenu(isLoadingGame);
     }
     public void ActivateMenu(bool isLoadingGame)
