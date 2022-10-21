@@ -9,6 +9,7 @@ public class EnterDialogueAtTheBeginning : MonoBehaviour
     // private float time = 1.5f;
     void Start()
     {
+        Debug.Log(DialogueManager.instance.GetVariableState("readOP"));
         if (!DialogueManager.instance.GetVariableState("readOP"))
         {
             DialogueManager.instance.EnterDialogueMode(inkJSON);
