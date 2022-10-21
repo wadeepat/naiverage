@@ -12,7 +12,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
     [RequireComponent(typeof(PlayerInput))]
 #endif
-    public class ThirdPersonController : MonoBehaviour
+    public class ThirdPersonController : MonoBehaviour, IDataPersistence
     {
         [Header("Player Grounded")]
         [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
@@ -173,6 +173,15 @@ namespace StarterAssets
             _fallTimeoutDelta = FallTimeout;
         }
 
+        public void LoadData(GameData data)
+        {
+            this.transform.position = data.playerPosition;
+        }
+
+        public void SaveData(GameData data)
+        {
+            data.playerPosition = this.transform.position;
+        }
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);

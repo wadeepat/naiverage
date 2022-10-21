@@ -20,7 +20,7 @@ public class ProjectileObject : MonoBehaviour
         if (speed != 0)
             transform.position += transform.forward * (speed * Time.deltaTime);
         else
-            Debug.Log("No speed");
+            Debug.LogWarning("No speed");
     }
 
 }

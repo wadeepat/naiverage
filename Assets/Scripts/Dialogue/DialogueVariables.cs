@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
 using System.IO;
-public class DialogueVariables : MonoBehaviour
+public class DialogueVariables
 {
     public Dictionary<string, Ink.Runtime.Object> variables { get; private set; }
     private const string saveVariablesKey = "INK_VARIABLES";
     private Story globalVariablesStory;
+    private string selectedProfileId;
     public DialogueVariables(TextAsset loadGlobalsJSON)
     {
         //compile the story
@@ -19,9 +20,11 @@ public class DialogueVariables : MonoBehaviour
         //create the story
         globalVariablesStory = new Story(loadGlobalsJSON.text);
         //if we have saved data then load it
-        if (PlayerPrefs.HasKey(saveVariablesKey))
+        selectedProfileId = DataPersistenceManager.instance.selectedProfileId;
+        if (PlayerPrefs.HasKey(saveVariablesKey + selectedProfileId))
         {
-            string jsonState = PlayerPrefs.GetString(saveVariablesKey);
+            // Debug.Log("load dialogue save from: " + saveVariablesKey + DataPersistenceManager.instance.selectedProfileId);
+            string jsonState = PlayerPrefs.GetString(saveVariablesKey + selectedProfileId);
             globalVariablesStory.state.LoadJson(jsonState);
         }
 
@@ -34,14 +37,17 @@ public class DialogueVariables : MonoBehaviour
             // Debug.Log("Initailized global dialogue variable: " + name + " = " + value);
         }
     }
-
+    public Story GetGlobalStory()
+    {
+        return globalVariablesStory;
+    }
     public void SaveVariables()
     {
         if (globalVariablesStory != null)
         {
             //load current state of all our variables to globals story
             VariablesToStory(globalVariablesStory);
-            PlayerPrefs.SetString(saveVariablesKey, globalVariablesStory.state.ToJson());
+            PlayerPrefs.SetString(saveVariablesKey + selectedProfileId, globalVariablesStory.state.ToJson());
         }
     }
     public void StartListenning(Story story)
@@ -60,7 +66,7 @@ public class DialogueVariables : MonoBehaviour
             variables.Remove(name);
             variables.Add(name, value);
         }
-        // Debug.Log("Variable changed: " + name + " = " + value);
+        Debug.Log("Variable changed: " + name + " = " + value);
     }
     private void VariablesToStory(Story story)
     {

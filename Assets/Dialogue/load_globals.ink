@@ -1,1 +1,1 @@
-INCLUDE globals.ink
+INCLUDE tutorial_globals.ink
