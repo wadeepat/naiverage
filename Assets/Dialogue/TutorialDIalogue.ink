@@ -3,10 +3,11 @@ INCLUDE tutorial_globals.ink
 VAR name = "Liw"
 
 === Opening ===
-#speaker:???
-Don't <color=\#40FF6F>judge</color> the book by its cover.
-The answers were <b>already</b> there.
-Open and find it.
+    #speaker:???
+    Don't <color=\#40FF6F>judge</color> the book by its cover.
+    The answers were <b>already</b> there.
+    Open and find it.
+    ~readOP = true
 ->DONE
 
 === SataCall ===

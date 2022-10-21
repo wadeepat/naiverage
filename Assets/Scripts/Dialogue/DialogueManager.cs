@@ -79,7 +79,6 @@ public class DialogueManager : MonoBehaviour
     {
         _player.GetComponent<Animator>().SetFloat("Speed", 0f);
         _player.GetComponent<Animator>().SetTrigger("reset");
-        Debug.Log("reset");
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);

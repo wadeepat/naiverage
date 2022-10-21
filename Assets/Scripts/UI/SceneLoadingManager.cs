@@ -16,7 +16,7 @@ public class SceneLoadingManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.Log("Found more than one SceneLoadingManager in the scene. Destroying the newest one.");
+            // Debug.Log("Found more than one SceneLoadingManager in the scene. Destroying the newest one.");
             Destroy(this.gameObject);
             return;
         }

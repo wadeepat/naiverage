@@ -37,7 +37,7 @@ public class SataFirstMetNPC : MonoBehaviour, IDataPersistence
         }
         else
         {
-            Debug.Log("Can't find sataAskToJoin variable is missing");
+            Debug.LogWarning("Can't find sataAskToJoin variable is missing");
         }
     }
 }

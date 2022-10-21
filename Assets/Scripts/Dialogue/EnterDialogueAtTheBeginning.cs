@@ -9,15 +9,10 @@ public class EnterDialogueAtTheBeginning : MonoBehaviour
     // private float time = 1.5f;
     void Start()
     {
-        DialogueManager.instance.EnterDialogueMode(inkJSON);
+        if (!DialogueManager.instance.GetVariableState("readOP"))
+        {
+            DialogueManager.instance.EnterDialogueMode(inkJSON);
+        }
         AudioManager.instance.Play("forestBackground");
-        // StartCoroutine(Prepare());
     }
-
-    // private IEnumerator Prepare()
-    // {
-    //     yield return new WaitForSeconds(time);
-    //     DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
-    //     AudioManager.GetInstance().Play("forestBackground");
-    // }
 }
