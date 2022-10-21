@@ -9,8 +9,10 @@ public class EnterDialogueAtTheBeginning : MonoBehaviour
     // private float time = 1.5f;
     void Start()
     {
-        if (!DialogueManager.instance.GetVariableState("readOP"))
+        Debug.Log(DialogueManager.instance.dialogueVariables.GetVariableState());
+        if (DialogueManager.instance.GetVariableState("readOP").ToString().Equals("false"))
         {
+            Debug.Log("Enter dialoguellllll");
             DialogueManager.instance.EnterDialogueMode(inkJSON);
         }
         AudioManager.instance.Play("forestBackground");

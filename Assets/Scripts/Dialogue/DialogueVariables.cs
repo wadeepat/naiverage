@@ -37,9 +37,9 @@ public class DialogueVariables
             // Debug.Log("Initailized global dialogue variable: " + name + " = " + value);
         }
     }
-    public Story GetGlobalStory()
+    public VariablesState GetVariableState()
     {
-        return globalVariablesStory;
+        return globalVariablesStory.variablesState;
     }
     public void SaveVariables()
     {
