@@ -1332,6 +1332,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -101
       objectReference: {fileID: 0}
+    - target: {fileID: 1467047613806405585, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1303724679}
     - target: {fileID: 1633056576546316402, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
       propertyPath: m_Name
       value: Panel
