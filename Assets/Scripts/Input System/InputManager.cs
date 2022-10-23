@@ -13,6 +13,8 @@ public class InputManager : MonoBehaviour
     private bool nextPressed = false;
     private bool sprintPressed = false;
     private bool submitPressed = false;
+    private bool selectPotion = false;
+    private bool usePotion = false;
 
     private static InputManager instance;
 
@@ -105,6 +107,29 @@ public class InputManager : MonoBehaviour
             submitPressed = false;
         }
     }
+    public void SelectPotion(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            selectPotion = true;
+        }
+        else if (context.canceled)
+        {
+            selectPotion = false;
+        }
+    }
+    public void UsePotion(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            usePotion = true;
+        }
+        else if (context.canceled)
+        {
+            usePotion = false;
+        }
+    }
+
     public Vector2 GetMoveDirection()
     {
         return moveDirection;
@@ -141,6 +166,17 @@ public class InputManager : MonoBehaviour
     {
         bool result = submitPressed;
         submitPressed = false;
+        return result;
+    }
+    public bool GetSelectPotionHold()
+    {
+        bool result = selectPotion;
+        return result;
+    }
+    public bool GetUsePotionPressed()
+    {
+        bool result = usePotion;
+        usePotion = false;
         return result;
     }
 
