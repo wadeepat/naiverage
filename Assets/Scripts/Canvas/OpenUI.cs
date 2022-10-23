@@ -45,19 +45,15 @@ public class OpenUI : MonoBehaviour
         if(i){
             if(inven == true){
                 //open 
-                show(true);               
+                show(true);    
+                Lockscreen(true);           
                 inven = false;
             }else{
                 show(false);
+                Lockscreen(false);
                 inven = true;
                 
             }
-        }
-
-        if(!inven || !craft){
-            Lockscreen(true);
-        }else{
-            Lockscreen(false);
         }
     }
     void Lockscreen(bool l){

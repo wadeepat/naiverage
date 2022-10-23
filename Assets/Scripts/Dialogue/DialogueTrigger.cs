@@ -18,9 +18,11 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (playerInRange)
         {
+            print("sata");
             visualCue.SetActive(true);
             if (InputManager.GetInstance().GetInteractPressed())
             {
+                print("to dialogue");
                 DialogueManager.instance.EnterDialogueMode(inkJSON);
                 // Debug.Log(inkJSON.text);
             }

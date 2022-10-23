@@ -15,10 +15,14 @@ public class Potions : MonoBehaviour
 
     public Image[] slot;
     public Image[] slotPotion;
+    public Image[] slotPotionInv;
+    public Image[] slotPotionM;
     public Sprite[] slotSprite;
 
     public Text[] stackText;
     public Text[] stackSlotPotionText;
+    public Text[] stackSlotPotionTextInv;
+    public Text[] stackSlotPotionTextM;
     public int a;
     public int b;
     public int aSlot;
@@ -75,7 +79,12 @@ public class Potions : MonoBehaviour
                 slotPotion[i].sprite = slotSprite[slotP[i]];
             }
         }
-
+        for(int i=0; i < 4; i++){
+           stackSlotPotionTextInv[i].text = stackSlotPotionText[i].text;
+           stackSlotPotionTextM[i].text = stackSlotPotionText[i].text;
+           slotPotionInv[i].sprite = slotPotion[i].sprite;
+           slotPotionM[i].sprite = slotPotion[i].sprite;
+        }
     }
 
     public void StartDrag(Image slotX){
