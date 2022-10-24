@@ -69,18 +69,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SelectPotion",
+                    "name": "Potion",
                     "type": "Button",
-                    "id": "6acb8edf-5cd0-423e-9e0e-8c2f3d2cf723",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "UsePotion",
-                    "type": "Button",
-                    "id": "7d22c970-f532-451e-ac57-0dd2c5b86027",
+                    "id": "2b4d1a2c-6a69-4f3c-b438-8486e9edbaa0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -233,23 +224,12 @@
                 },
                 {
                     "name": "",
-                    "id": "e341a9ff-7592-4e9b-ad20-6c149bcfbe89",
+                    "id": "ed0ea4fa-725e-455a-a940-01c8727dc86f",
                     "path": "<Keyboard>/r",
-                    "interactions": "Hold",
+                    "interactions": "Hold,Press",
                     "processors": "",
                     "groups": "",
-                    "action": "SelectPotion",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f3d673ab-735d-486a-82c2-ce1bcb406f75",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UsePotion",
+                    "action": "Potion",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 [RequireComponent(typeof(PlayerInput))]
 public class InputManager : MonoBehaviour
@@ -107,26 +108,17 @@ public class InputManager : MonoBehaviour
             submitPressed = false;
         }
     }
-    public void SelectPotion(InputAction.CallbackContext context)
+    public void PotionPressed(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.interaction is HoldInteraction)
         {
-            selectPotion = true;
+            if (context.performed) selectPotion = true;
+            else if (context.canceled) selectPotion = false;
         }
-        else if (context.canceled)
+        else if (context.interaction is PressInteraction)
         {
-            selectPotion = false;
-        }
-    }
-    public void UsePotion(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            usePotion = true;
-        }
-        else if (context.canceled)
-        {
-            usePotion = false;
+            if (context.performed) usePotion = true;
+            else if (context.canceled) usePotion = false;
         }
     }
 
@@ -168,7 +160,7 @@ public class InputManager : MonoBehaviour
         submitPressed = false;
         return result;
     }
-    public bool GetSelectPotionHold()
+    public bool GetSelectingPotion()
     {
         bool result = selectPotion;
         return result;

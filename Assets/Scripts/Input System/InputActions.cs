@@ -91,18 +91,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SelectPotion"",
+                    ""name"": ""Potion"",
                     ""type"": ""Button"",
-                    ""id"": ""6acb8edf-5cd0-423e-9e0e-8c2f3d2cf723"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""UsePotion"",
-                    ""type"": ""Button"",
-                    ""id"": ""7d22c970-f532-451e-ac57-0dd2c5b86027"",
+                    ""id"": ""2b4d1a2c-6a69-4f3c-b438-8486e9edbaa0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -255,23 +246,12 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e341a9ff-7592-4e9b-ad20-6c149bcfbe89"",
+                    ""id"": ""ed0ea4fa-725e-455a-a940-01c8727dc86f"",
                     ""path"": ""<Keyboard>/r"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold,Press"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SelectPotion"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f3d673ab-735d-486a-82c2-ce1bcb406f75"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""UsePotion"",
+                    ""action"": ""Potion"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -289,8 +269,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
         m_Player_Submit = m_Player.FindAction("Submit", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
-        m_Player_SelectPotion = m_Player.FindAction("SelectPotion", throwIfNotFound: true);
-        m_Player_UsePotion = m_Player.FindAction("UsePotion", throwIfNotFound: true);
+        m_Player_Potion = m_Player.FindAction("Potion", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -357,8 +336,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Next;
     private readonly InputAction m_Player_Submit;
     private readonly InputAction m_Player_Sprint;
-    private readonly InputAction m_Player_SelectPotion;
-    private readonly InputAction m_Player_UsePotion;
+    private readonly InputAction m_Player_Potion;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -370,8 +348,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Next => m_Wrapper.m_Player_Next;
         public InputAction @Submit => m_Wrapper.m_Player_Submit;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
-        public InputAction @SelectPotion => m_Wrapper.m_Player_SelectPotion;
-        public InputAction @UsePotion => m_Wrapper.m_Player_UsePotion;
+        public InputAction @Potion => m_Wrapper.m_Player_Potion;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -402,12 +379,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
-                @SelectPotion.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectPotion;
-                @SelectPotion.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectPotion;
-                @SelectPotion.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectPotion;
-                @UsePotion.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUsePotion;
-                @UsePotion.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUsePotion;
-                @UsePotion.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUsePotion;
+                @Potion.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPotion;
+                @Potion.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPotion;
+                @Potion.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPotion;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -433,12 +407,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
-                @SelectPotion.started += instance.OnSelectPotion;
-                @SelectPotion.performed += instance.OnSelectPotion;
-                @SelectPotion.canceled += instance.OnSelectPotion;
-                @UsePotion.started += instance.OnUsePotion;
-                @UsePotion.performed += instance.OnUsePotion;
-                @UsePotion.canceled += instance.OnUsePotion;
+                @Potion.started += instance.OnPotion;
+                @Potion.performed += instance.OnPotion;
+                @Potion.canceled += instance.OnPotion;
             }
         }
     }
@@ -452,7 +423,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnNext(InputAction.CallbackContext context);
         void OnSubmit(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
-        void OnSelectPotion(InputAction.CallbackContext context);
-        void OnUsePotion(InputAction.CallbackContext context);
+        void OnPotion(InputAction.CallbackContext context);
     }
 }
