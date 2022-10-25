@@ -69,7 +69,7 @@ public class DialogueManager : MonoBehaviour
 
         if (canContinueToNextLine
         && currentStory.currentChoices.Count == 0
-        && InputManager.GetInstance().GetNextPressed())
+        && InputManager.instance.GetNextPressed())
         {
             ContinueStory();
         }
@@ -136,7 +136,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in line.ToCharArray())
         {
 
-            if (InputManager.GetInstance().GetNextPressed())
+            if (InputManager.instance.GetNextPressed())
             {
                 dialogueText.maxVisibleCharacters = line.Length;
                 break;

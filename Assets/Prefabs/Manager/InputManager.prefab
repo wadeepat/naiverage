@@ -198,6 +198,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2b4d1a2c-6a69-4f3c-b438-8486e9edbaa0
     m_ActionName: Player/Potion[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6427024724384000631}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: BackPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 896fa210-52ec-4173-a970-8083ecbf6371
+    m_ActionName: Player/Back[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6427024724384000631}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: AttackPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b166c695-2113-4620-bec4-3d5e852d7b33
+    m_ActionName: Player/Attack[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

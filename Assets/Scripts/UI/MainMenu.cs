@@ -46,6 +46,10 @@ public class MainMenu : MonoBehaviour
     public void ActivateMenu()
     {
         this.gameObject.SetActive(true);
+        if (!DataPersistenceManager.instance.HasGameData())
+        {
+            buttons[1].interactable = false;
+        }
     }
     public void DeactivateMenu()
     {

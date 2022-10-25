@@ -55,10 +55,6 @@ public class DataPersistenceManager : MonoBehaviour
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
     }
-    // public void OnSceneUnloaded(Scene scene)
-    // {
-    //     SaveGame();
-    // }
     public void ChangeSelectedProfileId(string selectedProfileId)
     {
         this.selectedProfileId = selectedProfileId;

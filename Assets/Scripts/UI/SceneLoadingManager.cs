@@ -21,7 +21,7 @@ public class SceneLoadingManager : MonoBehaviour
             return;
         }
         instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        // DontDestroyOnLoad(this.gameObject);
     }
 
     public void LoadScene(string sceneName)
@@ -29,13 +29,14 @@ public class SceneLoadingManager : MonoBehaviour
         AudioManager.instance.StopAllTrack();
         AudioManager.instance.Play("loading");
         Cursor.visible = false;
+        LoadingScreen.SetActive(true);
         int sceneIndex = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), sceneName);
         StartCoroutine(LoadAsynchronously(sceneIndex));
     }
     private IEnumerator LoadAsynchronously(int sceneIndex)
     {
         sliderLoading.value = 0;
-        LoadingScreen.SetActive(true);
+        Time.timeScale = 1;
         yield return new WaitForSeconds(2);
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
         operation.allowSceneActivation = false;

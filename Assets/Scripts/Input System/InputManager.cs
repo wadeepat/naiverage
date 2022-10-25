@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
 {
     private Vector2 lookDirection = Vector2.zero;
     private Vector2 moveDirection = Vector2.zero;
+    private bool attackPressed = false;
     private bool interactPressed = false;
     private bool jumpPressed = false;
     private bool nextPressed = false;
@@ -16,8 +17,9 @@ public class InputManager : MonoBehaviour
     private bool submitPressed = false;
     private bool selectPotion = false;
     private bool usePotion = false;
+    private bool backPressed = false;
 
-    private static InputManager instance;
+    public static InputManager instance { get; private set; }
 
     private void Awake()
     {
@@ -27,9 +29,17 @@ public class InputManager : MonoBehaviour
         }
         instance = this;
     }
-    public static InputManager GetInstance()
+
+    public void AttackPressed(InputAction.CallbackContext context)
     {
-        return instance;
+        if (context.performed && Time.timeScale != 0)
+        {
+            attackPressed = true;
+        }
+        else if (context.canceled)
+        {
+            attackPressed = false;
+        }
     }
     public void MovePressed(InputAction.CallbackContext context)
     {
@@ -121,7 +131,24 @@ public class InputManager : MonoBehaviour
             else if (context.canceled) usePotion = false;
         }
     }
+    public void BackPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            backPressed = true;
+        }
+        else if (context.canceled)
+        {
+            backPressed = false;
+        }
+    }
 
+    public bool GetAttackPressed()
+    {
+        bool result = attackPressed;
+        attackPressed = false;
+        return result;
+    }
     public Vector2 GetMoveDirection()
     {
         return moveDirection;
@@ -169,6 +196,12 @@ public class InputManager : MonoBehaviour
     {
         bool result = usePotion;
         usePotion = false;
+        return result;
+    }
+    public bool GetBackPressed()
+    {
+        bool result = backPressed;
+        backPressed = false;
         return result;
     }
 

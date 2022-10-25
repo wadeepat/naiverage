@@ -73,7 +73,7 @@ public class PlayerAttackController : MonoBehaviour
         if (Time.time > _nextFireTime)
         {
             // Check for mouse input
-            if (_anim.GetBool("Grounded") && Input.GetMouseButtonDown(0) && attackAble)
+            if (_anim.GetBool("Grounded") && InputManager.instance.GetAttackPressed() && attackAble)
             {
                 FaceToClosestEnemy();
                 OnClick();
