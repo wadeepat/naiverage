@@ -257,13 +257,11 @@ public class DialogueManager : MonoBehaviour
     }
     private void EnablePlayerControll()
     {
-        Debug.Log("enable");
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
     private void DisablePlayerControll()
     {
-        Debug.Log("disable");
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }

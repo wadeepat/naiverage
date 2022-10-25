@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button[] buttons;
     private void Start()
     {
-        PlayerPrefs.DeleteAll();
+        // PlayerPrefs.DeleteAll();
         // Debug.Log(PlayerPrefs.HasKey("INK_VARIABLES0"));
         // Debug.Log(PlayerPrefs.HasKey("INK_VARIABLES1"));
         // Debug.Log(PlayerPrefs.HasKey("INK_VARIABLES2"));
