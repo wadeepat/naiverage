@@ -349,7 +349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4685009339491405630, guid: 54db37d7406107645a01830e567e0a28, type: 3}
       propertyPath: sounds.Array.data[0].volume
-      value: 1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4685009339491405630, guid: 54db37d7406107645a01830e567e0a28, type: 3}
       propertyPath: sounds.Array.data[1].volume
@@ -3018,7 +3018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6427024724384000630, guid: 96d9dd04f6a281a4f88cb195218cefe7, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6427024724384000630, guid: 96d9dd04f6a281a4f88cb195218cefe7, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_ActionId
@@ -3026,7 +3026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6427024724384000630, guid: 96d9dd04f6a281a4f88cb195218cefe7, type: 3}
       propertyPath: m_ActionEvents.Array.data[7].m_ActionId
-      value: 6acb8edf-5cd0-423e-9e0e-8c2f3d2cf723
+      value: 2b4d1a2c-6a69-4f3c-b438-8486e9edbaa0
       objectReference: {fileID: 0}
     - target: {fileID: 6427024724384000630, guid: 96d9dd04f6a281a4f88cb195218cefe7, type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_ActionId
@@ -3038,7 +3038,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6427024724384000630, guid: 96d9dd04f6a281a4f88cb195218cefe7, type: 3}
       propertyPath: m_ActionEvents.Array.data[7].m_ActionName
-      value: Player/SelectPotion[/Keyboard/r]
+      value: Player/Potion[/Keyboard/r]
       objectReference: {fileID: 0}
     - target: {fileID: 6427024724384000630, guid: 96d9dd04f6a281a4f88cb195218cefe7, type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_ActionName
@@ -3098,7 +3098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6427024724384000630, guid: 96d9dd04f6a281a4f88cb195218cefe7, type: 3}
       propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectPotion
+      value: PotionPressed
       objectReference: {fileID: 0}
     - target: {fileID: 6427024724384000630, guid: 96d9dd04f6a281a4f88cb195218cefe7, type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
