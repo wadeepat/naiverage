@@ -34,7 +34,7 @@ public class OpenUI : MonoBehaviour
         attack = Player.GetComponent<PlayerAttackController>();
         assetsInputs = Player.GetComponent<StarterAssetsInputs>();
         playerInput = Player.GetComponent<PlayerInput>();
-        
+
 
     }
 
@@ -42,33 +42,41 @@ public class OpenUI : MonoBehaviour
     void Update()
     {
         bool i = Input.GetKeyDown("i");
-        if(i){
-            if(inven == true){
+        if (i)
+        {
+            if (inven == true)
+            {
                 //open 
-                show(true);    
-                Lockscreen(true);           
+                show(true);
+                Lockscreen(true);
                 inven = false;
-            }else{
+            }
+            else
+            {
                 show(false);
                 Lockscreen(false);
                 inven = true;
-                
+
             }
         }
     }
-    void Lockscreen(bool l){
+    void Lockscreen(bool l)
+    {
         //Stop animetion player
         // Player.SetActive(false);
         // playerInput.enabled = false;
-        if(l == true){
+        if (l == true)
+        {
             // Player.SetActive(false);
             attack.attackAble = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             assetsInputs.cursorInputForLook = false;
             assetsInputs.cursorLocked = false;
-            assetsInputs.look = new Vector2(0,0);
-        }else{
+            assetsInputs.look = new Vector2(0, 0);
+        }
+        else
+        {
             // Player.SetActive(true);
             attack.attackAble = true;
             Cursor.visible = false;
@@ -76,38 +84,43 @@ public class OpenUI : MonoBehaviour
             assetsInputs.cursorInputForLook = true;
             assetsInputs.cursorLocked = true;
         }
-        
+
     }
-    public void show(bool i){
+    public void show(bool i)
+    {
         Panel.SetActive(i);
         Character.SetActive(i);
         Potion.SetActive(false);
         Skill.SetActive(false);
         Quest.SetActive(false);
     }
-    public void showCharacter(){
+    public void showCharacter()
+    {
         Panel.SetActive(true);
         Character.SetActive(true);
         Potion.SetActive(false);
         Skill.SetActive(false);
         Quest.SetActive(false);
     }
-    public void showPotion(){
+    public void showPotion()
+    {
         Panel.SetActive(true);
         Character.SetActive(false);
         Potion.SetActive(true);
         Skill.SetActive(false);
         Quest.SetActive(false);
     }
-    public void showSkill(){
+    public void showSkill()
+    {
         Panel.SetActive(true);
         Character.SetActive(false);
         Potion.SetActive(false);
         Skill.SetActive(true);
         Quest.SetActive(false);
     }
-    
-    public void showQuest(){
+
+    public void showQuest()
+    {
         Panel.SetActive(true);
         Character.SetActive(false);
         Potion.SetActive(false);

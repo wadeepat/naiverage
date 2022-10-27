@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using StarterAssets;
 public class GameMenu : MonoBehaviour
 {
     [SerializeField] private ConfirmationPopupMenu confirmationPopupMenu;
-    private void Start()
+    private GameObject _player;
+    private ThirdPersonController _thirdPersonController;
+    private void Awake()
     {
-        Time.timeScale = 0;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _thirdPersonController = _player.GetComponent<ThirdPersonController>();
     }
     public void ClickedResume()
     {
@@ -41,6 +42,7 @@ public class GameMenu : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        _thirdPersonController.SetLockCameraPosition(true);
     }
     public void DeactivateMenu()
     {
@@ -48,5 +50,6 @@ public class GameMenu : MonoBehaviour
         this.gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        _thirdPersonController.SetLockCameraPosition(false);
     }
 }
