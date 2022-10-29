@@ -220,17 +220,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b2f786d4-98d3-4ebf-9c70-1da67c9cba9a"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""2a332c97-739a-415f-a3b4-04723ba9600b"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",

@@ -138,19 +138,6 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
-        private bool IsCurrentDeviceMouse
-        {
-            get
-            {
-#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-                return _playerInput.currentControlScheme == "KeyboardMouse";
-#else
-				return false;
-#endif
-            }
-        }
-
-
         private void Awake()
         {
             // get a reference to our main camera
@@ -254,8 +241,7 @@ namespace StarterAssets
             Vector2 look = InputManager.instance.GetLookDirection();
             if (look.sqrMagnitude >= _threshold && !LockCameraPosition)
             {
-                //Don't multiply mouse input by Time.deltaTime;
-                float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
+                float deltaTimeMultiplier = 1.0f;
 
                 _cinemachineTargetYaw += look.x * deltaTimeMultiplier;
                 _cinemachineTargetPitch += look.y * deltaTimeMultiplier;
