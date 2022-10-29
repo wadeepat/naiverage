@@ -12,15 +12,18 @@ public class SkillsUnlock : MonoBehaviour
     public int n;
     public Image[] slot;
     public Image[] slotSkills;
+    public Image[] slotSkillsInv;
+    public Image[] slotSkillsM;
     public Sprite[] slotSprite;
+    public int[] slotStack;
+    public int[] slotStackSkills;
     public int a;
     public int b;
     public int aSlot;
     public int bSlot;
-    public int[] slotStack;
-    public int[] slotStackSkills;
     public int maxStacks;
     public int slotTemporary;
+
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +56,10 @@ public class SkillsUnlock : MonoBehaviour
             }else{
                 slotSkills[i].sprite = slotSprite[slotStackSkills[i]];
             }
+        }
+        for(int i=0; i < 3; i++){
+            slotSkillsInv[i].sprite = slotSkills[i].sprite;
+            slotSkillsM[i].sprite = slotSkills[i].sprite;
         }
     }
 

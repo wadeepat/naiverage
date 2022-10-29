@@ -87,7 +87,34 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""id"": ""e457d190-9148-4c22-9117-309324b698ed"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Potion"",
+                    ""type"": ""Button"",
+                    ""id"": ""2b4d1a2c-6a69-4f3c-b438-8486e9edbaa0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""896fa210-52ec-4173-a970-8083ecbf6371"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""b166c695-2113-4620-bec4-3d5e852d7b33"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -234,6 +261,39 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed0ea4fa-725e-455a-a940-01c8727dc86f"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": ""Hold,Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Potion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00f341c0-9684-427c-b480-7a574601b24c"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb1d66d1-8300-41ee-82e9-1df00c7f4274"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -249,6 +309,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
         m_Player_Submit = m_Player.FindAction("Submit", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_Potion = m_Player.FindAction("Potion", throwIfNotFound: true);
+        m_Player_Back = m_Player.FindAction("Back", throwIfNotFound: true);
+        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -315,6 +378,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Next;
     private readonly InputAction m_Player_Submit;
     private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_Potion;
+    private readonly InputAction m_Player_Back;
+    private readonly InputAction m_Player_Attack;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -326,6 +392,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Next => m_Wrapper.m_Player_Next;
         public InputAction @Submit => m_Wrapper.m_Player_Submit;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @Potion => m_Wrapper.m_Player_Potion;
+        public InputAction @Back => m_Wrapper.m_Player_Back;
+        public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -356,6 +425,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Potion.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPotion;
+                @Potion.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPotion;
+                @Potion.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPotion;
+                @Back.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBack;
+                @Back.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBack;
+                @Back.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBack;
+                @Attack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -381,6 +459,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @Potion.started += instance.OnPotion;
+                @Potion.performed += instance.OnPotion;
+                @Potion.canceled += instance.OnPotion;
+                @Back.started += instance.OnBack;
+                @Back.performed += instance.OnBack;
+                @Back.canceled += instance.OnBack;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
             }
         }
     }
@@ -394,5 +481,8 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnNext(InputAction.CallbackContext context);
         void OnSubmit(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnPotion(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }

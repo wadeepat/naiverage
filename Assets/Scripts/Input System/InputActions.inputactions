@@ -65,7 +65,34 @@
                     "id": "e457d190-9148-4c22-9117-309324b698ed",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Potion",
+                    "type": "Button",
+                    "id": "2b4d1a2c-6a69-4f3c-b438-8486e9edbaa0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Back",
+                    "type": "Button",
+                    "id": "896fa210-52ec-4173-a970-8083ecbf6371",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "b166c695-2113-4620-bec4-3d5e852d7b33",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -210,6 +237,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ed0ea4fa-725e-455a-a940-01c8727dc86f",
+                    "path": "<Keyboard>/r",
+                    "interactions": "Hold,Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Potion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "00f341c0-9684-427c-b480-7a574601b24c",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cb1d66d1-8300-41ee-82e9-1df00c7f4274",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

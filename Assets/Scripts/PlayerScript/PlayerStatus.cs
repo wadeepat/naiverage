@@ -8,7 +8,7 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] private int HP = 100;
     [SerializeField] private GameObject healthBar;
     private Slider slider;
-    private int hp;
+    public int hp;
     void Start()
     {
         slider = healthBar.GetComponent<Slider>();

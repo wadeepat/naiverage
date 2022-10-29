@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class Spider : MonoBehaviour
 {
     [SerializeField] private int HP = 100;
+    [SerializeField] private string id;
+    [ContextMenu("Generate guid for id")]
+    private void GenerateGuid()
+    {
+        id = System.Guid.NewGuid().ToString();
+    }
     // [SerializeField] GameObject EnemyCanvas;
     private int hp;
     [SerializeField] private GameObject healthBar;

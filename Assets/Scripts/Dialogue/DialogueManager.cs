@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Ink.Runtime;
+using StarterAssets;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -23,12 +24,15 @@ public class DialogueManager : MonoBehaviour
     private Story currentStory;
     private bool canContinueToNextLine = false;
     private Coroutine displayLineCoroutine;
-    private static DialogueManager instance;
-    private DialogueVariables dialogueVariables;
+    public static DialogueManager instance { get; private set; }
+    public DialogueVariables dialogueVariables { get; private set; }
 
     private const string SPEAKER_TAG = "speaker";
     private const string SOUND_TAG = "sound";
     private GameObject _player;
+    public GameObject Player;
+    StarterAssetsInputs assetsInputs;
+    ThirdPersonController _thirdPersonController;
     private void Awake()
     {
         if (instance != null)
@@ -41,6 +45,7 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
+        _thirdPersonController = _player.GetComponent<ThirdPersonController>();
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         choicesText = new TextMeshProUGUI[choices.Length];
@@ -50,12 +55,16 @@ public class DialogueManager : MonoBehaviour
             choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
             index++;
         }
+        assetsInputs = Player.GetComponent<StarterAssetsInputs>();
     }
-    public static DialogueManager GetInstance()
+    // public static DialogueManager GetInstance()
+    // {
+    //     return instance;
+    // }
+    public DialogueVariables GetDialogueVariables()
     {
-        return instance;
+        return dialogueVariables;
     }
-
 
     private void Update()
     {
@@ -66,7 +75,7 @@ public class DialogueManager : MonoBehaviour
 
         if (canContinueToNextLine
         && currentStory.currentChoices.Count == 0
-        && InputManager.GetInstance().GetNextPressed())
+        && InputManager.instance.GetNextPressed())
         {
             ContinueStory();
         }
@@ -76,10 +85,10 @@ public class DialogueManager : MonoBehaviour
     {
         _player.GetComponent<Animator>().SetFloat("Speed", 0f);
         _player.GetComponent<Animator>().SetTrigger("reset");
-        Debug.Log("reset");
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
+        LockCamera();
 
         dialogueVariables.StartListenning(currentStory);
 
@@ -97,6 +106,9 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+        dialogueVariables.SaveVariables();
+
+        UnlockCamera();
     }
 
     private void ContinueStory()
@@ -133,7 +145,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in line.ToCharArray())
         {
 
-            if (InputManager.GetInstance().GetNextPressed())
+            if (InputManager.instance.GetNextPressed())
             {
                 dialogueText.maxVisibleCharacters = line.Length;
                 break;
@@ -179,7 +191,7 @@ public class DialogueManager : MonoBehaviour
                     displayNameText.text = tagValue;
                     break;
                 case SOUND_TAG:
-                    AudioManager.GetInstance().Play(tagValue);
+                    AudioManager.instance.Play(tagValue);
                     break;
                 default:
                     Debug.LogWarning("Tag came in but is not being handled: " + tag);
@@ -239,7 +251,7 @@ public class DialogueManager : MonoBehaviour
             currentStory.ChooseChoiceIndex(choiceIdx);
             ContinueStory();
         }
-
+        dialogueVariables.SaveVariables();
     }
 
     public Ink.Runtime.Object GetVariableState(string variableName)
@@ -256,13 +268,23 @@ public class DialogueManager : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        assetsInputs.cursorInputForLook = true;
+        assetsInputs.cursorLocked = true;
     }
     private void DisablePlayerControll()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        assetsInputs.cursorInputForLook = false;
+        assetsInputs.cursorLocked = false;
+        assetsInputs.look = new Vector2(0, 0);
     }
-    // private void OnApplicationQuit() {
-    //     dialogueVariables.SaveVariables();
-    // }
+    private void LockCamera()
+    {
+        _thirdPersonController.SetLockCameraPosition(true);
+    }
+    private void UnlockCamera()
+    {
+        _thirdPersonController.SetLockCameraPosition(false);
+    }
 }

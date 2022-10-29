@@ -18,10 +18,12 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (playerInRange)
         {
+            // print("sata");
             visualCue.SetActive(true);
-            if (InputManager.GetInstance().GetInteractPressed())
+            if (InputManager.instance.GetInteractPressed() && !DialogueManager.dialogueIsPlaying)
             {
-                DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+                print("to dialogue");
+                DialogueManager.instance.EnterDialogueMode(inkJSON);
                 // Debug.Log(inkJSON.text);
             }
         }
@@ -47,6 +49,6 @@ public class DialogueTrigger : MonoBehaviour
 
     public void EnterDialogueMode()
     {
-        DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+        DialogueManager.instance.EnterDialogueMode(inkJSON);
     }
 }

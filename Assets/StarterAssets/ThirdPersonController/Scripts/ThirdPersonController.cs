@@ -12,7 +12,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
     [RequireComponent(typeof(PlayerInput))]
 #endif
-    public class ThirdPersonController : MonoBehaviour
+    public class ThirdPersonController : MonoBehaviour, IDataPersistence
     {
         [Header("Player Grounded")]
         [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
@@ -93,7 +93,15 @@ namespace StarterAssets
 
         [SerializeField]
         [Tooltip("For locking the camera position on all axis")]
+
+
+        // private GameMenu gameMenu;
         private bool LockCameraPosition = false;
+
+        [Header("Menu")]
+        [SerializeField]
+        private GameMenu gameMenu;
+
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -173,6 +181,15 @@ namespace StarterAssets
             _fallTimeoutDelta = FallTimeout;
         }
 
+        public void LoadData(GameData data)
+        {
+            this.transform.position = data.playerPosition;
+        }
+
+        public void SaveData(GameData data)
+        {
+            data.playerPosition = this.transform.position;
+        }
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
@@ -194,6 +211,10 @@ namespace StarterAssets
             {
                 JumpAndGravity();
                 Move();
+            }
+            if (InputManager.instance.GetBackPressed() && !DialogueManager.dialogueIsPlaying)
+            {
+                gameMenu.ActivateMenu();
             }
             // Debug.Log("test" + _attackInfo.noOfClicks);
 
@@ -230,7 +251,7 @@ namespace StarterAssets
         private void CameraRotation()
         {
             // if there is an input and camera position is not fixed
-            Vector2 look = InputManager.GetInstance().GetLookDirection();
+            Vector2 look = InputManager.instance.GetLookDirection();
             if (look.sqrMagnitude >= _threshold && !LockCameraPosition)
             {
                 //Don't multiply mouse input by Time.deltaTime;
@@ -251,26 +272,26 @@ namespace StarterAssets
 
         private void Move()
         {
-            Vector2 move = InputManager.GetInstance().GetMoveDirection();
+            Vector2 move = InputManager.instance.GetMoveDirection();
             if (DialogueManager.dialogueIsPlaying) move = Vector2.zero;
             // set target speed based on move speed, sprint speed and if sprint is pressed
             // float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
-            float targetSpeed = InputManager.GetInstance().GetSprintPressed() ? SprintSpeed : MoveSpeed;
+            float targetSpeed = InputManager.instance.GetSprintPressed() ? SprintSpeed : MoveSpeed;
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is no input, set the target speed to 0
 
-            // if (_input.move == Vector2.zero) targetSpeed = 0.0f;
-            if (InputManager.GetInstance().GetMoveDirection() == Vector2.zero) targetSpeed = 0.0f;
+            if (move == Vector2.zero) targetSpeed = 0.0f;
+            // if (InputManager.GetInstance().GetMoveDirection() == Vector2.zero) targetSpeed = 0.0f;
 
             // a reference to the players current horizontal velocity
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
 
             float speedOffset = 0.1f;
             // float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
-            float inputMagnitude = InputManager.GetInstance().GetMoveDirection().magnitude;
+            float inputMagnitude = InputManager.instance.GetMoveDirection().magnitude;
 
             // accelerate or decelerate to target speed
             if (currentHorizontalSpeed < targetSpeed - speedOffset ||
@@ -294,11 +315,11 @@ namespace StarterAssets
 
             // normalise input direction
             // Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-            Vector3 inputDirection = new Vector3(InputManager.GetInstance().GetMoveDirection().x, 0.0f, InputManager.GetInstance().GetMoveDirection().y).normalized;
+            Vector3 inputDirection = new Vector3(InputManager.instance.GetMoveDirection().x, 0.0f, InputManager.instance.GetMoveDirection().y).normalized;
 
             // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is a move input rotate player when the player is moving
-            if (InputManager.GetInstance().GetMoveDirection() != Vector2.zero)
+            if (move != Vector2.zero)
             {
                 _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                                   _mainCamera.transform.eulerAngles.y;
@@ -346,7 +367,7 @@ namespace StarterAssets
 
                 // Jump
                 // if (_input.jump && _jumpTimeoutDelta <= 0.0f)
-                if (InputManager.GetInstance().GetJumpPressed() && _jumpTimeoutDelta <= 0.0f && !DialogueManager.dialogueIsPlaying)
+                if (InputManager.instance.GetJumpPressed() && _jumpTimeoutDelta <= 0.0f && !DialogueManager.dialogueIsPlaying)
                 {
                     // the square root of H * -2 * G = how much velocity needed to reach desired height
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
@@ -433,6 +454,10 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+        public void SetLockCameraPosition(bool locked)
+        {
+            LockCameraPosition = locked;
         }
     }
 }
