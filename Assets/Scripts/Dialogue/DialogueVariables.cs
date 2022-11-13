@@ -21,7 +21,7 @@ public class DialogueVariables
         globalVariablesStory = new Story(loadGlobalsJSON.text);
         //if we have saved data then load it
         selectedProfileId = DataPersistenceManager.instance.selectedProfileId;
-        if (PlayerPrefs.HasKey(saveVariablesKey + selectedProfileId))
+        if (PlayerPrefs.HasKey(saveVariablesKey + selectedProfileId) && !DataPersistenceManager.instance.disableDataPersistence)
         {
             Debug.Log("load dialogue save from: " + saveVariablesKey + DataPersistenceManager.instance.selectedProfileId);
             string jsonState = PlayerPrefs.GetString(saveVariablesKey + selectedProfileId);

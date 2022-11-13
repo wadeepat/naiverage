@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class DataPersistenceManager : MonoBehaviour
 {
     [Header("Debugging")]
-    [SerializeField] private bool disableDataPersistence = false;
+    [SerializeField] public bool disableDataPersistence = false;
     [SerializeField] private bool initializeDataIfNull = false;
     [SerializeField] private bool overrideSelectedProfileId = false;
     [SerializeField] private string testSelectedProfileId = "test";
@@ -39,6 +39,7 @@ public class DataPersistenceManager : MonoBehaviour
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
 
         InitializeSelectedProfiledId();
+        PlayerPrefs.DeleteKey(testSelectedProfileId);
     }
     private void OnEnable()
     {
@@ -86,7 +87,7 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void LoadGame()
     {
-        if (disableDataPersistence) return;
+        // if (disableDataPersistence) return;
 
         //load any saved data from a data handler
         this.gameData = dataHandler.Load(selectedProfileId);
