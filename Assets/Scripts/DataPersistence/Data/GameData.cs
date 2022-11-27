@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
+    public string name;
     public long lastUpdated;
     public Vector3 playerPosition;
     public SerializableDictionary<string, bool> tutorialEvents;

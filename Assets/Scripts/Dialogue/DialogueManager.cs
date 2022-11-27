@@ -29,6 +29,7 @@ public class DialogueManager : MonoBehaviour
 
     private const string SPEAKER_TAG = "speaker";
     private const string SOUND_TAG = "sound";
+    private const string ACTION_TAG = "action";
     private GameObject _player;
     public GameObject Player;
     StarterAssetsInputs assetsInputs;
@@ -75,7 +76,8 @@ public class DialogueManager : MonoBehaviour
 
         if (canContinueToNextLine
         && currentStory.currentChoices.Count == 0
-        && InputManager.instance.GetNextPressed())
+        && InputManager.instance.GetNextPressed()
+        && !ActionHandler.instance.IsInputWindowActivated())
         {
             ContinueStory();
         }
@@ -192,6 +194,9 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case SOUND_TAG:
                     AudioManager.instance.Play(tagValue);
+                    break;
+                case ACTION_TAG:
+                    ActionHandler.instance.ReceiveAction(tagValue);
                     break;
                 default:
                     Debug.LogWarning("Tag came in but is not being handled: " + tag);
