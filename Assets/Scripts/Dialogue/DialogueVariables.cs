@@ -27,6 +27,7 @@ public class DialogueVariables
             string jsonState = PlayerPrefs.GetString(saveVariablesKey + selectedProfileId);
             globalVariablesStory.state.LoadJson(jsonState);
         }
+        // globalVariablesStory.variablesState["name"] = "testst";
 
         //initialize the dictionary
         variables = new Dictionary<string, Ink.Runtime.Object>();
@@ -37,9 +38,13 @@ public class DialogueVariables
             Debug.Log("Initailized global dialogue variable: " + name + " = " + value);
         }
     }
-    public VariablesState GetVariableState()
+    public void SetVariableState(string name, Ink.Runtime.Value value)
     {
-        return globalVariablesStory.variablesState;
+        // globalVariablesStory.variablesState[name] = value;
+        VariableChanged(name, value);
+        // globalVariablesStory.variablesState.SetGlobal(name, value);
+        // Debug.Log(name + " = "+value);
+
     }
     public void SaveVariables()
     {
@@ -47,7 +52,7 @@ public class DialogueVariables
         {
             //load current state of all our variables to globals story
             VariablesToStory(globalVariablesStory);
-            PlayerPrefs.SetString(saveVariablesKey + selectedProfileId, globalVariablesStory.state.ToJson());
+            if (!DataPersistenceManager.instance.disableDataPersistence) PlayerPrefs.SetString(saveVariablesKey + selectedProfileId, globalVariablesStory.state.ToJson());
         }
     }
     public void StartListenning(Story story)
@@ -70,9 +75,11 @@ public class DialogueVariables
     }
     private void VariablesToStory(Story story)
     {
+        // Debug.Log("Variable To Story");
         foreach (KeyValuePair<string, Ink.Runtime.Object> variable in variables)
         {
             story.variablesState.SetGlobal(variable.Key, variable.Value);
+            // Debug.Log("Variable To Story: name = " + variable.Key + " value = " + variable.Value);
         }
     }
 }

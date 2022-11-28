@@ -5,20 +5,20 @@ using TMPro;
 
 public class InputTextUI : MonoBehaviour
 {
-    private TextMeshProUGUI title;
-    private TMP_InputField inputField;
-    private Button confirmBtn;
-    private Button cancelBtn;
+    [Header("Components")]
+    [SerializeField] private TextMeshProUGUI title;
+    [SerializeField] private TMP_InputField inputField;
+    [SerializeField] private Button confirmBtn;
+    [SerializeField] private Button cancelBtn;
 
-    private void Awake()
-    {
-        Debug.Log("Awareeeeee");
-        title = transform.Find("Header").GetComponent<TextMeshProUGUI>();
-        inputField = transform.Find("InputField").GetComponent<TMP_InputField>();
-        confirmBtn = transform.Find("ConfirmBtn").GetComponent<Button>();
-        cancelBtn = transform.Find("CancelBtn").GetComponent<Button>();
-        DeactivateMenu();
-    }
+    // private void Awake()
+    // {
+    //     title = transform.Find("Header").GetComponent<TextMeshProUGUI>();
+    //     inputField = transform.Find("InputField").GetComponent<TMP_InputField>();
+    //     confirmBtn = transform.Find("ConfirmBtn").GetComponent<Button>();
+    //     cancelBtn = transform.Find("CancelBtn").GetComponent<Button>();
+    //     DeactivateMenu();
+    // }
     public void ActivateMenu(string title, UnityAction<string> confirmAction, UnityAction cancelAction)
     {
         Cursor.visible = true;

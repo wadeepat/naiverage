@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour
         {
             waypoints.Add(wp);
 
-            Debug.Log(wp);
+            // Debug.Log(wp);
         }
     }
     private void Update()

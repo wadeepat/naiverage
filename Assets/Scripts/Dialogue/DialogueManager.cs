@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Ink.Runtime;
 using StarterAssets;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
-    public static bool dialogueIsPlaying { get; private set; }
+    public static bool dialogueIsPlaying;
     private TextMeshProUGUI[] choicesText;
     private Story currentStory;
     private bool canContinueToNextLine = false;
@@ -27,10 +28,12 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager instance { get; private set; }
     public DialogueVariables dialogueVariables { get; private set; }
 
-    private const string SPEAKER_TAG = "speaker";
-    private const string SOUND_TAG = "sound";
     private const string ACTION_TAG = "action";
+    private const string QUEST_TAG = "quest";
+    private const string SOUND_TAG = "sound";
+    private const string SPEAKER_TAG = "speaker";
     private GameObject _player;
+    private string playerName;
     public GameObject Player;
     StarterAssetsInputs assetsInputs;
     ThirdPersonController _thirdPersonController;
@@ -62,11 +65,6 @@ public class DialogueManager : MonoBehaviour
     // {
     //     return instance;
     // }
-    public DialogueVariables GetDialogueVariables()
-    {
-        return dialogueVariables;
-    }
-
     private void Update()
     {
         if (!dialogueIsPlaying)
@@ -92,6 +90,11 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(true);
         LockCamera();
 
+        playerName = ActionHandler.instance.playerName;
+        if (String.IsNullOrEmpty(playerName)) playerName = "Me";
+        // Debug.Log("name "+ playerName);
+        // Debug.Log("name == black "+ playerName);
+
         dialogueVariables.StartListenning(currentStory);
 
         //reset name, sound ...etc.
@@ -103,6 +106,17 @@ public class DialogueManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
 
+        dialogueVariables.StopListening(currentStory);
+
+        dialogueIsPlaying = false;
+        dialoguePanel.SetActive(false);
+        dialogueText.text = "";
+        dialogueVariables.SaveVariables();
+
+        UnlockCamera();
+    }
+    private void TestExit()
+    {
         dialogueVariables.StopListening(currentStory);
 
         dialogueIsPlaying = false;
@@ -190,13 +204,21 @@ public class DialogueManager : MonoBehaviour
             switch (tagKey)
             {
                 case SPEAKER_TAG:
-                    displayNameText.text = tagValue;
+                    if (tagValue == "Me") displayNameText.text = playerName;
+                    else displayNameText.text = tagValue;
                     break;
                 case SOUND_TAG:
                     AudioManager.instance.Play(tagValue);
                     break;
+                case QUEST_TAG:
+                    Debug.Log("Quest: " + tagValue);
+                    break;
                 case ACTION_TAG:
-                    ActionHandler.instance.ReceiveAction(tagValue);
+                    ActionHandler.instance.ReceiveActionThenContinueStory(tagValue, ContinueStory);
+                    break;
+                case "end":
+                    TestExit();
+                    ActionHandler.instance.ReceiveActionThenContinueStory(tagValue, ContinueStory);
                     break;
                 default:
                     Debug.LogWarning("Tag came in but is not being handled: " + tag);
@@ -269,14 +291,14 @@ public class DialogueManager : MonoBehaviour
         }
         return variableValue;
     }
-    private void EnablePlayerControll()
+    public void EnablePlayerControll()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         assetsInputs.cursorInputForLook = true;
         assetsInputs.cursorLocked = true;
     }
-    private void DisablePlayerControll()
+    public void DisablePlayerControll()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -284,11 +306,11 @@ public class DialogueManager : MonoBehaviour
         assetsInputs.cursorLocked = false;
         assetsInputs.look = new Vector2(0, 0);
     }
-    private void LockCamera()
+    public void LockCamera()
     {
         _thirdPersonController.SetLockCameraPosition(true);
     }
-    private void UnlockCamera()
+    public void UnlockCamera()
     {
         _thirdPersonController.SetLockCameraPosition(false);
     }

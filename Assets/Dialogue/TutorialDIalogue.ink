@@ -1,33 +1,12 @@
 INCLUDE tutorial_globals.ink
-
-VAR name = "Liw"
-=== Temp ===
-    #speaker:???
-    Don't <color=\#40FF6F>judge</color> the book by its cover.
-    The answers were <b>already</b> there.
-    Open and find it.
-    ~readOP = true
-->DONE
-=== Temp1 ===
-    {sataAskToJoin: -> SataAskToJoin} 
-    I'm Sata, a solider in Naver town. #speaker:???
-    What's your name ? #speaker:Sata
-    (...My name ?) #speaker:Me
-    (Why can't I remember anything...)
-    (What's wrong with me?)
-    Answer Sata "What's your name ?"
-        +[I don't know]
-            ->answerDontKnow
-        +[Tell your name]
-            ->answerYourName
-->DONE
 === Opening ===
     #speaker:Me
     (ที่นี่น่าจะเป็นป่า Rache ตามที่แผนที่บอก)
     (อีกไม่นานคงจะใกล้ถึงเมือง Naver แล้วสินะ)
-    (ก่อนอื่นต้องทำยาสมานแผลก่อน น่าจะต้องไปหา <b>"odorata"</b> กับ <b>"aloe"</b> แล้วสิ)
+    (ก่อนอื่นต้องทำยาสมานแผลก่อน น่าจะต้องไปหา <color=\#40FF6F>"odorata"</color> กับ <color=\#40FF6F>"aloe"</color> แล้วสิ)
     (แย่หละสิ ตอนนี้ใกล้จะมืดแล้วด้วย คงต้องรีบแล้ว)
-    ~readOP = true
+    ~readOP = true 
+    #end:ttrWalking
 ->DONE
 === AfterUsePotion ===
     #speaker:Me
@@ -47,7 +26,7 @@ VAR name = "Liw"
 ->SataFirstMet
 
 === SataFirstMet ===
-    {sataAskToJoin: -> SataAskToJoin} 
+    {toldName: ->GoToNaver}
     #speaker:???
     พอดีข้าได้รับบาดเจ็บจากแมงมุงในป่านี้หนะ..กัดเจ็บเป็นบ้า..
     เจ้าพอจะช่วยข้าหน่อยได้หรือไม่ ข้าต้องการยาที่ใช้สมานแผลสักหน่อย
@@ -62,15 +41,20 @@ VAR name = "Liw"
 === answerDontKnow ===
     #speaker:???
     (เจ้านี้ดูไม่ไว้ใจข้าเลยนะ แต่ก็เอาเถอะ) 
+    (ข้าจะเรียกว่า <color=\#DB3A34>"เจ้าหมวกแดง"</color> แล้วกัน)
+    ~name = "เจ้าหมวกแดง"
 ->SataIntroduction
 
 === answerYourName ===
-    #speaker:??? #action:GetPlayerName
+    #speaker:???
     เจ้าชื่อว่าอะไรเหรอ?
-    (ว้าว!! ชื่อเท่ดีนิ เหมาะกับเจ้าดี) 
+    #end:GetPlayerName
+->DONE
+== SataRecallName ==
+    ว้าว!! ชื่อเท่ดีนิ เหมาะกับเจ้าดี {name}
 ->SataIntroduction
-
 === SataIntroduction ===
+    ~toldName = true
     #speaker:ซาตะ
     ส่วนข้า..ข้ามีนามว่า <b>"ซาตะ"</b> ข้าเป็นทหารหน่วยลาดตระเวนเมือง Naver ที่ค่อยดูแลความปลอดภัยของบ้านเมืองนี้ 
     ก่อนหน้านี้ข้าเห็นเจ้าถือแผนที่ที่มายังเมือง Naver ข้าจึงอยากจะถามเจ้าว่าเจ้ามาที่เมืองนี้มีธุระอะไรหรือเปล่า??
@@ -116,22 +100,3 @@ VAR name = "Liw"
     +[ยังก่อน]
         งันข้าจะรอเจ้าอยู่ตรงนี้นะ พร้อมเมื่อไหร่ก็บอกข้า
         ->DONE
-=== SataAskToJoin ===
-    #speaker:Sata
-    Are you interested ?
-        +[No]
-            #speaker:Me
-            Thanks but I don't interested.     
-            #speaker:Sata
-            Such a shame..
-            Okay I'll go.
-        +[Yes]
-            #speaker:Me
-            I'll go with you.
-            #speaker:Sata
-            Good!!!
-            We must become good friends {name}.
-        +[Let me think]
-            I'm looking forward to it.
-    - ~sataAskToJoin = true
-->DONE
