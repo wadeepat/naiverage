@@ -6,24 +6,20 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     public List<Item> yourInventory = new List<Item>();
-    public List<Item> draggedItem = new List<Item>();
-
-    public int slotsNumber = 28;
-    public GameObject x;
-    public int n;
-
-    public Image[] slot;
-    public Sprite[] slotSprite;
-
-    public Text[] stackText;
-
-    public int a;
-    public int b;
-
     public int[] slotStack;
-    public int maxStacks;
 
-    public int slotTemporary;
+    [SerializeField] private List<Item> draggedItem = new List<Item>();
+    [SerializeField] private Image[] slot;
+    [SerializeField] private Sprite[] slotSprite;
+    [SerializeField] private Text[] stackText;
+    
+    private GameObject x;
+    private int n;
+    private int a;
+    private int b;
+    private int slotTemporary;
+    private int maxStacks = 99;
+    private int slotsNumber = 28;
 
     void Start()
     {
@@ -45,13 +41,7 @@ public class Inventory : MonoBehaviour
             }else{
                 stackText[i].text = ""+ slotStack[i];
             }
-        }
-
-        for(int i=0; i < slotsNumber; i++){
             slot[i].sprite = slotSprite[i];
-        }
-
-        for(int i=0; i < slotsNumber; i++){
             slotSprite[i] = yourInventory[i].itemSprite;
         }
 
@@ -83,6 +73,9 @@ public class Inventory : MonoBehaviour
                     ItemPickUp.pick = false;
                 }
             }
+
+            //checkquest
+            QuestLog.DoQuest(Quest.Objective.Type.collect, n);
             ItemPickUp.pick = false;
         }
 

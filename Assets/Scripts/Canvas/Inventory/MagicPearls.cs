@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class MagicPearls : MonoBehaviour
 {
     public Pearl MP = new Pearl();
-    public Image slot;
-    public Sprite slotSprite;
-    public Text textNum;
-    public int maxStacks;
-    public int slotStack;
+    [SerializeField] private Image slot;
+    [SerializeField] private Sprite slotSprite;
+    [SerializeField] private Text textNum;
+    private int maxStacks;
+    private int slotStack;
 
     // Start is called before the first frame update
     void Start()

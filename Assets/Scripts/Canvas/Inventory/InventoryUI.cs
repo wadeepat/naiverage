@@ -7,18 +7,15 @@ public class InventoryUI : MonoBehaviour
 {
     // Start is called before the first frame update
     // Inventory inventory;
-    public GameObject Matarials;
-    public GameObject Potions;
-    public GameObject Quests;
+    [SerializeField] private GameObject Matarials;
+    [SerializeField] private GameObject Potions;
+    [SerializeField] private GameObject Quests;
+    [SerializeField] private GameObject Crafting;
+    [SerializeField] private GameObject Player;
 
-    public GameObject Crafting;
-
-    public GameObject Player;
-
-    public bool inven;
-    public bool craft;
-
-
+    private bool inven;
+    private bool craft;
+    
     PlayerAttackController attack;
     StarterAssetsInputs assetsInputs;
     PlayerInput playerInput;

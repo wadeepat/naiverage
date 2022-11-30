@@ -7,22 +7,23 @@ using UnityEngine.UI;
 public class SkillsUnlock : MonoBehaviour
 {
     public List<Skill> skill = new List<Skill>();
-    public List<Skill> draggedSkill = new List<Skill>();
-    public int slotsNumber = 12;
-    public int n;
-    public Image[] slot;
-    public Image[] slotSkills;
-    public Image[] slotSkillsInv;
-    public Image[] slotSkillsM;
-    public Sprite[] slotSprite;
     public int[] slotStack;
     public int[] slotStackSkills;
-    public int a;
-    public int b;
-    public int aSlot;
-    public int bSlot;
-    public int maxStacks;
-    public int slotTemporary;
+
+    [SerializeField] private List<Skill> draggedSkill = new List<Skill>();
+    [SerializeField] private Image[] slot;
+    [SerializeField] private Image[] slotSkills;
+    [SerializeField] private Image[] slotSkillsInv;
+    [SerializeField] private Image[] slotSkillsM;
+    [SerializeField] private Sprite[] slotSprite;
+
+    private int a;
+    private int b;
+    private int aSlot;
+    private int bSlot;
+    private int slotTemporary;
+    private int maxStacks = 1; 
+    private int slotsNumber = 12;
 
 
     // Start is called before the first frame update
@@ -73,6 +74,13 @@ public class SkillsUnlock : MonoBehaviour
 
     public void Drop(Image slotX){
         if(a!=b && a != -1 && b !=-1){
+            for(int i=0; i < 3; i++){
+                if(slotStackSkills[i] == a){
+                    slotStackSkills[i] = b;
+                }else if(slotStackSkills[i] == b){
+                    slotStackSkills[i] = a;
+                }
+            }
             if(skill[a].id == skill[b].id){
                 if(slotStack[b] == maxStacks){
                     draggedSkill[0] = skill[a];
@@ -140,7 +148,7 @@ public class SkillsUnlock : MonoBehaviour
         if(a>=0){
             for(int i = 0; i<3; i++){
                 if(slotStackSkills[i] == a){
-                    slotStackSkills[i] = -1;
+                    slotStackSkills[i] = slotStackSkills[bSlot];
                 }
             }
             slotStackSkills[bSlot] = a;

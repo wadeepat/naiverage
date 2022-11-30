@@ -7,24 +7,17 @@ using UnityEngine.UI;
 public class ItemQuests : MonoBehaviour
 {
     public List<Item> yourItemQuests = new List<Item>();
-    public List<Item> draggedItem = new List<Item>();
-
-    public int slotsNumber = 8;
-    public GameObject x;
-    public int n;
-
-    public Image[] slot;
-    public Sprite[] slotSprite;
-
-    public Text[] stackText;
-
-    public int a;
-    public int b;
-
     public int[] slotStack;
-    public int maxStacks;
+    
+    [SerializeField] private List<Item> draggedItem = new List<Item>();
+    [SerializeField] private Image[] slot;
+    [SerializeField] private Sprite[] slotSprite;
+    [SerializeField] private Text[] stackText;
 
-    public int slotTemporary;
+    private int a;
+    private int b;
+    private int slotTemporary;
+    private int slotsNumber = 8;
 
     void Start()
     {

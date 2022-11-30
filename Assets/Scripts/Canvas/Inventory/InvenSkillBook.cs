@@ -8,23 +8,17 @@ public class InvenSkillBook : MonoBehaviour
 {
     public List<SkillBook> yourSkillbook = new List<SkillBook>();
     public List<SkillBook> draggedItem = new List<SkillBook>();
-
-    public int slotsNumber = 8;
-    public GameObject x;
-    public int n;
-
-    public Image[] slot;
-    public Sprite[] slotSprite;
-
-    public Text[] stackText;
-
-    public int a;
-    public int b;
-
     public int[] slotStack;
-    public int maxStacks;
 
-    public int slotTemporary;
+    [SerializeField] private Image[] slot;
+    [SerializeField] private Sprite[] slotSprite;
+    [SerializeField] private Text[] stackText;
+
+    private int a;
+    private int b;
+    private int slotTemporary;
+    private int maxStacks = 1;
+    private int slotsNumber = 8;
 
     void Start()
     {
