@@ -8,31 +8,26 @@ public class Potions : MonoBehaviour
 {
     public List<Potion> yourPotions = new List<Potion>();
     public List<Potion> draggedItem = new List<Potion>();
-
-    public int slotsNumber = 16;
-    public GameObject x;
-    public int n;
-
-    public Image[] slot;
-    public Image[] slotPotion;
-    public Image[] slotPotionInv;
-    public Image[] slotPotionM;
-    public Sprite[] slotSprite;
-
-    public Text[] stackText;
-    public Text[] stackSlotPotionText;
-    public Text[] stackSlotPotionTextInv;
-    public Text[] stackSlotPotionTextM;
-    public int a;
-    public int b;
-    public int aSlot;
-    public int bSlot;
-
     public int[] slotP;
     public int[] slotStack;
-    public int maxStacks;
+    public Image[] slot;
+    public Sprite[] slotSprite;
 
-    public int slotTemporary;
+    [SerializeField] private Image[] slotPotion;
+    [SerializeField] private Image[] slotPotionInv;
+    [SerializeField] private Image[] slotPotionM;
+    [SerializeField] private Text[] stackText;
+    [SerializeField] private Text[] stackSlotPotionText;
+    [SerializeField] private Text[] stackSlotPotionTextInv;
+    [SerializeField] private Text[] stackSlotPotionTextM;
+
+    private int a;
+    private int b;
+    private int aSlot;
+    private int bSlot;
+    private int slotTemporary;
+    private int maxStacks = 16;
+    private int slotsNumber = 16;
 
     void Start()
     {
@@ -97,6 +92,13 @@ public class Potions : MonoBehaviour
 
     public void Drop(Image slotX){
         if(a!=b && a != -1 && b !=-1){
+            for(int i=0; i < 4; i++){
+                if(slotP[i] == a){
+                    slotP[i] = b;
+                }else if(slotP[i] == b){
+                    slotP[i] = a;
+                }
+            }
             if(yourPotions[a].id == yourPotions[b].id){
                 if(slotStack[b] == maxStacks){
                     draggedItem[0] = yourPotions[a];
@@ -164,7 +166,7 @@ public class Potions : MonoBehaviour
         if(a>=0){
             for(int i = 0; i<4; i++){
                 if(slotP[i] == a){
-                    slotP[i] = -1;
+                    slotP[i] = slotP[bSlot];
                 }
             }
             slotP[bSlot] = a;

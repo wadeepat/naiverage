@@ -110,8 +110,7 @@ public class Crafting : MonoBehaviour
             //Potion
             List<Potion> yourPotions = GetComponent<Potions>().yourPotions;
             int[] slotStack = GetComponent<Potions>().slotStack;
-            int maxStacks = GetComponent<Potions>().maxStacks;
-
+            
             //Inventory
             List<Item> yourInventory = GetComponent<Inventory>().yourInventory;
             int[] inventorySlotStack = GetComponent<Inventory>().slotStack;

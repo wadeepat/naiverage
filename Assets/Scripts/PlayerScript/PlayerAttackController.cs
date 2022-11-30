@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 public class PlayerAttackController : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class PlayerAttackController : MonoBehaviour
     public float projectileSpeed = 30;
     public int noOfClicks = 0;
     public float cooldownTime = 2f;
+    public Image imageElement; 
+    public Sprite spriteElementF; 
+    public Sprite spriteElementWt; 
+    public Sprite spriteElementW; 
 
     private Animator _anim;
     private float _nextFireTime = 0f;
@@ -30,6 +35,9 @@ public class PlayerAttackController : MonoBehaviour
     private void Start()
     {
         _anim = GetComponent<Animator>();
+        spriteElementF = Resources.Load<Sprite>("f");
+        spriteElementWt = Resources.Load<Sprite>("wt");
+        spriteElementW = Resources.Load<Sprite>("w");
     }
     void Update()
     {
@@ -79,6 +87,14 @@ public class PlayerAttackController : MonoBehaviour
                 OnClick();
 
             }
+        }
+
+        if(element == 0){
+            imageElement.sprite = spriteElementF;
+        }else if(element == 1){
+            imageElement.sprite = spriteElementWt;
+        }else{
+            imageElement.sprite = spriteElementW;
         }
 
     }

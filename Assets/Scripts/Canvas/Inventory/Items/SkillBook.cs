@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 [System.Serializable]
 
-public class SkillBook : MonoBehaviour
+public class SkillBook
 {
     
     public int id;
