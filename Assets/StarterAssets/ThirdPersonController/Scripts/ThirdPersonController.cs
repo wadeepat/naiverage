@@ -98,9 +98,9 @@ namespace StarterAssets
         // private GameMenu gameMenu;
         private bool LockCameraPosition = false;
 
-        [Header("Menu")]
-        [SerializeField]
-        private GameMenu gameMenu;
+        [Header("UI")]
+        [SerializeField] private GameMenu gameMenu;
+        [SerializeField] private MapController map;
 
 
         // cinemachine
@@ -199,9 +199,16 @@ namespace StarterAssets
                 JumpAndGravity();
                 Move();
             }
-            if (InputManager.instance.GetBackPressed() && !DialogueManager.dialogueIsPlaying)
+
+            // if (DialogueManager.dialogueIsPlaying) return;
+            if (InputManager.instance.GetBackPressed())
             {
                 gameMenu.ActivateMenu();
+            }
+            else if (InputManager.instance.GetMapPressed())
+            {
+                // map.ActivateMenu();
+                map.ActivateMenu();
             }
             // Debug.Log("test" + _attackInfo.noOfClicks);
 

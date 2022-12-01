@@ -2,18 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour, IDataPersistence
 {
     // Start is called before the first frame update
-    #region  Singleton
-
+    // #region  Singleton
+    public GameObject player;
     public static PlayerManager instance;
-
-    void Awake (){
+    public string playerLocation { get; private set; }
+    void Awake()
+    {
         instance = this;
     }
-    
-    #endregion
+    public void ChangePlayerLocation(string location)
+    {
+        this.playerLocation = location;
+    }
+    public void LoadData(GameData data)
+    {
+        this.playerLocation = data.playerLocation;
+    }
 
-    public GameObject player;
+    public void SaveData(GameData data)
+    {
+        data.playerLocation = this.playerLocation;
+    }
+
+    // #endregion
+
+
+
 }
