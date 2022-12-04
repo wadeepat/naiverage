@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -166,11 +167,17 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+
         }
 
         public void LoadData(GameData data)
         {
-            this.transform.position = data.playerPosition;
+            int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            Debug.Log("Previous " + PlayerManager.instance.playerLocation);
+            int previousSceneIndex = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), PlayerManager.instance.playerLocation);
+            // this.transform.position = data.playerPosition;
+            PlayerManager.instance.ChangePlayerLocation(((SceneIndex)activeSceneIndex).ToString());
+            StageHandler.instance.MovePlayer(previousSceneIndex, this.transform);
         }
 
         public void SaveData(GameData data)

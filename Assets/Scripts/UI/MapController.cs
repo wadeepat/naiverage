@@ -29,7 +29,7 @@ public class MapController : MonoBehaviour
         if (index != activeSceneIndex)
         {
             if (index > 2) return;
-            PlayerManager.instance.ChangePlayerLocation(sceneName);
+            // PlayerManager.instance.ChangePlayerLocation(sceneName);
             SceneLoadingManager.instance.LoadScene(sceneName);
         }
         // PlayerManager.instance.playerLocation
