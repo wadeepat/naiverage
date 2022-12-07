@@ -50,6 +50,8 @@ public class PlayerStatus : MonoBehaviour
     }
 
 
+
+
     public void TakeDamaged(int damageAmount)
     {
         int a = (int)(damageAmount*(100.0f/(100+defense)));
