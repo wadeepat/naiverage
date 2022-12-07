@@ -12,6 +12,8 @@ public class OpenUI : MonoBehaviour
     public GameObject Potion;
     public GameObject Skill;
     public GameObject Quest;
+    [SerializeField] private GameObject Status;
+    [SerializeField] private GameObject UpgradeStatus;
 
 
     public GameObject Player;
@@ -90,6 +92,8 @@ public class OpenUI : MonoBehaviour
     {
         Panel.SetActive(i);
         Character.SetActive(i);
+        Status.SetActive(true);
+        UpgradeStatus.SetActive(false);
         Potion.SetActive(false);
         Skill.SetActive(false);
         Quest.SetActive(false);
