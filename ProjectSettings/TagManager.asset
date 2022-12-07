@@ -12,6 +12,7 @@ TagManager:
   - Fire
   - Enemy
   - Water
+  - NPC
   layers:
   - Default
   - TransparentFX

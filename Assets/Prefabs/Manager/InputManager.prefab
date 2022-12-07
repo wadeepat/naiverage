@@ -230,6 +230,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b166c695-2113-4620-bec4-3d5e852d7b33
     m_ActionName: Player/Attack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6427024724384000631}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: MapPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ccbd83be-f1ed-4eae-baa3-5974a2bce29a
+    m_ActionName: Player/Map[/Keyboard/m]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

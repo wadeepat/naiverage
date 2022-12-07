@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using Ink.Runtime;
 using StarterAssets;
@@ -44,6 +43,7 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("Found more than one Dialog Manager in the scene.");
         }
         instance = this;
+        DontDestroyOnLoad(this.gameObject);
         dialogueVariables = new DialogueVariables(loadGlobalsJSON);
     }
     private void Start()

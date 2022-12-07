@@ -38,11 +38,22 @@ public class GameMenu : MonoBehaviour
     }
     public void ActivateMenu()
     {
-        this.gameObject.SetActive(true);
-        Time.timeScale = 0;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        _thirdPersonController.SetLockCameraPosition(true);
+        if (DialogueManager.dialogueIsPlaying)
+        {
+            if (this.gameObject.activeSelf)
+            {
+                this.DeactivateMenu();
+            }
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+            Time.timeScale = 0;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            DialogueManager.dialogueIsPlaying = true;
+            _thirdPersonController.SetLockCameraPosition(true);
+        }
     }
     public void DeactivateMenu()
     {
@@ -50,6 +61,7 @@ public class GameMenu : MonoBehaviour
         this.gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        DialogueManager.dialogueIsPlaying = false;
         _thirdPersonController.SetLockCameraPosition(false);
     }
 }

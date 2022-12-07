@@ -10,14 +10,15 @@ public class InputManager : MonoBehaviour
     private Vector2 lookDirection = Vector2.zero;
     private Vector2 moveDirection = Vector2.zero;
     private bool attackPressed = false;
+    private bool backPressed = false;
     private bool interactPressed = false;
     private bool jumpPressed = false;
+    private bool mapPressed = false;
     private bool nextPressed = false;
     private bool sprintPressed = false;
     private bool submitPressed = false;
     private bool selectPotion = false;
     private bool usePotion = false;
-    private bool backPressed = false;
 
     public static InputManager instance { get; private set; }
 
@@ -83,6 +84,17 @@ public class InputManager : MonoBehaviour
         else if (context.canceled)
         {
             jumpPressed = false;
+        }
+    }
+    public void MapPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            mapPressed = true;
+        }
+        else if (context.canceled)
+        {
+            mapPressed = false;
         }
     }
     public void NextPressed(InputAction.CallbackContext context)
@@ -167,6 +179,12 @@ public class InputManager : MonoBehaviour
     {
         bool result = jumpPressed;
         jumpPressed = false;
+        return result;
+    }
+    public bool GetMapPressed()
+    {
+        bool result = mapPressed;
+        mapPressed = false;
         return result;
     }
     public bool GetNextPressed()
