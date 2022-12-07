@@ -24,11 +24,15 @@ public class MapController : MonoBehaviour
     public void MapIsClicked(string sceneName)
     {
         Debug.Log("Clicked " + sceneName);
-        SetButtonsInteract(false);
+        AudioManager.instance.Play("click");
         int index = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), sceneName);
+        Debug.Log("index " + index);
         if (index != activeSceneIndex)
         {
             if (index > 2) return;
+            Debug.Log("loading" + sceneName);
+
+            SetButtonsInteract(false);
             // PlayerManager.instance.ChangePlayerLocation(sceneName);
             SceneLoadingManager.instance.LoadScene(sceneName);
         }
@@ -57,9 +61,12 @@ public class MapController : MonoBehaviour
         }
         else
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            // Cursor.visible = true;
+            // Cursor.lockState = CursorLockMode.None;
+            // DialogueManager.dialogueIsPlaying = true;
             DialogueManager.dialogueIsPlaying = true;
+            DialogueManager.instance.LockCamera();
+            DialogueManager.instance.EnablePlayerControll();
 
             activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
             this.gameObject.SetActive(true);
@@ -70,9 +77,12 @@ public class MapController : MonoBehaviour
     }
     public void DeactivateMenu()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
+        // DialogueManager.dialogueIsPlaying = false;
         DialogueManager.dialogueIsPlaying = false;
+        DialogueManager.instance.UnlockCamera();
+        DialogueManager.instance.DisablePlayerControll();
         this.gameObject.SetActive(false);
         SetButtonsInteract(false);
     }

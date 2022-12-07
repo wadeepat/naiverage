@@ -31,15 +31,17 @@ public class DataPersistenceManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this.gameObject);
 
-        if (disableDataPersistence)
-        {
-            Debug.LogWarning("Data Persistence is disabled.");
-        }
 
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
 
         InitializeSelectedProfiledId();
+        //* for testing
         PlayerPrefs.DeleteKey(testSelectedProfileId);
+
+        if (disableDataPersistence)
+        {
+            Debug.LogWarning("Data Persistence is disabled.");
+        }
     }
     private void OnEnable()
     {

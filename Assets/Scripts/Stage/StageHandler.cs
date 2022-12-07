@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StageHandler : MonoBehaviour
+public class StageHandler : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private SceneIndex sceneIndex;
+
+    // [Header("NPC")]
+    [SerializeField] private GameObject[] NPCs;
+    [SerializeField] private LightGuide lightGuide;
+
+    [Header("Gates")]
     [Header("Tutorial")]
     [SerializeField] private Transform t_startGate;
     [SerializeField] private Transform t_naverGate;
+
     [Header("NaverTown")]
     [SerializeField] private Transform n_rachneGate;
     [SerializeField] private Transform n_calfordGate;
@@ -16,10 +23,13 @@ public class StageHandler : MonoBehaviour
     [Header("Cave")]
     [SerializeField] private Transform c_naverGate;
 
+    // [Header("Places")]
+    // [SerializeField] private Transform picupItems;
     public static StageHandler instance;
     private int activeSceneIndex;
     private string activeSceneName;
-
+    // private 
+    private SerializableDictionary<string, bool> tutorialEvents;
     private void Awake()
     {
         instance = this;
@@ -59,7 +69,7 @@ public class StageHandler : MonoBehaviour
                 {
                     player.position = t_startGate.position;
                     player.rotation = t_startGate.rotation;
-
+                    lightGuide.SetTarget(t_naverGate);
                 }
                 break;
             case (int)SceneIndex.NaverTown:
@@ -72,6 +82,20 @@ public class StageHandler : MonoBehaviour
                 }
                 break;
         }
-        // player.LookAt(Vector3.zero);
+    }
+    //For tutorialScene
+    public void SpawnWebster()
+    {
+        //TODO
+    }
+    public void LoadData(GameData data)
+    {
+        Debug.Log("Load from StageHandler");
+        this.tutorialEvents = data.tutorialEvents;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.tutorialEvents = this.tutorialEvents;
     }
 }

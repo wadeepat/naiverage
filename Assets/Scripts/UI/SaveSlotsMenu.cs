@@ -41,6 +41,7 @@ public class SaveSlotsMenu : MonoBehaviour
                 () =>
                 {
                     DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
+                    DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
                     DataPersistenceManager.instance.NewGame();
 
                     DataPersistenceManager.instance.SaveGame();
@@ -57,6 +58,7 @@ public class SaveSlotsMenu : MonoBehaviour
         else
         {
             DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
+            // DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
             DataPersistenceManager.instance.NewGame();
 
             DataPersistenceManager.instance.SaveGame();

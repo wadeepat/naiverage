@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/EnemyScene.unity
     guid: c90e1ddcf5cbcac44bf0a5dc118c621e
   - enabled: 1
+    path: Assets/Scenes/NewTerrain.unity
+    guid: 3498f088a4400434c928de9bd98d8964
+  - enabled: 1
     path: Assets/Scenes/NaverTownScene.unity
     guid: 42528c81e9dff274fa04abdf2c4ff22a
   - enabled: 0
