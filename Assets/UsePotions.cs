@@ -29,8 +29,7 @@ public class UsePotions : MonoBehaviour
         if(protions.slotP[0] != -1){
             if(protions.yourPotions[protions.slotP[0]].id == 1){
                 protions.slotStack[protions.slotP[0]] -= 1;
-                player.hp += 20;
-                if(player.hp > 100) player.hp = 100;
+                PlayerStatus.healthHP(20);
                 if(protions.slotStack[protions.slotP[0]] == 0){
                     protions.yourPotions[protions.slotP[0]] = Database.potionList[0];
                     protions.slotP[0] = -1;

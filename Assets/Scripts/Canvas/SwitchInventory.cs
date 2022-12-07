@@ -16,10 +16,6 @@ public class SwitchInventory : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void FirstButton(){
         First.SetActive(true);

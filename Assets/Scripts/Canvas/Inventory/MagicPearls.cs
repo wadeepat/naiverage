@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MagicPearls : MonoBehaviour
 {
-    public Pearl MP = new Pearl();
+    public static Pearl MP = new Pearl();
     [SerializeField] private Image slot;
     [SerializeField] private Sprite slotSprite;
     [SerializeField] private Text textNum;
@@ -16,7 +16,7 @@ public class MagicPearls : MonoBehaviour
     void Start()
     {
         MP = Database.magicPearl;
-        MP.stack = 10000;
+        MP.stack = 1000;
     }
 
     // Update is called once per frame
@@ -24,4 +24,13 @@ public class MagicPearls : MonoBehaviour
     {
         textNum.text = ""+ MP.stack;
     }
+
+    public static int CheckPearl(){
+        return MP.stack;
+    }
+
+    public static void UsePearl(int cost){
+        MP.stack -= cost;
+    }
+
 }
