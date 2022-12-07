@@ -6284,7 +6284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5222321910249703154, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5427530369037125792, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
       propertyPath: m_AnchorMax.y
@@ -6421,6 +6421,42 @@ PrefabInstance:
     - target: {fileID: 6332682321951464021, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6332682322514797934, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6332682322944679927, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6332682322944679927, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6332682322944679927, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6332682322944679927, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2529000607482636753}
+    - target: {fileID: 6332682322944679927, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6332682322944679927, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: hpBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6332682322944679927, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerStatus, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6332682322944679927, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6332682323509671079, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
       propertyPath: m_AnchorMax.x
@@ -10997,11 +11033,17 @@ MonoBehaviour:
   UI_Input_Window: {fileID: 1242825095}
   TutorialGuidingObject: {fileID: 1359273324}
   SataKnowPlayerNameJSON: {fileID: 4900000, guid: f1c56497708dd4244a45bd769a2941ba, type: 3}
---- !u!1 &1750496983 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6332682322944679929, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+--- !u!114 &1750496985 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6332682322944679927, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
   m_PrefabInstance: {fileID: 994187768}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1750700538
 GameObject:
   m_ObjectHideFlags: 0
@@ -12318,6 +12360,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4044926641317579879, guid: 073fa6e8af3af7845b077ce142d95a54, type: 3}
   m_PrefabInstance: {fileID: 1994974704}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2006476975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6332682322514797934, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+  m_PrefabInstance: {fileID: 994187768}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2020672494
 GameObject:
   m_ObjectHideFlags: 0
@@ -14250,9 +14303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23d26b4ccbeb4342b325133b96fdfa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
-  healthBar: {fileID: 1750496983}
-  hp: 0
+  sliderHealth: {fileID: 1750496985}
+  sliderMana: {fileID: 2006476975}
 --- !u!4 &2529420268221683401
 Transform:
   m_ObjectHideFlags: 0
