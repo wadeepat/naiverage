@@ -25,6 +25,7 @@ public class Gate : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && InputManager.instance.GetInteractPressed())
         {
+            interactObject.SetActive(false);
             AudioManager.instance.Play("click");
             gameObject.GetComponent<BoxCollider>().enabled = false;
             SceneLoadingManager.instance.LoadScene(((SceneIndex)toScene).ToString());

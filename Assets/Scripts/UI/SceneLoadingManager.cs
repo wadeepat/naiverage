@@ -21,7 +21,7 @@ public class SceneLoadingManager : MonoBehaviour
             return;
         }
         instance = this;
-        // DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void LoadScene(string sceneName)
@@ -49,6 +49,7 @@ public class SceneLoadingManager : MonoBehaviour
                 yield return new WaitForSeconds(1);
                 operation.allowSceneActivation = true;
                 AudioManager.instance.Stop("loading");
+                LoadingScreen.SetActive(false);
             }
             yield return null;
         }

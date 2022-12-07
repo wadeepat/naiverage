@@ -32,7 +32,8 @@ public class MapController : MonoBehaviour
             if (index > 2) return;
             Debug.Log("loading" + sceneName);
 
-            SetButtonsInteract(false);
+            DeactivateMenu();
+
             // PlayerManager.instance.ChangePlayerLocation(sceneName);
             SceneLoadingManager.instance.LoadScene(sceneName);
         }
