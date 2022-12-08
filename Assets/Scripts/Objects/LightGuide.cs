@@ -20,7 +20,6 @@ public class LightGuide : MonoBehaviour
     {
         if (target)
         {
-            // Debug.Log("move");
             if (Vector3.Distance(this.transform.position, target.position) <= agent.stoppingDistance)
             {
                 if (Vector3.Distance(player.position, target.position) <= agent.stoppingDistance)
@@ -48,15 +47,10 @@ public class LightGuide : MonoBehaviour
         if (!player)
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         if (!agent) agent = GetComponent<NavMeshAgent>();
-        // Debug.Log("set");
-        // player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         this.target = newTarget;
         transform.position = player.position;
-        // transform.position += Vector3.up;
-        // transform.LookAt(newTarget);
         this.gameObject.SetActive(true);
         agent.isStopped = false;
         agent.SetDestination(newTarget.position);
-        // this.enabled = true;
     }
 }

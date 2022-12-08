@@ -12,14 +12,6 @@ public class MapController : MonoBehaviour
     {
         ButtonsObject = this.gameObject.transform.Find("Buttons");
         buttons = ButtonsObject.GetComponentsInChildren<Button>();
-
-        // if (!ButtonsObject) Debug.Log("NULLLLL");
-        // foreach (Transform btn in ButtonsObject)
-        // {
-        //     Button addBtn = btn.GetComponent<Button>();
-        //     Debug.Log(addBtn.name);
-        //     buttons.Add(addBtn);
-        // }
     }
     public void MapIsClicked(string sceneName)
     {

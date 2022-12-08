@@ -9,22 +9,24 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] private static int MP = 100;
     // [SerializeField] private GameObject healthBar;
     // [SerializeField] private GameObject manaBar;
-    [SerializeField] private Slider sliderHealth;
-    [SerializeField] private Slider sliderMana;
-    private static float hp;          
-    private static float mp;          
-    private static int reMp;        
-    private static int attack;      
-    private static int critDamage; 
-    private static int critRate;    
-    private static int defense;     
-    private static int resist;      
-    
+    private Slider sliderHealth;
+    private Slider sliderMana;
+    private static float hp;
+    private static float mp;
+    private static int reMp;
+    private static int attack;
+    private static int critDamage;
+    private static int critRate;
+    private static int defense;
+    private static int resist;
+
     private static int reHp; // Can not upgrade
 
-    
+
     void Start()
     {
+        sliderHealth = CanvasManager.instance.GetCanvasObject("Panel").transform.Find("Bar").Find("HealthBar").GetComponent<Slider>();
+        sliderMana = CanvasManager.instance.GetCanvasObject("Panel").transform.Find("Bar").Find("StaminaBar").GetComponent<Slider>();
         hp = HP;
         mp = MP;
         reHp = 1;
@@ -54,7 +56,7 @@ public class PlayerStatus : MonoBehaviour
 
     public void TakeDamaged(int damageAmount)
     {
-        int a = (int)(damageAmount*(100.0f/(100+defense)));
+        int a = (int)(damageAmount * (100.0f / (100 + defense)));
         hp -= a;
         Debug.Log("Hited left" + hp);
         if (hp <= 0)
@@ -71,15 +73,17 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
-    
-    
-    public static void healthHP(int h){
+
+
+    public static void healthHP(int h)
+    {
         hp += h;
-        if(hp > HP) 
+        if (hp > HP)
             hp = HP;
     }
 
-    public static void upgradeStatus(int c, int num){
+    public static void upgradeStatus(int c, int num)
+    {
         switch (c)
         {
             case 0:
@@ -124,8 +128,9 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
-    public static int[] callStatus(){
-        int[] a = {HP,(int)hp,MP,(int)mp,reMp,attack,critDamage,critRate,defense,resist};
+    public static int[] callStatus()
+    {
+        int[] a = { HP, (int)hp, MP, (int)mp, reMp, attack, critDamage, critRate, defense, resist };
         return a;
     }
 

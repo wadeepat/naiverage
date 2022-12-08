@@ -12,16 +12,18 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
         NormalAttack,
     }
     [Header("Conponents")]
-    [SerializeField] private InputTextUI UI_Input_Window;
-    [SerializeField] private GameObject TutorialGuidingObject;
     [Header("INK Files")]
     [SerializeField] private TextAsset SataKnowPlayerNameJSON;
     public string playerName { get; private set; }
+    private GameObject TutorialGuidingObject;
     private GameObject[] tutorialGuidingCards;
     public static ActionHandler instance;
+    private InputTextUI UI_Input_Window;
     private void Awake()
     {
         instance = this;
+        TutorialGuidingObject = CanvasManager.instance.GetCanvasObject("TutorialGuiding");
+        UI_Input_Window = CanvasManager.instance.GetCanvasObject("UI_Input_Window").GetComponent<InputTextUI>();
     }
     public void ActivateTutorialCard(string cardName, bool active)
     {

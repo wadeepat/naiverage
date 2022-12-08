@@ -14,10 +14,10 @@ public class PlayerAttackController : MonoBehaviour
     public float projectileSpeed = 30;
     public int noOfClicks = 0;
     public float cooldownTime = 2f;
-    public Image imageElement; 
-    public Sprite spriteElementF; 
-    public Sprite spriteElementWt; 
-    public Sprite spriteElementW; 
+    private Image imageElement;
+    public Sprite spriteElementF;
+    public Sprite spriteElementWt;
+    public Sprite spriteElementW;
 
     private Animator _anim;
     private float _nextFireTime = 0f;
@@ -35,6 +35,7 @@ public class PlayerAttackController : MonoBehaviour
     private void Start()
     {
         _anim = GetComponent<Animator>();
+        imageElement = CanvasManager.instance.GetCanvasObject("Panel").transform.Find("Bar").Find("Image").Find("Element").GetComponent<Image>();
         spriteElementF = Resources.Load<Sprite>("f");
         spriteElementWt = Resources.Load<Sprite>("wt");
         spriteElementW = Resources.Load<Sprite>("w");
@@ -89,11 +90,16 @@ public class PlayerAttackController : MonoBehaviour
             }
         }
 
-        if(element == 0){
+        if (element == 0)
+        {
             imageElement.sprite = spriteElementF;
-        }else if(element == 1){
+        }
+        else if (element == 1)
+        {
             imageElement.sprite = spriteElementWt;
-        }else{
+        }
+        else
+        {
             imageElement.sprite = spriteElementW;
         }
 
@@ -186,30 +192,15 @@ public class PlayerAttackController : MonoBehaviour
     }
     public void FaceToClosestEnemy()
     {
-        // if (Input.GetKeyDown(KeyCode.E))
-        // {
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, checkRadius, checkLayers);
         Array.Sort(colliders, new DistanceComparer(transform));
 
         if (colliders.Length != 0)
         {
-
-            // Debug.Log(colliders[0].name);
             transform.LookAt(colliders[0].transform);
         }
-        // foreach (Collider item in colliders)
-        // {
-        //     Debug.Log(item.);
-        // }
-        // }
     }
-    // public void InstantiateProjectile(Transform firepoint)
-    // {
-    // GameObject projectileObj = Instantiate(projectile, firepoint.position, Quaternion.identity) as GameObject;
-    // GameObject projectileObj = Instantiate(prefabCom1, firepoint.position, transform.rotation);
-    // projectileObj.GetComponent<Rigidbody>().velocity = (destination - firepoint.position).normalized * projectileSpeed;
-    // projectileObj.GetComponent<Rigidbody>().AddForce(transform.forward * 15f, ForceMode.Impulse);
-    // }
 
     private void OnDrawGizmos()
     {

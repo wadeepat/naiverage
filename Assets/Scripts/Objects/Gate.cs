@@ -7,10 +7,11 @@ using TMPro;
 public class Gate : MonoBehaviour
 {
     [SerializeField] private SceneIndex toScene;
-    [SerializeField] private GameObject interactObject;
+    private GameObject interactObject;
     private TextMeshProUGUI text;
     private void Start()
     {
+        interactObject = CanvasManager.instance.GetCanvasObject("InteractText");
         text = interactObject.GetComponent<TextMeshProUGUI>();
     }
     private void OnTriggerEnter(Collider collider)

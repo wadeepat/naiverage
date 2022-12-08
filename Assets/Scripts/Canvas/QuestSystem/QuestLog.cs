@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestLog 
+public class QuestLog
 {
     private static List<Quest> questList;
     private static List<Quest> completedQuest;
@@ -10,19 +10,23 @@ public class QuestLog
     public delegate void OnQuestChange(List<Quest> activeQuests, List<Quest> completedQuest);
     public static event OnQuestChange onQuestChange;
 
-    public static void Initialize() {
+    public static void Initialize()
+    {
 
         questList = new List<Quest>();
         completedQuest = new List<Quest>();
     }
 
-    public static void AddQuest(Quest quest) {
+    public static void AddQuest(Quest quest)
+    {
         questList.Add(quest);
         // HandleOwnedItems(quest);
         onQuestChange.Invoke(questList, completedQuest);
+
     }
 
-    public static void CheckQuestObjective(Quest.Objective.Type type, int id) {
+    public static void CheckQuestObjective(Quest.Objective.Type type, int id)
+    {
         foreach (Quest quest in questList)
             if (quest.objective.CheckObjectiveCompleted(type, id))
                 CompleteQuest(quest);
@@ -30,7 +34,8 @@ public class QuestLog
 
     }
 
-    public static void CompleteQuest(Quest quest) {
+    public static void CompleteQuest(Quest quest)
+    {
         questList.Remove(quest);
         completedQuest.Add(quest);
         // Inventory.giveGold(quest.goldReward);
@@ -39,34 +44,44 @@ public class QuestLog
 
     }
 
-    
-    private static void HandleOwnedItems(Quest quest) {
+
+    private static void HandleOwnedItems(Quest quest)
+    {
         if (quest.objective.type != Quest.Objective.Type.collect)
             return;
         int amount = 0;//Inventory.GetCountOfIndex(quest.objective.objectiveId); 
-        if (quest.objective.ForceAddObjective(amount)){
+        if (quest.objective.ForceAddObjective(amount))
+        {
             CompleteQuest(quest);
         }
+
+
     }
 
-    public static Quest getQuestNo(int index) {
+    public static Quest getQuestNo(int index)
+    {
         if (index < questList.Count)
             return questList[index];
         else
             return completedQuest[index - questList.Count];
     }
 
-    public static void DoQuest(Quest.Objective.Type type, int id){
-        foreach (Quest quest in questList){
-            if(quest.objective.CheckIndexQuest(type, id)){
+    public static void DoQuest(Quest.Objective.Type type, int id)
+    {
+        foreach (Quest quest in questList)
+        {
+            if (quest.objective.CheckIndexQuest(type, id))
+            {
                 quest.objective.ForceAddObjective(1);
             }
-            if(quest.objective.CheckCompletedQuest(quest)) {
+            if (quest.objective.CheckCompletedQuest(quest))
+            {
                 CompleteQuest(quest);
                 break;
             }
         }
         onQuestChange.Invoke(questList, completedQuest);
+
     }
 
 }

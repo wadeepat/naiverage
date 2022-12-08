@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoadingManager : MonoBehaviour
 {
-    [Header("UI")]
-    public GameObject LoadingScreen;
-    public Slider sliderLoading;
+    // [Header("UI")]
+    private GameObject LoadingScreen;
+    private Slider sliderLoading;
     // public LoadingScreen instance { get; private set; }
 
     public static SceneLoadingManager instance { get; private set; }
@@ -21,11 +21,20 @@ public class SceneLoadingManager : MonoBehaviour
             return;
         }
         instance = this;
+        // LoadingScreen = GameObject.Find("Canvas").transform.Find("LoadingScreen").gameObject;
+        // sliderLoading = LoadingScreen.transform.Find("Slider").GetComponent<Slider>();
         DontDestroyOnLoad(this.gameObject);
     }
 
+    // private void Start()
+    // {
+    //     LoadingScreen = GameObject.Find("Canvas").transform.Find("LoadingScreen").gameObject;
+    //     sliderLoading = LoadingScreen.transform.Find("Slider").GetComponent<Slider>();
+    // }
     public void LoadScene(string sceneName)
     {
+        LoadingScreen = GameObject.Find("Canvas").transform.Find("LoadingScreen").gameObject;
+        sliderLoading = LoadingScreen.transform.Find("Slider").GetComponent<Slider>();
         AudioManager.instance.StopAllTrack();
         AudioManager.instance.Play("loading");
         Cursor.visible = false;
@@ -49,9 +58,13 @@ public class SceneLoadingManager : MonoBehaviour
                 yield return new WaitForSeconds(1);
                 operation.allowSceneActivation = true;
                 AudioManager.instance.Stop("loading");
-                LoadingScreen.SetActive(false);
+                // LoadingScreen.SetActive(false);
             }
             yield return null;
+        }
+        if (LoadingScreen != null)
+        {
+            LoadingScreen.SetActive(false);
         }
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerManager : MonoBehaviour, IDataPersistence
 {
     // Start is called before the first frame update
@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
         // instance = this;
         if (instance != null)
         {
-            Debug.Log("Found more than one Player Manager in the scene. Destroying the newest one.");
+            Debug.LogWarning("Found more than one Player Manager in the scene. Destroying the newest one.");
             Destroy(this.gameObject);
             return;
         }
@@ -22,15 +22,16 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
         DontDestroyOnLoad(this.gameObject);
         player = GameObject.FindGameObjectWithTag("Player");
         playerLocation = "Tutorial";
+        SceneManager.sceneLoaded += SetPlayer;
     }
-    // private void Update()
-    // {
-    //     Debug.Log(playerLocation);
-    // }
+    private void SetPlayer(Scene scene, LoadSceneMode mode)
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     public void ChangePlayerLocation(string location)
     {
         this.playerLocation = location;
-        Debug.Log("Change to " + this.playerLocation);
+        // Debug.Log("Change to " + this.playerLocation);
     }
     public void LoadData(GameData data)
     {

@@ -5,51 +5,16 @@ using TMPro;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    [Header("Visual Cue")]
-    [SerializeField] private GameObject interactObject;
+
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
+    private GameObject interactObject;
     private bool playerInRange;
     private TextMeshProUGUI text;
-    // private void Start()
-    // {
-    //     playerInRange = false;
-    //     // visualCue.SetActive(false);
-    // }
-    // private void Update()
-    // {
-    //     if (playerInRange)
-    //     {
-    //         text.text = "Press F to talk";
-    //         visualCue.SetActive(true);
-    //         if (InputManager.instance.GetInteractPressed() && !DialogueManager.dialogueIsPlaying)
-    //         {
-    //             print("to dialogue");
-    //             DialogueManager.instance.EnterDialogueMode(inkJSON);
-    //             // Debug.Log(inkJSON.text);
-    //         }
-    //     }
-    //     else
-    //     {
-    //         visualCue.SetActive(false);
-    //     }
-    // }
-    // private void OnTriggerEnter(Collider collider)
-    // {
-    //     if (collider.gameObject.tag == "Player")
-    //     {
-    //         playerInRange = true;
-    //     }
-    // }
-    // private void OnTriggerExit(Collider collider)
-    // {
-    //     if (collider.gameObject.tag == "Player")
-    //     {
-    //         playerInRange = false;
-    //     }
-    // }
+
     private void Start()
     {
+        interactObject = CanvasManager.instance.GetCanvasObject("InteractText");
         text = interactObject.GetComponent<TextMeshProUGUI>();
     }
     private void OnTriggerEnter(Collider collider)

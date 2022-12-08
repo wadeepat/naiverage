@@ -85,6 +85,9 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterDialogueMode(TextAsset inkJSON)
     {
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _thirdPersonController = _player.GetComponent<ThirdPersonController>();
+
         _player.GetComponent<Animator>().SetFloat("Speed", 0f);
         _player.GetComponent<Animator>().SetTrigger("reset");
         currentStory = new Story(inkJSON.text);

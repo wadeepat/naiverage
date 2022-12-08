@@ -9,7 +9,7 @@ public class StageHandler : MonoBehaviour, IDataPersistence
 
     // [Header("NPC")]
     [SerializeField] private GameObject[] NPCs;
-    [SerializeField] private LightGuide lightGuide;
+    // [SerializeField] private LightGuide lightGuide;
 
     [Header("Gates")]
     [Header("Tutorial")]
@@ -69,7 +69,7 @@ public class StageHandler : MonoBehaviour, IDataPersistence
                 {
                     player.position = t_startGate.position;
                     player.rotation = t_startGate.rotation;
-                    lightGuide.SetTarget(t_naverGate);
+                    // lightGuide.SetTarget(t_naverGate);
                 }
                 break;
             case (int)SceneIndex.NaverTown:

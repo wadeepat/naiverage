@@ -37,7 +37,6 @@ public class Spider : MonoBehaviour
     public void TakeDamage(int damageAmount)
     {
         hp -= damageAmount;
-        Debug.Log(id);
         if (hp <= 0)
         {
             healthBar.SetActive(false);
