@@ -67,8 +67,6 @@ public class Enemy : MonoBehaviour
         foreach (Transform wp in waypointObject.transform)
         {
             waypoints.Add(wp);
-
-            // Debug.Log(wp);
         }
     }
     private void Update()
@@ -146,18 +144,10 @@ public class Enemy : MonoBehaviour
     {
         SetToWalk();
         Vector3 vec = waypoints[Random.Range(0, waypoints.Count)].position;
-        // Debug.Log("vector " + vec.ToString());
         agent.SetDestination(vec);
     }
     public void OnPatrollStateUpdate()
     {
-        // Debug.Log(agent.remainingDistance + " " + agent.stoppingDistance);
-        // if (agent.enabled)
-        // {
-        //     if (agent.remainingDistance <= agent.stoppingDistance)
-        //         agent.SetDestination(waypoints[Random.Range(0, waypoints.Count)].position);
-        // }
-
         float distance = Vector3.Distance(target.position, transform.position);
         if (distance < chaseRange)
         {

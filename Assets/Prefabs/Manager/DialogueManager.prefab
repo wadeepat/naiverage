@@ -46,6 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typingSpeed: 0.06
   loadGlobalsJSON: {fileID: 4900000, guid: 2cd70cfe227d9d849b0dac664fa5c6ef, type: 3}
+  tutorialFiles:
+  - name: SataCall
+    json: {fileID: 4900000, guid: 1de4389077f40fc49a0ab7403c4cc624, type: 3}
   dialoguePanel: {fileID: 0}
   continueText: {fileID: 0}
   displayNameText: {fileID: 0}

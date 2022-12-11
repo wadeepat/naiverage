@@ -17,7 +17,8 @@ public class GameData
         playerPosition = Vector3.zero;
         playerLocation = "Tutorial";
         tutorialEvents = new SerializableDictionary<string, bool>{
-            {"sataAskToJoin",false}
+            {"sataAskToJoin",false},
+            {"finishedTutorial",false}
         };
     }
 }

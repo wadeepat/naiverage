@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StageHandler : MonoBehaviour, IDataPersistence
+public class StageHandler : MonoBehaviour
 {
     [SerializeField] private SceneIndex sceneIndex;
 
@@ -29,7 +29,6 @@ public class StageHandler : MonoBehaviour, IDataPersistence
     private int activeSceneIndex;
     private string activeSceneName;
     // private 
-    private SerializableDictionary<string, bool> tutorialEvents;
     private void Awake()
     {
         instance = this;
@@ -37,23 +36,17 @@ public class StageHandler : MonoBehaviour, IDataPersistence
         activeSceneName = ((SceneIndex)activeSceneIndex).ToString();
         // PlayerManager.instance.ChangePlayerLocation(((SceneIndex)activeSceneIndex).ToString());
     }
-    // private void Start()
-    // {
-    //     // PickupArea.isTrigger
-    //     // PickupArea.private void OnTriggerEnter(Collider other)
-    //     // {
-
-    //     // }
-    //     map.
-    // }
-
-    // private void Update()
-    // {
-    //     if (PickupArea.isTrigger)
-    //     {
-    //         ActionHandler.instance.ActivateTutorialCard("ttrWalking", false);
-    //     }
-    // }
+    private void Start()
+    {
+        if (sceneIndex == SceneIndex.Tutorial)
+        {
+            if (!PlayerManager.instance.playerEvents["finishedTutorial"])
+            {
+                GameObject pickupArea = GameObject.Find("StageTrack").transform.Find("PickupArea").gameObject;
+                pickupArea.SetActive(true);
+            }
+        }
+    }
 
     public void MovePlayer(int previousScene, Transform player)
     {
@@ -88,14 +81,5 @@ public class StageHandler : MonoBehaviour, IDataPersistence
     {
         //TODO
     }
-    public void LoadData(GameData data)
-    {
-        Debug.Log("Load from StageHandler");
-        this.tutorialEvents = data.tutorialEvents;
-    }
 
-    public void SaveData(GameData data)
-    {
-        data.tutorialEvents = this.tutorialEvents;
-    }
 }

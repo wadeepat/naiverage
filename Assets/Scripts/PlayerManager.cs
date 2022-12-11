@@ -6,9 +6,10 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
 {
     // Start is called before the first frame update
     // #region  Singleton
-    public GameObject player;
+    public GameObject player { get; private set; }
     public static PlayerManager instance { get; private set; }
     public string playerLocation { get; private set; }
+    public SerializableDictionary<string, bool> playerEvents;
     void Awake()
     {
         // instance = this;
@@ -18,6 +19,7 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
             Destroy(this.gameObject);
             return;
         }
+
         instance = this;
         DontDestroyOnLoad(this.gameObject);
         player = GameObject.FindGameObjectWithTag("Player");
@@ -38,11 +40,13 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
         //TODO
         // if(playerLocation == "Tutorial")
         // this.playerLocation = data.playerLocation;
+        playerEvents = data.tutorialEvents;
     }
 
     public void SaveData(GameData data)
     {
         data.playerLocation = this.playerLocation;
+        data.tutorialEvents = playerEvents;
     }
 
     // #endregion

@@ -6,12 +6,20 @@ using Ink.Runtime;
 using StarterAssets;
 using System;
 
+[System.Serializable]
+public class JSONfile
+{
+    public string name;
+    public TextAsset json;
+}
 public class DialogueManager : MonoBehaviour
 {
     [Header("Params")]
     [SerializeField] private float typingSpeed = 0.06f;
     [Header("Globals Ink File")]
     [SerializeField] private TextAsset loadGlobalsJSON;
+    [Header("Ink Files")]
+    [SerializeField] private JSONfile[] tutorialFiles;
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI continueText;
@@ -318,5 +326,13 @@ public class DialogueManager : MonoBehaviour
     public void UnlockCamera()
     {
         _thirdPersonController.SetLockCameraPosition(false);
+    }
+    public TextAsset GetTutorialFiles(string name)
+    {
+        foreach (JSONfile file in tutorialFiles)
+        {
+            if (file.name == name) return file.json;
+        }
+        return null;
     }
 }

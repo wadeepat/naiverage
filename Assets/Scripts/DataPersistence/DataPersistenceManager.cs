@@ -24,7 +24,7 @@ public class DataPersistenceManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.Log("Found more than one Data Persistence Manager in the scene. Destroying the newest one.");
+            Debug.LogWarning("Found more than one Data Persistence Manager in the scene. Destroying the newest one.");
             Destroy(this.gameObject);
             return;
         }
@@ -56,7 +56,7 @@ public class DataPersistenceManager : MonoBehaviour
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        LoadGame();
+        // LoadGame();
     }
     public void ChangeSelectedProfileId(string selectedProfileId)
     {

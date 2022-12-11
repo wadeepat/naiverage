@@ -9,6 +9,20 @@ public class PickupArea : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             ActionHandler.instance.ActivateTutorialCard("Walking", false);
+            ActionHandler.instance.ActivateTutorialCard("PickupItems", true);
+            transform.Find("Light").gameObject.SetActive(false);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        //TODO finished pickupItems by quest
+        if (other.gameObject.tag == "Player" && InputManager.instance.GetInteractPressed())
+        {
+            ActionHandler.instance.ActivateTutorialCard("PickupItems", false);
+            ActionHandler.instance.ActivateTutorialCard("UsePotion", true);
+            DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("SataCall"));
+            GameObject.Destroy(this);
         }
     }
 }

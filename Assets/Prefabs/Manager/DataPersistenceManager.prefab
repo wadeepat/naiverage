@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0ea3f8778b82748b3a1793ae703c69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableDataPersistence: 0
+  disableDataPersistence: 1
   initializeDataIfNull: 0
   overrideSelectedProfileId: 0
   testSelectedProfileId: test
