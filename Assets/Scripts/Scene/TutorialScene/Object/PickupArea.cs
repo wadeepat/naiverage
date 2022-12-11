@@ -50,6 +50,7 @@ public class PickupArea : MonoBehaviour
                             ActionHandler.instance.ActivateTutorialCard("CraftPotion", false);
                             // StageHandler.instance.EventTrigger("SataAppear");
                             ActionHandler.instance.TriggerQuestFromDialogue(3);
+                            ActionHandler.instance.ActivateTutorialCard("UsePotion", true);
                             GameObject.Destroy(this);
                         },
                     });

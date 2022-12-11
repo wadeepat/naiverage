@@ -48,6 +48,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
         switch (id)
         {
             case 0:
+                ActivateTutorialCard("Walking", true);
                 QuestLog.AddQuest(new Quest()
                 {
                     questId = 0,
@@ -63,14 +64,13 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                         amount = 1,
                     },
                 });
-                ActivateTutorialCard("Walking", true);
                 break;
             case 1:
                 QuestLog.AddQuest(new Quest()
                 {
                     questId = 1,
-                    questName = "Pick up",
-                    questDescription = "Move to the area",
+                    questName = "Collect Mushroom",
+                    questDescription = "",
                     MPReward = 0,
                     SBReward = "",
                     questCategory = 0,
@@ -80,14 +80,19 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                         type = Quest.Objective.Type.collect,
                         amount = 1,
                     },
+                    compleltedAction = () =>
+                    {
+                        ActivateTutorialCard("PickupItems", false);
+                    }
                 });
                 break;
             case 2:
+                ActivateTutorialCard("CraftPotion", true);
                 QuestLog.AddQuest(new Quest()
                 {
                     questId = 2,
-                    questName = "Open Inventory",
-                    questDescription = "Move to the area",
+                    questName = "Craft Potion",
+                    questDescription = "",
                     MPReward = 0,
                     SBReward = "",
                     questCategory = 0,
@@ -97,9 +102,22 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                         type = Quest.Objective.Type.interact,
                         amount = 1,
                     },
+                    updateAction = () =>
+                    {
+                        if (CanvasManager.instance.GetCanvasObject("Panel").transform.Find("Character panel").gameObject.activeSelf)
+                        {
+                            QuestLog.CompleteQuest(QuestLog.GetQuestById(2));
+                        }
+                    },
+                    compleltedAction = () =>
+                    {
+                        ActivateTutorialCard("CraftPotion", false);
+                        TriggerQuestFromDialogue(3);
+                    },
                 });
                 break;
             case 3:
+                ActivateTutorialCard("UsePotion", true);
                 QuestLog.AddQuest(new Quest()
                 {
                     questId = 3,
@@ -116,13 +134,13 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                     },
                     compleltedAction = () =>
                     {
+                        ActionHandler.instance.ActivateTutorialCard("UsePotion", false);
                         DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
-                        // StageHandler.instance.EventTrigger("SataAppear");
-                        // TriggerQuestFromDialogue(4);
                     },
                 });
                 break;
             case 4:
+                ActivateTutorialCard("NormalAttack", true);
                 QuestLog.AddQuest(new Quest()
                 {
                     questId = 4,
@@ -139,12 +157,14 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                     },
                     compleltedAction = () =>
                     {
+                        ActivateTutorialCard("NormalAttack", false);
                         DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
                         StageHandler.instance.EventTrigger("SataAppear");
                     },
                 });
                 break;
             case 5:
+                ActivateTutorialCard("Skill", true);
                 StageHandler.instance.SpawnWebster(5);
                 QuestLog.AddQuest(new Quest()
                 {
@@ -162,6 +182,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                     },
                     compleltedAction = () =>
                     {
+                        ActivateTutorialCard("Skill", false);
                         // DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
                         // StageHandler.instance.EventTrigger("SataAppear");
                     },
