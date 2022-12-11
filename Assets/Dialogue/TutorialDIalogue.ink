@@ -6,15 +6,18 @@ INCLUDE tutorial_globals.ink
     (ก่อนอื่นต้องทำยาสมานแผลก่อน น่าจะต้องไปหา <color=\#40FF6F>"odorata"</color> กับ <color=\#40FF6F>"aloe"</color> แล้วสิ)
     (แย่หละสิ ตอนนี้ใกล้จะมืดแล้วด้วย คงต้องรีบแล้ว)
     ~readOP = true 
-    #end:ttrWalking
+    #quest:0
 ->DONE
 === AfterUsePotion ===
+    // {usePotionComplete:->MetWebster}
     #speaker:Me
-    (โอเค...น่าจะดีขึ้นแล้ว ต้องรีบไปแล้ว)
-->DONE
+    (โอเค...น่าจะดีขึ้นแล้ว ต้องรีบไปแล้ว)#action:Spawn1Webster
+    // ~usePotionComplete = true
+->MetWebster
 === MetWebster ===
     #speaker:Me
     (ดูเหมือนจะต้องจัดการพวกนั้นก่อนสินะ)
+    #quest:4
 ->DONE
 === SataCall ===
     #speaker:??? #sound:singleFootstepInGrass
@@ -23,7 +26,7 @@ INCLUDE tutorial_globals.ink
     ???
     #speaker:???
     นายนั่นแหละ ช่วยมานี่ทีสิ
-->SataFirstMet
+->DONE
 
 === SataFirstMet ===
     {toldName: ->GoToNaver}
@@ -78,7 +81,7 @@ INCLUDE tutorial_globals.ink
     เจ้าพอจะช่วยข้าได้หรือไม่ คราวนี้ข้ามีค่าจ้างให้ รวมค่าที่เจ้าได้ช่วยข้าไว้
     เจ้าสนใจไหม
         +[ยอมรับ]
-        ~acceptWebsterQ = true
+        #quest:5
         ข้าจะรอเจ้านะ
         ->DONE
         +[ปฏิเสธ]

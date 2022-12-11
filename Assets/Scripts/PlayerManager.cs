@@ -37,10 +37,12 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
     }
     public void LoadData(GameData data)
     {
+        Debug.LogWarning("Load from PlayerManager");
         //TODO
         // if(playerLocation == "Tutorial")
-        // this.playerLocation = data.playerLocation;
+        this.playerLocation = data.playerLocation;
         playerEvents = data.tutorialEvents;
+
     }
 
     public void SaveData(GameData data)

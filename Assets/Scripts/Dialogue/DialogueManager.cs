@@ -128,7 +128,7 @@ public class DialogueManager : MonoBehaviour
 
         UnlockCamera();
     }
-    private void TestExit()
+    private void EndTheDialogue()
     {
         dialogueVariables.StopListening(currentStory);
 
@@ -224,13 +224,15 @@ public class DialogueManager : MonoBehaviour
                     AudioManager.instance.Play(tagValue);
                     break;
                 case QUEST_TAG:
+                    EndTheDialogue();
                     Debug.Log("Quest: " + tagValue);
+                    ActionHandler.instance.TriggerQuestFromDialogue(int.Parse(tagValue));
                     break;
                 case ACTION_TAG:
                     ActionHandler.instance.ReceiveActionThenContinueStory(tagValue, ContinueStory);
                     break;
                 case "end":
-                    TestExit();
+                    EndTheDialogue();
                     ActionHandler.instance.ReceiveActionThenContinueStory(tagValue, ContinueStory);
                     break;
                 default:

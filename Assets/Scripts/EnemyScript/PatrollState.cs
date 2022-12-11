@@ -22,7 +22,8 @@ public class PatrollState : StateMachineBehaviour
         // GameObject wp = GameObject.FindGameObjectWithTag("WayPoints00");
         // Debug.Log("WayPoints_" + animator.gameObject.name);
         // GameObject wp = GameObject.Find("WayPoints_" + animator.gameObject.name);
-        GameObject wp = GameObject.Find(WayPointsName);
+        GameObject wp = animator.GetComponent<Spider>().Waypoint;
+        // GameObject wp = GameObject.Find(WayPointsName);
         // Debug.Log(wp);
         foreach (Transform t in wp.transform)
             wayPoints.Add(t);

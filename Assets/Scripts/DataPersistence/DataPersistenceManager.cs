@@ -41,6 +41,13 @@ public class DataPersistenceManager : MonoBehaviour
         if (disableDataPersistence)
         {
             Debug.LogWarning("Data Persistence is disabled.");
+            if (this.gameData == null)
+            {
+                Debug.LogWarning("Game data is nulllllll");
+                NewGame();
+                this.dataPersistenceObjects = FindAllDataPersistenceObjects();
+                LoadGame();
+            }
         }
     }
     private void OnEnable()
@@ -56,6 +63,7 @@ public class DataPersistenceManager : MonoBehaviour
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
+        Debug.LogWarning("OnsceneLoaded");
         // LoadGame();
     }
     public void ChangeSelectedProfileId(string selectedProfileId)
@@ -90,6 +98,7 @@ public class DataPersistenceManager : MonoBehaviour
     public void LoadGame()
     {
         // if (disableDataPersistence) return;
+        Debug.LogWarning("Load game");
 
         //load any saved data from a data handler
         this.gameData = dataHandler.Load(selectedProfileId);

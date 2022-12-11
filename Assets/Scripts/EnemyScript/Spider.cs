@@ -7,6 +7,7 @@ public class Spider : MonoBehaviour
 {
     [SerializeField] private int HP = 100;
     [SerializeField] private string id;
+    [SerializeField] public GameObject Waypoint;
     [ContextMenu("Generate guid for id")]
     private void GenerateGuid()
     {

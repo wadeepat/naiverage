@@ -11,16 +11,18 @@ public class DialogueTrigger : MonoBehaviour
     private GameObject interactObject;
     private bool playerInRange;
     private TextMeshProUGUI text;
-
+    private GameObject lightObject;
     private void Start()
     {
         interactObject = CanvasManager.instance.GetCanvasObject("InteractText");
+        lightObject = transform.Find("Light").gameObject;
         text = interactObject.GetComponent<TextMeshProUGUI>();
     }
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "Player")
         {
+            if (lightObject != null && lightObject.activeSelf) lightObject.SetActive(false);
             text.text = "Press F to talk ";
             interactObject.SetActive(true);
         }

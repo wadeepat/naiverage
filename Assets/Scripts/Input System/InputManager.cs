@@ -139,6 +139,7 @@ public class InputManager : MonoBehaviour
         }
         else if (context.interaction is PressInteraction)
         {
+
             if (context.performed) usePotion = true;
             else if (context.canceled) usePotion = false;
         }

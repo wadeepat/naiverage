@@ -25,7 +25,7 @@ public class UI_QuestLog : MonoBehaviour
 
     private void Awake()
     {
-        if (questLogObject is null)
+        if (questLogObject == null)
         {
             questLogObject = transform.GetChild(0).gameObject;
             questButtons = new Button[0];
@@ -46,6 +46,7 @@ public class UI_QuestLog : MonoBehaviour
         //     questLogObject.SetActive(!questLogObject.activeSelf);
         // if (questLogObject.activeSelf && Input.GetKeyDown(KeyCode.Escape))
         //     questLogObject.SetActive(false);
+        QuestLog.DoQuestProcess();
     }
     private void OnDestroy()
     {

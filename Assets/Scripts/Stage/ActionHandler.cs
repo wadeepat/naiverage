@@ -25,21 +25,163 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
         TutorialGuidingObject = CanvasManager.instance.GetCanvasObject("TutorialGuiding");
         UI_Input_Window = CanvasManager.instance.GetCanvasObject("UI_Input_Window").GetComponent<InputTextUI>();
     }
+    private void OnEnable()
+    {
+        UsePotions.onUsePotion += CheckIsUsePotionQuest;
+    }
+    private void OnDisable()
+    {
+        UsePotions.onUsePotion -= CheckIsUsePotionQuest;
+    }
+    public void CheckIsUsePotionQuest()
+    {
+        Quest q = QuestLog.GetQuestById(3);
+        if (q != null) QuestLog.CompleteQuest(q);
+    }
     public void ActivateTutorialCard(string cardName, bool active)
     {
         Debug.Log("Card " + cardName);
         TutorialGuidingObject.transform.Find(cardName).gameObject.SetActive(active);
     }
+    public void TriggerQuestFromDialogue(int id)
+    {
+        switch (id)
+        {
+            case 0:
+                QuestLog.AddQuest(new Quest()
+                {
+                    questId = 0,
+                    questName = "Learn to move",
+                    questDescription = "Move to the area",
+                    MPReward = 0,
+                    SBReward = "",
+                    questCategory = 0,
+                    objective = new Quest.Objective()
+                    {
+                        objectiveId = 1,
+                        type = Quest.Objective.Type.interact,
+                        amount = 1,
+                    },
+                });
+                ActivateTutorialCard("Walking", true);
+                break;
+            case 1:
+                QuestLog.AddQuest(new Quest()
+                {
+                    questId = 1,
+                    questName = "Pick up",
+                    questDescription = "Move to the area",
+                    MPReward = 0,
+                    SBReward = "",
+                    questCategory = 0,
+                    objective = new Quest.Objective()
+                    {
+                        objectiveId = 1,
+                        type = Quest.Objective.Type.collect,
+                        amount = 1,
+                    },
+                });
+                break;
+            case 2:
+                QuestLog.AddQuest(new Quest()
+                {
+                    questId = 2,
+                    questName = "Open Inventory",
+                    questDescription = "Move to the area",
+                    MPReward = 0,
+                    SBReward = "",
+                    questCategory = 0,
+                    objective = new Quest.Objective()
+                    {
+                        objectiveId = 1,
+                        type = Quest.Objective.Type.interact,
+                        amount = 1,
+                    },
+                });
+                break;
+            case 3:
+                QuestLog.AddQuest(new Quest()
+                {
+                    questId = 3,
+                    questName = "Use Potion",
+                    questDescription = "Use Health Potion",
+                    MPReward = 0,
+                    SBReward = "",
+                    questCategory = 0,
+                    objective = new Quest.Objective()
+                    {
+                        objectiveId = 1,
+                        type = Quest.Objective.Type.interact,
+                        amount = 1,
+                    },
+                    compleltedAction = () =>
+                    {
+                        DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
+                        // StageHandler.instance.EventTrigger("SataAppear");
+                        // TriggerQuestFromDialogue(4);
+                    },
+                });
+                break;
+            case 4:
+                QuestLog.AddQuest(new Quest()
+                {
+                    questId = 4,
+                    questName = "Fight to survive",
+                    questDescription = "Kill 1 Webster",
+                    MPReward = 0,
+                    SBReward = "",
+                    questCategory = 0,
+                    objective = new Quest.Objective()
+                    {
+                        objectiveId = 1,
+                        type = Quest.Objective.Type.kill,
+                        amount = 1,
+                    },
+                    compleltedAction = () =>
+                    {
+                        DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
+                        StageHandler.instance.EventTrigger("SataAppear");
+                    },
+                });
+                break;
+            case 5:
+                StageHandler.instance.SpawnWebster(5);
+                QuestLog.AddQuest(new Quest()
+                {
+                    questId = 5,
+                    questName = "Help Sata from the punishment",
+                    questDescription = "Kill Webster to receive 5 .....",
+                    MPReward = 1000,
+                    SBReward = "",
+                    questCategory = 0,
+                    objective = new Quest.Objective()
+                    {
+                        objectiveId = 1,
+                        type = Quest.Objective.Type.kill,
+                        amount = 5,
+                    },
+                    compleltedAction = () =>
+                    {
+                        // DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
+                        // StageHandler.instance.EventTrigger("SataAppear");
+                    },
+                });
+                break;
+        }
+    }
     public void ReceiveActionThenContinueStory(string action, UnityAction ContinueStory)
     {
-        if (action.Contains("ttr"))
-        {
-            action = action.Remove(0, 3);
-            ActivateTutorialCard(action, true);
-        }
-        else if (action == "GetPlayerName")
+        if (action == "GetPlayerName")
         {
             GetPlayerName();
+        }
+        else if (action == "Spawn1Webster")
+        {
+            StageHandler.instance.SpawnWebster(1);
+        }
+        else if (action == "Spawn5Webster")
+        {
+            StageHandler.instance.SpawnWebster(5);
         }
     }
     public bool IsInputWindowActivated()

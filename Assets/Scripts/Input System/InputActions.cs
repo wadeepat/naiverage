@@ -264,7 +264,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""ed0ea4fa-725e-455a-a940-01c8727dc86f"",
                     ""path"": ""<Keyboard>/r"",
-                    ""interactions"": ""Hold,Press"",
+                    ""interactions"": ""Press,Hold"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Potion"",

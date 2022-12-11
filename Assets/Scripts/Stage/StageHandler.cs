@@ -3,18 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public class NPC
+{
+    public string name;
+    public GameObject Object;
+}
 public class StageHandler : MonoBehaviour
 {
     [SerializeField] private SceneIndex sceneIndex;
 
     // [Header("NPC")]
-    [SerializeField] private GameObject[] NPCs;
+    [SerializeField] private NPC[] NPCs;
     // [SerializeField] private LightGuide lightGuide;
 
-    [Header("Gates")]
     [Header("Tutorial")]
+    [Header("Gates")]
     [SerializeField] private Transform t_startGate;
     [SerializeField] private Transform t_naverGate;
+    [Header("Monster")]
+    [SerializeField] private GameObject webster;
+    [SerializeField] private GameObject websterFarm;
+    // [SerializeField] private Gamespawn1Webster;
+    // [SerializeField] private Transform spawn5Webster;
+
 
     [Header("NaverTown")]
     [SerializeField] private Transform n_rachneGate;
@@ -47,7 +59,29 @@ public class StageHandler : MonoBehaviour
             }
         }
     }
+    public void EventTrigger(string eventName)
+    {
+        // Debug.LogWarning("Event trigger: " + eventName);
+        switch (eventName)
+        {
+            case "SataAppear":
+                foreach (NPC npc in NPCs)
+                {
+                    // Debug.LogWarning("Event trigger: " + npc.name);
+                    if (npc.name == "Sata")
+                    {
+                        npc.Object.SetActive(true);
+                        DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("SataCall"));
+                        break;
+                    }
+                }
+                break;
+            case "CompletedUsePotion":
+                DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
+                break;
 
+        }
+    }
     public void MovePlayer(int previousScene, Transform player)
     {
         switch (activeSceneIndex)
@@ -77,9 +111,17 @@ public class StageHandler : MonoBehaviour
         }
     }
     //For tutorialScene
-    public void SpawnWebster()
+    public void SpawnWebster(int num)
     {
         //TODO
+        if (num == 1)
+        {
+            webster.SetActive(true);
+        }
+        else if (num == 5)
+        {
+            websterFarm.SetActive(true);
+        }
     }
 
 }

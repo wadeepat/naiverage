@@ -9,7 +9,6 @@ public class QuestLog
 
     public delegate void OnQuestChange(List<Quest> activeQuests, List<Quest> completedQuest);
     public static event OnQuestChange onQuestChange;
-
     public static void Initialize()
     {
 
@@ -38,10 +37,10 @@ public class QuestLog
     {
         questList.Remove(quest);
         completedQuest.Add(quest);
+        if (quest.compleltedAction != null) quest.compleltedAction();
         // Inventory.giveGold(quest.goldReward);
         // Character.giveExp(quest.expReward);
         onQuestChange.Invoke(questList, completedQuest);
-
     }
 
 
@@ -66,6 +65,21 @@ public class QuestLog
             return completedQuest[index - questList.Count];
     }
 
+    public static Quest GetQuestById(int id)
+    {
+        foreach (Quest q in questList)
+        {
+            if (q.questId == id) return q;
+        }
+        return null;
+    }
+    public static void DoQuestProcess()
+    {
+        foreach (Quest q in questList.ToArray())
+        {
+            if (q.updateAction != null) q.updateAction();
+        }
+    }
     public static void DoQuest(Quest.Objective.Type type, int id)
     {
         foreach (Quest quest in questList)
