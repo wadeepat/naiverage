@@ -281,6 +281,11 @@ Transform:
   m_Father: {fileID: 2021503780}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &47560223 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4044926641317089671, guid: 073fa6e8af3af7845b077ce142d95a54, type: 3}
+  m_PrefabInstance: {fileID: 1946303069}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &47723524
 GameObject:
   m_ObjectHideFlags: 0
@@ -11386,8 +11391,8 @@ MonoBehaviour:
     Object: {fileID: 1558218979}
   t_startGate: {fileID: 1057673411}
   t_naverGate: {fileID: 177314297}
-  webster: {fileID: 0}
-  websterFarm: {fileID: 0}
+  webster: {fileID: 47560223}
+  websterFarm: {fileID: 734904445}
   n_rachneGate: {fileID: 0}
   n_calfordGate: {fileID: 0}
   n_braewoodGate: {fileID: 0}
@@ -12234,7 +12239,7 @@ PrefabInstance:
       objectReference: {fileID: 122483941}
     - target: {fileID: 4044926641083053264, guid: 073fa6e8af3af7845b077ce142d95a54, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4044926641317089668, guid: 073fa6e8af3af7845b077ce142d95a54, type: 3}
       propertyPath: Waypoint
@@ -12243,6 +12248,10 @@ PrefabInstance:
     - target: {fileID: 4044926641317089671, guid: 073fa6e8af3af7845b077ce142d95a54, type: 3}
       propertyPath: m_Name
       value: Webster
+      objectReference: {fileID: 0}
+    - target: {fileID: 4044926641317089671, guid: 073fa6e8af3af7845b077ce142d95a54, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4044926641317579879, guid: 073fa6e8af3af7845b077ce142d95a54, type: 3}
       propertyPath: m_RootOrder
@@ -12290,7 +12299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4044926641380375067, guid: 073fa6e8af3af7845b077ce142d95a54, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073fa6e8af3af7845b077ce142d95a54, type: 3}
