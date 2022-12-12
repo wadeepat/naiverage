@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoadingManager : MonoBehaviour
 {
-    // [Header("UI")]
+    [Header("Loading Sprites")]
+    [SerializeField] private Sprite[] loadingSprites;
     private GameObject LoadingScreen;
     private Slider sliderLoading;
     // public LoadingScreen instance { get; private set; }
@@ -35,6 +36,7 @@ public class SceneLoadingManager : MonoBehaviour
     {
         LoadingScreen = GameObject.Find("Canvas").transform.Find("LoadingScreen").gameObject;
         sliderLoading = LoadingScreen.transform.Find("Slider").GetComponent<Slider>();
+        LoadingScreen.transform.Find("Background").GetComponent<Image>().overrideSprite = loadingSprites[(int)sceneName];
         AudioManager.instance.StopAllTrack();
         AudioManager.instance.Play("loading");
         Cursor.visible = false;

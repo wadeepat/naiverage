@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff628d814d4567a41ba0c9ff022f5765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadingScreen: {fileID: 0}
-  sliderLoading: {fileID: 0}
+  loadingSprites:
+  - {fileID: 21300000, guid: 4476c0a8356cfef4eb93e7d07b480d65, type: 3}
