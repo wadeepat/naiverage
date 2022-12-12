@@ -9,12 +9,11 @@ INCLUDE tutorial_globals.ink
     #quest:0
 ->DONE
 === AfterUsePotion ===
-    // {usePotionComplete:->MetWebster}
     #speaker:Me
-    (โอเค...น่าจะดีขึ้นแล้ว ต้องรีบไปแล้ว)#action:Spawn1Webster
-    // ~usePotionComplete = true
+    (โอเค...น่าจะดีขึ้นแล้ว ต้องรีบไปแล้ว)#event:Spawn1Webster
 ->MetWebster
 === MetWebster ===
+    (โอเค...น่าจะดีขึ้นแล้ว ต้องรีบไปแล้ว)#event:Spawn1Webster
     #speaker:Me
     (ดูเหมือนจะต้องจัดการพวกนั้นก่อนสินะ)
     #quest:4
@@ -51,7 +50,7 @@ INCLUDE tutorial_globals.ink
 === answerYourName ===
     #speaker:???
     เจ้าชื่อว่าอะไรเหรอ?
-    #end:GetPlayerName
+    #action:GetPlayerName
 ->DONE
 == SataRecallName ==
     ว้าว!! ชื่อเท่ดีนิ เหมาะกับเจ้าดี {name}
@@ -102,4 +101,6 @@ INCLUDE tutorial_globals.ink
         ->DONE
     +[ยังก่อน]
         งันข้าจะรอเจ้าอยู่ตรงนี้นะ พร้อมเมื่อไหร่ก็บอกข้า
+        ->DONE
+ งันข้าจะรอเจ้าอยู่ตรงนี้นะ พร้อมเมื่อไหร่ก็บอกข้า
         ->DONE

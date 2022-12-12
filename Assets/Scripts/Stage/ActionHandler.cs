@@ -40,7 +40,6 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     }
     public void ActivateTutorialCard(string cardName, bool active)
     {
-        Debug.Log("Card " + cardName);
         TutorialGuidingObject.transform.Find(cardName).gameObject.SetActive(active);
     }
     public void TriggerQuestFromDialogue(int id)
@@ -63,9 +62,14 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                         type = Quest.Objective.Type.interact,
                         amount = 1,
                     },
+                    compleltedAction = () =>
+                    {
+                        TriggerQuestFromDialogue(1);
+                    },
                 });
                 break;
             case 1:
+                ActivateTutorialCard("PickupItems", true);
                 QuestLog.AddQuest(new Quest()
                 {
                     questId = 1,
@@ -83,6 +87,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                     compleltedAction = () =>
                     {
                         ActivateTutorialCard("PickupItems", false);
+                        TriggerQuestFromDialogue(2);
                     }
                 });
                 break;
@@ -135,6 +140,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                     compleltedAction = () =>
                     {
                         ActionHandler.instance.ActivateTutorialCard("UsePotion", false);
+                        Debug.LogWarning("dialogue after use potions");
                         DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
                     },
                 });
@@ -183,6 +189,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                     compleltedAction = () =>
                     {
                         ActivateTutorialCard("Skill", false);
+                        StageHandler.instance.EventTrigger("CompletedTutorial");
                         // DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
                         // StageHandler.instance.EventTrigger("SataAppear");
                     },
@@ -227,8 +234,6 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                     playerName = inputValue;
                     Ink.Runtime.Value value = Ink.Runtime.Value.Create(playerName);
                     DialogueManager.instance.dialogueVariables.SetVariableState("name", value);
-                    // Debug.Log("name = " + playerName);
-                    // if (continueStory != null) continueStory();
                     DialogueManager.instance.EnterDialogueMode(SataKnowPlayerNameJSON);
                 }
             },

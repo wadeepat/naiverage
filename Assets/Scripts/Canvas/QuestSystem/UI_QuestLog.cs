@@ -27,6 +27,7 @@ public class UI_QuestLog : MonoBehaviour
     {
         if (questLogObject == null)
         {
+            Debug.LogWarning("questLogObject null");
             questLogObject = transform.GetChild(0).gameObject;
             questButtons = new Button[0];
             previousButtonIndex = 0;
@@ -39,13 +40,8 @@ public class UI_QuestLog : MonoBehaviour
 
         // QuestLog.onQuestChange += UpdateQuests;
     }
-
     private void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.Q))
-        //     questLogObject.SetActive(!questLogObject.activeSelf);
-        // if (questLogObject.activeSelf && Input.GetKeyDown(KeyCode.Escape))
-        //     questLogObject.SetActive(false);
         QuestLog.DoQuestProcess();
     }
     private void OnDestroy()

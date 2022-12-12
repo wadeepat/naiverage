@@ -15,19 +15,24 @@ public class MapController : MonoBehaviour
     }
     public void MapIsClicked(string sceneName)
     {
-        Debug.Log("Clicked " + sceneName);
+        // Debug.Log("Clicked " + sceneName);
         AudioManager.instance.Play("click");
-        int index = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), sceneName);
-        Debug.Log("index " + index);
-        if (index != activeSceneIndex)
+        SceneIndex scene = (SceneIndex)System.Enum.Parse(typeof(SceneIndex), sceneName);
+        // int index = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), sceneName);
+        // Debug.Log("index " + index);
+        if ((int)scene != activeSceneIndex)
         {
-            if (index > 2) return;
-            Debug.Log("loading" + sceneName);
+            // if (index > 2) return;
+            if (PlayerManager.instance.mapEnable[scene])
+            {
+                Debug.Log("loading" + sceneName);
 
-            DeactivateMenu();
+                DeactivateMenu();
 
-            // PlayerManager.instance.ChangePlayerLocation(sceneName);
-            SceneLoadingManager.instance.LoadScene(sceneName);
+                // PlayerManager.instance.ChangePlayerLocation(sceneName);
+                SceneLoadingManager.instance.LoadScene(scene);
+            }
+
         }
         // PlayerManager.instance.playerLocation
     }

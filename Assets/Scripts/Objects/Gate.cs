@@ -18,7 +18,7 @@ public class Gate : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            text.text = "Press F to enter " + ((SceneIndex)toScene).ToString();
+            text.text = "Press F to enter " + toScene.ToString();
             interactObject.SetActive(true);
         }
     }
@@ -29,7 +29,7 @@ public class Gate : MonoBehaviour
             interactObject.SetActive(false);
             AudioManager.instance.Play("click");
             gameObject.GetComponent<BoxCollider>().enabled = false;
-            SceneLoadingManager.instance.LoadScene(((SceneIndex)toScene).ToString());
+            SceneLoadingManager.instance.LoadScene(toScene);
         }
     }
     private void OnTriggerExit(Collider collider)

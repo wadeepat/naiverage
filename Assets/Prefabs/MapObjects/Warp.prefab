@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toScene: 2
-  interactObject: {fileID: 0}
 --- !u!65 &2177417773447764930
 BoxCollider:
   m_ObjectHideFlags: 0

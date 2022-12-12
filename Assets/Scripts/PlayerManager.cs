@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
     public static PlayerManager instance { get; private set; }
     public string playerLocation { get; private set; }
     public SerializableDictionary<string, bool> playerEvents;
+    public SerializableDictionary<SceneIndex, bool> mapEnable;
     void Awake()
     {
         // instance = this;
@@ -19,11 +20,13 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
             Destroy(this.gameObject);
             return;
         }
-
+        else
+        {
+            playerLocation = "Tutorial";
+        }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
         player = GameObject.FindGameObjectWithTag("Player");
-        playerLocation = "Tutorial";
         SceneManager.sceneLoaded += SetPlayer;
     }
     private void SetPlayer(Scene scene, LoadSceneMode mode)
@@ -41,6 +44,7 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
         //TODO
         // if(playerLocation == "Tutorial")
         this.playerLocation = data.playerLocation;
+        this.mapEnable = data.mapEnable;
         playerEvents = data.tutorialEvents;
 
     }
@@ -48,7 +52,9 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
     public void SaveData(GameData data)
     {
         data.playerLocation = this.playerLocation;
-        data.tutorialEvents = playerEvents;
+        data.mapEnable = this.mapEnable;
+        data.tutorialEvents = this.playerEvents;
+
     }
 
     // #endregion

@@ -31,7 +31,7 @@ public class SceneLoadingManager : MonoBehaviour
     //     LoadingScreen = GameObject.Find("Canvas").transform.Find("LoadingScreen").gameObject;
     //     sliderLoading = LoadingScreen.transform.Find("Slider").GetComponent<Slider>();
     // }
-    public void LoadScene(string sceneName)
+    public void LoadScene(SceneIndex sceneName)
     {
         LoadingScreen = GameObject.Find("Canvas").transform.Find("LoadingScreen").gameObject;
         sliderLoading = LoadingScreen.transform.Find("Slider").GetComponent<Slider>();
@@ -39,8 +39,8 @@ public class SceneLoadingManager : MonoBehaviour
         AudioManager.instance.Play("loading");
         Cursor.visible = false;
         LoadingScreen.SetActive(true);
-        int sceneIndex = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), sceneName);
-        StartCoroutine(LoadAsynchronously(sceneIndex));
+        // int sceneIndex = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), sceneName);
+        StartCoroutine(LoadAsynchronously((int)sceneName));
     }
     private IEnumerator LoadAsynchronously(int sceneIndex)
     {
