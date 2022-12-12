@@ -10581,6 +10581,10 @@ PrefabInstance:
       propertyPath: choices.Array.data[2]
       value: 
       objectReference: {fileID: 265549845}
+    - target: {fileID: 1374411293204347148, guid: 4477deec801e55240838d419d582462f, type: 3}
+      propertyPath: tutorialFiles.Array.data[1].json
+      value: 
+      objectReference: {fileID: 4900000, guid: 707a8e5fd83a6ed45b8bd92f5a3f8d50, type: 3}
     - target: {fileID: 1374411293204347150, guid: 4477deec801e55240838d419d582462f, type: 3}
       propertyPath: m_Name
       value: DialogueManager
