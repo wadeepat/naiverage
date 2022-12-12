@@ -36,7 +36,7 @@ public class SceneLoadingManager : MonoBehaviour
     {
         LoadingScreen = GameObject.Find("Canvas").transform.Find("LoadingScreen").gameObject;
         sliderLoading = LoadingScreen.transform.Find("Slider").GetComponent<Slider>();
-        LoadingScreen.transform.Find("Background").GetComponent<Image>().overrideSprite = loadingSprites[(int)sceneName];
+        LoadingScreen.transform.Find("Background").GetComponent<Image>().overrideSprite = loadingSprites[(int)sceneName - 1];
         AudioManager.instance.StopAllTrack();
         AudioManager.instance.Play("loading");
         Cursor.visible = false;

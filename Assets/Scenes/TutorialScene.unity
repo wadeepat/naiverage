@@ -2047,7 +2047,7 @@ PrefabInstance:
     - target: {fileID: 1199051049907466300, guid: 477f4983465cc8348ad455cf6272467e, type: 3}
       propertyPath: loadingSprites.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: 4476c0a8356cfef4eb93e7d07b480d65, type: 3}
+      objectReference: {fileID: 21300000, guid: f352c8521d03c8049816c6ee8c561a4a, type: 3}
     - target: {fileID: 1199051049907466300, guid: 477f4983465cc8348ad455cf6272467e, type: 3}
       propertyPath: loadingSprites.Array.data[2]
       value: 
