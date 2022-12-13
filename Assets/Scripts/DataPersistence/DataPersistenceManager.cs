@@ -43,7 +43,7 @@ public class DataPersistenceManager : MonoBehaviour
             Debug.LogWarning("Data Persistence is disabled.");
             if (this.gameData == null)
             {
-                Debug.LogWarning("Game data is nulllllll");
+                // Debug.LogWarning("Game data is nulllllll");
                 NewGame();
                 this.dataPersistenceObjects = FindAllDataPersistenceObjects();
                 LoadGame();

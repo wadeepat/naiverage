@@ -39,6 +39,7 @@ public class DialogueManager : MonoBehaviour
     private const string QUEST_TAG = "quest";
     private const string SOUND_TAG = "sound";
     private const string SPEAKER_TAG = "speaker";
+    private const string EVENT_TAG = "event";
     private GameObject _player;
     private string playerName;
     public GameObject Player;
@@ -114,6 +115,7 @@ public class DialogueManager : MonoBehaviour
         displayNameText.text = "???";
 
         ContinueStory();
+        Debug.LogWarning("EnterDialogue");
     }
     private IEnumerator ExitDialogueMode()
     {
@@ -229,12 +231,17 @@ public class DialogueManager : MonoBehaviour
                     ActionHandler.instance.TriggerQuestFromDialogue(int.Parse(tagValue));
                     break;
                 case ACTION_TAG:
-                    ActionHandler.instance.ReceiveActionThenContinueStory(tagValue, ContinueStory);
-                    break;
-                case "end":
                     EndTheDialogue();
                     ActionHandler.instance.ReceiveActionThenContinueStory(tagValue, ContinueStory);
                     break;
+                case EVENT_TAG:
+                    // EndTheDialogue();
+                    StageHandler.instance.EventTrigger(tagValue);
+                    break;
+                // case "end":
+                //     EndTheDialogue();
+                //     ActionHandler.instance.ReceiveActionThenContinueStory(tagValue, ContinueStory);
+                //     break;
                 default:
                     Debug.LogWarning("Tag came in but is not being handled: " + tag);
                     break;

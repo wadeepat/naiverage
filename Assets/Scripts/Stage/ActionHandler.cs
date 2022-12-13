@@ -40,7 +40,6 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     }
     public void ActivateTutorialCard(string cardName, bool active)
     {
-        Debug.Log("Card " + cardName);
         TutorialGuidingObject.transform.Find(cardName).gameObject.SetActive(active);
     }
     public void TriggerQuestFromDialogue(int id)
@@ -48,6 +47,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
         switch (id)
         {
             case 0:
+                ActivateTutorialCard("Walking", true);
                 QuestLog.AddQuest(new Quest()
                 {
                     questId = 0,
@@ -62,15 +62,19 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                         type = Quest.Objective.Type.interact,
                         amount = 1,
                     },
+                    compleltedAction = () =>
+                    {
+                        TriggerQuestFromDialogue(1);
+                    },
                 });
-                ActivateTutorialCard("Walking", true);
                 break;
             case 1:
+                ActivateTutorialCard("PickupItems", true);
                 QuestLog.AddQuest(new Quest()
                 {
                     questId = 1,
-                    questName = "Pick up",
-                    questDescription = "Move to the area",
+                    questName = "Collect Mushroom",
+                    questDescription = "",
                     MPReward = 0,
                     SBReward = "",
                     questCategory = 0,
@@ -80,14 +84,20 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                         type = Quest.Objective.Type.collect,
                         amount = 1,
                     },
+                    compleltedAction = () =>
+                    {
+                        ActivateTutorialCard("PickupItems", false);
+                        TriggerQuestFromDialogue(2);
+                    }
                 });
                 break;
             case 2:
+                ActivateTutorialCard("CraftPotion", true);
                 QuestLog.AddQuest(new Quest()
                 {
                     questId = 2,
-                    questName = "Open Inventory",
-                    questDescription = "Move to the area",
+                    questName = "Craft Potion",
+                    questDescription = "",
                     MPReward = 0,
                     SBReward = "",
                     questCategory = 0,
@@ -97,9 +107,22 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                         type = Quest.Objective.Type.interact,
                         amount = 1,
                     },
+                    updateAction = () =>
+                    {
+                        if (CanvasManager.instance.GetCanvasObject("Panel").transform.Find("Character panel").gameObject.activeSelf)
+                        {
+                            QuestLog.CompleteQuest(QuestLog.GetQuestById(2));
+                        }
+                    },
+                    compleltedAction = () =>
+                    {
+                        ActivateTutorialCard("CraftPotion", false);
+                        TriggerQuestFromDialogue(3);
+                    },
                 });
                 break;
             case 3:
+                ActivateTutorialCard("UsePotion", true);
                 QuestLog.AddQuest(new Quest()
                 {
                     questId = 3,
@@ -116,13 +139,14 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                     },
                     compleltedAction = () =>
                     {
+                        ActionHandler.instance.ActivateTutorialCard("UsePotion", false);
+                        Debug.LogWarning("dialogue after use potions");
                         DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
-                        // StageHandler.instance.EventTrigger("SataAppear");
-                        // TriggerQuestFromDialogue(4);
                     },
                 });
                 break;
             case 4:
+                ActivateTutorialCard("NormalAttack", true);
                 QuestLog.AddQuest(new Quest()
                 {
                     questId = 4,
@@ -139,12 +163,14 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                     },
                     compleltedAction = () =>
                     {
+                        ActivateTutorialCard("NormalAttack", false);
                         DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
                         StageHandler.instance.EventTrigger("SataAppear");
                     },
                 });
                 break;
             case 5:
+                ActivateTutorialCard("Skill", true);
                 StageHandler.instance.SpawnWebster(5);
                 QuestLog.AddQuest(new Quest()
                 {
@@ -162,6 +188,8 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                     },
                     compleltedAction = () =>
                     {
+                        ActivateTutorialCard("Skill", false);
+                        StageHandler.instance.EventTrigger("CompletedTutorial");
                         // DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
                         // StageHandler.instance.EventTrigger("SataAppear");
                     },
@@ -206,8 +234,6 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                     playerName = inputValue;
                     Ink.Runtime.Value value = Ink.Runtime.Value.Create(playerName);
                     DialogueManager.instance.dialogueVariables.SetVariableState("name", value);
-                    // Debug.Log("name = " + playerName);
-                    // if (continueStory != null) continueStory();
                     DialogueManager.instance.EnterDialogueMode(SataKnowPlayerNameJSON);
                 }
             },

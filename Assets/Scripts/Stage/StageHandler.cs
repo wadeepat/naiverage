@@ -54,33 +54,50 @@ public class StageHandler : MonoBehaviour
         {
             if (!PlayerManager.instance.playerEvents["finishedTutorial"])
             {
-                GameObject pickupArea = GameObject.Find("StageTrack").transform.Find("PickupArea").gameObject;
-                pickupArea.SetActive(true);
+                EventTrigger("SetupForTutorial");
             }
         }
     }
     public void EventTrigger(string eventName)
     {
         // Debug.LogWarning("Event trigger: " + eventName);
-        switch (eventName)
+        switch (activeSceneIndex)
         {
-            case "SataAppear":
-                foreach (NPC npc in NPCs)
+            case (int)SceneIndex.Tutorial:
+                switch (eventName)
                 {
-                    // Debug.LogWarning("Event trigger: " + npc.name);
-                    if (npc.name == "Sata")
-                    {
-                        npc.Object.SetActive(true);
-                        DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("SataCall"));
+                    case "SataAppear":
+                        foreach (NPC npc in NPCs)
+                        {
+                            // Debug.LogWarning("Event trigger: " + npc.name);
+                            if (npc.name == "Sata")
+                            {
+                                npc.Object.SetActive(true);
+                                DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("SataCall"));
+                                break;
+                            }
+                        }
                         break;
-                    }
+                    case "SetupForTutorial":
+                        GameObject pickupArea = GameObject.Find("StageTrack").transform.Find("PickupArea").gameObject;
+                        pickupArea.SetActive(true);
+                        t_naverGate.gameObject.SetActive(false);
+                        break;
+                    case "CompletedUsePotion":
+                        DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
+                        break;
+                    case "CompletedTutorial":
+                        PlayerManager.instance.playerEvents["finishedTutorial"] = true;
+                        PlayerManager.instance.mapEnable[SceneIndex.NaverTown] = true;
+                        t_naverGate.gameObject.SetActive(true);
+                        break;
+                    case "Spawn1Webster":
+                        SpawnWebster(1);
+                        break;
                 }
                 break;
-            case "CompletedUsePotion":
-                DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
-                break;
-
         }
+
     }
     public void MovePlayer(int previousScene, Transform player)
     {

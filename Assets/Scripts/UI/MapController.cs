@@ -15,32 +15,16 @@ public class MapController : MonoBehaviour
     }
     public void MapIsClicked(string sceneName)
     {
-        Debug.Log("Clicked " + sceneName);
         AudioManager.instance.Play("click");
-        int index = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), sceneName);
-        Debug.Log("index " + index);
-        if (index != activeSceneIndex)
+        SceneIndex scene = (SceneIndex)System.Enum.Parse(typeof(SceneIndex), sceneName);
+        if ((int)scene != activeSceneIndex)
         {
-            if (index > 2) return;
+            // if (PlayerManager.instance.mapEnable[scene])
+            // {
             Debug.Log("loading" + sceneName);
-
             DeactivateMenu();
-
-            // PlayerManager.instance.ChangePlayerLocation(sceneName);
-            SceneLoadingManager.instance.LoadScene(sceneName);
-        }
-        // PlayerManager.instance.playerLocation
-    }
-    private void SetButtonsInteract(bool isInteract)
-    {
-        foreach (Button btn in buttons)
-        {
-            btn.interactable = isInteract;
-            if (isInteract)
-            {
-                int index = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), btn.name);
-                btn.transform.Find("Pin").gameObject.SetActive(activeSceneIndex == index);
-            }
+            SceneLoadingManager.instance.LoadScene(scene);
+            // }
         }
     }
     public void ActivateMenu()
@@ -65,7 +49,8 @@ public class MapController : MonoBehaviour
             this.gameObject.SetActive(true);
 
             //TODO: set only map that able to warp
-            SetButtonsInteract(true);
+            SetEnableMapInteract();
+            // SetAllButtonsInteract(true);
         }
     }
     public void DeactivateMenu()
@@ -77,6 +62,38 @@ public class MapController : MonoBehaviour
         DialogueManager.instance.UnlockCamera();
         DialogueManager.instance.DisablePlayerControll();
         this.gameObject.SetActive(false);
-        SetButtonsInteract(false);
+        SetAllButtonsInteract(false);
+    }
+    private void SetEnableMapInteract()
+    {
+        int i = 1;
+        foreach (Button btn in buttons)
+        {
+            if (PlayerManager.instance.mapEnable[(SceneIndex)i])
+            {
+                btn.interactable = true;
+                btn.transform.Find("Lock").gameObject.SetActive(false);
+
+            }
+            else
+            {
+                btn.interactable = false;
+                btn.transform.Find("Lock").gameObject.SetActive(true);
+            }
+            btn.transform.Find("Pin").gameObject.SetActive(activeSceneIndex == i);
+            i++;
+        }
+    }
+    private void SetAllButtonsInteract(bool isInteract)
+    {
+        foreach (Button btn in buttons)
+        {
+            btn.interactable = isInteract;
+            if (isInteract)
+            {
+                int index = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), btn.name);
+                btn.transform.Find("Pin").gameObject.SetActive(activeSceneIndex == index);
+            }
+        }
     }
 }

@@ -10,6 +10,7 @@ public class GameData
     public string playerLocation;
     public Vector3 playerPosition;
     public SerializableDictionary<string, bool> tutorialEvents;
+    public SerializableDictionary<SceneIndex, bool> mapEnable;
     // public Dictionary<string, bool> tutorialEvents;
     //if want to use dictionary use SeriablizableDictionary instead
     public GameData()
@@ -19,6 +20,13 @@ public class GameData
         tutorialEvents = new SerializableDictionary<string, bool>{
             {"sataAskToJoin",false},
             {"finishedTutorial",false}
+        };
+        mapEnable = new SerializableDictionary<SceneIndex, bool>{
+            {SceneIndex.Tutorial,true},
+            {SceneIndex.NaverTown,false},
+            {SceneIndex.CalfordCastle,false},
+            {SceneIndex.BraewoodForest,false},
+            {SceneIndex.Cave,false},
         };
     }
 }

@@ -30,7 +30,7 @@ public class SaveSlotsMenu : MonoBehaviour
         {
             DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
             //TODO load the current screen
-            SceneLoadingManager.instance.LoadScene("Tutorial");
+            SceneLoadingManager.instance.LoadScene(SceneIndex.Tutorial);
         }
         //case: new game but the save slot has data
         else if (saveSlot.hasData)
@@ -45,7 +45,7 @@ public class SaveSlotsMenu : MonoBehaviour
                     DataPersistenceManager.instance.NewGame();
 
                     DataPersistenceManager.instance.SaveGame();
-                    SceneLoadingManager.instance.LoadScene("Tutorial");
+                    SceneLoadingManager.instance.LoadScene(SceneIndex.Tutorial);
                 },
                 //action of cancel btn
                 () =>
@@ -62,7 +62,7 @@ public class SaveSlotsMenu : MonoBehaviour
             DataPersistenceManager.instance.NewGame();
 
             DataPersistenceManager.instance.SaveGame();
-            SceneLoadingManager.instance.LoadScene("Tutorial");
+            SceneLoadingManager.instance.LoadScene(SceneIndex.Tutorial);
         }
         //if newGame
         // if (!isLoadingGame)

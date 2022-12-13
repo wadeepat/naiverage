@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class QuestLog
 {
     private static List<Quest> questList;
@@ -11,7 +10,6 @@ public class QuestLog
     public static event OnQuestChange onQuestChange;
     public static void Initialize()
     {
-
         questList = new List<Quest>();
         completedQuest = new List<Quest>();
     }

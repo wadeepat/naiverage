@@ -28,7 +28,7 @@ public class GameMenu : MonoBehaviour
             {
                 DataPersistenceManager.instance.SaveGame();
                 AudioManager.instance.StopAllTrack();
-                SceneLoadingManager.instance.LoadScene("MainMenu");
+                SceneLoadingManager.instance.LoadScene(SceneIndex.MainMenu);
             },
             () =>
             {

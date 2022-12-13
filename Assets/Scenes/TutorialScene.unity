@@ -887,15 +887,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 177314296}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: -72.65, y: 0, z: -30.54}
+  m_LocalRotation: {x: 0, y: -0.2096186, z: 0, w: 0.97778326}
+  m_LocalPosition: {x: 4.239, y: 0, z: -94.109}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 164552080}
   m_Father: {fileID: 1636815024}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -24.2, z: 0}
 --- !u!1 &185201177
 GameObject:
   m_ObjectHideFlags: 0
@@ -2041,13 +2041,25 @@ PrefabInstance:
       value: SceneManager
       objectReference: {fileID: 0}
     - target: {fileID: 1199051049907466300, guid: 477f4983465cc8348ad455cf6272467e, type: 3}
-      propertyPath: LoadingScreen
-      value: 
+      propertyPath: loadingSprites.Array.size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1199051049907466300, guid: 477f4983465cc8348ad455cf6272467e, type: 3}
-      propertyPath: sliderLoading
+      propertyPath: loadingSprites.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: f352c8521d03c8049816c6ee8c561a4a, type: 3}
+    - target: {fileID: 1199051049907466300, guid: 477f4983465cc8348ad455cf6272467e, type: 3}
+      propertyPath: loadingSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4476c0a8356cfef4eb93e7d07b480d65, type: 3}
+    - target: {fileID: 1199051049907466300, guid: 477f4983465cc8348ad455cf6272467e, type: 3}
+      propertyPath: loadingSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4476c0a8356cfef4eb93e7d07b480d65, type: 3}
+    - target: {fileID: 1199051049907466300, guid: 477f4983465cc8348ad455cf6272467e, type: 3}
+      propertyPath: loadingSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4476c0a8356cfef4eb93e7d07b480d65, type: 3}
     - target: {fileID: 1199051049907466302, guid: 477f4983465cc8348ad455cf6272467e, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -2148,10 +2160,6 @@ PrefabInstance:
     - target: {fileID: 2177417773447764931, guid: 73abe019aa360b045b7986b79d247dec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2177417773447764933, guid: 73abe019aa360b045b7986b79d247dec, type: 3}
-      propertyPath: interactObject
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73abe019aa360b045b7986b79d247dec, type: 3}
@@ -10585,6 +10593,10 @@ PrefabInstance:
       propertyPath: choices.Array.data[2]
       value: 
       objectReference: {fileID: 265549845}
+    - target: {fileID: 1374411293204347148, guid: 4477deec801e55240838d419d582462f, type: 3}
+      propertyPath: tutorialFiles.Array.data[1].json
+      value: 
+      objectReference: {fileID: 4900000, guid: 707a8e5fd83a6ed45b8bd92f5a3f8d50, type: 3}
     - target: {fileID: 1374411293204347150, guid: 4477deec801e55240838d419d582462f, type: 3}
       propertyPath: m_Name
       value: DialogueManager
@@ -10939,7 +10951,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 6
+  m_Constraints: 10
   m_CollisionDetection: 0
 --- !u!65 &1558218983
 BoxCollider:
