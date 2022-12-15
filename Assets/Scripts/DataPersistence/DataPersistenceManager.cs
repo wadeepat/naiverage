@@ -46,7 +46,7 @@ public class DataPersistenceManager : MonoBehaviour
                 // Debug.LogWarning("Game data is nulllllll");
                 NewGame();
                 this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-                LoadGame();
+                LoadGame(true);
             }
         }
     }
@@ -64,17 +64,18 @@ public class DataPersistenceManager : MonoBehaviour
     {
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         // Debug.LogWarning("OnsceneLoaded");
-        LoadGame();
+        LoadGame(false);
     }
     public void OnSceneUnloaded(Scene scene)
     {
+        // this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         SaveGame(false);
     }
     public void ChangeSelectedProfileId(string selectedProfileId)
     {
         this.selectedProfileId = selectedProfileId;
 
-        LoadGame();
+        LoadGame(true);
     }
     public void DeleteProfileData(string profileId)
     {
@@ -82,7 +83,7 @@ public class DataPersistenceManager : MonoBehaviour
 
         InitializeSelectedProfiledId();
 
-        LoadGame();
+        LoadGame(true);
     }
     private void InitializeSelectedProfiledId()
     {
@@ -100,13 +101,13 @@ public class DataPersistenceManager : MonoBehaviour
         Debug.Log("gameData new");
         // LoadGame();
     }
-    public void LoadGame()
+    public void LoadGame(bool isLoadFromFile)
     {
         // if (disableDataPersistence) return;
         Debug.LogWarning("Load game");
 
         //load any saved data from a data handler
-        this.gameData = dataHandler.Load(selectedProfileId);
+        if (isLoadFromFile) this.gameData = dataHandler.Load(selectedProfileId);
 
         if (initializeDataIfNull)
         {
@@ -143,8 +144,7 @@ public class DataPersistenceManager : MonoBehaviour
         // Debug.Log("Saved finished turtorial = " + gameData.finishedTutorial);
 
         //save that data to a file using the data handler
-        if (!isSaveToFile && disableDataPersistence) return;
-        dataHandler.Save(gameData, selectedProfileId);
+        if (isSaveToFile && !disableDataPersistence) dataHandler.Save(gameData, selectedProfileId);
     }
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {

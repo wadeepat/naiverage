@@ -29,6 +29,10 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
         player = GameObject.FindGameObjectWithTag("Player");
         SceneManager.sceneLoaded += SetPlayer;
     }
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= SetPlayer;
+    }
     private void SetPlayer(Scene scene, LoadSceneMode mode)
     {
         player = GameObject.FindGameObjectWithTag("Player");

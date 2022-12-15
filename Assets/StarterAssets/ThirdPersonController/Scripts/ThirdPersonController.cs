@@ -13,7 +13,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
     [RequireComponent(typeof(PlayerInput))]
 #endif
-    public class ThirdPersonController : MonoBehaviour, IDataPersistence
+    public class ThirdPersonController : MonoBehaviour
     {
         [Header("Player Grounded")]
         [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
@@ -180,20 +180,6 @@ namespace StarterAssets
 
         }
 
-        public void LoadData(GameData data)
-        {
-            // int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            // Debug.Log("Previous " + PlayerManager.instance.playerLocation);
-            // int previousSceneIndex = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), PlayerManager.instance.playerLocation);
-            // // this.transform.position = data.playerPosition;
-            // PlayerManager.instance.ChangePlayerLocation(((SceneIndex)activeSceneIndex).ToString());
-            // StageHandler.instance.MovePlayer(previousSceneIndex, this.transform);
-        }
-
-        public void SaveData(GameData data)
-        {
-            data.playerPosition = this.transform.position;
-        }
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
