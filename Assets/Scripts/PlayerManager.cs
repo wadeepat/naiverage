@@ -54,11 +54,5 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
         data.playerLocation = this.playerLocation;
         data.mapEnable = this.mapEnable;
         data.tutorialEvents = this.playerEvents;
-
     }
-
-    // #endregion
-
-
-
 }

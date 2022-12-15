@@ -26,7 +26,8 @@ public class GameMenu : MonoBehaviour
             "Are you sure to go to MainMenu ?\n the data after checkpoint will is not be saved.(for now is saved)",
             () =>
             {
-                DataPersistenceManager.instance.SaveGame();
+                //TODO change to save when checkpoint
+                DataPersistenceManager.instance.SaveGame(true);
                 AudioManager.instance.StopAllTrack();
                 SceneLoadingManager.instance.LoadScene(SceneIndex.MainMenu);
             },

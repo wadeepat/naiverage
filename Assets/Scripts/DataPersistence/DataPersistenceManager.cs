@@ -53,18 +53,22 @@ public class DataPersistenceManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        // SceneManager.sceneUnloaded += OnSceneUnloaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        // SceneManager.sceneUnloaded -= OnSceneUnloaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        Debug.LogWarning("OnsceneLoaded");
-        // LoadGame();
+        // Debug.LogWarning("OnsceneLoaded");
+        LoadGame();
+    }
+    public void OnSceneUnloaded(Scene scene)
+    {
+        SaveGame(false);
     }
     public void ChangeSelectedProfileId(string selectedProfileId)
     {
@@ -94,6 +98,7 @@ public class DataPersistenceManager : MonoBehaviour
     {
         this.gameData = new GameData();
         Debug.Log("gameData new");
+        // LoadGame();
     }
     public void LoadGame()
     {
@@ -121,9 +126,8 @@ public class DataPersistenceManager : MonoBehaviour
         }
 
     }
-    public void SaveGame()
+    public void SaveGame(bool isSaveToFile)
     {
-        if (disableDataPersistence) return;
         //if don't have any data to save, log a warning 
         if (this.gameData == null)
         {
@@ -139,6 +143,7 @@ public class DataPersistenceManager : MonoBehaviour
         // Debug.Log("Saved finished turtorial = " + gameData.finishedTutorial);
 
         //save that data to a file using the data handler
+        if (!isSaveToFile && disableDataPersistence) return;
         dataHandler.Save(gameData, selectedProfileId);
     }
     private List<IDataPersistence> FindAllDataPersistenceObjects()
@@ -146,10 +151,10 @@ public class DataPersistenceManager : MonoBehaviour
         IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>(true).OfType<IDataPersistence>();
         return new List<IDataPersistence>(dataPersistenceObjects);
     }
-    private void OnApplicationQuit()
-    {
-        SaveGame();
-    }
+    // private void OnApplicationQuit()
+    // {
+    //     SaveGame(true);
+    // }
     public bool HasGameData()
     {
         return gameData != null;

@@ -44,7 +44,7 @@ public class SaveSlotsMenu : MonoBehaviour
                     DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
                     DataPersistenceManager.instance.NewGame();
 
-                    DataPersistenceManager.instance.SaveGame();
+                    DataPersistenceManager.instance.SaveGame(true);
                     SceneLoadingManager.instance.LoadScene(SceneIndex.Tutorial);
                 },
                 //action of cancel btn
@@ -61,7 +61,7 @@ public class SaveSlotsMenu : MonoBehaviour
             // DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
             DataPersistenceManager.instance.NewGame();
 
-            DataPersistenceManager.instance.SaveGame();
+            DataPersistenceManager.instance.SaveGame(false);
             SceneLoadingManager.instance.LoadScene(SceneIndex.Tutorial);
         }
         //if newGame
