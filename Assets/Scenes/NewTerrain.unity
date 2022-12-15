@@ -3903,8 +3903,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23d26b4ccbeb4342b325133b96fdfa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderHealth: {fileID: 0}
-  sliderMana: {fileID: 0}
 --- !u!114 &1107930774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3918,9 +3916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item: {fileID: 0}
-  canPickUp: 0
   mushroom: 0
-  pickUpText: {fileID: 0}
 --- !u!114 &1107930775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3952,7 +3948,6 @@ MonoBehaviour:
   projectileSpeed: 30
   noOfClicks: 0
   cooldownTime: 2
-  imageElement: {fileID: 0}
   spriteElementF: {fileID: 0}
   spriteElementWt: {fileID: 0}
   spriteElementW: {fileID: 0}
@@ -4134,8 +4129,6 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
-  gameMenu: {fileID: 3721000667708064070, guid: 7744be14ca3ea3f44b17845edee23d95, type: 3}
-  map: {fileID: 3643018339003755794, guid: 04817a835efa60142818929a3484c1da, type: 3}
 --- !u!143 &1107930780
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5091,22 +5084,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4506240408069164022, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
   m_PrefabInstance: {fileID: 1357203986}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1357203988 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3010580296536718141, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
-  m_PrefabInstance: {fileID: 1357203986}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1357203989 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3010580296384686038, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
-  m_PrefabInstance: {fileID: 1357203986}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dc0e6fdaddbc1a48bc3d991768b1abd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1357203990 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4431801350737335616, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
@@ -7192,9 +7169,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneIndex: 2
   NPCs: []
-  lightGuide: {fileID: 0}
   t_startGate: {fileID: 0}
   t_naverGate: {fileID: 0}
+  webster: {fileID: 0}
+  websterFarm: {fileID: 0}
   n_rachneGate: {fileID: 1357502376}
   n_calfordGate: {fileID: 0}
   n_braewoodGate: {fileID: 0}
@@ -7211,8 +7189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5e79bab0e1cc9045acf842405929ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI_Input_Window: {fileID: 1357203989}
-  TutorialGuidingObject: {fileID: 1357203988}
   SataKnowPlayerNameJSON: {fileID: 4900000, guid: f1c56497708dd4244a45bd769a2941ba, type: 3}
 --- !u!1 &2097653107
 GameObject:
