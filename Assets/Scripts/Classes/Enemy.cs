@@ -16,21 +16,22 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Details")]
     [SerializeField] private string enemyName;
     [SerializeField] private float moveSpeed = 1.5f;
-    [SerializeField] private float attackRange = 2.5f;
+    [SerializeField] private float attackRange = 2f;
     [SerializeField] private string attackType = "close";
     [SerializeField] private string monsterType = "normal"; //normal will patrol, boss/mini boss won't
 
 
     [Header("Enemy Stats")]
     [SerializeField] private float maxHealthPoint;
-    [Header("Enemy GUIs")]
-    [SerializeField] private GameObject healthBar;
+    // [Header("Enemy GUIs")]
+    // [SerializeField] private GameObject Canvas;
+    // [SerializeField] private GameObject healthBar;
     [Header("Enemy States")]
     [SerializeField] private float attackCooldown = 2f;
     [SerializeField] private float stayCooldown = 4f;
     [SerializeField] private float chaseSpeed = 2.5f;
     [SerializeField] private float chaseRange = 15f;
-    [SerializeField] private GameObject waypointObject;
+    // [SerializeField] private GameObject waypointObject;
     [Header("Nav settings")]
     [SerializeField] private float stoppingDistance = 3f;
 
@@ -39,6 +40,7 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     private Animator animator;
     private Transform mainCamera;
+    private GameObject waypointObject;
     private List<Transform> waypoints = new List<Transform>();
     //Timer
     private float attackTimer;
@@ -47,6 +49,8 @@ public class Enemy : MonoBehaviour
     private float idleTimer;
     private float stayTimer;
     //GUI
+    private GameObject canvas;
+    private GameObject healthBar;
     private Slider slider;
     //values
     private float hp;
@@ -61,13 +65,19 @@ public class Enemy : MonoBehaviour
         attackTimer = attackCooldown;
         hp = maxHealthPoint;
         mainCamera = Camera.main.transform;
-        slider = healthBar.GetComponent<Slider>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+        canvas = transform.Find("Canvas").gameObject;
+        healthBar = canvas.transform.Find("HealthBar").gameObject;
+        slider = healthBar.GetComponent<Slider>();
+        waypointObject = transform.parent.Find("Waypoints").gameObject;
 
         foreach (Transform wp in waypointObject.transform)
         {
             waypoints.Add(wp);
         }
+        healthBar.SetActive(false);
+        slider.value = 1;
     }
     private void Update()
     {
@@ -75,7 +85,7 @@ public class Enemy : MonoBehaviour
         if (damagedTimer < RAGE_MODE_TIME) damagedTimer += Time.deltaTime;
         if (isDie) transform.position += new Vector3(0, -0.2f * Time.deltaTime, 0);
 
-        if (healthBar.activeSelf) healthBar.transform.LookAt(mainCamera);
+        if (healthBar.activeSelf) canvas.transform.LookAt(mainCamera);
         if (hp >= 0)
             slider.value = (float)hp / (float)maxHealthPoint;
         else
@@ -91,13 +101,13 @@ public class Enemy : MonoBehaviour
         if (agent.enabled)
         {
             agent.SetDestination(target.position);
-            float distance = Vector3.Distance(target.position, gameObject.transform.position);
-            if (distance > chaseRange)
+            float distance = Vector2.Distance(target.position, gameObject.transform.position);
+            if (distance > chaseRange && damagedTimer >= RAGE_MODE_TIME)
             {
                 //back to patroll
                 animator.SetBool("isChasing", false);
             }
-            else if (distance < attackRange)
+            else if (distance < attackRange - 1f)
             {
                 //attack target
                 animator.SetBool("isAttacking", true); // do attack anim
@@ -113,7 +123,7 @@ public class Enemy : MonoBehaviour
         //     animator.SetBool("isAttacking", false);
         // }
         transform.LookAt(target);
-        float distance = Vector3.Distance(target.position, transform.position);
+        float distance = Vector2.Distance(target.position, transform.position);
 
         if (distance < attackRange)
         {
@@ -148,11 +158,13 @@ public class Enemy : MonoBehaviour
     }
     public void OnPatrollStateUpdate()
     {
-        float distance = Vector3.Distance(target.position, transform.position);
+        float distance = Vector2.Distance(target.position, transform.position);
+        // float distance = Vector3.Distance(target.position, transform.position);
+        // Debug.Log("")
         if (distance < chaseRange)
         {
-            animator.SetBool("isPatrolling", false);
             animator.SetBool("isChasing", true);
+            animator.SetBool("isPatrolling", false);
         }
         else if (agent.enabled && agent.remainingDistance <= agent.stoppingDistance)
         {
@@ -166,8 +178,7 @@ public class Enemy : MonoBehaviour
     }
     public void OnIdleStateUpdate()
     {
-        float distance = Vector3.Distance(target.position, transform.position);
-
+        float distance = Vector2.Distance(target.position, transform.position);
         if (distance <= chaseRange)
         {
             animator.SetBool("isChasing", true);
@@ -209,6 +220,8 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamaged(int damageAmount)
     {
+        damagedTimer = 0;
+        healthBar.SetActive(true);
         StayThisPosition();
         hp -= damageAmount;
         if (hp <= 0)
