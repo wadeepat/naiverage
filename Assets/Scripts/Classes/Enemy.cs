@@ -20,6 +20,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private string attackType = "close";
     [SerializeField] private string monsterType = "normal"; //normal will patrol, boss/mini boss won't
 
+    [Header("If Range Attack")]
+    [SerializeField] private GameObject projectileObj;
+    [SerializeField] private Transform firePoint;
 
     [Header("Enemy Stats")]
     [SerializeField] private float maxHealthPoint;
@@ -44,7 +47,7 @@ public class Enemy : MonoBehaviour
     private List<Transform> waypoints = new List<Transform>();
     //Timer
     private float attackTimer;
-    private float damagedTimer;
+    private float damagedTimer = RAGE_MODE_TIME;
     private float cooldownTimer;
     private float idleTimer;
     private float stayTimer;
@@ -137,6 +140,14 @@ public class Enemy : MonoBehaviour
         animator.SetBool("isAttacking", false);
         animator.SetBool("isCooldown", true);
 
+    }
+    public void ShootProjectileObject()
+    {
+        GameObject poision = Instantiate(projectileObj, firePoint.position, transform.rotation);
+        cooldownTimer = 0;
+        cooldownTime = attackCooldown;
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("isCooldown", true);
     }
     public void OnCooldownStateUpdate()
     {

@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+struct MonsterList
+{
+    public string name;
+    public GameObject model;
+}
 public class MonsterSpawn : MonoBehaviour
 {
     [Header("Monster Details")]
-    [SerializeField] private GameObject monster;
-    [SerializeField] private float minScale = -0.1f;
-    [SerializeField] private float maxScale = 0.1f;
+    [SerializeField] MonsterList[] monsterLists;
+    // [SerializeField] private GameObject monster;
+    private float minScale = -0.1f;
+    private float maxScale = 0.1f;
     private GameObject WaypointObject;
     private List<Transform> waypoints = new List<Transform>();
     void Start()
@@ -17,16 +24,17 @@ public class MonsterSpawn : MonoBehaviour
         {
             waypoints.Add(wp);
         }
-        SpawnMonster(5);
+        SpawnMonster(1, 2);
+        // SpawnMonster(1, 1);
     }
 
-    public void SpawnMonster(int amount)
+    public void SpawnMonster(int id, int amount)
     {
         for (int i = 0; i < amount; i++)
         {
             var randomNum = Random.Range(minScale, maxScale);
-            monster.transform.localScale += new Vector3(randomNum, randomNum, randomNum);
-            var tempMon = Instantiate(monster, waypoints[Random.Range(0, waypoints.Count)].position, Quaternion.identity);
+            var tempMon = Instantiate(monsterLists[id].model, waypoints[Random.Range(0, waypoints.Count)].position, Quaternion.identity);
+            tempMon.transform.localScale += Vector3.one * randomNum;
             tempMon.transform.SetParent(this.transform);
         }
     }
