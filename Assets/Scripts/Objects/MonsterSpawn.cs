@@ -24,8 +24,9 @@ public class MonsterSpawn : MonoBehaviour
         {
             waypoints.Add(wp);
         }
-        SpawnMonster(1, 2);
-        // SpawnMonster(1, 1);
+        SpawnMonster(0, 1);
+        SpawnMonster(1, 1);
+        SpawnMonster(2, 1);
     }
 
     public void SpawnMonster(int id, int amount)

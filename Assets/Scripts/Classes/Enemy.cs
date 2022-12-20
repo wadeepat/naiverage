@@ -95,11 +95,11 @@ public class Enemy : MonoBehaviour
             slider.value = 0;
 
     }
-    public void OnChaseStateEnter()
+    public virtual void OnChaseStateEnter()
     {
         agent.speed = chaseSpeed;
     }
-    public void OnChaseStateUpdate()
+    public virtual void OnChaseStateUpdate()
     {
         if (agent.enabled)
         {
@@ -182,12 +182,12 @@ public class Enemy : MonoBehaviour
             animator.SetBool("isPatrolling", false);
         }
     }
-    public void OnIdleStateEnter()
+    public virtual void OnIdleStateEnter()
     {
         SetToWalk();
         stayTimer = 0;
     }
-    public void OnIdleStateUpdate()
+    public virtual void OnIdleStateUpdate()
     {
         float distance = Vector2.Distance(target.position, transform.position);
         if (distance <= chaseRange)
@@ -253,11 +253,11 @@ public class Enemy : MonoBehaviour
     {
         //TODO regen hp
     }
-    public void SetToRun()
+    public virtual void SetToRun()
     {
         agent.speed = chaseSpeed;
     }
-    public void SetToWalk()
+    public virtual void SetToWalk()
     {
         agent.speed = moveSpeed;
     }
