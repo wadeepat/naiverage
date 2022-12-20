@@ -22,14 +22,14 @@ public class QuestLog
 
     }
 
-    public static void CheckQuestObjective(Quest.Objective.Type type, int id)
-    {
-        foreach (Quest quest in questList)
-            if (quest.objective.CheckObjectiveCompleted(type, id))
-                CompleteQuest(quest);
-        onQuestChange.Invoke(questList, completedQuest);
+    // public static void CheckQuestObjective(Quest.Objective.Type type, int id)
+    // {
+    //     foreach (Quest quest in questList)
+    //         if (quest.objective.CheckObjectiveCompleted(type, id))
+    //             CompleteQuest(quest);
+    //     onQuestChange.Invoke(questList, completedQuest);
 
-    }
+    // }
 
     public static void CompleteQuest(Quest quest)
     {
@@ -42,18 +42,18 @@ public class QuestLog
     }
 
 
-    private static void HandleOwnedItems(Quest quest)
-    {
-        if (quest.objective.type != Quest.Objective.Type.collect)
-            return;
-        int amount = 0;//Inventory.GetCountOfIndex(quest.objective.objectiveId); 
-        if (quest.objective.ForceAddObjective(amount))
-        {
-            CompleteQuest(quest);
-        }
+    // private static void HandleOwnedItems(Quest quest)
+    // {
+    //     if (quest.objective.type != Quest.Objective.Type.collect)
+    //         return;
+    //     int amount = 0;//Inventory.GetCountOfIndex(quest.objective.objectiveId); 
+    //     if (quest.objective.ForceAddObjective(amount))
+    //     {
+    //         CompleteQuest(quest);
+    //     }
 
 
-    }
+    // }
 
     public static Quest getQuestNo(int index)
     {

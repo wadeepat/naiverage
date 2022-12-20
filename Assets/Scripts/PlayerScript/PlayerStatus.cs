@@ -82,6 +82,12 @@ public class PlayerStatus : MonoBehaviour
             hp = HP;
     }
 
+        public static void UseMana(int m)
+    {
+        if (mp > m)
+            mp -= m;
+    }
+
     public static void upgradeStatus(int c, int num)
     {
         switch (c)
