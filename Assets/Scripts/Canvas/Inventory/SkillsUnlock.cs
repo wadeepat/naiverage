@@ -9,12 +9,12 @@ public class SkillsUnlock : MonoBehaviour
     public List<Skill> skill = new List<Skill>();
     public int[] slotStack;
     public int[] slotStackSkills;
+    public Image[] slotSkillsM;
 
     [SerializeField] private List<Skill> draggedSkill = new List<Skill>();
     [SerializeField] private Image[] slot;
     [SerializeField] private Image[] slotSkills;
     [SerializeField] private Image[] slotSkillsInv;
-    [SerializeField] private Image[] slotSkillsM;
     [SerializeField] private Sprite[] slotSprite;
 
     private int a;
@@ -34,16 +34,22 @@ public class SkillsUnlock : MonoBehaviour
         }
         skill[0] = Database.skillList[1];
         slotStack[0] += 1;
+        skill[1] = Database.skillList[2];
+        slotStack[1] += 1;
+        skill[2] = Database.skillList[3];
+        slotStack[2] += 1;
         for(int j=0; j<3; j++) slotStackSkills[j] = -1;
         a = -1;
         b = -1;
         aSlot = -1;
         bSlot = -1;
+        slotSkillsM[0].fillAmount = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         for(int i=0; i < slotsNumber; i++){
             slot[i].sprite = slotSprite[i];
             slotSprite[i] = skill[i].itemSprite;
@@ -176,4 +182,15 @@ public class SkillsUnlock : MonoBehaviour
         aSlot=-1;
         bSlot=-1;
     }
+
+    public int GetSkillId (int num){
+        return skill[slotStackSkills[num]].id;
+    }
+
+    public void CooldownSkill(){
+        if (slotSkillsM[0].fillAmount < 1.0f) slotSkillsM[0].fillAmount += 0.1f * Time.deltaTime;
+        if (slotSkillsM[1].fillAmount < 1.0f) slotSkillsM[1].fillAmount += 0.1f * Time.deltaTime;
+        if (slotSkillsM[2].fillAmount < 1.0f) slotSkillsM[2].fillAmount += 0.1f * Time.deltaTime;
+    }
+
 }

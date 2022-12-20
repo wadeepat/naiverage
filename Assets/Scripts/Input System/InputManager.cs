@@ -19,6 +19,9 @@ public class InputManager : MonoBehaviour
     private bool submitPressed = false;
     private bool selectPotion = false;
     private bool usePotion = false;
+    private bool skillPressed = false;
+    private bool skill2Pressed = false;
+    private bool skill3Pressed = false;
 
     public static InputManager instance { get; private set; }
 
@@ -132,6 +135,7 @@ public class InputManager : MonoBehaviour
     }
     public void PotionPressed(InputAction.CallbackContext context)
     {
+        Debug.Log("potion");
         if (context.interaction is HoldInteraction)
         {
             if (context.performed) selectPotion = true;
@@ -155,6 +159,45 @@ public class InputManager : MonoBehaviour
             backPressed = false;
         }
     }
+    public void Skill1Pressed(InputAction.CallbackContext context)
+    {
+        Debug.Log("sk1");
+        if (context.performed)
+        {
+            skillPressed = true;
+        }
+        else if (context.canceled)
+        {
+            skillPressed = false;
+        }
+    }
+    public void Skill2Pressed(InputAction.CallbackContext context)
+    {
+        Debug.Log("sk2");
+
+        if (context.performed)
+        {
+            skill2Pressed = true;
+        }
+        else if (context.canceled)
+        {
+            skill2Pressed = false;
+        }
+    }
+    public void Skill3Pressed(InputAction.CallbackContext context)
+    {
+        Debug.Log("sk3");
+
+        if (context.performed)
+        {
+            skill3Pressed = true;
+        }
+        else if (context.canceled)
+        {
+            skill3Pressed = false;
+        }
+    }
+
 
     public bool GetAttackPressed()
     {
@@ -221,6 +264,24 @@ public class InputManager : MonoBehaviour
     {
         bool result = backPressed;
         backPressed = false;
+        return result;
+    }
+    public bool GetSkill1Pressed()
+    {
+        bool result = skillPressed;
+        skillPressed = false;
+        return result;
+    }
+    public bool GetSkill2Pressed()
+    {
+        bool result = skill2Pressed;
+        skill2Pressed = false;
+        return result;
+    }
+    public bool GetSkill3Pressed()
+    {
+        bool result = skill3Pressed;
+        skill3Pressed = false;
         return result;
     }
 
