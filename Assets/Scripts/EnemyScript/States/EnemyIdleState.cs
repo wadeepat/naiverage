@@ -8,7 +8,7 @@ public class EnemyIdleState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
         enemyScript = animator.GetComponent<Enemy>();
-        enemyScript.StayThisPosition();
+        enemyScript.OnIdleStateEnter();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
