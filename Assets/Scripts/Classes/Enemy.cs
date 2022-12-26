@@ -10,58 +10,61 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody))]
 public class Enemy : MonoBehaviour
 {
-    const float CLOSE_ATTACK_RANGE = 2f;
-    const float RAGE_MODE_TIME = 5f;
+    protected const float CLOSE_ATTACK_RANGE = 2f;
+    protected const float RAGE_MODE_TIME = 5f;
+    protected const float CD_DAMAGE_ANIM = 3f;
 
     [Header("Enemy Details")]
-    [SerializeField] private string enemyName;
-    [SerializeField] private float moveSpeed = 1.5f;
-    [SerializeField] private float attackRange = 2f;
-    [SerializeField] private string attackType = "close";
-    [SerializeField] private string monsterType = "normal"; //normal will patrol, boss/mini boss won't
+    [SerializeField] protected string enemyName;
+    [SerializeField] protected float moveSpeed = 1.5f;
+    [SerializeField] protected float attackRange = 2f;
+    [SerializeField] protected string attackType = "close";
+    [SerializeField] protected string monsterType = "normal"; //normal will patrol, boss/mini boss won't
 
     [Header("If Range Attack")]
-    [SerializeField] private GameObject projectileObj;
-    [SerializeField] private Transform firePoint;
+    [SerializeField] protected GameObject projectileObj;
+    [SerializeField] protected Transform firePoint;
 
     [Header("Enemy Stats")]
-    [SerializeField] private float maxHealthPoint;
+    [SerializeField] protected float maxHealthPoint;
     // [Header("Enemy GUIs")]
     // [SerializeField] private GameObject Canvas;
     // [SerializeField] private GameObject healthBar;
     [Header("Enemy States")]
-    [SerializeField] private float attackCooldown = 2f;
-    [SerializeField] private float stayCooldown = 4f;
-    [SerializeField] private float chaseSpeed = 2.5f;
-    [SerializeField] private float chaseRange = 15f;
+    [SerializeField] protected float attackCooldown = 2f;
+    [SerializeField] protected float stayCooldown = 4f;
+    [SerializeField] protected float chaseSpeed = 2.5f;
+    [SerializeField] protected float chaseRange = 15f;
     // [SerializeField] private GameObject waypointObject;
     [Header("Nav settings")]
-    [SerializeField] private float stoppingDistance = 3f;
+    [SerializeField] protected float stoppingDistance = 3f;
 
     //objects
-    private Transform target;
-    private NavMeshAgent agent;
-    private Animator animator;
-    private Transform mainCamera;
-    private GameObject waypointObject;
-    private List<Transform> waypoints = new List<Transform>();
+    protected Transform target;
+    protected NavMeshAgent agent;
+    protected Animator animator;
+    protected Transform mainCamera;
+    protected GameObject waypointObject;
+    protected List<Transform> waypoints = new List<Transform>();
     //Timer
-    private float attackTimer;
-    private float damagedTimer = RAGE_MODE_TIME;
-    private float cooldownTimer;
-    private float idleTimer;
-    private float stayTimer;
+    protected float attackTimer;
+    protected float damagedTimer = RAGE_MODE_TIME;
+    protected float cooldownTimer;
+    protected float idleTimer;
+    protected float stayTimer;
+    protected float damageAnimTimer;
     //GUI
-    private GameObject canvas;
-    private GameObject healthBar;
-    private Slider slider;
+    protected GameObject canvas;
+    protected GameObject healthBar;
+    protected Slider slider;
     //values
-    private float hp;
-    private float cooldownTime;
-    private bool isDie = false;
+    protected float hp;
+    protected float cooldownTime;
+    protected bool isDie = false;
 
-    private void Start()
+    protected virtual void Start()
     {
+        Debug.LogWarning("Start");
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = stoppingDistance;
         animator = GetComponent<Animator>();
@@ -80,12 +83,14 @@ public class Enemy : MonoBehaviour
             waypoints.Add(wp);
         }
         healthBar.SetActive(false);
-        slider.value = 1;
+        // slider.value = 1;
     }
-    private void Update()
+    protected virtual void Update()
     {
         if (attackTimer < attackCooldown) attackTimer += Time.deltaTime;
         if (damagedTimer < RAGE_MODE_TIME) damagedTimer += Time.deltaTime;
+        if (damageAnimTimer < CD_DAMAGE_ANIM) damageAnimTimer += Time.deltaTime;
+        else RegenHP(1 * Time.deltaTime);
         if (isDie) transform.position += new Vector3(0, -0.2f * Time.deltaTime, 0);
 
         if (healthBar.activeSelf) canvas.transform.LookAt(mainCamera);
@@ -93,13 +98,12 @@ public class Enemy : MonoBehaviour
             slider.value = (float)hp / (float)maxHealthPoint;
         else
             slider.value = 0;
-
     }
-    public void OnChaseStateEnter()
+    public virtual void OnChaseStateEnter()
     {
         agent.speed = chaseSpeed;
     }
-    public void OnChaseStateUpdate()
+    public virtual void OnChaseStateUpdate()
     {
         if (agent.enabled)
         {
@@ -140,6 +144,10 @@ public class Enemy : MonoBehaviour
         animator.SetBool("isAttacking", false);
         animator.SetBool("isCooldown", true);
 
+    }
+    public virtual bool EnemyAttack(string atkName)
+    {
+        return false;
     }
     public void ShootProjectileObject()
     {
@@ -182,12 +190,13 @@ public class Enemy : MonoBehaviour
             animator.SetBool("isPatrolling", false);
         }
     }
-    public void OnIdleStateEnter()
+    public virtual void OnIdleStateEnter()
     {
+        StayThisPosition();
         SetToWalk();
         stayTimer = 0;
     }
-    public void OnIdleStateUpdate()
+    public virtual void OnIdleStateUpdate()
     {
         float distance = Vector2.Distance(target.position, transform.position);
         if (distance <= chaseRange)
@@ -203,16 +212,16 @@ public class Enemy : MonoBehaviour
             stayTimer += Time.deltaTime;
         }
     }
-    private void AttackTargetInRange(float range, int damage)
+    protected void AttackTargetInRange(float range, int damage)
     {
-        float distance = Vector3.Distance(target.position, transform.position);
+        float distance = Vector2.Distance(target.position, transform.position);
         if (distance <= range)
         {
             //attack target
             target.gameObject.GetComponent<PlayerStatus>().TakeDamaged(damage);
         }
     }
-    private void ShootProjectileObject(GameObject projectileObj, Transform firepoint)
+    protected void ShootProjectileObject(GameObject projectileObj, Transform firepoint)
     {
         Instantiate(projectileObj, firepoint.position, transform.rotation);
     }
@@ -231,8 +240,6 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamaged(int damageAmount)
     {
-        damagedTimer = 0;
-        healthBar.SetActive(true);
         StayThisPosition();
         hp -= damageAmount;
         if (hp <= 0)
@@ -246,18 +253,27 @@ public class Enemy : MonoBehaviour
         else
         {
             healthBar.SetActive(true);
-            animator.SetTrigger("damaged");
+            if (damageAnimTimer >= CD_DAMAGE_ANIM)
+            {
+                cooldownTime = 0.5f;
+                animator.SetTrigger("damaged");
+                animator.SetBool("isCooldown", true);
+                damageAnimTimer = 0;
+            }
         }
+        damagedTimer = 0;
     }
-    public void RegenHP()
+    public void RegenHP(float health)
     {
         //TODO regen hp
+        hp += health;
+        if (hp > maxHealthPoint) hp = maxHealthPoint;
     }
-    public void SetToRun()
+    public virtual void SetToRun()
     {
         agent.speed = chaseSpeed;
     }
-    public void SetToWalk()
+    public virtual void SetToWalk()
     {
         agent.speed = moveSpeed;
     }

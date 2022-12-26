@@ -156,7 +156,7 @@ namespace StarterAssets
             int previousSceneIndex = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), PlayerManager.instance.playerLocation);
             // this.transform.position = data.playerPosition;
             PlayerManager.instance.ChangePlayerLocation(((SceneIndex)activeSceneIndex).ToString());
-            StageHandler.instance.MovePlayer(previousSceneIndex, this.transform);
+            StageHandler.instance.MovePlayer(previousSceneIndex);
 
             _attackInfo = GetComponent<PlayerAttackController>();
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
@@ -186,13 +186,6 @@ namespace StarterAssets
 
             GroundedCheck();
 
-            // if (_attackInfo.noOfClicks == 0)
-            // if (!_animator.GetBool("Hit1") && !_animator.GetBool("Hit2") && !_animator.GetBool("Hit3"))
-            // if (_attackInfo.noOfClicks == 0)
-            // {
-            //     JumpAndGravity();
-            //     Move();
-            // }
             if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Hit1") || _animator.GetCurrentAnimatorStateInfo(0).IsName("Hit2") || _animator.GetCurrentAnimatorStateInfo(0).IsName("Hit3"))
             {
                 _attackInfo.GetComponent<PlayerAttackController>().FaceToClosestEnemy();

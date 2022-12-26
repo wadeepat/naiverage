@@ -28,7 +28,7 @@ public class UI_QuestLog : MonoBehaviour
         if (questLogObject == null)
         {
             Debug.LogWarning("questLogObject null");
-            questLogObject = transform.GetChild(0).gameObject;
+            questLogObject = GameObject.Find("Canvas").transform.Find("Panel").Find("Character panel").Find("All funtion").Find("Quest").GetChild(0).gameObject;
             questButtons = new Button[0];
             previousButtonIndex = 0;
             QuestLog.Initialize();

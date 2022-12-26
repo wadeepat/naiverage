@@ -38,7 +38,7 @@ public class StageHandler : MonoBehaviour
     // [Header("Places")]
     // [SerializeField] private Transform picupItems;
     public static StageHandler instance;
-    private int activeSceneIndex;
+    public int activeSceneIndex { get; private set; }
     private string activeSceneName;
     // private 
     private void Awake()
@@ -99,8 +99,9 @@ public class StageHandler : MonoBehaviour
         }
 
     }
-    public void MovePlayer(int previousScene, Transform player)
+    public void MovePlayer(int previousScene)
     {
+        Transform player = PlayerManager.instance.player.transform;
         switch (activeSceneIndex)
         {
             case (int)SceneIndex.Tutorial:
@@ -113,7 +114,6 @@ public class StageHandler : MonoBehaviour
                 {
                     player.position = t_startGate.position;
                     player.rotation = t_startGate.rotation;
-                    // lightGuide.SetTarget(t_naverGate);
                 }
                 break;
             case (int)SceneIndex.NaverTown:

@@ -18,6 +18,7 @@ public class QuestLog
     {
         questList.Add(quest);
         // HandleOwnedItems(quest);
+        if (quest.addAction != null) quest.addAction();
         onQuestChange.Invoke(questList, completedQuest);
 
     }
