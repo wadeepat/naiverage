@@ -140,6 +140,11 @@ public class PlayerStatus : MonoBehaviour
         return a;
     }
 
+    public static int damageSkill(int crit){
+        //ATK + ATK * CRIT DMG
+        return attack+(attack*crit/100);
+    }
+
 
 
 
