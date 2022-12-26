@@ -49,7 +49,7 @@ MonoBehaviour:
   sounds:
   - s_name: forestBackground
     clip: {fileID: 8300000, guid: 40324742e7d740d428fc192465423902, type: 3}
-    volume: 1
+    volume: 0.3
     pitch: 1
     loop: 1
     source: {fileID: 0}

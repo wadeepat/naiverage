@@ -44,4 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef356bb3353cbe440b44a9718562d11b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  playerEvents:
+    keys: []
+    values: 
+  mapEnable:
+    keys: 
+    values: 
