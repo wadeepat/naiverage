@@ -43,7 +43,10 @@ public class SkillsUnlock : MonoBehaviour
         b = -1;
         aSlot = -1;
         bSlot = -1;
-        slotSkillsM[0].fillAmount = 0f;
+        slotSkillsM[0].fillAmount = 1f;
+        slotSkillsM[1].fillAmount = 1f;
+        slotSkillsM[2].fillAmount = 1f;
+        for(int i=0; i<3; i++)slotStackSkills[i] = i;
     }
 
     // Update is called once per frame
