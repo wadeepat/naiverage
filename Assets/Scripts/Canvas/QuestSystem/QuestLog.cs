@@ -81,6 +81,7 @@ public class QuestLog
     }
     public static void DoQuest(Quest.Objective.Type type, int id)
     {
+        
         foreach (Quest quest in questList)
         {
             if (quest.objective.CheckIndexQuest(type, id))
