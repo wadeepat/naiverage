@@ -11,6 +11,7 @@ public class Quest
     public int MPReward;
     public string SBReward;
     public short questCategory;
+    public UnityAction addAction;
     public UnityAction updateAction;
     public UnityAction compleltedAction;
 

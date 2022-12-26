@@ -228,7 +228,7 @@ public class DialogueManager : MonoBehaviour
                 case QUEST_TAG:
                     EndTheDialogue();
                     Debug.Log("Quest: " + tagValue);
-                    ActionHandler.instance.TriggerQuestFromDialogue(int.Parse(tagValue));
+                    QuestLog.AddQuest(Database.questList[int.Parse(tagValue)]);
                     break;
                 case ACTION_TAG:
                     EndTheDialogue();

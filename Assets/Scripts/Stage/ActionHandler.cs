@@ -19,11 +19,15 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     private GameObject[] tutorialGuidingCards;
     public static ActionHandler instance;
     private InputTextUI UI_Input_Window;
+    private GameObject CanvasObject;
     private void Awake()
     {
         instance = this;
-        TutorialGuidingObject = CanvasManager.instance.GetCanvasObject("TutorialGuiding");
-        UI_Input_Window = CanvasManager.instance.GetCanvasObject("UI_Input_Window").GetComponent<InputTextUI>();
+        // TutorialGuidingObject = CanvasManager.instance.GetCanvasObject("TutorialGuiding");
+        // UI_Input_Window = CanvasManager.instance.GetCanvasObject("UI_Input_Window").GetComponent<InputTextUI>();
+        CanvasObject = GameObject.Find("Canvas");
+        TutorialGuidingObject = CanvasObject.transform.Find("TutorialGuiding").gameObject;
+        UI_Input_Window = CanvasObject.transform.Find("UI_Input_Window").GetComponent<InputTextUI>();
     }
     private void OnEnable()
     {
@@ -42,161 +46,160 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     {
         TutorialGuidingObject.transform.Find(cardName).gameObject.SetActive(active);
     }
-    public void TriggerQuestFromDialogue(int id)
-    {
-        switch (id)
-        {
-            case 0:
-                ActivateTutorialCard("Walking", true);
-                QuestLog.AddQuest(new Quest()
-                {
-                    questId = 0,
-                    questName = "Learn to move",
-                    questDescription = "Move to the area",
-                    MPReward = 0,
-                    SBReward = "",
-                    questCategory = 0,
-                    objective = new Quest.Objective()
-                    {
-                        objectiveId = 1,
-                        type = Quest.Objective.Type.interact,
-                        amount = 1,
-                    },
-                    compleltedAction = () =>
-                    {
-                        TriggerQuestFromDialogue(1);
-                    },
-                });
-                break;
-            case 1:
-                ActivateTutorialCard("PickupItems", true);
-                QuestLog.AddQuest(new Quest()
-                {
-                    questId = 1,
-                    questName = "Collect Mushroom",
-                    questDescription = "",
-                    MPReward = 0,
-                    SBReward = "",
-                    questCategory = 0,
-                    objective = new Quest.Objective()
-                    {
-                        objectiveId = 1,
-                        type = Quest.Objective.Type.collect,
-                        amount = 1,
-                    },
-                    compleltedAction = () =>
-                    {
-                        ActivateTutorialCard("PickupItems", false);
-                        TriggerQuestFromDialogue(2);
-                    }
-                });
-                break;
-            case 2:
-                ActivateTutorialCard("CraftPotion", true);
-                QuestLog.AddQuest(new Quest()
-                {
-                    questId = 2,
-                    questName = "Craft Potion",
-                    questDescription = "",
-                    MPReward = 0,
-                    SBReward = "",
-                    questCategory = 0,
-                    objective = new Quest.Objective()
-                    {
-                        objectiveId = 1,
-                        type = Quest.Objective.Type.interact,
-                        amount = 1,
-                    },
-                    updateAction = () =>
-                    {
-                        if (CanvasManager.instance.GetCanvasObject("Panel").transform.Find("Character panel").gameObject.activeSelf)
-                        {
-                            QuestLog.CompleteQuest(QuestLog.GetQuestById(2));
-                        }
-                    },
-                    compleltedAction = () =>
-                    {
-                        ActivateTutorialCard("CraftPotion", false);
-                        TriggerQuestFromDialogue(3);
-                    },
-                });
-                break;
-            case 3:
-                ActivateTutorialCard("UsePotion", true);
-                QuestLog.AddQuest(new Quest()
-                {
-                    questId = 3,
-                    questName = "Use Potion",
-                    questDescription = "Use Health Potion",
-                    MPReward = 0,
-                    SBReward = "",
-                    questCategory = 0,
-                    objective = new Quest.Objective()
-                    {
-                        objectiveId = 1,
-                        type = Quest.Objective.Type.interact,
-                        amount = 1,
-                    },
-                    compleltedAction = () =>
-                    {
-                        ActionHandler.instance.ActivateTutorialCard("UsePotion", false);
-                        Debug.LogWarning("dialogue after use potions");
-                        DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
-                    },
-                });
-                break;
-            case 4:
-                ActivateTutorialCard("NormalAttack", true);
-                QuestLog.AddQuest(new Quest()
-                {
-                    questId = 4,
-                    questName = "Fight to survive",
-                    questDescription = "Kill 1 Webster",
-                    MPReward = 0,
-                    SBReward = "",
-                    questCategory = 0,
-                    objective = new Quest.Objective()
-                    {
-                        objectiveId = 1,
-                        type = Quest.Objective.Type.kill,
-                        amount = 1,
-                    },
-                    compleltedAction = () =>
-                    {
-                        ActivateTutorialCard("NormalAttack", false);
-                        DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
-                        StageHandler.instance.EventTrigger("SataAppear");
-                    },
-                });
-                break;
-            case 5:
-                ActivateTutorialCard("Skill", true);
-                StageHandler.instance.SpawnWebster(5);
-                QuestLog.AddQuest(new Quest()
-                {
-                    questId = 5,
-                    questName = "Help Sata from the punishment",
-                    questDescription = "Kill Webster to receive 5 .....",
-                    MPReward = 1000,
-                    SBReward = "",
-                    questCategory = 0,
-                    objective = new Quest.Objective()
-                    {
-                        objectiveId = 1,
-                        type = Quest.Objective.Type.kill,
-                        amount = 5,
-                    },
-                    compleltedAction = () =>
-                    {
-                        ActivateTutorialCard("Skill", false);
-                        StageHandler.instance.EventTrigger("CompletedTutorial");
-                        // DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
-                        // StageHandler.instance.EventTrigger("SataAppear");
-                    },
-                });
-                break;
-        }
-    }
+    // public void AcceptQuest(int id)
+    // {
+    // switch (id)
+    // {
+    //     case 0:
+    //         ActivateTutorialCard("Walking", true);
+    //         QuestLog.AddQuest(new Quest()
+    //         {
+    //             questId = 0,
+    //             questName = "Learn to move",
+    //             questDescription = "Move to the area",
+    //             MPReward = 0,
+    //             SBReward = "",
+    //             questCategory = 0,
+    //             objective = new Quest.Objective()
+    //             {
+    //                 objectiveId = 1,
+    //                 type = Quest.Objective.Type.interact,
+    //                 amount = 1,
+    //             },
+    //             compleltedAction = () =>
+    //             {
+    //                 AcceptQuest(1);
+    //             },
+    //         });
+    //         break;
+    //     case 1:
+    //         ActivateTutorialCard("PickupItems", true);
+    //         QuestLog.AddQuest(new Quest()
+    //         {
+    //             questId = 1,
+    //             questName = "Collect Mushroom",
+    //             questDescription = "",
+    //             MPReward = 0,
+    //             SBReward = "",
+    //             questCategory = 0,
+    //             objective = new Quest.Objective()
+    //             {
+    //                 objectiveId = 1,
+    //                 type = Quest.Objective.Type.collect,
+    //                 amount = 1,
+    //             },
+    //             compleltedAction = () =>
+    //             {
+    //                 ActivateTutorialCard("PickupItems", false);
+    //                 AcceptQuest(2);
+    //             }
+    //         });
+    //         break;
+    //     case 2:
+    //         ActivateTutorialCard("CraftPotion", true);
+    //         QuestLog.AddQuest(new Quest()
+    //         {
+    //             questId = 2,
+    //             questName = "Craft Potion",
+    //             questDescription = "",
+    //             MPReward = 0,
+    //             SBReward = "",
+    //             questCategory = 0,
+    //             objective = new Quest.Objective()
+    //             {
+    //                 objectiveId = 1,
+    //                 type = Quest.Objective.Type.interact,
+    //                 amount = 1,
+    //             },
+    //             updateAction = () =>
+    //             {
+    //                 if (CanvasManager.instance.GetCanvasObject("Panel").transform.Find("Character panel").gameObject.activeSelf)
+    //                 {
+    //                     QuestLog.CompleteQuest(QuestLog.GetQuestById(2));
+    //                 }
+    //             },
+    //             compleltedAction = () =>
+    //             {
+    //                 ActivateTutorialCard("CraftPotion", false);
+    //                 AcceptQuest(3);
+    //             },
+    //         });
+    //         break;
+    //     case 3:
+    //         ActivateTutorialCard("UsePotion", true);
+    //         QuestLog.AddQuest(new Quest()
+    //         {
+    //             questId = 3,
+    //             questName = "Use Potion",
+    //             questDescription = "Use Health Potion",
+    //             MPReward = 0,
+    //             SBReward = "",
+    //             questCategory = 0,
+    //             objective = new Quest.Objective()
+    //             {
+    //                 objectiveId = 1,
+    //                 type = Quest.Objective.Type.interact,
+    //                 amount = 1,
+    //             },
+    //             compleltedAction = () =>
+    //             {
+    //                 ActionHandler.instance.ActivateTutorialCard("UsePotion", false);
+    //                 DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
+    //             },
+    //         });
+    //         break;
+    //     case 4:
+    //         ActivateTutorialCard("NormalAttack", true);
+    //         QuestLog.AddQuest(new Quest()
+    //         {
+    //             questId = 4,
+    //             questName = "Fight to survive",
+    //             questDescription = "Kill 1 Webster",
+    //             MPReward = 0,
+    //             SBReward = "",
+    //             questCategory = 0,
+    //             objective = new Quest.Objective()
+    //             {
+    //                 objectiveId = 1,
+    //                 type = Quest.Objective.Type.kill,
+    //                 amount = 1,
+    //             },
+    //             compleltedAction = () =>
+    //             {
+    //                 ActivateTutorialCard("NormalAttack", false);
+    //                 DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
+    //                 StageHandler.instance.EventTrigger("SataAppear");
+    //             },
+    //         });
+    //         break;
+    //     case 5:
+    //         ActivateTutorialCard("Skill", true);
+    //         StageHandler.instance.SpawnWebster(5);
+    //         QuestLog.AddQuest(new Quest()
+    //         {
+    //             questId = 5,
+    //             questName = "Help Sata from the punishment",
+    //             questDescription = "Kill Webster to receive 5 .....",
+    //             MPReward = 1000,
+    //             SBReward = "",
+    //             questCategory = 0,
+    //             objective = new Quest.Objective()
+    //             {
+    //                 objectiveId = 1,
+    //                 type = Quest.Objective.Type.kill,
+    //                 amount = 5,
+    //             },
+    //             compleltedAction = () =>
+    //             {
+    //                 ActivateTutorialCard("Skill", false);
+    //                 StageHandler.instance.EventTrigger("CompletedTutorial");
+    //                 // DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
+    //                 // StageHandler.instance.EventTrigger("SataAppear");
+    //             },
+    //         });
+    //         break;
+    // }
+    // }
     public void ReceiveActionThenContinueStory(string action, UnityAction ContinueStory)
     {
         if (action == "GetPlayerName")
