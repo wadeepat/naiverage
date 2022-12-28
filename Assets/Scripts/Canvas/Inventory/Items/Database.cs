@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class Database : MonoBehaviour
 {
+    public static readonly Dictionary<string, string> COLORS = new Dictionary<string, string>(){
+        {"button","#900C3F"},
+        {"char","#FEF4E8"},
+        {"item","#09bc8a"},
+        {"menu","#363062"},
+        {"monster","#FFBD39"},
+        {"town","#FF7272"},
+    };
     public static List<Item> itemList = new List<Item>();
     public static List<Potion> potionList = new List<Potion>();
     public static List<Item> itemQuestList = new List<Item>();
     public static List<SkillBook> skillBookList = new List<SkillBook>();
     public static List<Quest> questList = new List<Quest>();
     public static Pearl magicPearl = new Pearl();
-
     public static List<Skill> skillList = new List<Skill>();
 
     private GameObject CanvasObject;
@@ -59,8 +66,8 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 0,
-                questName = "Learn to move",
-                questDescription = "Move to the area",
+                questName = "เรียนรู้การเคลื่อนที่",
+                questDescription = "ควบคุมตัวละครไปยังพื้นที่ที่ส่องแสง",
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -83,8 +90,8 @@ public class Database : MonoBehaviour
         new Quest()
         {
             questId = 1,
-            questName = "Collect Mushroom",
-            questDescription = "",
+            questName = "เรียนรู้การเก็บของ",
+            questDescription = "ลองเก็บ MUSHROOM ตรงใต้ต้นไม้นั่นสิ",
             MPReward = 0,
             SBReward = "",
             questCategory = 0,
@@ -109,8 +116,8 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 2,
-                questName = "Craft Potion",
-                questDescription = "",
+                questName = "เรียนรู้การปรุงยา",
+                questDescription = $"ยาเป็นไอเทมที่ดีที่การช่วยในการต่อสู้เลยนะ\n ลองเปิดที่ <color={COLORS["menu"]}>Potion</color> ดูสิ",
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -144,8 +151,8 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 3,
-                questName = "Use Potion",
-                questDescription = "Use Health Potion",
+                questName = "เรียนรู้การใช้ยา",
+                questDescription = "เจ้ามียาเพิ่มเลือด และยาเพิ่มมานาอยู่ลองใช้สักขวดสิ",
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -170,8 +177,8 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 4,
-                questName = "Fight to survive",
-                questDescription = "Kill 1 Webster",
+                questName = "ต่อสู้เพื่อเอาชีวิตรอด",
+                questDescription = $"อยู่ ๆ ก็มี <color={COLORS["monster"]}>webster</color> โผล่มา จงกำจัดมันเพื่อเอาตัวรอดซะ",
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -198,8 +205,8 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 5,
-                questName = "Help Sata from the punishment",
-                questDescription = "Kill Webster to receive 5 .....",
+                questName = $"ช่วยเหลือ <color={COLORS["char"]}ซาตะ</color>",
+                questDescription = $"<color={COLORS["char"]}ซาตะ</color> ช่างน่าสงสารเสียจริง ไปเก็บขาเแมงมุมเพื่อช่วย <color={COLORS["char"]}ซาตะ</color> กันเถอะ",
                 MPReward = 1000,
                 SBReward = "",
                 questCategory = 0,
@@ -225,8 +232,8 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 6,
-                questName = "Go to Naver town with Sata",
-                questDescription = "There are so many happened here. Go to explore to town.",
+                questName = $"เดินทางไปยังเมือง <color={COLORS["town"]}>เนเวอร์</color>",
+                questDescription = $"มีเรื่องราวลึกลับ และน่าสนใจรอเจ้าอยู่ ออกเดินทางไปยังเมือง <color={COLORS["town"]}>เนเวอร์</color> ตาม <color={COLORS["char"]}ซาตะ</color> ไปกันเถอะ",
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -239,6 +246,7 @@ public class Database : MonoBehaviour
                 addAction = () =>
                 {
                     ActivateTutorialCard("WarpAndMap", true);
+                    StageHandler.instance.EventTrigger("SataLeadToTown");
                 },
                 updateAction = () =>
                 {

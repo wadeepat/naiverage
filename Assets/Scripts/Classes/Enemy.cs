@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     protected const float CD_DAMAGE_ANIM = 3f;
 
     [Header("Enemy Details")]
+    [SerializeField] protected int id;
     [SerializeField] protected string enemyName;
     [SerializeField] protected float moveSpeed = 1.5f;
     [SerializeField] protected float attackRange = 2f;
@@ -248,6 +249,7 @@ public class Enemy : MonoBehaviour
             healthBar.SetActive(false);
             animator.SetTrigger("die");
             GetComponent<BoxCollider>().enabled = false;
+            QuestLog.DoQuest(Quest.Objective.Type.kill, 1);
             Died();
         }
         else

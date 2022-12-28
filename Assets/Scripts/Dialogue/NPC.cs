@@ -1,22 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using TMPro;
 
-public class DialogueTrigger : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Rigidbody))]
+public class NPC : MonoBehaviour
 {
 
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
+    private NavMeshAgent agent;
+    private Animator animator;
     private GameObject interactObject;
     private bool playerInRange;
     private TextMeshProUGUI text;
     private GameObject lightObject;
     private void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+        agent.isStopped = true;
+        animator = GetComponent<Animator>();
         interactObject = CanvasManager.instance.GetCanvasObject("InteractText");
         lightObject = transform.Find("Light").gameObject;
         text = interactObject.GetComponent<TextMeshProUGUI>();
+    }
+    private void Update()
+    {
+        if (agent.enabled && !agent.isStopped)
+        {
+            float distance = Vector2.Distance(transform.position, agent.destination);
+            if (distance < agent.stoppingDistance)
+            {
+                agent.isStopped = true;
+                animator.SetBool("isWalking", false);
+            }
+        }
     }
     private void OnTriggerEnter(Collider collider)
     {
@@ -42,5 +64,13 @@ public class DialogueTrigger : MonoBehaviour
         {
             interactObject.SetActive(false);
         }
+    }
+    public void Goto(Transform place)
+    {
+        interactObject.SetActive(false);
+        GetComponent<CapsuleCollider>().enabled = false;
+        animator.SetBool("isWalking", true);
+        agent.SetDestination(place.position);
+        agent.isStopped = false;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
-public class NPC
+public class NPC_Details
 {
     public string name;
     public GameObject Object;
@@ -14,16 +14,17 @@ public class StageHandler : MonoBehaviour
     [SerializeField] private SceneIndex sceneIndex;
 
     // [Header("NPC")]
-    [SerializeField] private NPC[] NPCs;
+    [SerializeField] private NPC_Details[] NPCs;
     // [SerializeField] private LightGuide lightGuide;
 
     [Header("Tutorial")]
     [Header("Gates")]
     [SerializeField] private Transform t_startGate;
     [SerializeField] private Transform t_naverGate;
-    [Header("Monster")]
-    [SerializeField] private GameObject webster;
-    [SerializeField] private GameObject websterFarm;
+    [Header("Monster Spawn")]
+    [SerializeField] private MonsterSpawn spawn0;
+    [SerializeField] private MonsterSpawn spawn1;
+    // [SerializeField] private GameObject websterFarm;
     // [SerializeField] private Gamespawn1Webster;
     // [SerializeField] private Transform spawn5Webster;
 
@@ -67,9 +68,8 @@ public class StageHandler : MonoBehaviour
                 switch (eventName)
                 {
                     case "SataAppear":
-                        foreach (NPC npc in NPCs)
+                        foreach (NPC_Details npc in NPCs)
                         {
-                            // Debug.LogWarning("Event trigger: " + npc.name);
                             if (npc.name == "Sata")
                             {
                                 npc.Object.SetActive(true);
@@ -93,6 +93,16 @@ public class StageHandler : MonoBehaviour
                         break;
                     case "Spawn1Webster":
                         SpawnWebster(1);
+                        break;
+                    case "SataLeadToTown":
+                        foreach (NPC_Details npc in NPCs)
+                        {
+                            if (npc.name == "Sata")
+                            {
+                                npc.Object.GetComponent<NPC>().Goto(t_naverGate);
+                                break;
+                            }
+                        }
                         break;
                 }
                 break;
@@ -130,14 +140,15 @@ public class StageHandler : MonoBehaviour
     //For tutorialScene
     public void SpawnWebster(int num)
     {
-        //TODO
+        Debug.LogWarning("SpawnWEber " + num);
         if (num == 1)
         {
-            webster.SetActive(true);
+            spawn0.SpawnMonster(0, 1);
+            // webster.SetActive(true);
         }
         else if (num == 5)
         {
-            websterFarm.SetActive(true);
+            spawn1.SpawnMonster(0, 5);
         }
     }
 

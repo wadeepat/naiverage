@@ -206,14 +206,6 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
         {
             GetPlayerName();
         }
-        else if (action == "Spawn1Webster")
-        {
-            StageHandler.instance.SpawnWebster(1);
-        }
-        else if (action == "Spawn5Webster")
-        {
-            StageHandler.instance.SpawnWebster(5);
-        }
     }
     public bool IsInputWindowActivated()
     {
