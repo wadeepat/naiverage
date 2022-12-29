@@ -16,6 +16,7 @@ public class QuestLog
 
     public static void AddQuest(Quest quest)
     {
+        AudioManager.instance.Play("click");
         questList.Add(quest);
         // HandleOwnedItems(quest);
         if (quest.addAction != null) quest.addAction();
@@ -81,7 +82,7 @@ public class QuestLog
     }
     public static void DoQuest(Quest.Objective.Type type, int id)
     {
-        
+
         foreach (Quest quest in questList)
         {
             if (quest.objective.CheckIndexQuest(type, id))

@@ -16,17 +16,35 @@ public class GameData
     public GameData()
     {
         playerPosition = Vector3.zero;
-        playerLocation = SceneIndex.Tutorial;
+        playerLocation = SceneIndex.Rachne;
         tutorialEvents = new SerializableDictionary<string, bool>{
             {"sataAskToJoin",false},
             {"finishedTutorial",false}
         };
         mapEnable = new SerializableDictionary<SceneIndex, bool>{
-            {SceneIndex.Tutorial,true},
+            {SceneIndex.Rachne,true},
             {SceneIndex.NaverTown,false},
             {SceneIndex.CalfordCastle,false},
             {SceneIndex.BraewoodForest,false},
             {SceneIndex.Cave,false},
         };
+    }
+    public override string ToString()
+    {
+        string temp = "\n";
+        temp += $"name: {this.name}\n";
+        temp += $"lastUpdate: {this.lastUpdated}\n";
+        temp += $"playerLocation: {this.playerLocation.ToString()}\n";
+        temp += $"tutorialEvents:\n";
+        foreach (var i in tutorialEvents)
+        {
+            temp += $"\t{i.Key}: {i.Value}\n";
+        }
+        temp += $"mapEnable:\n";
+        foreach (var i in mapEnable)
+        {
+            temp += $"\t{i.Key}: {i.Value}\n";
+        }
+        return temp;
     }
 }

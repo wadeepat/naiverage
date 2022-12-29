@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableDataPersistence: 1
-  initializeDataIfNull: 1
   overrideSelectedProfileId: 1
   testSelectedProfileId: test
   fileName: data.game

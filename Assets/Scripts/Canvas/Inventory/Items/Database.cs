@@ -12,12 +12,15 @@ public class Database : MonoBehaviour
         {"monster","#FFBD39"},
         {"town","#FF7272"},
     };
-    public static List<Item> itemList = new List<Item>();
-    public static List<Potion> potionList = new List<Potion>();
-    public static List<Item> itemQuestList = new List<Item>();
-    public static List<SkillBook> skillBookList = new List<SkillBook>();
-    public static List<Quest> questList = new List<Quest>();
+
     public static Pearl magicPearl = new Pearl();
+
+    public static List<Item> itemList = new List<Item>();
+    public static List<Item> itemQuestList = new List<Item>();
+    public static List<Monster> monsterList = new List<Monster>();
+    public static List<Potion> potionList = new List<Potion>();
+    public static List<Quest> questList = new List<Quest>();
+    public static List<SkillBook> skillBookList = new List<SkillBook>();
     public static List<Skill> skillList = new List<Skill>();
 
     private GameObject CanvasObject;
@@ -60,6 +63,26 @@ public class Database : MonoBehaviour
         skillList.Add(new Skill(2, "SK2", "None", Resources.Load<Sprite>("sk2"), 0, false, 2, 0, 1, 1000));
         skillList.Add(new Skill(3, "SK3", "None", Resources.Load<Sprite>("sk3"), 0, false, 3, 0, 1, 1500));
         skillList.Add(new Skill(4, "SK4", "None", Resources.Load<Sprite>("sk4"), 0, false, 4, 0, 1, 2000));
+
+        //* Monster section id, hp, atk, def, res, reHp
+        //MonsterId.Webster
+        monsterList.Add(new Monster(0, 100, 20, 10, 0, 1));
+        // MonsterId.Venom
+        monsterList.Add(new Monster(1, 100, 20, 10, 0, 1));
+        // MonsterId.Rachne
+        monsterList.Add(new Monster(2, 100, 20, 10, 0, 1));
+        // MonsterId.Bandit
+        monsterList.Add(new Monster(3, 100, 20, 10, 0, 1));
+        // MonsterId.Elf
+        monsterList.Add(new Monster(4, 100, 20, 10, 0, 1));
+        // MonsterId.Skeleton
+        monsterList.Add(new Monster(5, 100, 20, 10, 0, 1));
+        // MonsterId.Troll
+        monsterList.Add(new Monster(6, 500, 20, 10, 0, 1));
+        // MonsterId.Cain
+        monsterList.Add(new Monster(7, 100, 20, 10, 0, 1));
+        // MonsterId.Abel
+        monsterList.Add(new Monster(8, 100, 20, 10, 0, 1));
 
         //* Quest section
         questList.Add(
@@ -191,7 +214,7 @@ public class Database : MonoBehaviour
                 addAction = () =>
                 {
                     ActivateTutorialCard("NormalAttack", true);
-                    StageHandler.instance.SpawnWebster(1);
+                    StageHandler.instance.EventTrigger("Spawn1Webster");
                 },
                 compleltedAction = () =>
                 {
@@ -205,8 +228,8 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 5,
-                questName = $"ช่วยเหลือ <color={COLORS["char"]}ซาตะ</color>",
-                questDescription = $"<color={COLORS["char"]}ซาตะ</color> ช่างน่าสงสารเสียจริง ไปเก็บขาเแมงมุมเพื่อช่วย <color={COLORS["char"]}ซาตะ</color> กันเถอะ",
+                questName = $"ช่วยเหลือ <color={COLORS["char"]}>Sata</color>",
+                questDescription = $"<color={COLORS["char"]}>Sata</color> ช่างน่าสงสารเสียจริง ไปเก็บขาเแมงมุมเพื่อช่วย <color={COLORS["char"]}>Sata</color> กันเถอะ",
                 MPReward = 1000,
                 SBReward = "",
                 questCategory = 0,
@@ -219,7 +242,7 @@ public class Database : MonoBehaviour
                 addAction = () =>
                 {
                     ActivateTutorialCard("Skill", true);
-                    StageHandler.instance.SpawnWebster(5);
+                    StageHandler.instance.EventTrigger("Spawn5Webster");
                 },
                 compleltedAction = () =>
                 {
@@ -232,8 +255,8 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 6,
-                questName = $"เดินทางไปยังเมือง <color={COLORS["town"]}>เนเวอร์</color>",
-                questDescription = $"มีเรื่องราวลึกลับ และน่าสนใจรอเจ้าอยู่ ออกเดินทางไปยังเมือง <color={COLORS["town"]}>เนเวอร์</color> ตาม <color={COLORS["char"]}ซาตะ</color> ไปกันเถอะ",
+                questName = $"เดินทางไปยังเมือง <color={COLORS["town"]}>Naver</color>",
+                questDescription = $"มีเรื่องราวลึกลับ และน่าสนใจรอเจ้าอยู่ ออกเดินทางไปยังเมือง <color={COLORS["town"]}>Naver</color> ตาม <color={COLORS["char"]}Sata</color> ไปกันเถอะ",
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -264,7 +287,7 @@ public class Database : MonoBehaviour
 
         //     }
         // );
-        Debug.LogWarning($"questSize = {questList.Count}");
+        // Debug.LogWarning($"questSize = {questList.Count}");
     }
     private void ActivateTutorialCard(string cardName, bool active)
     {

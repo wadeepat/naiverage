@@ -110,6 +110,7 @@ public class UI_QuestLog : MonoBehaviour
 
     private Button InitializeButton(int index)
     {
+        //TODO fix error here
         Button button = Instantiate(questInListPrefab, listTransform).GetComponent<Button>();
         // button.image.rectTransform.sizeDelta = new Vector2(0, 80);
         button.image.rectTransform.anchoredPosition = new Vector2(0, 140 - (40 * index));

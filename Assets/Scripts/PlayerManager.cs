@@ -38,13 +38,13 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
     public void ChangePlayerLocationToCurrent()
     {
         this.playerLocation = (SceneIndex)SceneManager.GetActiveScene().buildIndex;
-        Debug.LogWarning("Change to " + ((SceneIndex)playerLocation).ToString());
+        // Debug.Log("Change to " + ((SceneIndex)playerLocation).ToString());
     }
     public void LoadData(GameData data)
     {
         // Debug.Log("Load from PlayerManager");
         this.playerLocation = data.playerLocation;
-        Debug.Log(this.playerLocation);
+        // Debug.Log(this.playerLocation);
         this.mapEnable = data.mapEnable;
         playerEvents = data.tutorialEvents;
 

@@ -72,10 +72,6 @@ public class DialogueManager : MonoBehaviour
         }
         assetsInputs = Player.GetComponent<StarterAssetsInputs>();
     }
-    // public static DialogueManager GetInstance()
-    // {
-    //     return instance;
-    // }
     private void Update()
     {
         if (!dialogueIsPlaying)
@@ -91,7 +87,6 @@ public class DialogueManager : MonoBehaviour
             ContinueStory();
         }
     }
-
     public void EnterDialogueMode(TextAsset inkJSON)
     {
         _player = GameObject.FindGameObjectWithTag("Player");
@@ -106,8 +101,6 @@ public class DialogueManager : MonoBehaviour
 
         playerName = ActionHandler.instance.playerName;
         if (String.IsNullOrEmpty(playerName)) playerName = "Me";
-        // Debug.Log("name "+ playerName);
-        // Debug.Log("name == black "+ playerName);
 
         dialogueVariables.StartListenning(currentStory);
 
@@ -233,13 +226,8 @@ public class DialogueManager : MonoBehaviour
                     ActionHandler.instance.ReceiveActionThenContinueStory(tagValue, ContinueStory);
                     break;
                 case EVENT_TAG:
-                    // EndTheDialogue();
                     StageHandler.instance.EventTrigger(tagValue);
                     break;
-                // case "end":
-                //     EndTheDialogue();
-                //     ActionHandler.instance.ReceiveActionThenContinueStory(tagValue, ContinueStory);
-                //     break;
                 default:
                     Debug.LogWarning("Tag came in but is not being handled: " + tag);
                     break;

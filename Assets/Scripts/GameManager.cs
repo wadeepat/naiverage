@@ -14,6 +14,6 @@ public class GameManager : MonoBehaviour
     private void NewGame()
     {
         SceneManager.UnloadSceneAsync((int)SceneIndex.MainMenu);
-        SceneManager.LoadSceneAsync((int)SceneIndex.Tutorial, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync((int)SceneIndex.Rachne, LoadSceneMode.Additive);
     }
 }
