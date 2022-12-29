@@ -7,7 +7,7 @@ public class DataPersistenceManager : MonoBehaviour
 {
     [Header("Debugging")]
     [SerializeField] public bool disableDataPersistence = false;
-    [SerializeField] private bool initializeDataIfNull = false;
+    // [SerializeField] private bool initializeDataIfNull = false;
     [SerializeField] private bool overrideSelectedProfileId = false;
     [SerializeField] private string testSelectedProfileId = "test";
 
@@ -31,7 +31,6 @@ public class DataPersistenceManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this.gameObject);
 
-
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
 
         InitializeSelectedProfiledId();
@@ -46,7 +45,7 @@ public class DataPersistenceManager : MonoBehaviour
                 // Debug.LogWarning("Game data is nulllllll");
                 NewGame();
                 this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-                LoadGame(true);
+                LoadGame(false);
             }
         }
     }
@@ -109,10 +108,10 @@ public class DataPersistenceManager : MonoBehaviour
         //load any saved data from a data handler
         if (isLoadFromFile) this.gameData = dataHandler.Load(selectedProfileId);
 
-        if (initializeDataIfNull)
-        {
-            NewGame();
-        }
+        // if (initializeDataIfNull)
+        // {
+        //     NewGame();
+        // }
         //if no data can be loaded, initialize to a new game
         if (this.gameData == null)
         {
@@ -125,7 +124,8 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.LoadData(gameData);
         }
-
+        //Debug for load data
+        Debug.Log("Game Data Load: " + gameData.ToString());
     }
     public void SaveGame(bool isSaveToFile)
     {
@@ -141,7 +141,6 @@ public class DataPersistenceManager : MonoBehaviour
         }
         //time stamp
         gameData.lastUpdated = System.DateTime.Now.ToBinary();
-        // Debug.Log("Saved finished turtorial = " + gameData.finishedTutorial);
 
         //save that data to a file using the data handler
         if (isSaveToFile && !disableDataPersistence) dataHandler.Save(gameData, selectedProfileId);
@@ -151,10 +150,6 @@ public class DataPersistenceManager : MonoBehaviour
         IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>(true).OfType<IDataPersistence>();
         return new List<IDataPersistence>(dataPersistenceObjects);
     }
-    // private void OnApplicationQuit()
-    // {
-    //     SaveGame(true);
-    // }
     public bool HasGameData()
     {
         return gameData != null;

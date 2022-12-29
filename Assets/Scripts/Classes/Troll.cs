@@ -96,7 +96,7 @@ public class Troll : Enemy
     {
         if (weaponColliderScript.isCollided)
         {
-            Debug.LogWarning("Low Attack hit");
+            // Debug.LogWarning("Low Attack hit");
             target.gameObject.GetComponent<PlayerStatus>().TakeDamaged(damage);
             return true;
         }
@@ -107,7 +107,7 @@ public class Troll : Enemy
         // transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y - 25, transform.rotation.z);
         if (weaponColliderScript.isCollided)
         {
-            Debug.LogWarning("Heavt Attack hit");
+            // Debug.LogWarning("Heavt Attack hit");
             target.gameObject.GetComponent<PlayerStatus>().TakeDamaged(damage);
             return true;
         }

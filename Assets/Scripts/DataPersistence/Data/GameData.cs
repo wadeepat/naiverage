@@ -7,7 +7,7 @@ public class GameData
 {
     public string name;
     public long lastUpdated;
-    public string playerLocation;
+    public SceneIndex playerLocation;
     public Vector3 playerPosition;
     public SerializableDictionary<string, bool> tutorialEvents;
     public SerializableDictionary<SceneIndex, bool> mapEnable;
@@ -16,7 +16,7 @@ public class GameData
     public GameData()
     {
         playerPosition = Vector3.zero;
-        playerLocation = "Tutorial";
+        playerLocation = SceneIndex.Tutorial;
         tutorialEvents = new SerializableDictionary<string, bool>{
             {"sataAskToJoin",false},
             {"finishedTutorial",false}

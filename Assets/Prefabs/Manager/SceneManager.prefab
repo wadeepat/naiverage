@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingSprites:
   - {fileID: 21300000, guid: 4476c0a8356cfef4eb93e7d07b480d65, type: 3}
-  - {fileID: 21300000, guid: f352c8521d03c8049816c6ee8c561a4a, type: 3}
+  - {fileID: 21300000, guid: 14f50e68f16e7b147b858ae3391fa8eb, type: 3}
   - {fileID: 21300000, guid: 4476c0a8356cfef4eb93e7d07b480d65, type: 3}
-  - {fileID: 21300000, guid: 4476c0a8356cfef4eb93e7d07b480d65, type: 3}
-  - {fileID: 21300000, guid: 4476c0a8356cfef4eb93e7d07b480d65, type: 3}
+  - {fileID: 21300000, guid: fdd7fa6e2229797488a58629c0103152, type: 3}
+  - {fileID: 21300000, guid: 93123e6b57c131c4ead19ba080b36b90, type: 3}

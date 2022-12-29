@@ -65,7 +65,6 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Start()
     {
-        Debug.LogWarning("Start");
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = stoppingDistance;
         animator = GetComponent<Animator>();
@@ -179,8 +178,6 @@ public class Enemy : MonoBehaviour
     public void OnPatrollStateUpdate()
     {
         float distance = Vector2.Distance(target.position, transform.position);
-        // float distance = Vector3.Distance(target.position, transform.position);
-        // Debug.Log("")
         if (distance < chaseRange)
         {
             animator.SetBool("isChasing", true);

@@ -115,7 +115,6 @@ public class DialogueManager : MonoBehaviour
         displayNameText.text = "???";
 
         ContinueStory();
-        Debug.LogWarning("EnterDialogue");
     }
     private IEnumerator ExitDialogueMode()
     {
@@ -227,7 +226,6 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case QUEST_TAG:
                     EndTheDialogue();
-                    Debug.Log("Quest: " + tagValue);
                     QuestLog.AddQuest(Database.questList[int.Parse(tagValue)]);
                     break;
                 case ACTION_TAG:

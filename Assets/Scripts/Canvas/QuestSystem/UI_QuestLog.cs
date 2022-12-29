@@ -27,18 +27,13 @@ public class UI_QuestLog : MonoBehaviour
     {
         if (questLogObject == null)
         {
-            Debug.LogWarning("questLogObject null");
             questLogObject = GameObject.Find("Canvas").transform.Find("Panel").Find("Character panel").Find("All funtion").Find("Quest").GetChild(0).gameObject;
             questButtons = new Button[0];
             previousButtonIndex = 0;
             QuestLog.Initialize();
             QuestLog.onQuestChange += UpdateQuests;
-            // UpdateQuests(new List<Quest>(), new List<Quest>());
 
         }
-        // if(q)
-
-        // QuestLog.onQuestChange += UpdateQuests;
     }
     private void Update()
     {

@@ -111,6 +111,7 @@ public class StageHandler : MonoBehaviour
     }
     public void MovePlayer(int previousScene)
     {
+        Debug.Log("Previous " + ((SceneIndex)previousScene).ToString());
         Transform player = PlayerManager.instance.player.transform;
         switch (activeSceneIndex)
         {
@@ -136,11 +137,11 @@ public class StageHandler : MonoBehaviour
                 }
                 break;
         }
+        PlayerManager.instance.ChangePlayerLocationToCurrent();
     }
     //For tutorialScene
     public void SpawnWebster(int num)
     {
-        Debug.LogWarning("SpawnWEber " + num);
         if (num == 1)
         {
             spawn0.SpawnMonster(0, 1);
