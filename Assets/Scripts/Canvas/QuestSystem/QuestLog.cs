@@ -10,8 +10,18 @@ public class QuestLog
     public static event OnQuestChange onQuestChange;
     public static void Initialize()
     {
+        Debug.Log("new QuestList");
         questList = new List<Quest>();
         completedQuest = new List<Quest>();
+    }
+    public static void LoadQuest(List<Quest> questL, List<Quest> completeL)
+    {
+        questList = questL;
+        completedQuest = completeL;
+    }
+    public static (List<Quest> q, List<Quest> c) GetAllQuestList()
+    {
+        return (questList, completedQuest);
     }
 
     public static void AddQuest(Quest quest)
@@ -59,6 +69,18 @@ public class QuestLog
 
     public static Quest getQuestNo(int index)
     {
+        string temp = "";
+        foreach (Quest q in questList)
+        {
+            temp += q.questId + "\n";
+        }
+        Debug.Log("questList: \n" + temp);
+        temp = "";
+        foreach (Quest q in completedQuest)
+        {
+            temp += q.questId + "\n";
+        }
+        Debug.Log("completeList: \n" + temp);
         if (index < questList.Count)
             return questList[index];
         else

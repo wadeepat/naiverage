@@ -109,11 +109,6 @@ public class DataPersistenceManager : MonoBehaviour
         //load any saved data from a data handler
         if (isLoadFromFile) this.gameData = dataHandler.Load(selectedProfileId);
 
-        // if (initializeDataIfNull)
-        // {
-        //     NewGame();
-        // }
-        //if no data can be loaded, initialize to a new game
         if (this.gameData == null)
         {
             Debug.Log("No data was found. Need to go to NewGame");

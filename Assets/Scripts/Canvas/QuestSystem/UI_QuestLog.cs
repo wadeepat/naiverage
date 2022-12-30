@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UI_QuestLog : MonoBehaviour
+public class UI_QuestLog : MonoBehaviour, IDataPersistence
 {
     public GameObject questInListPrefab;
     public RectTransform listTransform;
@@ -30,9 +30,8 @@ public class UI_QuestLog : MonoBehaviour
             questLogObject = GameObject.Find("Canvas").transform.Find("Panel").Find("Character panel").Find("All funtion").Find("Quest").GetChild(0).gameObject;
             questButtons = new Button[0];
             previousButtonIndex = 0;
-            QuestLog.Initialize();
+            // QuestLog.Initialize();
             QuestLog.onQuestChange += UpdateQuests;
-
         }
     }
     private void Update()
@@ -145,4 +144,16 @@ public class UI_QuestLog : MonoBehaviour
         ShowQuestDetails(currentQuest);
     }
 
+    public void LoadData(GameData data)
+    {
+        QuestLog.LoadQuest(data.questList, data.completedQuestList);
+    }
+
+    public void SaveData(GameData data)
+    {
+        // (List<Quest> q, List<Quest> c) = QuestLog.GetAllQuestList();
+        var allQuestList = QuestLog.GetAllQuestList();
+        data.questList = allQuestList.q;
+        data.completedQuestList = allQuestList.c;
+    }
 }
