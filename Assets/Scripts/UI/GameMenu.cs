@@ -23,7 +23,7 @@ public class GameMenu : MonoBehaviour
     public void ClickedMainMenu()
     {
         confirmationPopupMenu.ActivateMenu(
-            "Are you sure to go to MainMenu ?\n the data after checkpoint will is not be saved.(for now is saved)",
+            "ต้องการที่จะกลับไปที่เมนูหลักใช่หรือไม่?\nข้อมูลหลังจากจุด checkpoint จะไม่ถูกบันทึก(ตอนนี้เซฟ)",
             () =>
             {
                 //TODO change to save when checkpoint

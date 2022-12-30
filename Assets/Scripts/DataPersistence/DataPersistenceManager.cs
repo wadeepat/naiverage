@@ -43,6 +43,7 @@ public class DataPersistenceManager : MonoBehaviour
             if (this.gameData == null)
             {
                 // Debug.LogWarning("Game data is nulllllll");
+                selectedProfileId = testSelectedProfileId;
                 NewGame();
                 this.dataPersistenceObjects = FindAllDataPersistenceObjects();
                 LoadGame(false);
@@ -157,5 +158,10 @@ public class DataPersistenceManager : MonoBehaviour
     public Dictionary<string, GameData> GetAllProfilesGameData()
     {
         return dataHandler.LoadAllProfiles();
+    }
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteKey(testSelectedProfileId);
+        DeleteProfileData(testSelectedProfileId);
     }
 }

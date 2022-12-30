@@ -26,17 +26,19 @@ public class SceneLoadingManager : MonoBehaviour
         // sliderLoading = LoadingScreen.transform.Find("Slider").GetComponent<Slider>();
         DontDestroyOnLoad(this.gameObject);
     }
-
-    // private void Start()
-    // {
-    //     LoadingScreen = GameObject.Find("Canvas").transform.Find("LoadingScreen").gameObject;
-    //     sliderLoading = LoadingScreen.transform.Find("Slider").GetComponent<Slider>();
-    // }
     public void LoadScene(SceneIndex sceneName)
     {
         LoadingScreen = GameObject.Find("Canvas").transform.Find("LoadingScreen").gameObject;
         sliderLoading = LoadingScreen.transform.Find("Slider").GetComponent<Slider>();
-        LoadingScreen.transform.Find("Background").GetComponent<Image>().overrideSprite = loadingSprites[(int)sceneName - 1];
+        if ((int)sceneName == 0)
+        {
+            LoadingScreen.transform.Find("Background").GetComponent<Image>().overrideSprite = loadingSprites[0];
+        }
+        else
+        {
+            LoadingScreen.transform.Find("Background").GetComponent<Image>().overrideSprite = loadingSprites[(int)sceneName - 1];
+        }
+
         AudioManager.instance.StopAllTrack();
         AudioManager.instance.Play("loading");
         Cursor.visible = false;

@@ -273,11 +273,13 @@ public class Database : MonoBehaviour
                 },
                 updateAction = () =>
                 {
+                    Debug.Log("Check quest 6 : " + StageHandler.instance.activeSceneIndex);
                     if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown) QuestLog.CompleteQuest(QuestLog.GetQuestById(6));
                 },
                 compleltedAction = () =>
                 {
                     ActivateTutorialCard("WarpAndMap", false);
+                    ActionHandler.instance.AskToSave();
                 },
             }
         );

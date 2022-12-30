@@ -13,6 +13,7 @@ public class SaveSlot : MonoBehaviour
     [Header("Clear Data Button")]
     [SerializeField] private Button clearBtn;
     public bool hasData { get; private set; } = false;
+    private SceneIndex playerLocation;
     private Button saveSlotBtn;
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class SaveSlot : MonoBehaviour
             noDataContent.SetActive(true);
             hasDataContent.SetActive(false);
             clearBtn.interactable = false;
+            playerLocation = SceneIndex.Rachne;
         }
         else
         {
@@ -33,12 +35,17 @@ public class SaveSlot : MonoBehaviour
             noDataContent.SetActive(false);
             hasDataContent.SetActive(true);
             clearBtn.interactable = true;
+            playerLocation = data.playerLocation;
         }
     }
 
     public string GetProfileId()
     {
         return profileId;
+    }
+    public SceneIndex GetPlayerLocation()
+    {
+        return playerLocation;
     }
     public void SetInteractable(bool interactable)
     {
