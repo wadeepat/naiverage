@@ -3039,8 +3039,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterLists:
-  - name: Webster
+  - monsterId: 0
     model: {fileID: 8733751807232723094, guid: 75a1daa54bede164b85ac0aaa7394931, type: 3}
+  - monsterId: 1
+    model: {fileID: 9202913227306414466, guid: 1ab50af5dad9e2c4b83ab7ec4c5bc993, type: 3}
+  - monsterId: 2
+    model: {fileID: 1587964872550084274, guid: 9907ba29d4d3a8e49a4383cebebf9528, type: 3}
+  - monsterId: 3
+    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+  - monsterId: 4
+    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+  - monsterId: 5
+    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+  - monsterId: 6
+    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+  - monsterId: 7
+    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+  - monsterId: 8
+    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+  enableTest: 0
+  monsterTestLists: []
 --- !u!1 &900408049
 GameObject:
   m_ObjectHideFlags: 0
@@ -11609,8 +11627,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterLists:
-  - name: Webster
+  - monsterId: 0
     model: {fileID: 8733751807232723094, guid: 75a1daa54bede164b85ac0aaa7394931, type: 3}
+  - monsterId: 1
+    model: {fileID: 9202913227306414466, guid: 1ab50af5dad9e2c4b83ab7ec4c5bc993, type: 3}
+  - monsterId: 2
+    model: {fileID: 1587964872550084274, guid: 9907ba29d4d3a8e49a4383cebebf9528, type: 3}
+  - monsterId: 3
+    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+  - monsterId: 4
+    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+  - monsterId: 5
+    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+  - monsterId: 6
+    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+  - monsterId: 7
+    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+  - monsterId: 8
+    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+  enableTest: 0
+  monsterTestLists: []
 --- !u!1 &1356784213
 GameObject:
   m_ObjectHideFlags: 0

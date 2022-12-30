@@ -207,7 +207,7 @@ public class Database : MonoBehaviour
                 questCategory = 0,
                 objective = new Quest.Objective()
                 {
-                    objectiveId = 1,
+                    objectiveId = (int)MonsterId.Webster,
                     type = Quest.Objective.Type.kill,
                     amount = 1,
                 },
@@ -235,7 +235,7 @@ public class Database : MonoBehaviour
                 questCategory = 0,
                 objective = new Quest.Objective()
                 {
-                    objectiveId = 1,
+                    objectiveId = (int)MonsterId.Webster,
                     type = Quest.Objective.Type.kill,
                     amount = 5,
                 },

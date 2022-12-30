@@ -15,8 +15,9 @@ public class Enemy : MonoBehaviour
     protected const float CD_DAMAGE_ANIM = 3f;
 
     [Header("Enemy Details")]
-    [SerializeField] protected int id;
-    [SerializeField] protected string enemyName;
+    // [SerializeField] protected int id;
+    // [SerializeField] protected string enemyName;
+    [SerializeField] protected MonsterId monsterId;
     [SerializeField] protected float moveSpeed = 1.5f;
     [SerializeField] protected float attackRange = 2f;
     [SerializeField] protected string attackType = "close";
@@ -28,15 +29,12 @@ public class Enemy : MonoBehaviour
 
     [Header("Enemy Stats")]
     [SerializeField] protected float maxHealthPoint;
-    // [Header("Enemy GUIs")]
-    // [SerializeField] private GameObject Canvas;
-    // [SerializeField] private GameObject healthBar;
+
     [Header("Enemy States")]
     [SerializeField] protected float attackCooldown = 2f;
     [SerializeField] protected float stayCooldown = 4f;
     [SerializeField] protected float chaseSpeed = 2.5f;
     [SerializeField] protected float chaseRange = 15f;
-    // [SerializeField] private GameObject waypointObject;
     [Header("Nav settings")]
     [SerializeField] protected float stoppingDistance = 3f;
 
@@ -83,7 +81,6 @@ public class Enemy : MonoBehaviour
             waypoints.Add(wp);
         }
         healthBar.SetActive(false);
-        // slider.value = 1;
     }
     protected virtual void Update()
     {
@@ -114,7 +111,7 @@ public class Enemy : MonoBehaviour
                 //back to patroll
                 animator.SetBool("isChasing", false);
             }
-            else if (distance < attackRange - 1f)
+            else if (distance < attackRange)
             {
                 //attack target
                 animator.SetBool("isAttacking", true); // do attack anim
@@ -124,11 +121,6 @@ public class Enemy : MonoBehaviour
     }
     public void NormalAttack()
     {
-        // if(attackTimer >= attackCooldown)
-        // {
-        //     attackTimer = 0;
-        //     animator.SetBool("isAttacking", false);
-        // }
         transform.LookAt(target);
         float distance = Vector2.Distance(target.position, transform.position);
 
@@ -149,7 +141,7 @@ public class Enemy : MonoBehaviour
     {
         return false;
     }
-    public void ShootProjectileObject()
+    public virtual void ShootProjectileObject()
     {
         GameObject poision = Instantiate(projectileObj, firePoint.position, transform.rotation);
         cooldownTimer = 0;
@@ -246,7 +238,7 @@ public class Enemy : MonoBehaviour
             healthBar.SetActive(false);
             animator.SetTrigger("die");
             GetComponent<BoxCollider>().enabled = false;
-            QuestLog.DoQuest(Quest.Objective.Type.kill, 1);
+            QuestLog.DoQuest(Quest.Objective.Type.kill, (int)monsterId);
             Died();
         }
         else

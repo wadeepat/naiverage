@@ -77,7 +77,7 @@ public class Troll : Enemy
         transform.LookAt(target);
         return TrollAttack(atkName);
     }
-    public bool TrollAttack(string atkName)
+    private bool TrollAttack(string atkName)
     {
         if (atkName == "LowAttack") return LowAttack();
         else if (atkName == "HeavyAttack") return HeavyAttack();
