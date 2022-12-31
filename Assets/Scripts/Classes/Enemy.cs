@@ -105,7 +105,7 @@ public class Enemy : MonoBehaviour
         if (agent.enabled)
         {
             agent.SetDestination(target.position);
-            float distance = Vector2.Distance(target.position, gameObject.transform.position);
+            float distance = Vector3.Distance(target.position, gameObject.transform.position);
             if (distance > chaseRange && damagedTimer >= RAGE_MODE_TIME)
             {
                 //back to patroll
@@ -113,6 +113,7 @@ public class Enemy : MonoBehaviour
             }
             else if (distance < attackRange)
             {
+                // Debug.Log("Can attack: " + distance + " " + attackRange);
                 //attack target
                 animator.SetBool("isAttacking", true); // do attack anim
                 animator.SetBool("isChasing", false);
