@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class UseSkill : MonoBehaviour
 {
     public Transform LHPoint, RHPoint, Point;
-    public GameObject blaze;
-    private GameObject spell1, spell2, spell3;
+    public GameObject fire, water, wind, special;
+    private GameObject spell1, spell2;
     private Animator _anim;
     private Image[] slotSkillsM;
     public GameObject[] allSkill;
@@ -21,8 +21,11 @@ public class UseSkill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (spell1 != null)
+        if(spell1 != null && spell2 != null){
             spell1.transform.position = LHPoint.position;
+            spell2.transform.position = RHPoint.position;
+        }
+        
         // if (InputManager.instance.GetSkill1Pressed())
         // {
         //     UseSkill1();
@@ -42,17 +45,15 @@ public class UseSkill : MonoBehaviour
             _anim.SetBool("Skill", false);
             _anim.SetInteger("SkillNum", 0);
             Destroy(spell1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+            Destroy(spell2);
+        }else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             slotSkillsM = skill.GetComponent<SkillsUnlock>().slotSkillsM;
             GetSkillSlot1();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        }else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             GetSkillSlot2();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        }else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             GetSkillSlot3();
         }
@@ -109,30 +110,21 @@ public class UseSkill : MonoBehaviour
     {
         slotSkillsM[num].fillAmount = 0f;
     }
-    public void UsingSkill(int num)
-    {
-        switch (num)
-        {
-            case 1:
-                spell1 = Instantiate(blaze, LHPoint.position, transform.rotation);
-                Instantiate(allSkill[num - 1], Point.position, transform.rotation);
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
-            case 8:
-                break;
-            case 9:
-                break;
+    public void UsingSkill (int num){
+        if(num == 1 || num == 4 || num == 6){
+            spell1 = Instantiate(fire, LHPoint.position, transform.rotation);
+            spell2 = Instantiate(fire, RHPoint.position, transform.rotation);
+        }else if(num == 2 || num == 9){
+            spell1 = Instantiate(water, LHPoint.position, transform.rotation);
+            spell2 = Instantiate(water, RHPoint.position, transform.rotation);
+        }else if(num == 3 || num == 5){
+            spell1 = Instantiate(wind, LHPoint.position, transform.rotation);
+            spell2 = Instantiate(wind, RHPoint.position, transform.rotation);
+        }else if(num == 7 || num == 8){
+            spell1 = Instantiate(special, LHPoint.position, transform.rotation);
+            spell2 = Instantiate(special, RHPoint.position, transform.rotation);
         }
+        Instantiate(allSkill[num-1], Point.position, transform.rotation);
+        
     }
 }

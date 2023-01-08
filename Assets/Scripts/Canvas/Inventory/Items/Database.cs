@@ -57,6 +57,11 @@ public class Database : MonoBehaviour
         skillBookList.Add(new SkillBook(2, "SKB2", "None", Resources.Load<Sprite>("skb2"), 0));
         skillBookList.Add(new SkillBook(3, "SKB3", "None", Resources.Load<Sprite>("skb3"), 0));
         skillBookList.Add(new SkillBook(4, "SKB4", "None", Resources.Load<Sprite>("skb4"), 0));
+        skillBookList.Add(new SkillBook(5, "SKB5", "None", Resources.Load<Sprite>("skb5"), 0));
+        skillBookList.Add(new SkillBook(6, "SKB6", "None", Resources.Load<Sprite>("skb6"), 0));
+        skillBookList.Add(new SkillBook(7, "SKB7", "None", Resources.Load<Sprite>("skb7"), 0));
+        skillBookList.Add(new SkillBook(8, "SKB8", "None", Resources.Load<Sprite>("skb8"), 0));
+        skillBookList.Add(new SkillBook(9, "SKB9", "None", Resources.Load<Sprite>("skb9"), 0));
 
         magicPearl = new Pearl(0, "Magic Pearl", "None", Resources.Load<Sprite>("Pearl"), 0);
 
@@ -65,6 +70,11 @@ public class Database : MonoBehaviour
         skillList.Add(new Skill(2, "SK2", "None", Resources.Load<Sprite>("sk2"), 0, false, 2, 0, 1, 1000));
         skillList.Add(new Skill(3, "SK3", "None", Resources.Load<Sprite>("sk3"), 0, false, 3, 0, 1, 1500));
         skillList.Add(new Skill(4, "SK4", "None", Resources.Load<Sprite>("sk4"), 0, false, 4, 0, 1, 2000));
+        skillList.Add(new Skill(5, "SK5", "None", Resources.Load<Sprite>("sk5"), 0, false, 1, 0, 1, 500));
+        skillList.Add(new Skill(6, "SK6", "None", Resources.Load<Sprite>("sk6"), 0, false, 2, 0, 1, 1000));
+        skillList.Add(new Skill(7, "SK7", "None", Resources.Load<Sprite>("sk7"), 0, false, 3, 0, 1, 1500));
+        skillList.Add(new Skill(8, "SK8", "None", Resources.Load<Sprite>("sk8"), 0, false, 4, 0, 1, 2000));
+        skillList.Add(new Skill(9, "SK9", "None", Resources.Load<Sprite>("sk9"), 0, false, 4, 0, 1, 2000));
 
         //* Monster section id, hp, atk, def, res, reHp
         //MonsterId.Webster

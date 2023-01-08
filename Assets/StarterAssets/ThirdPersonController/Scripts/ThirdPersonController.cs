@@ -188,6 +188,9 @@ namespace StarterAssets
             {
                 _attackInfo.GetComponent<PlayerAttackController>().FaceToClosestEnemy();
             }
+            else if(_animator.GetCurrentAnimatorStateInfo(0).IsTag("Skill")){
+                _attackInfo.GetComponent<PlayerAttackController>().FaceToClosestEnemy();
+            }
             else
             {
                 JumpAndGravity();
