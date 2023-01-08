@@ -18,6 +18,7 @@ public class DataPersistenceManager : MonoBehaviour
     private List<IDataPersistence> dataPersistenceObjects;
     private FileDataHandler dataHandler;
     public string selectedProfileId { get; private set; } = "";
+    private const string saveVariablesKey = "INK_VARIABLES";
     public static DataPersistenceManager instance { get; private set; }
 
     private void Awake()
@@ -98,6 +99,7 @@ public class DataPersistenceManager : MonoBehaviour
     public void NewGame()
     {
         this.gameData = new GameData();
+        PlayerPrefs.DeleteKey(saveVariablesKey + selectedProfileId);
         Debug.Log("gameData new");
         // LoadGame();
     }
@@ -107,7 +109,11 @@ public class DataPersistenceManager : MonoBehaviour
         Debug.LogWarning("Load game");
 
         //load any saved data from a data handler
-        if (isLoadFromFile) this.gameData = dataHandler.Load(selectedProfileId);
+        if (isLoadFromFile)
+        {
+            this.gameData = dataHandler.Load(selectedProfileId);
+            DialogueManager.instance?.LoadDialogue();
+        }
 
         if (this.gameData == null)
         {
@@ -135,6 +141,7 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.SaveData(gameData);
         }
+        Debug.Log("Game Data save: " + gameData.ToString());
         //time stamp
         gameData.lastUpdated = System.DateTime.Now.ToBinary();
 
@@ -149,6 +156,15 @@ public class DataPersistenceManager : MonoBehaviour
     public bool HasGameData()
     {
         return gameData != null;
+    }
+    public bool HasSomeData()
+    {
+        Dictionary<string, GameData> profilesGameData = GetAllProfilesGameData();
+        foreach (KeyValuePair<string, GameData> data in profilesGameData)
+        {
+            if (data.Value != null) return true;
+        }
+        return false;
     }
     public Dictionary<string, GameData> GetAllProfilesGameData()
     {
