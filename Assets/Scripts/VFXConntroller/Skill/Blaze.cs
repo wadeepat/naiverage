@@ -27,18 +27,19 @@ public class Blaze : MonoBehaviour
 
     private void OnTriggerEnter(Collider target)
     {
-        Debug.Log(target.gameObject.name);
         if (target.gameObject.tag.Contains("Enemy"))
         {
             Debug.Log("destoryE");
-            Instantiate(bomb);
+            Instantiate(bomb, gameObject.transform.position, transform.rotation);
             int damage = PlayerStatus.damageSkill(120);
             target.gameObject.GetComponent<Spider>().TakeDamage(damage);
             Destroy(gameObject);
         }
-        else if (target.gameObject.name == "Terrain")
+        else if (target.gameObject.name == "Terrain"){
             Debug.Log("destoryT");
             Instantiate(bomb, gameObject.transform.position, transform.rotation);
             Destroy(gameObject);
+        }
+        
     }
 }

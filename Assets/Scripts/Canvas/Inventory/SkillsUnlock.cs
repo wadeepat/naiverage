@@ -38,6 +38,19 @@ public class SkillsUnlock : MonoBehaviour
         slotStack[1] += 1;
         skill[2] = Database.skillList[3];
         slotStack[2] += 1;
+        skill[3] = Database.skillList[4];
+        slotStack[3] += 1;
+        skill[4] = Database.skillList[5];
+        slotStack[4] += 1;
+        skill[5] = Database.skillList[6];
+        slotStack[5] += 1;
+        skill[6] = Database.skillList[7];
+        slotStack[6] += 1;
+        skill[7] = Database.skillList[8];
+        slotStack[7] += 1;
+        skill[8] = Database.skillList[9];
+        slotStack[8] += 1;
+
         for(int j=0; j<3; j++) slotStackSkills[j] = -1;
         a = -1;
         b = -1;

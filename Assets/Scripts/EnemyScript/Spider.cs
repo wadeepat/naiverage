@@ -14,7 +14,7 @@ public class Spider : MonoBehaviour
         id = System.Guid.NewGuid().ToString();
     }
     // [SerializeField] GameObject EnemyCanvas;
-    private int hp;
+    private float hp;
     [SerializeField] private GameObject healthBar;
     private Animator animator;
     private Slider slider;
@@ -35,7 +35,7 @@ public class Spider : MonoBehaviour
         else
             slider.value = 0;
     }
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damageAmount)
     {
         hp -= damageAmount;
         if (hp <= 0)
