@@ -146,13 +146,13 @@ MonoBehaviour:
   - monsterId: 2
     model: {fileID: 1587964872550084274, guid: 9907ba29d4d3a8e49a4383cebebf9528, type: 3}
   - monsterId: 3
-    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+    model: {fileID: 1707668823982926798, guid: 8c99b0acd95ad364384cc53c0d658821, type: 3}
   - monsterId: 4
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
   - monsterId: 5
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
   - monsterId: 6
-    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+    model: {fileID: 1862107410815556, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
   - monsterId: 7
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
   - monsterId: 8

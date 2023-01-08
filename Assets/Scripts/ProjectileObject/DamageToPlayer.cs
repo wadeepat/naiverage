@@ -5,6 +5,9 @@ using UnityEngine;
 public class DamageToPlayer : MonoBehaviour
 {
     [SerializeField] private int damageAmount = 20;
+    private void Start()
+    {
+    }
     private void OnTriggerEnter(Collider target)
     {
         // Destroy(gameObject);

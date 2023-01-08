@@ -144,7 +144,7 @@ public class Enemy : MonoBehaviour
     }
     public virtual void ShootProjectileObject()
     {
-        GameObject poision = Instantiate(projectileObj, firePoint.position, transform.rotation);
+        GameObject pObject = Instantiate(projectileObj, firePoint.position, transform.rotation);
         cooldownTimer = 0;
         cooldownTime = attackCooldown;
         animator.SetBool("isAttacking", false);
@@ -189,7 +189,7 @@ public class Enemy : MonoBehaviour
     }
     public virtual void OnIdleStateUpdate()
     {
-        float distance = Vector2.Distance(target.position, transform.position);
+        float distance = Vector3.Distance(target.position, transform.position);
         if (distance <= chaseRange)
         {
             animator.SetBool("isChasing", true);

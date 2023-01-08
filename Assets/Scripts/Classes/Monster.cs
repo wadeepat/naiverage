@@ -7,7 +7,7 @@ public enum MonsterId
     Venom = 1,
     Rachne = 2,
     Bandit = 3,
-    Elf = 4,
+    Goblin = 4,
     Skeleton = 5,
     Troll = 6,
     Cain = 7,

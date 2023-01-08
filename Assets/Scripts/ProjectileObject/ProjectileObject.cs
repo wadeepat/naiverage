@@ -12,8 +12,6 @@ public class ProjectileObject : MonoBehaviour
         Destroy(gameObject, time);
         // gameObject.AddComponent(ObjectCollider);
     }
-
-
     // Update is called once per frame
     void Update()
     {
