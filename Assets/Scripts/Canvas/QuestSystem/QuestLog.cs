@@ -35,6 +35,7 @@ public class QuestLog
         // }
         questList = questL;
         completedQuest = completeL;
+        onQuestChange.Invoke(questList, completedQuest);
     }
     public static (List<Quest> q, List<Quest> c) GetAllQuestList()
     {

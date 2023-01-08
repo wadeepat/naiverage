@@ -286,7 +286,7 @@ public class Database : MonoBehaviour
             {
                 questId = 7,
                 questName = $"เดินทางไปยังเมือง <color={COLORS["town"]}>Naver</color>",
-                questDescription = $"มีเรื่องราวลึกลับ และน่าสนใจรอเจ้าอยู่ ออกเดินทางไปยังเมือง <color={COLORS["town"]}>Naver</color> ตาม <color={COLORS["char"]}Sata</color> ไปกันเถอะ",
+                questDescription = $"มีเรื่องราวลึกลับ และน่าสนใจรอเจ้าอยู่ ออกเดินทางไปยังเมือง <color={COLORS["town"]}>Naver</color> ตาม <color={COLORS["char"]}>Sata</color> ไปกันเถอะ",
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,

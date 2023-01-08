@@ -3046,19 +3046,21 @@ MonoBehaviour:
   - monsterId: 2
     model: {fileID: 1587964872550084274, guid: 9907ba29d4d3a8e49a4383cebebf9528, type: 3}
   - monsterId: 3
-    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+    model: {fileID: 1707668823982926798, guid: 8c99b0acd95ad364384cc53c0d658821, type: 3}
   - monsterId: 4
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
   - monsterId: 5
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
   - monsterId: 6
-    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+    model: {fileID: 1862107410815556, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
   - monsterId: 7
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
   - monsterId: 8
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
   enableTest: 0
-  monsterTestLists: []
+  monsterTestLists:
+  - monsterId: 0
+    amount: 1
 --- !u!1 &900408049
 GameObject:
   m_ObjectHideFlags: 0
@@ -11634,19 +11636,21 @@ MonoBehaviour:
   - monsterId: 2
     model: {fileID: 1587964872550084274, guid: 9907ba29d4d3a8e49a4383cebebf9528, type: 3}
   - monsterId: 3
-    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+    model: {fileID: 1707668823982926798, guid: 8c99b0acd95ad364384cc53c0d658821, type: 3}
   - monsterId: 4
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
   - monsterId: 5
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
   - monsterId: 6
-    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+    model: {fileID: 1862107410815556, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
   - monsterId: 7
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
   - monsterId: 8
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
   enableTest: 0
-  monsterTestLists: []
+  monsterTestLists:
+  - monsterId: 0
+    amount: 1
 --- !u!1 &1356784213
 GameObject:
   m_ObjectHideFlags: 0
@@ -12391,6 +12395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c08b19ec3a84874dbc1f24d90567dc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idx: 0
   inkJSON: {fileID: 4900000, guid: cec8353ff62addc4b8f04a1e31ffc890, type: 3}
 --- !u!136 &1558218985
 CapsuleCollider:
@@ -12834,7 +12839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneIndex: 1
   NPCs:
-  - name: Sata
+  - idx: 0
     Object: {fileID: 1558218979}
   t_startGate: {fileID: 1057673411}
   t_naverGate: {fileID: 177314297}
