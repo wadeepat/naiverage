@@ -26,9 +26,11 @@ public class Database : MonoBehaviour
     private GameObject CanvasObject;
     private GameObject TutorialCardObject;
     private GameObject PotionPanel;
+    private ChapterCard chapterCardScript;
     void Awake()
     {
         CanvasObject = GameObject.Find("Canvas");
+        chapterCardScript = CanvasObject.transform.Find("ChapterCard").GetComponent<ChapterCard>();
         TutorialCardObject = CanvasObject.transform.Find("TutorialGuiding").gameObject;
         PotionPanel = CanvasObject.transform.Find("Panel").Find("Character panel").Find("All funtion").Find("Potion").gameObject;
         // (id,name,description)
@@ -73,7 +75,7 @@ public class Database : MonoBehaviour
         monsterList.Add(new Monster(2, 100, 20, 10, 0, 1));
         // MonsterId.Bandit
         monsterList.Add(new Monster(3, 100, 20, 10, 0, 1));
-        // MonsterId.Elf
+        // MonsterId.Goblin
         monsterList.Add(new Monster(4, 100, 20, 10, 0, 1));
         // MonsterId.Skeleton
         monsterList.Add(new Monster(5, 100, 20, 10, 0, 1));
@@ -85,6 +87,7 @@ public class Database : MonoBehaviour
         monsterList.Add(new Monster(8, 100, 20, 10, 0, 1));
 
         //* Quest section
+        //* chapter 0
         questList.Add(
             new Quest()
             {
@@ -102,6 +105,7 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
+                    chapterCardScript.ActivateMenu(0);
                     ActivateTutorialCard("Walking", true);
                 },
                 compleltedAction = () =>
@@ -228,9 +232,9 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 5,
-                questName = $"ช่วยเหลือ <color={COLORS["char"]}>Sata</color>",
+                questName = $"ช่วยเหลือ <color={COLORS["char"]}>Sata</color> (1/2)",
                 questDescription = $"<color={COLORS["char"]}>Sata</color> ช่างน่าสงสารเสียจริง ไปเก็บขาเแมงมุมเพื่อช่วย <color={COLORS["char"]}>Sata</color> กันเถอะ",
-                MPReward = 1000,
+                MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
                 objective = new Quest.Objective()
@@ -246,8 +250,8 @@ public class Database : MonoBehaviour
                 },
                 compleltedAction = () =>
                 {
-                    ActivateTutorialCard("Skill", false);
-                    StageHandler.instance.EventTrigger("CompletedTutorial");
+                    // ActivateTutorialCard("Skill", false);
+                    QuestLog.AddQuest(questList[6]);
                 },
             }
         );
@@ -255,6 +259,32 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 6,
+                questName = $"ช่วยเหลือ <color={COLORS["char"]}>Sata</color> (2/2)",
+                questDescription = $"ไปคุยกับ <color={COLORS["char"]}>Sata</color> เพื่อรับรางวัล",
+                MPReward = 1000,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Sata,
+                    type = Quest.Objective.Type.talk,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    ActivateTutorialCard("Skill", true);
+                    StageHandler.instance.EventTrigger("Spawn5Webster");
+                },
+                compleltedAction = () =>
+                {
+                    ActivateTutorialCard("Skill", false);
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 7,
                 questName = $"เดินทางไปยังเมือง <color={COLORS["town"]}>Naver</color>",
                 questDescription = $"มีเรื่องราวลึกลับ และน่าสนใจรอเจ้าอยู่ ออกเดินทางไปยังเมือง <color={COLORS["town"]}>Naver</color> ตาม <color={COLORS["char"]}Sata</color> ไปกันเถอะ",
                 MPReward = 0,
@@ -269,20 +299,22 @@ public class Database : MonoBehaviour
                 addAction = () =>
                 {
                     ActivateTutorialCard("WarpAndMap", true);
+                    StageHandler.instance.EventTrigger("CompletedTutorial");
                     StageHandler.instance.EventTrigger("SataLeadToTown");
                 },
                 updateAction = () =>
                 {
-                    Debug.Log("Check quest 6 : " + StageHandler.instance.activeSceneIndex);
-                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown) QuestLog.CompleteQuest(QuestLog.GetQuestById(6));
+                    // Debug.Log("Check quest 6 : " + StageHandler.instance.activeSceneIndex);
+                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown) QuestLog.CompleteQuest(QuestLog.GetQuestById(7));
                 },
                 compleltedAction = () =>
                 {
                     ActivateTutorialCard("WarpAndMap", false);
-                    ActionHandler.instance.AskToSave();
+                    chapterCardScript.ActivateMenu(1);
                 },
             }
         );
+        //* chapter 1
         // questList.Add(
         //     new Quest()
         //     {

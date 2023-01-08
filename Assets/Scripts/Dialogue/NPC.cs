@@ -12,6 +12,7 @@ public class NPC : MonoBehaviour
 {
 
     [Header("Ink JSON")]
+    [SerializeField] private NPCIndex idx;
     [SerializeField] private TextAsset inkJSON;
     private NavMeshAgent agent;
     private Animator animator;
@@ -53,9 +54,10 @@ public class NPC : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && InputManager.instance.GetInteractPressed() && !DialogueManager.dialogueIsPlaying)
         {
-            //TODO talk sound
-            // AudioManager.instance.Play("click");
-            DialogueManager.instance.EnterDialogueMode(inkJSON);
+            if (QuestLog.IsThereSomeQuestTalk(idx) != -1)
+                QuestLog.DoQuest(Quest.Objective.Type.talk, (int)NPCIndex.Sata);
+            else
+                DialogueManager.instance.EnterDialogueMode(inkJSON);
         }
     }
     private void OnTriggerExit(Collider collider)

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UI_QuestLog : MonoBehaviour, IDataPersistence
+public class UI_QuestLog : MonoBehaviour
 {
     public GameObject questInListPrefab;
     public RectTransform listTransform;
@@ -36,6 +36,7 @@ public class UI_QuestLog : MonoBehaviour, IDataPersistence
     }
     private void Update()
     {
+        // if (QuestLog.isQuestNull())
         QuestLog.DoQuestProcess();
     }
     private void OnDestroy()
@@ -120,7 +121,7 @@ public class UI_QuestLog : MonoBehaviour, IDataPersistence
     private void UpdateQuestText(Button questButton, Quest quest, bool isCompleted = false)
     {
         TMP_Text text = questButton.GetComponentInChildren<TMP_Text>();
-        text.text = quest.questName;
+        text.text = quest?.questName;
         // text.color = isCompleted ? new Color(201/255f, 165/255f, 157/255f, 1) : GetColorFromCategory(quest.questCategory);
         text.color = isCompleted ? Color.gray : GetColorFromCategory(quest.questCategory);
     }
@@ -144,16 +145,20 @@ public class UI_QuestLog : MonoBehaviour, IDataPersistence
         ShowQuestDetails(currentQuest);
     }
 
-    public void LoadData(GameData data)
-    {
-        QuestLog.LoadQuest(data.questList, data.completedQuestList);
-    }
+    // public void LoadData(GameData data)
+    // {
+    //     Debug.Log("data from UI_Quest: " + data.questList.ToString());
+    //     // if(QuestLog.que)
+    //     QuestLog.LoadQuest(data.questList, data.completedQuestList);
+    // }
 
-    public void SaveData(GameData data)
-    {
-        // (List<Quest> q, List<Quest> c) = QuestLog.GetAllQuestList();
-        var allQuestList = QuestLog.GetAllQuestList();
-        data.questList = allQuestList.q;
-        data.completedQuestList = allQuestList.c;
-    }
+    // public void SaveData(GameData data)
+    // {
+    //     // (List<Quest> q, List<Quest> c) = QuestLog.GetAllQuestList();
+    //     var allQuestList = QuestLog.GetAllQuestList();
+
+
+    //     data.questList = allQuestList.q;
+    //     data.completedQuestList = allQuestList.c;
+    // }
 }

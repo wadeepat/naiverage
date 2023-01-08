@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+[System.Serializable]
 public class Quest
 {
     public int questId;
@@ -20,6 +21,7 @@ public class Quest
     {
         public enum Type { kill, talk, collect, interact };
         public Type type;
+        public NPCIndex npc;
         public int amount;
         // public int objectiveId{ get; private set;}
         [System.NonSerialized]

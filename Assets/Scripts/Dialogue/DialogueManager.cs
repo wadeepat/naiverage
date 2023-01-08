@@ -87,6 +87,10 @@ public class DialogueManager : MonoBehaviour
             ContinueStory();
         }
     }
+    public void LoadDialogue()
+    {
+        dialogueVariables = new DialogueVariables(loadGlobalsJSON);
+    }
     public void EnterDialogueMode(TextAsset inkJSON)
     {
         _player = GameObject.FindGameObjectWithTag("Player");

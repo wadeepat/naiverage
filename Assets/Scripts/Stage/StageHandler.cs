@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[System.Serializable]
-public class NPC_Details
-{
-    public string name;
-    public GameObject Object;
-}
 public class StageHandler : MonoBehaviour
 {
+    [System.Serializable]
+    private class NPC_Details
+    {
+        public NPCIndex idx;
+        public GameObject Object;
+    }
     [SerializeField] private SceneIndex sceneIndex;
     [SerializeField] private NPC_Details[] NPCs;
 
@@ -75,18 +75,6 @@ public class StageHandler : MonoBehaviour
             case SceneIndex.Cave:
                 break;
         }
-        // if (sceneIndex == SceneIndex.Rachne)
-        // {
-        //     AudioManager.instance.Play("forestBackground");
-        //     if (DialogueManager.instance.GetVariableState("readOP").ToString().Equals("false"))
-        //     {
-        //         DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("Opening"));
-        //     }
-        //     if (!PlayerManager.instance.playerEvents["finishedTutorial"])
-        //     {
-        //         EventTrigger("SetupForTutorial");
-        //     }
-        // }
     }
     public void EventTrigger(string eventName)
     {
@@ -140,6 +128,10 @@ public class StageHandler : MonoBehaviour
                         player.position = n_rachneGate.position;
                         player.rotation = n_rachneGate.rotation;
                         break;
+                    case (int)SceneIndex.NaverTown:
+                        player.position = n_rachneGate.position;
+                        player.rotation = n_rachneGate.rotation;
+                        break;
                 }
                 break;
         }
@@ -153,7 +145,7 @@ public class StageHandler : MonoBehaviour
             case "SataAppear":
                 foreach (NPC_Details npc in NPCs)
                 {
-                    if (npc.name == "Sata")
+                    if (npc.idx == NPCIndex.Sata)
                     {
                         npc.Object.SetActive(true);
                         DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("SataCall"));
@@ -183,7 +175,7 @@ public class StageHandler : MonoBehaviour
             case "SataLeadToTown":
                 foreach (NPC_Details npc in NPCs)
                 {
-                    if (npc.name == "Sata")
+                    if (npc.idx == NPCIndex.Sata)
                     {
                         npc.Object.GetComponent<NPC>().Goto(t_naverGate);
                         break;

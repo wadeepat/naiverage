@@ -20,13 +20,7 @@ public class DialogueVariables
         //create the story
         globalVariablesStory = new Story(loadGlobalsJSON.text);
         //if we have saved data then load it
-        selectedProfileId = DataPersistenceManager.instance.selectedProfileId;
-        if (PlayerPrefs.HasKey(saveVariablesKey + selectedProfileId) && !DataPersistenceManager.instance.disableDataPersistence)
-        {
-            Debug.Log("load dialogue save from: " + saveVariablesKey + DataPersistenceManager.instance.selectedProfileId);
-            string jsonState = PlayerPrefs.GetString(saveVariablesKey + selectedProfileId);
-            globalVariablesStory.state.LoadJson(jsonState);
-        }
+        LoadDataFromPlayerPrefs();
         // globalVariablesStory.variablesState["name"] = "testst";
 
         //initialize the dictionary
@@ -46,6 +40,11 @@ public class DialogueVariables
         // Debug.Log(name + " = "+value);
 
     }
+    // public void NewDialogue()
+    // {
+    //     selectedProfileId = DataPersistenceManager.instance.selectedProfileId;
+    //     PlayerPrefs.DeleteKey(saveVariablesKey + selectedProfileId);
+    // }
     public void SaveVariables()
     {
         if (globalVariablesStory != null)
@@ -63,6 +62,16 @@ public class DialogueVariables
     public void StopListening(Story story)
     {
         story.variablesState.variableChangedEvent -= VariableChanged;
+    }
+    private void LoadDataFromPlayerPrefs()
+    {
+        selectedProfileId = DataPersistenceManager.instance.selectedProfileId;
+        if (PlayerPrefs.HasKey(saveVariablesKey + selectedProfileId) && !DataPersistenceManager.instance.disableDataPersistence)
+        {
+            Debug.Log("load dialogue save from: " + saveVariablesKey + DataPersistenceManager.instance.selectedProfileId);
+            string jsonState = PlayerPrefs.GetString(saveVariablesKey + selectedProfileId);
+            globalVariablesStory.state.LoadJson(jsonState);
+        }
     }
     private void VariableChanged(string name, Ink.Runtime.Object value)
     {

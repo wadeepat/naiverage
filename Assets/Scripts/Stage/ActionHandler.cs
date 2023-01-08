@@ -11,6 +11,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     public static ActionHandler instance;
 
     private GameObject CanvasObject;
+    private ChapterCard chapterCardScript;
     private GameObject TutorialGuidingObject;
     private GameObject[] tutorialGuidingCards;
     private InputTextUI UI_Input_Window;
@@ -51,6 +52,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     {
         return UI_Input_Window.IsActivated();
     }
+
     public void AskToSave()
     {
         if (DialogueManager.dialogueIsPlaying) Debug.LogWarning("From ComfirmPopup there is other using dialogueIsPlaying");
@@ -92,13 +94,40 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
+        Debug.Log("Load from Action Handler");
         playerName = data.name;
+        QuestLog.LoadQuest(data.questList, data.completedQuestList);
     }
 
     public void SaveData(GameData data)
     {
+        Debug.Log("Save from Action Handler");
+
         data.name = playerName;
+
+        var allQuestList = QuestLog.GetAllQuestList();
+
+
+        data.questList = allQuestList.q;
+        data.completedQuestList = allQuestList.c;
     }
+
+    // public void LoadData(GameData data)
+    // {
+    //     Debug.Log("data from UI_Quest: " + data.questList.ToString());
+    //     // if(QuestLog.que)
+    //     QuestLog.LoadQuest(data.questList, data.completedQuestList);
+    // }
+
+    // public void SaveData(GameData data)
+    // {
+    //     // (List<Quest> q, List<Quest> c) = QuestLog.GetAllQuestList();
+    //     var allQuestList = QuestLog.GetAllQuestList();
+
+
+    //     data.questList = allQuestList.q;
+    //     data.completedQuestList = allQuestList.c;
+    // }
     private void SetForActivateUI()
     {
         DialogueManager.dialogueIsPlaying = true;
