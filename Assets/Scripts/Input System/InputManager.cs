@@ -135,7 +135,7 @@ public class InputManager : MonoBehaviour
     }
     public void PotionPressed(InputAction.CallbackContext context)
     {
-        Debug.Log("potion");
+        // Debug.Log("potion");
         if (context.interaction is HoldInteraction)
         {
             if (context.performed) selectPotion = true;

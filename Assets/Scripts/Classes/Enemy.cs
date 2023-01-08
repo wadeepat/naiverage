@@ -15,7 +15,9 @@ public class Enemy : MonoBehaviour
     protected const float CD_DAMAGE_ANIM = 3f;
 
     [Header("Enemy Details")]
-    [SerializeField] protected string enemyName;
+    // [SerializeField] protected int id;
+    // [SerializeField] protected string enemyName;
+    [SerializeField] protected MonsterId monsterId;
     [SerializeField] protected float moveSpeed = 1.5f;
     [SerializeField] protected float attackRange = 2f;
     [SerializeField] protected string attackType = "close";
@@ -27,15 +29,12 @@ public class Enemy : MonoBehaviour
 
     [Header("Enemy Stats")]
     [SerializeField] protected float maxHealthPoint;
-    // [Header("Enemy GUIs")]
-    // [SerializeField] private GameObject Canvas;
-    // [SerializeField] private GameObject healthBar;
+
     [Header("Enemy States")]
     [SerializeField] protected float attackCooldown = 2f;
     [SerializeField] protected float stayCooldown = 4f;
     [SerializeField] protected float chaseSpeed = 2.5f;
     [SerializeField] protected float chaseRange = 15f;
-    // [SerializeField] private GameObject waypointObject;
     [Header("Nav settings")]
     [SerializeField] protected float stoppingDistance = 3f;
 
@@ -64,7 +63,6 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Start()
     {
-        Debug.LogWarning("Start");
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = stoppingDistance;
         animator = GetComponent<Animator>();
@@ -83,7 +81,6 @@ public class Enemy : MonoBehaviour
             waypoints.Add(wp);
         }
         healthBar.SetActive(false);
-        // slider.value = 1;
     }
     protected virtual void Update()
     {
@@ -108,14 +105,15 @@ public class Enemy : MonoBehaviour
         if (agent.enabled)
         {
             agent.SetDestination(target.position);
-            float distance = Vector2.Distance(target.position, gameObject.transform.position);
+            float distance = Vector3.Distance(target.position, gameObject.transform.position);
             if (distance > chaseRange && damagedTimer >= RAGE_MODE_TIME)
             {
                 //back to patroll
                 animator.SetBool("isChasing", false);
             }
-            else if (distance < attackRange - 1f)
+            else if (distance < attackRange)
             {
+                // Debug.Log("Can attack: " + distance + " " + attackRange);
                 //attack target
                 animator.SetBool("isAttacking", true); // do attack anim
                 animator.SetBool("isChasing", false);
@@ -124,11 +122,6 @@ public class Enemy : MonoBehaviour
     }
     public void NormalAttack()
     {
-        // if(attackTimer >= attackCooldown)
-        // {
-        //     attackTimer = 0;
-        //     animator.SetBool("isAttacking", false);
-        // }
         transform.LookAt(target);
         float distance = Vector2.Distance(target.position, transform.position);
 
@@ -149,9 +142,9 @@ public class Enemy : MonoBehaviour
     {
         return false;
     }
-    public void ShootProjectileObject()
+    public virtual void ShootProjectileObject()
     {
-        GameObject poision = Instantiate(projectileObj, firePoint.position, transform.rotation);
+        GameObject pObject = Instantiate(projectileObj, firePoint.position, transform.rotation);
         cooldownTimer = 0;
         cooldownTime = attackCooldown;
         animator.SetBool("isAttacking", false);
@@ -178,8 +171,6 @@ public class Enemy : MonoBehaviour
     public void OnPatrollStateUpdate()
     {
         float distance = Vector2.Distance(target.position, transform.position);
-        // float distance = Vector3.Distance(target.position, transform.position);
-        // Debug.Log("")
         if (distance < chaseRange)
         {
             animator.SetBool("isChasing", true);
@@ -198,7 +189,7 @@ public class Enemy : MonoBehaviour
     }
     public virtual void OnIdleStateUpdate()
     {
-        float distance = Vector2.Distance(target.position, transform.position);
+        float distance = Vector3.Distance(target.position, transform.position);
         if (distance <= chaseRange)
         {
             animator.SetBool("isChasing", true);
@@ -248,6 +239,7 @@ public class Enemy : MonoBehaviour
             healthBar.SetActive(false);
             animator.SetTrigger("die");
             GetComponent<BoxCollider>().enabled = false;
+            QuestLog.DoQuest(Quest.Objective.Type.kill, (int)monsterId);
             Died();
         }
         else

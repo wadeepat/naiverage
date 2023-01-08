@@ -10,12 +10,41 @@ public class QuestLog
     public static event OnQuestChange onQuestChange;
     public static void Initialize()
     {
+        // Debug.Log("new QuestList");
         questList = new List<Quest>();
         completedQuest = new List<Quest>();
+    }
+    public static bool isQuestNull()
+    {
+        return questList?.Count > 0;
+    }
+    public static void LoadQuest(List<Quest> questL, List<Quest> completeL)
+    {
+        // Initialize();
+        // // Debug.Log("quests: ");
+        // foreach (Quest q in questL)
+        // {
+        //     questList.Add(q);
+        //     Debug.Log(q.ToString());
+        // }
+        // // Debug.Log("completed quests: ");
+        // foreach (Quest q in completeL)
+        // {
+        //     completedQuest.Add(q);
+        //     Debug.Log(q.ToString());
+        // }
+        questList = questL;
+        completedQuest = completeL;
+        onQuestChange.Invoke(questList, completedQuest);
+    }
+    public static (List<Quest> q, List<Quest> c) GetAllQuestList()
+    {
+        return (questList, completedQuest);
     }
 
     public static void AddQuest(Quest quest)
     {
+        AudioManager.instance.Play("click");
         questList.Add(quest);
         // HandleOwnedItems(quest);
         if (quest.addAction != null) quest.addAction();
@@ -34,12 +63,12 @@ public class QuestLog
 
     public static void CompleteQuest(Quest quest)
     {
-        questList.Remove(quest);
-        completedQuest.Add(quest);
-        if (quest.compleltedAction != null) quest.compleltedAction();
+        questList?.Remove(quest);
+        completedQuest?.Add(quest);
+        if (quest?.compleltedAction != null) quest?.compleltedAction();
         // Inventory.giveGold(quest.goldReward);
         // Character.giveExp(quest.expReward);
-        onQuestChange.Invoke(questList, completedQuest);
+        onQuestChange?.Invoke(questList, completedQuest);
     }
 
 
@@ -58,6 +87,18 @@ public class QuestLog
 
     public static Quest getQuestNo(int index)
     {
+        // string temp = "";
+        // foreach (Quest q in questList)
+        // {
+        //     temp += q.questId + "\n";
+        // }
+        // Debug.Log("questList: \n" + temp);
+        // temp = "";
+        // foreach (Quest q in completedQuest)
+        // {
+        //     temp += q.questId + "\n";
+        // }
+        // Debug.Log("completeList: \n" + temp);
         if (index < questList.Count)
             return questList[index];
         else
@@ -81,7 +122,7 @@ public class QuestLog
     }
     public static void DoQuest(Quest.Objective.Type type, int id)
     {
-        
+
         foreach (Quest quest in questList)
         {
             if (quest.objective.CheckIndexQuest(type, id))
@@ -97,5 +138,14 @@ public class QuestLog
         onQuestChange.Invoke(questList, completedQuest);
 
     }
-
+    public static int IsThereSomeQuestTalk(NPCIndex idx)
+    {
+        foreach (Quest q in questList)
+        {
+            if (q.objective.type == Quest.Objective.Type.talk
+            && q.objective.npc == idx)
+                return q.questId;
+        }
+        return -1;
+    }
 }

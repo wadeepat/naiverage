@@ -30,13 +30,14 @@ public class SaveSlotsMenu : MonoBehaviour
         {
             DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
             //TODO load the current screen
-            SceneLoadingManager.instance.LoadScene(SceneIndex.Tutorial);
+            // SceneLoadingManager.instance.LoadScene(SceneIndex.Rachne);
+            SceneLoadingManager.instance.LoadScene(saveSlot.GetPlayerLocation());
         }
         //case: new game but the save slot has data
         else if (saveSlot.hasData)
         {
             confirmationPopupMenu.ActivateMenu(
-                "Starting a New Game with this slot will override the currently saved data. Are you sure?",
+                "เริ่มเกมด้วย slot นี้จะเขียนทับข้อมูลเก่า ยืนยันที่จะทำใช่หรือไม่?",
                 //action of confirm btn
                 () =>
                 {
@@ -45,7 +46,7 @@ public class SaveSlotsMenu : MonoBehaviour
                     DataPersistenceManager.instance.NewGame();
 
                     DataPersistenceManager.instance.SaveGame(true);
-                    SceneLoadingManager.instance.LoadScene(SceneIndex.Tutorial);
+                    SceneLoadingManager.instance.LoadScene(SceneIndex.Rachne);
                 },
                 //action of cancel btn
                 () =>
@@ -62,14 +63,8 @@ public class SaveSlotsMenu : MonoBehaviour
             DataPersistenceManager.instance.NewGame();
 
             DataPersistenceManager.instance.SaveGame(false);
-            SceneLoadingManager.instance.LoadScene(SceneIndex.Tutorial);
+            SceneLoadingManager.instance.LoadScene(SceneIndex.Rachne);
         }
-        //if newGame
-        // if (!isLoadingGame)
-        // {
-        //     DataPersistenceManager.instance.NewGame();
-        // }
-        // SceneLoadingManager.instance.LoadScene("Tutorial");
     }
     public void onBackClicked()
     {
@@ -83,7 +78,7 @@ public class SaveSlotsMenu : MonoBehaviour
         DisableMenuButton();
 
         confirmationPopupMenu.ActivateMenu(
-            "Are you sure to delete this saved data?",
+            "ยืนยันที่จะลบข้อมูล slot นี้ใช่หรือไม่?",
             () =>
             {
                 DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());

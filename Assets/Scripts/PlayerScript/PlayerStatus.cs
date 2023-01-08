@@ -58,7 +58,6 @@ public class PlayerStatus : MonoBehaviour
     {
         int a = (int)(damageAmount * (100.0f / (100 + defense)));
         hp -= a;
-        Debug.Log("Hited left" + hp);
         if (hp <= 0)
         {
             hp = 0;
@@ -82,7 +81,7 @@ public class PlayerStatus : MonoBehaviour
             hp = HP;
     }
 
-        public static void UseMana(int m)
+    public static void UseMana(int m)
     {
         if (mp > m)
             mp -= m;
@@ -140,9 +139,10 @@ public class PlayerStatus : MonoBehaviour
         return a;
     }
 
-    public static int damageSkill(int crit){
+    public static int damageSkill(int crit)
+    {
         //ATK + ATK * CRIT DMG
-        return attack+(attack*crit/100);
+        return attack + (attack * crit / 100);
     }
 
 

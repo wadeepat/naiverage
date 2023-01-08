@@ -2746,15 +2746,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642cb22fc9b8c594d991779d810f3cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: Webster
+  monsterId: 0
   moveSpeed: 1.5
-  attackRange: 2
+  attackRange: 1
   attackType: close
   monsterType: normal
+  projectileObj: {fileID: 0}
+  firePoint: {fileID: 0}
   maxHealthPoint: 100
   attackCooldown: 1
   stayCooldown: 2
-  chaseSpeed: 3
+  chaseSpeed: 3.5
   chaseRange: 8
   stoppingDistance: 1
 --- !u!95 &8733751807225445106

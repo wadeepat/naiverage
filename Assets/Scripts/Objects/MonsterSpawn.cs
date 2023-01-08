@@ -5,14 +5,21 @@ using UnityEngine;
 [System.Serializable]
 struct MonsterList
 {
-    public string name;
+    public MonsterId monsterId;
     public GameObject model;
+}
+[System.Serializable]
+struct MonsterAmount
+{
+    public MonsterId monsterId;
+    public int amount;
 }
 public class MonsterSpawn : MonoBehaviour
 {
     [Header("Monster Details")]
     [SerializeField] MonsterList[] monsterLists;
-    // [SerializeField] private GameObject monster;
+    [SerializeField] private bool enableTest = false;
+    [SerializeField] MonsterAmount[] monsterTestLists;
     private float minScale = -0.1f;
     private float maxScale = 0.1f;
     private GameObject WaypointObject;
@@ -24,9 +31,13 @@ public class MonsterSpawn : MonoBehaviour
         {
             waypoints.Add(wp);
         }
-        // SpawnMonster(0, 1);
-        // SpawnMonster(1, 1);
-        // SpawnMonster(2, 1);
+        if (enableTest)
+        {
+            foreach (MonsterAmount m in monsterTestLists)
+            {
+                SpawnMonster((int)m.monsterId, m.amount);
+            }
+        }
     }
 
     public void SpawnMonster(int id, int amount)

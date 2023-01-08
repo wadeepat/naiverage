@@ -15,7 +15,7 @@ public class StageEditor : Editor
 
         switch (sceneName)
         {
-            case SceneIndex.Tutorial:
+            case SceneIndex.Rachne:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("t_startGate"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("t_naverGate"));
                 break;

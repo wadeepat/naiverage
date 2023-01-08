@@ -4,21 +4,33 @@ using UnityEngine;
 
 public class Database : MonoBehaviour
 {
-    public static List<Item> itemList = new List<Item>();
-    public static List<Potion> potionList = new List<Potion>();
-    public static List<Item> itemQuestList = new List<Item>();
-    public static List<SkillBook> skillBookList = new List<SkillBook>();
-    public static List<Quest> questList = new List<Quest>();
+    public static readonly Dictionary<string, string> COLORS = new Dictionary<string, string>(){
+        {"button","#900C3F"},
+        {"char","#FEF4E8"},
+        {"item","#09bc8a"},
+        {"menu","#363062"},
+        {"monster","#FFBD39"},
+        {"town","#FF7272"},
+    };
+
     public static Pearl magicPearl = new Pearl();
 
+    public static List<Item> itemList = new List<Item>();
+    public static List<Item> itemQuestList = new List<Item>();
+    public static List<Monster> monsterList = new List<Monster>();
+    public static List<Potion> potionList = new List<Potion>();
+    public static List<Quest> questList = new List<Quest>();
+    public static List<SkillBook> skillBookList = new List<SkillBook>();
     public static List<Skill> skillList = new List<Skill>();
 
     private GameObject CanvasObject;
     private GameObject TutorialCardObject;
     private GameObject PotionPanel;
+    private ChapterCard chapterCardScript;
     void Awake()
     {
         CanvasObject = GameObject.Find("Canvas");
+        chapterCardScript = CanvasObject.transform.Find("ChapterCard").GetComponent<ChapterCard>();
         TutorialCardObject = CanvasObject.transform.Find("TutorialGuiding").gameObject;
         PotionPanel = CanvasObject.transform.Find("Panel").Find("Character panel").Find("All funtion").Find("Potion").gameObject;
         // (id,name,description)
@@ -64,13 +76,34 @@ public class Database : MonoBehaviour
         skillList.Add(new Skill(8, "SK8", "None", Resources.Load<Sprite>("sk8"), 0, false, 4, 0, 1, 2000));
         skillList.Add(new Skill(9, "SK9", "None", Resources.Load<Sprite>("sk9"), 0, false, 4, 0, 1, 2000));
 
+        //* Monster section id, hp, atk, def, res, reHp
+        //MonsterId.Webster
+        monsterList.Add(new Monster(0, 100, 20, 10, 0, 1));
+        // MonsterId.Venom
+        monsterList.Add(new Monster(1, 100, 20, 10, 0, 1));
+        // MonsterId.Rachne
+        monsterList.Add(new Monster(2, 100, 20, 10, 0, 1));
+        // MonsterId.Bandit
+        monsterList.Add(new Monster(3, 100, 20, 10, 0, 1));
+        // MonsterId.Goblin
+        monsterList.Add(new Monster(4, 100, 20, 10, 0, 1));
+        // MonsterId.Skeleton
+        monsterList.Add(new Monster(5, 100, 20, 10, 0, 1));
+        // MonsterId.Troll
+        monsterList.Add(new Monster(6, 500, 20, 10, 0, 1));
+        // MonsterId.Cain
+        monsterList.Add(new Monster(7, 100, 20, 10, 0, 1));
+        // MonsterId.Abel
+        monsterList.Add(new Monster(8, 100, 20, 10, 0, 1));
+
         //* Quest section
+        //* chapter 0
         questList.Add(
             new Quest()
             {
                 questId = 0,
-                questName = "Learn to move",
-                questDescription = "Move to the area",
+                questName = "เรียนรู้การเคลื่อนที่",
+                questDescription = "ควบคุมตัวละครไปยังพื้นที่ที่ส่องแสง",
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -82,6 +115,7 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
+                    chapterCardScript.ActivateMenu(0);
                     ActivateTutorialCard("Walking", true);
                 },
                 compleltedAction = () =>
@@ -93,8 +127,8 @@ public class Database : MonoBehaviour
         new Quest()
         {
             questId = 1,
-            questName = "Collect Mushroom",
-            questDescription = "",
+            questName = "เรียนรู้การเก็บของ",
+            questDescription = "ลองเก็บ MUSHROOM ตรงใต้ต้นไม้นั่นสิ",
             MPReward = 0,
             SBReward = "",
             questCategory = 0,
@@ -119,8 +153,8 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 2,
-                questName = "Craft Potion",
-                questDescription = "",
+                questName = "เรียนรู้การปรุงยา",
+                questDescription = $"ยาเป็นไอเทมที่ดีที่การช่วยในการต่อสู้เลยนะ\n ลองเปิดที่ <color={COLORS["menu"]}>Potion</color> ดูสิ",
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -154,8 +188,8 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 3,
-                questName = "Use Potion",
-                questDescription = "Use Health Potion",
+                questName = "เรียนรู้การใช้ยา",
+                questDescription = "เจ้ามียาเพิ่มเลือด และยาเพิ่มมานาอยู่ลองใช้สักขวดสิ",
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -180,21 +214,21 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 4,
-                questName = "Fight to survive",
-                questDescription = "Kill 1 Webster",
+                questName = "ต่อสู้เพื่อเอาชีวิตรอด",
+                questDescription = $"อยู่ ๆ ก็มี <color={COLORS["monster"]}>webster</color> โผล่มา จงกำจัดมันเพื่อเอาตัวรอดซะ",
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
                 objective = new Quest.Objective()
                 {
-                    objectiveId = 1,
+                    objectiveId = (int)MonsterId.Webster,
                     type = Quest.Objective.Type.kill,
                     amount = 1,
                 },
                 addAction = () =>
                 {
                     ActivateTutorialCard("NormalAttack", true);
-                    StageHandler.instance.SpawnWebster(1);
+                    StageHandler.instance.EventTrigger("Spawn1Webster");
                 },
                 compleltedAction = () =>
                 {
@@ -208,26 +242,26 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 5,
-                questName = "Help Sata from the punishment",
-                questDescription = "Kill Webster to receive 5 .....",
-                MPReward = 1000,
+                questName = $"ช่วยเหลือ <color={COLORS["char"]}>Sata</color> (1/2)",
+                questDescription = $"<color={COLORS["char"]}>Sata</color> ช่างน่าสงสารเสียจริง ไปเก็บขาเแมงมุมเพื่อช่วย <color={COLORS["char"]}>Sata</color> กันเถอะ",
+                MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
                 objective = new Quest.Objective()
                 {
-                    objectiveId = 1,
+                    objectiveId = (int)MonsterId.Webster,
                     type = Quest.Objective.Type.kill,
                     amount = 5,
                 },
                 addAction = () =>
                 {
                     ActivateTutorialCard("Skill", true);
-                    StageHandler.instance.SpawnWebster(5);
+                    StageHandler.instance.EventTrigger("Spawn5Webster");
                 },
                 compleltedAction = () =>
                 {
-                    ActivateTutorialCard("Skill", false);
-                    StageHandler.instance.EventTrigger("CompletedTutorial");
+                    // ActivateTutorialCard("Skill", false);
+                    QuestLog.AddQuest(questList[6]);
                 },
             }
         );
@@ -235,8 +269,34 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 6,
-                questName = "Go to Naver town with Sata",
-                questDescription = "There are so many happened here. Go to explore to town.",
+                questName = $"ช่วยเหลือ <color={COLORS["char"]}>Sata</color> (2/2)",
+                questDescription = $"ไปคุยกับ <color={COLORS["char"]}>Sata</color> เพื่อรับรางวัล",
+                MPReward = 1000,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Sata,
+                    type = Quest.Objective.Type.talk,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    ActivateTutorialCard("Skill", true);
+                    StageHandler.instance.EventTrigger("Spawn5Webster");
+                },
+                compleltedAction = () =>
+                {
+                    ActivateTutorialCard("Skill", false);
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 7,
+                questName = $"เดินทางไปยังเมือง <color={COLORS["town"]}>Naver</color>",
+                questDescription = $"มีเรื่องราวลึกลับ และน่าสนใจรอเจ้าอยู่ ออกเดินทางไปยังเมือง <color={COLORS["town"]}>Naver</color> ตาม <color={COLORS["char"]}>Sata</color> ไปกันเถอะ",
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -249,24 +309,29 @@ public class Database : MonoBehaviour
                 addAction = () =>
                 {
                     ActivateTutorialCard("WarpAndMap", true);
+                    StageHandler.instance.EventTrigger("CompletedTutorial");
+                    StageHandler.instance.EventTrigger("SataLeadToTown");
                 },
                 updateAction = () =>
                 {
-                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown) QuestLog.CompleteQuest(QuestLog.GetQuestById(6));
+                    // Debug.Log("Check quest 6 : " + StageHandler.instance.activeSceneIndex);
+                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown) QuestLog.CompleteQuest(QuestLog.GetQuestById(7));
                 },
                 compleltedAction = () =>
                 {
                     ActivateTutorialCard("WarpAndMap", false);
+                    chapterCardScript.ActivateMenu(1);
                 },
             }
         );
+        //* chapter 1
         // questList.Add(
         //     new Quest()
         //     {
 
         //     }
         // );
-        Debug.LogWarning($"questSize = {questList.Count}");
+        // Debug.LogWarning($"questSize = {questList.Count}");
     }
     private void ActivateTutorialCard(string cardName, bool active)
     {

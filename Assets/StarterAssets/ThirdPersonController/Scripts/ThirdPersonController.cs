@@ -151,12 +151,10 @@ namespace StarterAssets
         private void Start()
         {
             //? Move player to some gate
-            int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            Debug.Log("Previous " + PlayerManager.instance.playerLocation);
-            int previousSceneIndex = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), PlayerManager.instance.playerLocation);
+            // int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            // int previousSceneIndex = (int)(SceneIndex)System.Enum.Parse(typeof(SceneIndex), PlayerManager.instance.playerLocation);
             // this.transform.position = data.playerPosition;
-            PlayerManager.instance.ChangePlayerLocation(((SceneIndex)activeSceneIndex).ToString());
-            StageHandler.instance.MovePlayer(previousSceneIndex);
+            StageHandler.instance.MovePlayer((int)PlayerManager.instance.playerLocation);
 
             _attackInfo = GetComponent<PlayerAttackController>();
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;

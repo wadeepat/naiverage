@@ -9,16 +9,16 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuScene.unity
     guid: a05ad7b97b36ce54bbac657b9544103b
   - enabled: 1
-    path: Assets/Scenes/TutorialScene.unity
+    path: Assets/Scenes/RachneScene.unity
     guid: fc1e778891ebbdb4bac7aded603e116f
   - enabled: 1
-    path: Assets/Scenes/NewTerrain.unity
-    guid: 3498f088a4400434c928de9bd98d8964
-  - enabled: 0
-    path: Assets/Scenes/NaverTownScene.unity
-    guid: 42528c81e9dff274fa04abdf2c4ff22a
-  - enabled: 0
-    path: Assets/Scenes/EnemyScene.unity
-    guid: c90e1ddcf5cbcac44bf0a5dc118c621e
+    path: Assets/Scenes/Terrain/NaverTownMap.unity
+    guid: 6cef61c39913a2a48b8f4b90721a443c
+  - enabled: 1
+    path: Assets/Scenes/Terrain/BraewoodForestMap.unity
+    guid: 557d47f57ec5e264ab0f3b0cbea75780
+  - enabled: 1
+    path: Assets/Scenes/Terrain/RoughCaveMap.unity
+    guid: bb33cd4ebcf48b048b8f49130cc6795b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}

@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class UseSkill : MonoBehaviour
 {
-    public GameObject skill;
     public Transform LHPoint, RHPoint, Point;
     public GameObject fire, water, wind, special;
     private GameObject spell1, spell2;
     private Animator _anim;
     private Image[] slotSkillsM;
     public GameObject[] allSkill;
+    private GameObject skill;
     void Start()
     {
         _anim = GetComponent<Animator>();
-        
+        skill = GameObject.Find("Canvas").transform.Find("Panel").Find("Character panel").Find("All funtion").Find("Skill").gameObject;
     }
 
     // Update is called once per frame
@@ -61,7 +61,8 @@ public class UseSkill : MonoBehaviour
 
     private void GetSkillSlot1()
     {
-        if(!CheckCooldown(0)){
+        if (!CheckCooldown(0))
+        {
             PlayerStatus.UseMana(20);
             int num = skill.GetComponent<SkillsUnlock>().GetSkillId(0);
             AnimetionSkill(num);
@@ -72,7 +73,8 @@ public class UseSkill : MonoBehaviour
     }
     private void GetSkillSlot2()
     {
-        if(!CheckCooldown(1)){
+        if (!CheckCooldown(1))
+        {
             PlayerStatus.UseMana(20);
             int num = skill.GetComponent<SkillsUnlock>().GetSkillId(1);
             AnimetionSkill(num);
@@ -82,7 +84,8 @@ public class UseSkill : MonoBehaviour
     }
     private void GetSkillSlot3()
     {
-        if(!CheckCooldown(2)){
+        if (!CheckCooldown(2))
+        {
             PlayerStatus.UseMana(20);
             int num = skill.GetComponent<SkillsUnlock>().GetSkillId(2);
             AnimetionSkill(num);
@@ -98,11 +101,13 @@ public class UseSkill : MonoBehaviour
         _anim.SetInteger("SkillNum", num);
     }
 
-    public bool CheckCooldown (int num){
+    public bool CheckCooldown(int num)
+    {
         return slotSkillsM[num].fillAmount < 1.0f;
     }
 
-    public void SetCooldown (int num){
+    public void SetCooldown(int num)
+    {
         slotSkillsM[num].fillAmount = 0f;
     }
     public void UsingSkill (int num){

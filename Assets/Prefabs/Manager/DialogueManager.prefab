@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1374411293204347151}
   - component: {fileID: 1374411293204347148}
+  - component: {fileID: 1575763871}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -47,6 +48,8 @@ MonoBehaviour:
   typingSpeed: 0.06
   loadGlobalsJSON: {fileID: 4900000, guid: 2cd70cfe227d9d849b0dac664fa5c6ef, type: 3}
   tutorialFiles:
+  - name: Opening
+    json: {fileID: 4900000, guid: 10c947e5b552e3c47aefc3724293edb3, type: 3}
   - name: SataCall
     json: {fileID: 4900000, guid: 1de4389077f40fc49a0ab7403c4cc624, type: 3}
   - name: CompletedUsePotion
@@ -60,3 +63,24 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Player: {fileID: 0}
+--- !u!114 &1575763871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374411293204347150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b0100a10766c248b12a09fea593c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questInListPrefab: {fileID: 837393062972971524, guid: 73a6cbcfa273a3b4a9a830d61396efb9, type: 3}
+  listTransform: {fileID: 8152750072511249816, guid: b7ed767b8581c474cab6e3c3d0e1437c, type: 3}
+  questDescription: {fileID: 5784651579552102399, guid: b7ed767b8581c474cab6e3c3d0e1437c, type: 3}
+  questNameText: {fileID: 3487997474003573385, guid: b7ed767b8581c474cab6e3c3d0e1437c, type: 3}
+  questDescriptionText: {fileID: 5785656439143605726, guid: b7ed767b8581c474cab6e3c3d0e1437c, type: 3}
+  questMPRewardText: {fileID: 239587077543107369, guid: b7ed767b8581c474cab6e3c3d0e1437c, type: 3}
+  questSBRewardText: {fileID: 4011844562246890451, guid: b7ed767b8581c474cab6e3c3d0e1437c, type: 3}
+  questObjectiveText: {fileID: 7341710652131255044, guid: b7ed767b8581c474cab6e3c3d0e1437c, type: 3}
+  rewardsContent: {fileID: 6728578871965281366, guid: b7ed767b8581c474cab6e3c3d0e1437c, type: 3}
