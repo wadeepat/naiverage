@@ -229,7 +229,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject, 7f);
         isDie = true;
     }
-    public void TakeDamaged(int damageAmount)
+    public void TakeDamaged(float damageAmount)
     {
         StayThisPosition();
         hp -= damageAmount;

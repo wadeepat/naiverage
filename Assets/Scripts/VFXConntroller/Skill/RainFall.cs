@@ -49,7 +49,7 @@ public class RainFall : MonoBehaviour
             if (Time.time > nextActionTime ) {
                 nextActionTime += period;
                 // int damage = PlayerStatus.damageSkill(70);
-                target.gameObject.GetComponent<Spider>().TakeDamage(0.1f);
+                target.gameObject.GetComponent<Enemy>().TakeDamaged(0.1f);
             }else if(Time.time > cooldownTime){
                 cooldownTime += periodC;
             }else{

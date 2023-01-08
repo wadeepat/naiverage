@@ -11,7 +11,7 @@ public class DamageToEnemy : MonoBehaviour
         if (target.gameObject.tag.Contains("Enemy"))
         {
             Destroy(transform.parent.gameObject);
-            target.gameObject.GetComponent<Spider>().TakeDamage(damageAmount);
+            target.gameObject.GetComponent<Enemy>().TakeDamaged(damageAmount);
         }
         else if (target.gameObject.name == "Terrain")
             Destroy(transform.parent.gameObject);
