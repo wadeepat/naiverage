@@ -12,6 +12,7 @@ public class ChapterCard : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private TextMeshProUGUI header;
     [SerializeField] private TextMeshProUGUI desc;
+    private int cardIdx;
 
     private List<ChapterCardDetails> cardDetails = new List<ChapterCardDetails>(){
         new ChapterCardDetails(){
@@ -28,8 +29,8 @@ public class ChapterCard : MonoBehaviour
         },
     };
     private float timer = 0;
-    private float readTime = 4f;
-    private float displayTime = 7f;
+    private float readTime = 1.75f;
+    private float displayTime = 3.5f;
 
     private void Update()
     {
@@ -43,6 +44,7 @@ public class ChapterCard : MonoBehaviour
     }
     public void ActivateMenu(int idx)
     {
+        cardIdx = idx;
         header.text = cardDetails[idx].header;
         desc.text = cardDetails[idx].description;
         timer = 0;
@@ -51,6 +53,7 @@ public class ChapterCard : MonoBehaviour
     public void DeactivateMenu()
     {
         this.gameObject.SetActive(false);
-        ActionHandler.instance.AskToSave();
+        if (cardIdx != 0)
+            ActionHandler.instance.AskToSave();
     }
 }
