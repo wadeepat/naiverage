@@ -120,6 +120,7 @@ public class Database : MonoBehaviour
                 },
                 compleltedAction = () =>
                 {
+                    Debug.Log("Complete quest 0");
                     QuestLog.AddQuest(Database.questList[1]);
                 },
             });
@@ -144,6 +145,7 @@ public class Database : MonoBehaviour
             },
             compleltedAction = () =>
             {
+                Debug.Log("Complete quest 1");
                 ActivateTutorialCard("PickupItems", false);
                 QuestLog.AddQuest(Database.questList[2]);
             }
@@ -260,7 +262,7 @@ public class Database : MonoBehaviour
                 },
                 compleltedAction = () =>
                 {
-                    // ActivateTutorialCard("Skill", false);
+                    ActivateTutorialCard("Skill", false);
                     QuestLog.AddQuest(questList[6]);
                 },
             }
@@ -282,12 +284,11 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
-                    ActivateTutorialCard("Skill", true);
-                    StageHandler.instance.EventTrigger("Spawn5Webster");
+                    ActivateTutorialCard("TalkToNPC", true);
                 },
                 compleltedAction = () =>
                 {
-                    ActivateTutorialCard("Skill", false);
+                    ActivateTutorialCard("TalkToNPC", false);
                 },
             }
         );
