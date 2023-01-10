@@ -4808,30 +4808,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4685009339491405630, guid: 54db37d7406107645a01830e567e0a28, type: 3}
-      propertyPath: sounds.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: d07e7674da4f9e446912a8c49fda3c91, type: 3}
-    - target: {fileID: 4685009339491405630, guid: 54db37d7406107645a01830e567e0a28, type: 3}
-      propertyPath: sounds.Array.data[1].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 35eee883507c2bf439a9d30a26fb4ff5, type: 3}
-    - target: {fileID: 4685009339491405630, guid: 54db37d7406107645a01830e567e0a28, type: 3}
-      propertyPath: sounds.Array.data[2].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 0bd6d503d8647d045bacce7d63454935, type: 3}
-    - target: {fileID: 4685009339491405630, guid: 54db37d7406107645a01830e567e0a28, type: 3}
-      propertyPath: sounds.Array.data[3].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: c7ce7091a72de5149a4a14cc8eb306d1, type: 3}
-    - target: {fileID: 4685009339491405630, guid: 54db37d7406107645a01830e567e0a28, type: 3}
-      propertyPath: sounds.Array.data[3].loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4685009339491405630, guid: 54db37d7406107645a01830e567e0a28, type: 3}
-      propertyPath: sounds.Array.data[4].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 98afca5fe45ce4d408dd6687b49dd94b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54db37d7406107645a01830e567e0a28, type: 3}
 --- !u!1001 &4304983825681519563

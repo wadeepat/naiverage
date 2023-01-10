@@ -326,6 +326,56 @@ public class Database : MonoBehaviour
             }
         );
         //* chapter 1
+        questList.Add(
+            new Quest()
+            {
+                questId = 8,
+                questName = $"ภารกิจจากแม่ทัพ (1/2)",
+                questDescription = $"กำจัด <color={COLORS["monster"]}>Webster</color> ในป่า <color={COLORS["town"]}>Rachne</color>",
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)MonsterId.Webster,
+                    type = Quest.Objective.Type.kill,
+                    amount = 10,
+                },
+                addAction = () =>
+                {
+                    //TODO implement spawn
+                    // ActivateTutorialCard("TalkToNPC", true);
+                },
+                compleltedAction = () =>
+                {
+                    QuestLog.AddQuest(questList[9]);
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 9,
+                questName = $"ภารกิจจากแม่ทัพ (2/2)",
+                questDescription = $"ไปคุยกับ <color={COLORS["char"]}>Aaron</color> ในเมือง <color={COLORS["char"]}>Naver</color> เพื่อรับรางวัล",
+                MPReward = 1000,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Aaron,
+                    type = Quest.Objective.Type.talk,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                },
+                compleltedAction = () =>
+                {
+                    ActivateTutorialCard("TalkToNPC", false);
+                },
+            }
+        );
         // questList.Add(
         //     new Quest()
         //     {
