@@ -25,7 +25,7 @@ public class GameData
         };
         mapEnable = new SerializableDictionary<SceneIndex, bool>{
             {SceneIndex.Rachne,true},
-            {SceneIndex.NaverTown,true},
+            {SceneIndex.NaverTown,false},
             {SceneIndex.CalfordCastle,false},
             {SceneIndex.BraewoodForest,false},
             {SceneIndex.Cave,false},

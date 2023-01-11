@@ -9,7 +9,7 @@ public class CanvasManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogWarning("Found more than one CasvasManager in the scene. Destroying the newest one.");
+            // Debug.LogWarning("Found more than one CasvasManager in the scene. Destroying the newest one.");
             Destroy(this.gameObject);
             return;
         }
