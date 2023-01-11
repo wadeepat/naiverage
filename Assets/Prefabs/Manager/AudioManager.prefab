@@ -49,37 +49,37 @@ MonoBehaviour:
   sounds:
   - s_name: medievalTheme
     clip: {fileID: 8300000, guid: ff50389a5d7605c4d9e7cff6ca4da10f, type: 3}
-    volume: 0.2
+    volume: 0.6
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: forestBackground
     clip: {fileID: 8300000, guid: 40324742e7d740d428fc192465423902, type: 3}
-    volume: 0.3
+    volume: 0.75
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: naverBackground
     clip: {fileID: 8300000, guid: 422a91f1e9b8d9f41bfd006c08cce48e, type: 3}
-    volume: 0.2
+    volume: 0.6
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: loading
     clip: {fileID: 8300000, guid: ed61521fe94f7324f8ea021f36f0e376, type: 3}
-    volume: 0.2
+    volume: 0.6
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: singleFootstepInGrass
     clip: {fileID: 8300000, guid: c59555e5e17f2b24db9e6235197f9db1, type: 3}
-    volume: 0.5
+    volume: 0.8
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: click
     clip: {fileID: 8300000, guid: a68f2e74995ff9847ab225e98148fe1e, type: 3}
-    volume: 0.5
+    volume: 0.7
     pitch: 1
     loop: 0
     source: {fileID: 0}
