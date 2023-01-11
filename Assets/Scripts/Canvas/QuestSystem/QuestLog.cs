@@ -10,7 +10,6 @@ public class QuestLog
     public static event OnQuestChange onQuestChange;
     public static void Initialize()
     {
-        // Debug.Log("new QuestList");
         questList = new List<Quest>();
         completedQuest = new List<Quest>();
     }
@@ -18,32 +17,37 @@ public class QuestLog
     {
         return questList?.Count > 0;
     }
-    public static void LoadQuest(List<Quest> questL, List<Quest> completeL)
+    public static void LoadQuest(List<int> questIdxL, List<int> completeIdxL)
     {
-        // Initialize();
-        // // Debug.Log("quests: ");
-        // foreach (Quest q in questL)
-        // {
-        //     questList.Add(q);
-        //     Debug.Log(q.ToString());
-        // }
-        // // Debug.Log("completed quests: ");
-        // foreach (Quest q in completeL)
-        // {
-        //     completedQuest.Add(q);
-        //     Debug.Log(q.ToString());
-        // }
-        questList = questL;
-        completedQuest = completeL;
+        Initialize();
+        foreach (int i in questIdxL)
+        {
+            questList.Add(Database.questList[i]);
+        }
+        foreach (int i in completeIdxL)
+        {
+            completedQuest.Add(Database.questList[i]);
+        }
         onQuestChange.Invoke(questList, completedQuest);
     }
-    public static (List<Quest> q, List<Quest> c) GetAllQuestList()
+    public static (List<int> q, List<int> c) GetAllQuestList()
     {
-        return (questList, completedQuest);
+        List<int> qIdx = new List<int>();
+        List<int> cIdx = new List<int>();
+        foreach (Quest quest in questList)
+        {
+            qIdx.Add(quest.questId);
+        }
+        foreach (Quest quest in completedQuest)
+        {
+            cIdx.Add(quest.questId);
+        }
+        return (qIdx, cIdx);
     }
 
     public static void AddQuest(Quest quest)
     {
+        // Debug.Log($"<color=#FFA>Add quest: {quest.questName}</color>");
         AudioManager.instance.Play("click");
         questList.Add(quest);
         // HandleOwnedItems(quest);
@@ -63,12 +67,13 @@ public class QuestLog
 
     public static void CompleteQuest(Quest quest)
     {
-        questList?.Remove(quest);
-        completedQuest?.Add(quest);
-        if (quest?.compleltedAction != null) quest?.compleltedAction();
+        // Debug.Log($"<color=#AEF>Complete quest: {quest.questName}</color>");
+        questList.Remove(quest);
+        completedQuest.Add(quest);
+        if (quest.compleltedAction != null) quest.compleltedAction();
         // Inventory.giveGold(quest.goldReward);
         // Character.giveExp(quest.expReward);
-        onQuestChange?.Invoke(questList, completedQuest);
+        onQuestChange.Invoke(questList, completedQuest);
     }
 
 
@@ -115,10 +120,11 @@ public class QuestLog
     }
     public static void DoQuestProcess()
     {
-        foreach (Quest q in questList.ToArray())
-        {
-            if (q.updateAction != null) q.updateAction();
-        }
+        if (questList?.Count > 0)
+            foreach (Quest q in questList.ToArray())
+            {
+                if (q.updateAction != null) q.updateAction();
+            }
     }
     public static void DoQuest(Quest.Objective.Type type, int id)
     {

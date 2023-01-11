@@ -89,7 +89,7 @@ public class FileDataHandler
     {
         if (profileId == null) return;
         string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
-        Debug.Log("Delete Profile: " + profileId);
+        // Debug.Log("Delete Profile: " + profileId);
         try
         {
             if (File.Exists(fullPath))

@@ -120,7 +120,7 @@ public class Database : MonoBehaviour
                 },
                 compleltedAction = () =>
                 {
-                    Debug.Log("Complete quest 0");
+                    ActivateTutorialCard("Walking", false);
                     QuestLog.AddQuest(Database.questList[1]);
                 },
             });
@@ -145,7 +145,6 @@ public class Database : MonoBehaviour
             },
             compleltedAction = () =>
             {
-                Debug.Log("Complete quest 1");
                 ActivateTutorialCard("PickupItems", false);
                 QuestLog.AddQuest(Database.questList[2]);
             }
@@ -172,8 +171,6 @@ public class Database : MonoBehaviour
                 },
                 updateAction = () =>
                 {
-                    // Debug.LogWarning("Checking");
-                    // Debug.LogWarning(PotionPanel);
                     if (PotionPanel.activeSelf)
                     {
                         QuestLog.CompleteQuest(QuestLog.GetQuestById(2));

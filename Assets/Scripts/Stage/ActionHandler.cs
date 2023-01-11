@@ -96,7 +96,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     {
         Debug.Log("Load from Action Handler");
         playerName = data.name;
-        QuestLog.LoadQuest(data.questList, data.completedQuestList);
+        QuestLog.LoadQuest(data.questIdxList, data.completedQuestIdxList);
     }
 
     public void SaveData(GameData data)
@@ -108,8 +108,8 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
         var allQuestList = QuestLog.GetAllQuestList();
 
 
-        data.questList = allQuestList.q;
-        data.completedQuestList = allQuestList.c;
+        data.questIdxList = allQuestList.q;
+        data.completedQuestIdxList = allQuestList.c;
     }
 
     // public void LoadData(GameData data)

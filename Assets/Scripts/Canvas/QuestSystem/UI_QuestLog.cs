@@ -51,8 +51,20 @@ public class UI_QuestLog : MonoBehaviour
         UpdateQuestNames(active, completed);
         UpdateSelectedQuest();
         ShowQuestDetails(currentQuest);
+        // PrintQuestList(active, completed);
     }
-
+    // private void PrintQuestList(List<Quest> qList, List<Quest> cList)
+    // {
+    //     string temp = "";
+    //     temp += $"<color=#457>Quest: \n";
+    //     foreach (Quest q in qList)
+    //         temp += q.questName + "\n";
+    //     Debug.Log(temp + "</color>");
+    //     temp = $"<color=#a83>Complete: \n";
+    //     foreach (Quest q in cList)
+    //         temp += q.questName + "\n";
+    //     Debug.Log(temp + "</color>");
+    // }
     private void HandleSizeChange(int newCount)
     {
         // if (listTransform.sizeDelta is null) Debug.Log("have sizeDelta");
@@ -110,7 +122,6 @@ public class UI_QuestLog : MonoBehaviour
 
     private Button InitializeButton(int index)
     {
-        //TODO fix error here
         Button button = Instantiate(questInListPrefab, listTransform).GetComponent<Button>();
         // button.image.rectTransform.sizeDelta = new Vector2(0, 80);
         button.image.rectTransform.anchoredPosition = new Vector2(0, 140 - (40 * index));

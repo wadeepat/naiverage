@@ -11,8 +11,8 @@ public class GameData
     public Vector3 playerPosition;
     public SerializableDictionary<string, bool> tutorialEvents;
     public SerializableDictionary<SceneIndex, bool> mapEnable;
-    public List<Quest> questList;
-    public List<Quest> completedQuestList;
+    public List<int> questIdxList;
+    public List<int> completedQuestIdxList;
     // public Dictionary<string, bool> tutorialEvents;
     //if want to use dictionary use SeriablizableDictionary instead
     public GameData()
@@ -30,8 +30,8 @@ public class GameData
             {SceneIndex.BraewoodForest,false},
             {SceneIndex.Cave,false},
         };
-        questList = new List<Quest>();
-        completedQuestList = new List<Quest>();
+        questIdxList = new List<int>();
+        completedQuestIdxList = new List<int>();
     }
     public override string ToString()
     {
@@ -50,14 +50,14 @@ public class GameData
             temp += $"\t{i.Key}: {i.Value}\n";
         }
         temp += $"questList:\n";
-        foreach (var i in questList)
+        foreach (var i in questIdxList)
         {
-            temp += $"\t{i.questId}: {i.questName}\n";
+            temp += $"\tid: {i}\n";
         }
         temp += $"completedQuest:\n";
-        foreach (var i in completedQuestList)
+        foreach (var i in completedQuestIdxList)
         {
-            temp += $"\t{i.questId}: {i.questName}\n";
+            temp += $"\tid: {i}\n";
         }
         return temp;
     }

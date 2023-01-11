@@ -93,20 +93,20 @@ public class DataPersistenceManager : MonoBehaviour
         if (overrideSelectedProfileId)
         {
             this.selectedProfileId = testSelectedProfileId;
-            Debug.LogWarning("Override selected profile id with test id: " + testSelectedProfileId);
+            // Debug.LogWarning("Override selected profile id with test id: " + testSelectedProfileId);
         }
     }
     public void NewGame()
     {
         this.gameData = new GameData();
         PlayerPrefs.DeleteKey(saveVariablesKey + selectedProfileId);
-        Debug.Log("gameData new");
+        // Debug.Log("gameData new");
         // LoadGame();
     }
     public void LoadGame(bool isLoadFromFile)
     {
         // if (disableDataPersistence) return;
-        Debug.LogWarning("Load game");
+        // Debug.LogWarning("Load game");
 
         //load any saved data from a data handler
         if (isLoadFromFile)
@@ -117,7 +117,7 @@ public class DataPersistenceManager : MonoBehaviour
 
         if (this.gameData == null)
         {
-            Debug.Log("No data was found. Need to go to NewGame");
+            Debug.LogWarning("No data was found. Need to go to NewGame");
             return;
         }
 
@@ -127,21 +127,21 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.LoadData(gameData);
         }
         //Debug for load data
-        Debug.Log("Game Data Load: " + gameData.ToString());
+        // Debug.Log("Game Data Load: " + gameData.ToString());
     }
     public void SaveGame(bool isSaveToFile)
     {
         //if don't have any data to save, log a warning 
         if (this.gameData == null)
         {
-            Debug.LogWarning("No data was found, NewGame is needed");
+            // Debug.LogWarning("No data was found, NewGame is needed");
         }
         //pass the data to other scripts so they can update it
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
             dataPersistenceObj.SaveData(gameData);
         }
-        Debug.Log("Game Data save: " + gameData.ToString());
+        // Debug.Log("Game Data save: " + gameData.ToString());
         //time stamp
         gameData.lastUpdated = System.DateTime.Now.ToBinary();
 
