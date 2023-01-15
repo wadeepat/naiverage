@@ -367,9 +367,112 @@ public class Database : MonoBehaviour
                 addAction = () =>
                 {
                 },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 10,
+                questName = $"รับงานจาก {ColorText("char", "Sata")}",
+                questDescription = $"ไปคุยกับ {ColorText("char", "Sata")} บริเวณหน้าปราสาทในเมือง {ColorText("town", "Naver")}",
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Sata,
+                    type = Quest.Objective.Type.talk,
+                    amount = 1,
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 11,
+                questName = $"เจรจากับ {ColorText("char", "พ่อค้ายา")}",
+                questDescription = $"ไปคุยกับ {ColorText("char", "พ่อค้ายา")} ที่ร้านยาตรงทางเข้าเมือง {ColorText("town", "Naver")} เพื่อรับยาตื่นจากฝัน",
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Villager,
+                    type = Quest.Objective.Type.talk,
+                    amount = 10,
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 12,
+                questName = $"มอบยาให้กับ {ColorText("char", "Sata")}",
+                questDescription = $"ไปคุยกับ {ColorText("char", "Sata")} ที่บ้านของ {ColorText("char", "ตา/ยาย")} บริเวณนอกปราสาท",
+                MPReward = 500,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Sata,
+                    type = Quest.Objective.Type.talk,
+                    amount = 1,
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 13,
+                questName = $"ช่วยเหลือเด็กน้อย",
+                questDescription = $"กำจัด {ColorText("monster", "Rachne")} ที่ป่า {ColorText("town", "Rachne")} ซะ",
+                MPReward = 1000,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)MonsterId.Rachne,
+                    type = Quest.Objective.Type.kill,
+                    amount = 1,
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 14,
+                questName = $"พาเด็กกลับเมือง",
+                questDescription = $"พาเด็กสู่อ้อมโกดที่อบอุ่นของ ตา/ยาย อีกครั้ง ไปคุยกับ {ColorText("char", "Sata")} เพื่อส่งภารกิจ",
+                MPReward = 500,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Sata,
+                    type = Quest.Objective.Type.talk,
+                    amount = 1,
+                },
                 compleltedAction = () =>
                 {
-                    ActivateTutorialCard("TalkToNPC", false);
+                    chapterCardScript.ActivateMenu(2);
+                },
+            }
+        );
+        //* chapter 2
+        questList.Add(
+            new Quest()
+            {
+                questId = 15,
+                questName = $"พบแม่ทัพ",
+                questDescription = $"ไปพบ {ColorText("char", "Aaron")} กับพวกทหารที่หน้าเมือง {ColorText("town", "Naver")}",
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Aaron,
+                    type = Quest.Objective.Type.talk,
+                    amount = 1,
                 },
             }
         );
@@ -380,6 +483,10 @@ public class Database : MonoBehaviour
         //     }
         // );
         // Debug.LogWarning($"questSize = {questList.Count}");
+    }
+    private string ColorText(string type, string text)
+    {
+        return $"<color={COLORS[type]}>{text}</color>";
     }
     private void ActivateTutorialCard(string cardName, bool active)
     {
