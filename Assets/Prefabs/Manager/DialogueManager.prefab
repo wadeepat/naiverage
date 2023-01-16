@@ -54,6 +54,15 @@ MonoBehaviour:
     json: {fileID: 4900000, guid: 1de4389077f40fc49a0ab7403c4cc624, type: 3}
   - name: CompletedUsePotion
     json: {fileID: 4900000, guid: 707a8e5fd83a6ed45b8bd92f5a3f8d50, type: 3}
+  - name: FinishedWebsterQ
+    json: {fileID: 4900000, guid: 323d02fa31bafa14584f39d0cbaace78, type: 3}
+  chapter1Files:
+  - name: IntroduceAaron
+    json: {fileID: 4900000, guid: 844a8cfd105408d41adb64707f673fee, type: 3}
+  - name: AaronQuest
+    json: {fileID: 4900000, guid: ad2a79cd368847b44a9b833212e6f93b, type: 3}
+  - name: ReceiveTheBook
+    json: {fileID: 4900000, guid: d91e602e69269b14ca254ffc1e655123, type: 3}
   dialoguePanel: {fileID: 0}
   continueText: {fileID: 0}
   displayNameText: {fileID: 0}

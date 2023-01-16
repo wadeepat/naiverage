@@ -28,7 +28,7 @@ public class QuestLog
         {
             completedQuest.Add(Database.questList[i]);
         }
-        onQuestChange.Invoke(questList, completedQuest);
+        onQuestChange?.Invoke(questList, completedQuest);
     }
     public static (List<int> q, List<int> c) GetAllQuestList()
     {
@@ -68,6 +68,7 @@ public class QuestLog
     public static void CompleteQuest(Quest quest)
     {
         // Debug.Log($"<color=#AEF>Complete quest: {quest.questName}</color>");
+        if (quest.objective.dialogue) DialogueManager.instance.EnterDialogueMode(quest.objective.dialogue);
         questList.Remove(quest);
         completedQuest.Add(quest);
         if (quest.compleltedAction != null) quest.compleltedAction();
@@ -124,6 +125,15 @@ public class QuestLog
             foreach (Quest q in questList.ToArray())
             {
                 if (q.updateAction != null) q.updateAction();
+            }
+    }
+    public static void DoQuestPrepare(SceneIndex location)
+    {
+        if (questList?.Count > 0)
+            foreach (Quest q in questList.ToArray())
+            {
+                Debug.Log(q.questName + " " + q.location.ToString());
+                if (q.location == location && q.prepareAction != null) q.prepareAction();
             }
     }
     public static void DoQuest(Quest.Objective.Type type, int id)

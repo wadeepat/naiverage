@@ -9,11 +9,13 @@ public class Quest
     public Objective objective;
     public string questName;
     public string questDescription;
+    public SceneIndex location;
     public int MPReward;
     public string SBReward;
     public short questCategory;
     public UnityAction addAction;
     public UnityAction updateAction;
+    public UnityAction prepareAction;
     public UnityAction compleltedAction;
 
     [System.Serializable]
@@ -22,6 +24,7 @@ public class Quest
         public enum Type { kill, talk, collect, interact };
         public Type type;
         public NPCIndex npc;
+        public TextAsset dialogue;
         public int amount;
         // public int objectiveId{ get; private set;}
         [System.NonSerialized]

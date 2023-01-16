@@ -9,7 +9,7 @@ public class GameData
     public long lastUpdated;
     public SceneIndex playerLocation;
     public Vector3 playerPosition;
-    public SerializableDictionary<string, bool> tutorialEvents;
+    public SerializableDictionary<string, bool> playerEvents;
     public SerializableDictionary<SceneIndex, bool> mapEnable;
     public List<int> questIdxList;
     public List<int> completedQuestIdxList;
@@ -19,9 +19,10 @@ public class GameData
     {
         playerPosition = Vector3.zero;
         playerLocation = SceneIndex.Rachne;
-        tutorialEvents = new SerializableDictionary<string, bool>{
+        playerEvents = new SerializableDictionary<string, bool>{
             {"sataAskToJoin",false},
-            {"finishedTutorial",false}
+            {"finishedTutorial",false},
+            {"metAaron",false}
         };
         mapEnable = new SerializableDictionary<SceneIndex, bool>{
             {SceneIndex.Rachne,true},
@@ -40,7 +41,7 @@ public class GameData
         temp += $"lastUpdate: {this.lastUpdated}\n";
         temp += $"playerLocation: {this.playerLocation.ToString()}\n";
         temp += $"tutorialEvents:\n";
-        foreach (var i in tutorialEvents)
+        foreach (var i in playerEvents)
         {
             temp += $"\t{i.Key}: {i.Value}\n";
         }

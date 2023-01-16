@@ -20,6 +20,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextAsset loadGlobalsJSON;
     [Header("Ink Files")]
     [SerializeField] private JSONfile[] tutorialFiles;
+    [SerializeField] private JSONfile[] chapter1Files;
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI continueText;
@@ -263,8 +264,6 @@ public class DialogueManager : MonoBehaviour
         {
             choices[i].gameObject.SetActive(false);
         }
-
-        // StartCoroutine(SelectFirstChoice());
     }
 
     private void HideChoices()
@@ -275,13 +274,6 @@ public class DialogueManager : MonoBehaviour
             choiceBtn.SetActive(false);
         }
     }
-
-    // private IEnumerator SelectFirstChoice()
-    // {
-    //     EventSystem.current.SetSelectedGameObject(null);
-    //     yield return new WaitForEndOfFrame();
-    //     EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
-    // }
 
     public void MakeChoice(int choiceIdx)
     {
@@ -329,6 +321,14 @@ public class DialogueManager : MonoBehaviour
     public TextAsset GetTutorialFiles(string name)
     {
         foreach (JSONfile file in tutorialFiles)
+        {
+            if (file.name == name) return file.json;
+        }
+        return null;
+    }
+    public TextAsset GetChapter1Files(string name)
+    {
+        foreach (JSONfile file in chapter1Files)
         {
             if (file.name == name) return file.json;
         }

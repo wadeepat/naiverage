@@ -9,6 +9,7 @@ public class StageHandler : MonoBehaviour
     private class NPC_Details
     {
         public NPCIndex idx;
+        public string info = "none";
         public GameObject Object;
     }
     [SerializeField] private SceneIndex sceneIndex;
@@ -26,6 +27,10 @@ public class StageHandler : MonoBehaviour
     [SerializeField] private Transform n_rachneGate;
     [SerializeField] private Transform n_calfordGate;
     [SerializeField] private Transform n_braewoodGate;
+    [SerializeField] private Transform n_mainDoor;
+    [SerializeField] private Transform n_frontOfRanche0;
+    [SerializeField] private Transform n_frontOfRanche1;
+    [SerializeField] private Transform n_frontOfCastle;
 
     [Header("Calford")]
     [Header("Gates")]
@@ -67,6 +72,10 @@ public class StageHandler : MonoBehaviour
                 break;
             case SceneIndex.NaverTown:
                 AudioManager.instance.Play("naverBackground");
+                if (!PlayerManager.instance.playerEvents["metAaron"])
+                    EventTrigger("IntroduceAaron");
+                // QuestLog.AddQuest(Database.questList[9]);
+                // EventTrigger("AaronQuest");
                 break;
             case SceneIndex.CalfordCastle:
                 break;
@@ -75,13 +84,14 @@ public class StageHandler : MonoBehaviour
             case SceneIndex.Cave:
                 break;
         }
+        QuestLog.DoQuestPrepare(sceneIndex);
     }
     public void EventTrigger(string eventName)
     {
         switch (activeSceneIndex)
         {
             case (int)SceneIndex.Rachne:
-                TutorialEvents(eventName);
+                RachneEvents(eventName);
                 break;
             case (int)SceneIndex.NaverTown:
                 NaverTownEvents(eventName);
@@ -108,7 +118,6 @@ public class StageHandler : MonoBehaviour
         switch (activeSceneIndex)
         {
             case (int)SceneIndex.Rachne:
-                AudioManager.instance.Play("forestBackground");
                 if (previousScene == (int)SceneIndex.NaverTown)
                 {
                     player.position = t_naverGate.position;
@@ -121,7 +130,6 @@ public class StageHandler : MonoBehaviour
                 }
                 break;
             case (int)SceneIndex.NaverTown:
-                AudioManager.instance.Play("forestBackground");
                 switch (previousScene)
                 {
                     case (int)SceneIndex.Rachne:
@@ -132,13 +140,20 @@ public class StageHandler : MonoBehaviour
                         player.position = n_rachneGate.position;
                         player.rotation = n_rachneGate.rotation;
                         break;
+                    case (int)SceneIndex.CalfordCastle:
+                        player.position = n_calfordGate.position;
+                        player.rotation = n_calfordGate.rotation;
+                        break;
+                    case (int)SceneIndex.BraewoodForest:
+                        player.position = n_braewoodGate.position;
+                        player.rotation = n_braewoodGate.rotation;
+                        break;
                 }
                 break;
         }
         PlayerManager.instance.ChangePlayerLocationToCurrent();
     }
-
-    private void TutorialEvents(string eventName)
+    private void RachneEvents(string eventName)
     {
         switch (eventName)
         {
@@ -167,10 +182,10 @@ public class StageHandler : MonoBehaviour
                 t_naverGate.gameObject.SetActive(true);
                 break;
             case "Spawn1Webster":
-                SpawnWebster(1);
+                SpawnMonsterAt(0, MonsterId.Webster, 1);
                 break;
             case "Spawn5Webster":
-                SpawnWebster(5);
+                SpawnMonsterAt(1, MonsterId.Webster, 5);
                 break;
             case "SataLeadToTown":
                 foreach (NPC_Details npc in NPCs)
@@ -182,6 +197,10 @@ public class StageHandler : MonoBehaviour
                     }
                 }
                 break;
+            case "Spawn10Webster":
+                SpawnMonsterAt(0, MonsterId.Webster, 5);
+                SpawnMonsterAt(1, MonsterId.Webster, 5);
+                break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in TutorialEvents");
                 break;
@@ -192,6 +211,59 @@ public class StageHandler : MonoBehaviour
         //TODO implement naver events
         switch (eventName)
         {
+            case "IntroduceAaron":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Sata)
+                    {
+                        npc.Object.transform.position = n_frontOfRanche1.position;
+                        npc.Object.transform.rotation = n_frontOfRanche1.rotation;
+                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetChapter1Files("IntroduceAaron");
+                        npc.Object.SetActive(true);
+                    }
+                    else if (npc.idx == NPCIndex.Aaron)
+                    {
+                        npc.Object.transform.position = n_frontOfRanche0.position;
+                        npc.Object.transform.rotation = n_frontOfRanche0.rotation;
+                        npc.Object.SetActive(true);
+                    }
+                }
+                break;
+            case "AaronMoveToMainDoor":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Aaron && npc.info == "IntroduceAaron")
+                    {
+                        npc.Object.GetComponent<NPC>().Goto(n_mainDoor);
+                        break;
+                    }
+                }
+                break;
+            case "AaronQuest":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Aaron)
+                    {
+                        npc.Object.transform.position = n_mainDoor.position;
+                        npc.Object.transform.rotation = n_mainDoor.rotation;
+                        npc.Object.SetActive(true);
+                        break;
+                    }
+                }
+                break;
+            case "ReceiveTheBook":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Sata)
+                    {
+                        npc.Object.transform.position = n_frontOfCastle.position;
+                        npc.Object.transform.rotation = n_frontOfCastle.rotation;
+                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetChapter1Files("ReceiveTheBook");
+                        npc.Object.SetActive(true);
+                        break;
+                    }
+                }
+                break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in NaverTownEvents");
                 break;
@@ -228,15 +300,15 @@ public class StageHandler : MonoBehaviour
         }
     }
     //private for tutorialScene
-    private void SpawnWebster(int num)
+    private void SpawnMonsterAt(int spawnNo, MonsterId monsterIdx, int num)
     {
-        if (num == 1)
+        if (spawnNo == 0)
         {
-            spawn0.SpawnMonster(0, 1);
+            spawn0.SpawnMonster((int)monsterIdx, num);
         }
-        else if (num == 5)
+        else if (spawnNo == 1)
         {
-            spawn1.SpawnMonster(0, 5);
+            spawn1.SpawnMonster((int)monsterIdx, num);
         }
     }
 }

@@ -46,7 +46,7 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
         this.playerLocation = data.playerLocation;
         // Debug.Log(this.playerLocation);
         this.mapEnable = data.mapEnable;
-        playerEvents = data.tutorialEvents;
+        playerEvents = data.playerEvents;
 
     }
 
@@ -54,7 +54,7 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
     {
         data.playerLocation = this.playerLocation;
         data.mapEnable = this.mapEnable;
-        data.tutorialEvents = this.playerEvents;
+        data.playerEvents = this.playerEvents;
         // Debug.Log("Save from PlayerManager Location: " + this.playerLocation + " " + data.playerLocation);
     }
 }

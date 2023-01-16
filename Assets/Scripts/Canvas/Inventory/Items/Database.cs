@@ -104,6 +104,7 @@ public class Database : MonoBehaviour
                 questId = 0,
                 questName = "เรียนรู้การเคลื่อนที่",
                 questDescription = "ควบคุมตัวละครไปยังพื้นที่ที่ส่องแสง",
+                location = SceneIndex.Rachne,
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -130,6 +131,7 @@ public class Database : MonoBehaviour
             questId = 1,
             questName = "เรียนรู้การเก็บของ",
             questDescription = "ลองเก็บ MUSHROOM ตรงใต้ต้นไม้นั่นสิ",
+            location = SceneIndex.Rachne,
             MPReward = 0,
             SBReward = "",
             questCategory = 0,
@@ -156,6 +158,7 @@ public class Database : MonoBehaviour
                 questId = 2,
                 questName = "เรียนรู้การปรุงยา",
                 questDescription = $"ยาเป็นไอเทมที่ดีที่การช่วยในการต่อสู้เลยนะ\n ลองเปิดที่ <color={COLORS["menu"]}>Potion</color> ดูสิ",
+                location = SceneIndex.Rachne,
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -189,6 +192,7 @@ public class Database : MonoBehaviour
                 questId = 3,
                 questName = "เรียนรู้การใช้ยา",
                 questDescription = "เจ้ามียาเพิ่มเลือด และยาเพิ่มมานาอยู่ลองใช้สักขวดสิ",
+                location = SceneIndex.Rachne,
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -215,6 +219,7 @@ public class Database : MonoBehaviour
                 questId = 4,
                 questName = "ต่อสู้เพื่อเอาชีวิตรอด",
                 questDescription = $"อยู่ ๆ ก็มี <color={COLORS["monster"]}>webster</color> โผล่มา จงกำจัดมันเพื่อเอาตัวรอดซะ",
+                location = SceneIndex.Rachne,
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -243,6 +248,7 @@ public class Database : MonoBehaviour
                 questId = 5,
                 questName = $"ช่วยเหลือ <color={COLORS["char"]}>Sata</color> (1/2)",
                 questDescription = $"<color={COLORS["char"]}>Sata</color> ช่างน่าสงสารเสียจริง ไปเก็บขาเแมงมุมเพื่อช่วย <color={COLORS["char"]}>Sata</color> กันเถอะ",
+                location = SceneIndex.Rachne,
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -270,6 +276,7 @@ public class Database : MonoBehaviour
                 questId = 6,
                 questName = $"ช่วยเหลือ <color={COLORS["char"]}>Sata</color> (2/2)",
                 questDescription = $"ไปคุยกับ <color={COLORS["char"]}>Sata</color> เพื่อรับรางวัล",
+                location = SceneIndex.Rachne,
                 MPReward = 1000,
                 SBReward = "",
                 questCategory = 0,
@@ -277,6 +284,7 @@ public class Database : MonoBehaviour
                 {
                     objectiveId = (int)NPCIndex.Sata,
                     type = Quest.Objective.Type.talk,
+                    dialogue = DialogueManager.instance.GetTutorialFiles("FinishedWebsterQ"),
                     amount = 1,
                 },
                 addAction = () =>
@@ -295,6 +303,7 @@ public class Database : MonoBehaviour
                 questId = 7,
                 questName = $"เดินทางไปยังเมือง <color={COLORS["town"]}>Naver</color>",
                 questDescription = $"มีเรื่องราวลึกลับ และน่าสนใจรอเจ้าอยู่ ออกเดินทางไปยังเมือง <color={COLORS["town"]}>Naver</color> ตาม <color={COLORS["char"]}>Sata</color> ไปกันเถอะ",
+                location = SceneIndex.NaverTown,
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -310,15 +319,20 @@ public class Database : MonoBehaviour
                     StageHandler.instance.EventTrigger("CompletedTutorial");
                     StageHandler.instance.EventTrigger("SataLeadToTown");
                 },
-                updateAction = () =>
+                prepareAction = () =>
                 {
-                    // Debug.Log("Check quest 6 : " + StageHandler.instance.activeSceneIndex);
                     if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown) QuestLog.CompleteQuest(QuestLog.GetQuestById(7));
                 },
+                // updateAction = () =>
+                // {
+                //     // Debug.Log("Check quest 6 : " + StageHandler.instance.activeSceneIndex);
+                //     if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown) QuestLog.CompleteQuest(QuestLog.GetQuestById(7));
+                // },
                 compleltedAction = () =>
                 {
                     ActivateTutorialCard("WarpAndMap", false);
                     chapterCardScript.ActivateMenu(1);
+                    // StageHandler.instance.EventTrigger("IntroduceAaron");
                 },
             }
         );
@@ -329,6 +343,7 @@ public class Database : MonoBehaviour
                 questId = 8,
                 questName = $"ภารกิจจากแม่ทัพ (1/2)",
                 questDescription = $"กำจัด <color={COLORS["monster"]}>Webster</color> ในป่า <color={COLORS["town"]}>Rachne</color>",
+                location = SceneIndex.Rachne,
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -340,8 +355,11 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
-                    //TODO implement spawn
-                    // ActivateTutorialCard("TalkToNPC", true);
+                    StageHandler.instance.EventTrigger("AaronMoveToMainDoor");
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("Spawn10Webster");
                 },
                 compleltedAction = () =>
                 {
@@ -355,17 +373,21 @@ public class Database : MonoBehaviour
                 questId = 9,
                 questName = $"ภารกิจจากแม่ทัพ (2/2)",
                 questDescription = $"ไปคุยกับ <color={COLORS["char"]}>Aaron</color> ในเมือง <color={COLORS["char"]}>Naver</color> เพื่อรับรางวัล",
+                location = SceneIndex.NaverTown,
                 MPReward = 1000,
                 SBReward = "",
                 questCategory = 0,
                 objective = new Quest.Objective()
                 {
                     objectiveId = (int)NPCIndex.Aaron,
+                    npc = NPCIndex.Aaron,
                     type = Quest.Objective.Type.talk,
+                    dialogue = DialogueManager.instance.GetChapter1Files("AaronQuest"),
                     amount = 1,
                 },
-                addAction = () =>
+                prepareAction = () =>
                 {
+                    StageHandler.instance.EventTrigger("AaronQuest");
                 },
             }
         );
@@ -375,6 +397,7 @@ public class Database : MonoBehaviour
                 questId = 10,
                 questName = $"รับงานจาก {ColorText("char", "Sata")}",
                 questDescription = $"ไปคุยกับ {ColorText("char", "Sata")} บริเวณหน้าปราสาทในเมือง {ColorText("town", "Naver")}",
+                location = SceneIndex.NaverTown,
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -383,6 +406,10 @@ public class Database : MonoBehaviour
                     objectiveId = (int)NPCIndex.Sata,
                     type = Quest.Objective.Type.talk,
                     amount = 1,
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("ReceiveTheBook");
                 },
             }
         );
