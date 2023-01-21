@@ -37,10 +37,11 @@ public class DialogueManager : MonoBehaviour
     public DialogueVariables dialogueVariables { get; private set; }
 
     private const string ACTION_TAG = "action";
+    private const string EVENT_TAG = "event";
     private const string QUEST_TAG = "quest";
+    private const string QUEST_COMPLETED_TAG = "questComplete";
     private const string SOUND_TAG = "sound";
     private const string SPEAKER_TAG = "speaker";
-    private const string EVENT_TAG = "event";
     private GameObject _player;
     private string playerName;
     public GameObject Player;
@@ -219,19 +220,22 @@ public class DialogueManager : MonoBehaviour
                     if (tagValue == "Me") displayNameText.text = playerName;
                     else displayNameText.text = tagValue;
                     break;
-                case SOUND_TAG:
-                    AudioManager.instance.Play(tagValue);
-                    break;
                 case QUEST_TAG:
                     EndTheDialogue();
                     QuestLog.AddQuest(Database.questList[int.Parse(tagValue)]);
                     break;
-                case ACTION_TAG:
-                    EndTheDialogue();
-                    ActionHandler.instance.ReceiveActionThenContinueStory(tagValue, ContinueStory);
+                case QUEST_COMPLETED_TAG:
+                    QuestLog.CompleteQuest(Database.questList[int.Parse(tagValue)]);
                     break;
                 case EVENT_TAG:
                     StageHandler.instance.EventTrigger(tagValue);
+                    break;
+                case SOUND_TAG:
+                    AudioManager.instance.Play(tagValue);
+                    break;
+                case ACTION_TAG:
+                    EndTheDialogue();
+                    ActionHandler.instance.ReceiveActionThenContinueStory(tagValue, ContinueStory);
                     break;
                 default:
                     Debug.LogWarning("Tag came in but is not being handled: " + tag);

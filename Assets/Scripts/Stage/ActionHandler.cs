@@ -16,6 +16,8 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     private GameObject[] tutorialGuidingCards;
     private InputTextUI UI_Input_Window;
     private ConfirmationPopupMenu confirmationPopup;
+
+    private List<int> questIdxList = new List<int>();
     private void Awake()
     {
         instance = this;
@@ -31,6 +33,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     private void OnDisable()
     {
         UsePotions.onUsePotion -= CheckIsUsePotionQuest;
+        DeactivateAllCard();
     }
     public void CheckIsUsePotionQuest()
     {
@@ -40,6 +43,13 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     public void ActivateTutorialCard(string cardName, bool active)
     {
         TutorialGuidingObject.transform.Find(cardName).gameObject.SetActive(active);
+    }
+    private void DeactivateAllCard()
+    {
+        foreach (GameObject card in TutorialGuidingObject.transform)
+        {
+            card.SetActive(false);
+        }
     }
     public void ReceiveActionThenContinueStory(string action, UnityAction ContinueStory)
     {
@@ -91,11 +101,17 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
             }
         );
     }
-
+    public bool IsQuestIdxInSave(int idx)
+    {
+        foreach (int i in questIdxList)
+            if (i == idx) return true;
+        return false;
+    }
     public void LoadData(GameData data)
     {
         Debug.Log("Load from Action Handler");
         playerName = data.name;
+        questIdxList = data.questIdxList;
         QuestLog.LoadQuest(data.questIdxList, data.completedQuestIdxList);
     }
 

@@ -5,3 +5,5 @@ VAR acceptWebsterQ = false
 VAR name = ""
 VAR toldName = false
 VAR usePotionComplete = false
+
+VAR cainAskToGo = false

@@ -31,6 +31,7 @@ public class StageHandler : MonoBehaviour
     [SerializeField] private Transform n_frontOfRanche0;
     [SerializeField] private Transform n_frontOfRanche1;
     [SerializeField] private Transform n_frontOfCastle;
+    [SerializeField] private Transform n_oldmanHouse;
 
     [Header("Calford")]
     [Header("Gates")]
@@ -84,7 +85,7 @@ public class StageHandler : MonoBehaviour
             case SceneIndex.Cave:
                 break;
         }
-        QuestLog.DoQuestPrepare(sceneIndex);
+        // QuestLog.DoQuestPrepare(sceneIndex);
     }
     public void EventTrigger(string eventName)
     {
@@ -260,6 +261,65 @@ public class StageHandler : MonoBehaviour
                         npc.Object.transform.rotation = n_frontOfCastle.rotation;
                         npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetChapter1Files("ReceiveTheBook");
                         npc.Object.SetActive(true);
+                        break;
+                    }
+                }
+                break;
+            case "TalkWithMerchant":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Villager && npc.info == "Merchant")
+                    {
+                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetChapter1Files("TalkToMerchant");
+                        npc.Object.SetActive(true);
+                        break;
+                    }
+                }
+                break;
+            case "AbelFirstMet":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Abel)
+                    {
+                        npc.Object.SetActive(true);
+                        npc.Object.GetComponent<NPC>().Goto(PlayerManager.instance.player.transform);
+                        break;
+                    }
+                }
+                break;
+            case "SataAtOldmanHouse":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Sata)
+                    {
+                        npc.Object.SetActive(true);
+                        npc.Object.gameObject.transform.position = n_oldmanHouse.transform.position;
+                        npc.Object.gameObject.transform.rotation = n_oldmanHouse.transform.rotation;
+                        break;
+                    }
+                }
+                break;
+            case "HappyFamily":
+                EventTrigger("SataAtOldmanHouse");
+                GameObject.Find("OldManFamily").SetActive(true);
+                break;
+            case "Cain'sHint":
+                // Transform oldmanPosition = new Transform();
+
+                // foreach (NPC_Details npc in NPCs)
+                // {
+                //     if (npc.info == "Oldman")
+                //     {
+                //         oldmanPosition = npc.Object.transform;
+                //         break;
+                //     }
+                // }
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.info == "FemaleVillager")
+                    {
+                        npc.Object.SetActive(true);
+                        npc.Object.GetComponent<NPC>().Goto(n_oldmanHouse);
                         break;
                     }
                 }

@@ -63,6 +63,12 @@ MonoBehaviour:
     json: {fileID: 4900000, guid: ad2a79cd368847b44a9b833212e6f93b, type: 3}
   - name: ReceiveTheBook
     json: {fileID: 4900000, guid: d91e602e69269b14ca254ffc1e655123, type: 3}
+  - name: TalkToMerchant
+    json: {fileID: 4900000, guid: ae5af22e16eb4634eaf15f2339eef7e4, type: 3}
+  - name: WakeUpTheWoman
+    json: {fileID: 4900000, guid: 958654c0a2c2a74488bbbd240d5311b9, type: 3}
+  - name: TakeToHome
+    json: {fileID: 4900000, guid: 298558aa7643a5f49a182ce655c7ea3e, type: 3}
   dialoguePanel: {fileID: 0}
   continueText: {fileID: 0}
   displayNameText: {fileID: 0}

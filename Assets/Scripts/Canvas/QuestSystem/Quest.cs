@@ -15,7 +15,7 @@ public class Quest
     public short questCategory;
     public UnityAction addAction;
     public UnityAction updateAction;
-    public UnityAction prepareAction;
+    // public UnityAction prepareAction;
     public UnityAction compleltedAction;
 
     [System.Serializable]

@@ -7,7 +7,7 @@ public class Database : MonoBehaviour
     public static readonly Dictionary<string, string> COLORS = new Dictionary<string, string>(){
         {"button","#900C3F"},
         {"char","#FEF4E8"},
-        {"item","#09bc8a"},
+        {"item","#40FF6F"},
         {"menu","#363062"},
         {"monster","#FFBD39"},
         {"town","#FF7272"},
@@ -34,48 +34,33 @@ public class Database : MonoBehaviour
         TutorialCardObject = CanvasObject.transform.Find("TutorialGuiding").gameObject;
         PotionPanel = CanvasObject.transform.Find("Panel").Find("Character panel").Find("All funtion").Find("Potion").gameObject;
         // (id,name,description)
-        itemList.Add(new Item(0, "None", "None", Resources.Load<Sprite>("0"), 0));
-        itemList.Add(new Item(1, "Mushroom", "Item", Resources.Load<Sprite>("1"), 0));
-        itemList.Add(new Item(2, "Flower2", "Item", Resources.Load<Sprite>("2"), 0));
-
-        potionList.Add(new Potion(0, "None", "None", Resources.Load<Sprite>("0"), 0, true, 0, 0, 0, 0, 0, 0));
-        potionList.Add(new Potion(1, "HP", "Potion", Resources.Load<Sprite>("p1"), 0, true, 1, 2, 0, 2, 3, 0));
-        potionList.Add(new Potion(2, "Stamina", "Potion", Resources.Load<Sprite>("p2"), 0, true, 1, 0, 0, 5, 0, 0));
-        potionList.Add(new Potion(3, "t1", "None", Resources.Load<Sprite>("0"), 0, true, 0, 0, 0, 0, 0, 0));
-        potionList.Add(new Potion(4, "t2", "Potion", Resources.Load<Sprite>("p1"), 0, true, 1, 2, 0, 2, 3, 0));
-        potionList.Add(new Potion(5, "t3", "Potion", Resources.Load<Sprite>("p2"), 0, true, 1, 0, 0, 5, 0, 0));
-        potionList.Add(new Potion(6, "t4", "None", Resources.Load<Sprite>("0"), 0, true, 0, 0, 0, 0, 0, 0));
-        potionList.Add(new Potion(7, "t5", "Potion", Resources.Load<Sprite>("p1"), 0, true, 1, 2, 0, 2, 3, 0));
-        potionList.Add(new Potion(8, "t6", "Potion", Resources.Load<Sprite>("p2"), 0, true, 1, 0, 0, 5, 0, 0));
-
-        itemQuestList.Add(new Item(0, "None", "None", Resources.Load<Sprite>("0"), 0));
-        itemQuestList.Add(new Item(1, "Quest1", "Quest", Resources.Load<Sprite>("q1"), 0));
-        itemQuestList.Add(new Item(2, "Quest2", "Quest", Resources.Load<Sprite>("q2"), 0));
-
-        skillBookList.Add(new SkillBook(0, "None", "None", Resources.Load<Sprite>("0"), 0));
-        skillBookList.Add(new SkillBook(1, "SKB1", "None", Resources.Load<Sprite>("skb1"), 0));
-        skillBookList.Add(new SkillBook(2, "SKB2", "None", Resources.Load<Sprite>("skb2"), 0));
-        skillBookList.Add(new SkillBook(3, "SKB3", "None", Resources.Load<Sprite>("skb3"), 0));
-        skillBookList.Add(new SkillBook(4, "SKB4", "None", Resources.Load<Sprite>("skb4"), 0));
-        skillBookList.Add(new SkillBook(5, "SKB5", "None", Resources.Load<Sprite>("skb5"), 0));
-        skillBookList.Add(new SkillBook(6, "SKB6", "None", Resources.Load<Sprite>("skb6"), 0));
-        skillBookList.Add(new SkillBook(7, "SKB7", "None", Resources.Load<Sprite>("skb7"), 0));
-        skillBookList.Add(new SkillBook(8, "SKB8", "None", Resources.Load<Sprite>("skb8"), 0));
-        skillBookList.Add(new SkillBook(9, "SKB9", "None", Resources.Load<Sprite>("skb9"), 0));
+        AddItemList();
+        AddPotionList();
+        AddItemQuestList();
+        AddSkillbookList();
 
         magicPearl = new Pearl(0, "Magic Pearl", "None", Resources.Load<Sprite>("Pearl"), 0);
+        AddSkillList();
+        AddMonsterList();
 
-        skillList.Add(new Skill(0, "None", "None", Resources.Load<Sprite>("0"), 0, true, 0, 0, 0, 0));
-        skillList.Add(new Skill(1, "SK1", "None", Resources.Load<Sprite>("sk1"), 0, false, 1, 0, 1, 500));
-        skillList.Add(new Skill(2, "SK2", "None", Resources.Load<Sprite>("sk2"), 0, false, 2, 0, 1, 1000));
-        skillList.Add(new Skill(3, "SK3", "None", Resources.Load<Sprite>("sk3"), 0, false, 3, 0, 1, 1500));
-        skillList.Add(new Skill(4, "SK4", "None", Resources.Load<Sprite>("sk4"), 0, false, 4, 0, 1, 2000));
-        skillList.Add(new Skill(5, "SK5", "None", Resources.Load<Sprite>("sk5"), 0, false, 1, 0, 1, 500));
-        skillList.Add(new Skill(6, "SK6", "None", Resources.Load<Sprite>("sk6"), 0, false, 2, 0, 1, 1000));
-        skillList.Add(new Skill(7, "SK7", "None", Resources.Load<Sprite>("sk7"), 0, false, 3, 0, 1, 1500));
-        skillList.Add(new Skill(8, "SK8", "None", Resources.Load<Sprite>("sk8"), 0, false, 4, 0, 1, 2000));
-        skillList.Add(new Skill(9, "SK9", "None", Resources.Load<Sprite>("sk9"), 0, false, 4, 0, 1, 2000));
+        //* Quest section
+        //* chapter 0
+        AddQuestChapter0();
+        //* chapter 1
+        AddQuestChapter1();
+        //* chapter 2
+        AddQuestChapter2();
+        // questList.Add(
+        //     new Quest()
+        //     {
 
+        //     }
+        // );
+        // Debug.LogWarning($"questSize = {questList.Count}");
+    }
+
+    private void AddMonsterList()
+    {
         //* Monster section id, hp, atk, def, res, reHp
         //MonsterId.Webster
         monsterList.Add(new Monster(0, 100, 20, 10, 0, 1));
@@ -95,9 +80,59 @@ public class Database : MonoBehaviour
         monsterList.Add(new Monster(7, 100, 20, 10, 0, 1));
         // MonsterId.Abel
         monsterList.Add(new Monster(8, 100, 20, 10, 0, 1));
-
-        //* Quest section
-        //* chapter 0
+    }
+    private void AddSkillList()
+    {
+        skillList.Add(new Skill(0, "None", "None", Resources.Load<Sprite>("0"), 0, true, 0, 0, 0, 0));
+        skillList.Add(new Skill(1, "SK1", "None", Resources.Load<Sprite>("sk1"), 0, false, 1, 0, 1, 500));
+        skillList.Add(new Skill(2, "SK2", "None", Resources.Load<Sprite>("sk2"), 0, false, 2, 0, 1, 1000));
+        skillList.Add(new Skill(3, "SK3", "None", Resources.Load<Sprite>("sk3"), 0, false, 3, 0, 1, 1500));
+        skillList.Add(new Skill(4, "SK4", "None", Resources.Load<Sprite>("sk4"), 0, false, 4, 0, 1, 2000));
+        skillList.Add(new Skill(5, "SK5", "None", Resources.Load<Sprite>("sk5"), 0, false, 1, 0, 1, 500));
+        skillList.Add(new Skill(6, "SK6", "None", Resources.Load<Sprite>("sk6"), 0, false, 2, 0, 1, 1000));
+        skillList.Add(new Skill(7, "SK7", "None", Resources.Load<Sprite>("sk7"), 0, false, 3, 0, 1, 1500));
+        skillList.Add(new Skill(8, "SK8", "None", Resources.Load<Sprite>("sk8"), 0, false, 4, 0, 1, 2000));
+        skillList.Add(new Skill(9, "SK9", "None", Resources.Load<Sprite>("sk9"), 0, false, 4, 0, 1, 2000));
+    }
+    private void AddSkillbookList()
+    {
+        skillBookList.Add(new SkillBook(0, "None", "None", Resources.Load<Sprite>("0"), 0));
+        skillBookList.Add(new SkillBook(1, "SKB1", "None", Resources.Load<Sprite>("skb1"), 0));
+        skillBookList.Add(new SkillBook(2, "SKB2", "None", Resources.Load<Sprite>("skb2"), 0));
+        skillBookList.Add(new SkillBook(3, "SKB3", "None", Resources.Load<Sprite>("skb3"), 0));
+        skillBookList.Add(new SkillBook(4, "SKB4", "None", Resources.Load<Sprite>("skb4"), 0));
+        skillBookList.Add(new SkillBook(5, "SKB5", "None", Resources.Load<Sprite>("skb5"), 0));
+        skillBookList.Add(new SkillBook(6, "SKB6", "None", Resources.Load<Sprite>("skb6"), 0));
+        skillBookList.Add(new SkillBook(7, "SKB7", "None", Resources.Load<Sprite>("skb7"), 0));
+        skillBookList.Add(new SkillBook(8, "SKB8", "None", Resources.Load<Sprite>("skb8"), 0));
+        skillBookList.Add(new SkillBook(9, "SKB9", "None", Resources.Load<Sprite>("skb9"), 0));
+    }
+    private void AddItemQuestList()
+    {
+        itemQuestList.Add(new Item(0, "None", "None", Resources.Load<Sprite>("0"), 0));
+        itemQuestList.Add(new Item(1, "Quest1", "Quest", Resources.Load<Sprite>("q1"), 0));
+        itemQuestList.Add(new Item(2, "Quest2", "Quest", Resources.Load<Sprite>("q2"), 0));
+    }
+    private void AddPotionList()
+    {
+        potionList.Add(new Potion(0, "None", "None", Resources.Load<Sprite>("0"), 0, true, 0, 0, 0, 0, 0, 0));
+        potionList.Add(new Potion(1, "HP", "Potion", Resources.Load<Sprite>("p1"), 0, true, 1, 2, 0, 2, 3, 0));
+        potionList.Add(new Potion(2, "Stamina", "Potion", Resources.Load<Sprite>("p2"), 0, true, 1, 0, 0, 5, 0, 0));
+        potionList.Add(new Potion(3, "t1", "None", Resources.Load<Sprite>("0"), 0, true, 0, 0, 0, 0, 0, 0));
+        potionList.Add(new Potion(4, "t2", "Potion", Resources.Load<Sprite>("p1"), 0, true, 1, 2, 0, 2, 3, 0));
+        potionList.Add(new Potion(5, "t3", "Potion", Resources.Load<Sprite>("p2"), 0, true, 1, 0, 0, 5, 0, 0));
+        potionList.Add(new Potion(6, "t4", "None", Resources.Load<Sprite>("0"), 0, true, 0, 0, 0, 0, 0, 0));
+        potionList.Add(new Potion(7, "t5", "Potion", Resources.Load<Sprite>("p1"), 0, true, 1, 2, 0, 2, 3, 0));
+        potionList.Add(new Potion(8, "t6", "Potion", Resources.Load<Sprite>("p2"), 0, true, 1, 0, 0, 5, 0, 0));
+    }
+    private void AddItemList()
+    {
+        itemList.Add(new Item(0, "None", "None", Resources.Load<Sprite>("0"), 0));
+        itemList.Add(new Item(1, "Mushroom", "Item", Resources.Load<Sprite>("1"), 0));
+        itemList.Add(new Item(2, "Flower2", "Item", Resources.Load<Sprite>("2"), 0));
+    }
+    private void AddQuestChapter0()
+    {
         questList.Add(
             new Quest()
             {
@@ -316,16 +351,16 @@ public class Database : MonoBehaviour
                 addAction = () =>
                 {
                     ActivateTutorialCard("WarpAndMap", true);
-                    StageHandler.instance.EventTrigger("CompletedTutorial");
-                    StageHandler.instance.EventTrigger("SataLeadToTown");
+                    if (!ActionHandler.instance.IsQuestIdxInSave(7))
+                    {
+                        StageHandler.instance.EventTrigger("CompletedTutorial");
+                        StageHandler.instance.EventTrigger("SataLeadToTown");
+                    }
+                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
+                        QuestLog.CompleteQuest(QuestLog.GetQuestById(7));
                 },
-                prepareAction = () =>
-                {
-                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown) QuestLog.CompleteQuest(QuestLog.GetQuestById(7));
-                },
-                // updateAction = () =>
+                // prepareAction = () =>
                 // {
-                //     // Debug.Log("Check quest 6 : " + StageHandler.instance.activeSceneIndex);
                 //     if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown) QuestLog.CompleteQuest(QuestLog.GetQuestById(7));
                 // },
                 compleltedAction = () =>
@@ -336,7 +371,9 @@ public class Database : MonoBehaviour
                 },
             }
         );
-        //* chapter 1
+    }
+    private void AddQuestChapter1()
+    {
         questList.Add(
             new Quest()
             {
@@ -355,12 +392,15 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
-                    StageHandler.instance.EventTrigger("AaronMoveToMainDoor");
+                    if (!ActionHandler.instance.IsQuestIdxInSave(8))
+                        StageHandler.instance.EventTrigger("AaronMoveToMainDoor");
+                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.Rachne)
+                        StageHandler.instance.EventTrigger("Spawn10Webster");
                 },
-                prepareAction = () =>
-                {
-                    StageHandler.instance.EventTrigger("Spawn10Webster");
-                },
+                // prepareAction = () =>
+                // {
+                //     StageHandler.instance.EventTrigger("Spawn10Webster");
+                // },
                 compleltedAction = () =>
                 {
                     QuestLog.AddQuest(questList[9]);
@@ -385,9 +425,10 @@ public class Database : MonoBehaviour
                     dialogue = DialogueManager.instance.GetChapter1Files("AaronQuest"),
                     amount = 1,
                 },
-                prepareAction = () =>
+                addAction = () =>
                 {
-                    StageHandler.instance.EventTrigger("AaronQuest");
+                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
+                        StageHandler.instance.EventTrigger("AaronQuest");
                 },
             }
         );
@@ -407,9 +448,10 @@ public class Database : MonoBehaviour
                     type = Quest.Objective.Type.talk,
                     amount = 1,
                 },
-                prepareAction = () =>
+                addAction = () =>
                 {
-                    StageHandler.instance.EventTrigger("ReceiveTheBook");
+                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
+                        StageHandler.instance.EventTrigger("ReceiveTheBook");
                 },
             }
         );
@@ -419,15 +461,25 @@ public class Database : MonoBehaviour
                 questId = 11,
                 questName = $"เจรจากับ {ColorText("char", "พ่อค้ายา")}",
                 questDescription = $"ไปคุยกับ {ColorText("char", "พ่อค้ายา")} ที่ร้านยาตรงทางเข้าเมือง {ColorText("town", "Naver")} เพื่อรับยาตื่นจากฝัน",
+                location = SceneIndex.NaverTown,
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
                 objective = new Quest.Objective()
                 {
                     objectiveId = (int)NPCIndex.Villager,
-                    type = Quest.Objective.Type.talk,
-                    amount = 10,
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
                 },
+                addAction = () =>
+                {
+                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
+                        StageHandler.instance.EventTrigger("TalkWithMerchant");
+                },
+                // prepareAction = () =>
+                // {
+                //     StageHandler.instance.EventTrigger("TalkWithMerchant");
+                // },
             }
         );
         questList.Add(
@@ -435,16 +487,26 @@ public class Database : MonoBehaviour
             {
                 questId = 12,
                 questName = $"มอบยาให้กับ {ColorText("char", "Sata")}",
-                questDescription = $"ไปคุยกับ {ColorText("char", "Sata")} ที่บ้านของ {ColorText("char", "ตา/ยาย")} บริเวณนอกปราสาท",
+                questDescription = $"ไปคุยกับ {ColorText("char", "Sata")} ที่บ้านของ {ColorText("char", "คุณตา")} บริเวณนอกปราสาท",
                 MPReward = 500,
                 SBReward = "",
                 questCategory = 0,
                 objective = new Quest.Objective()
                 {
                     objectiveId = (int)NPCIndex.Sata,
+                    dialogue = DialogueManager.instance.GetChapter1Files("WakeUpTheWoman"),
                     type = Quest.Objective.Type.talk,
                     amount = 1,
                 },
+                addAction = () =>
+                {
+                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
+                        StageHandler.instance.EventTrigger("SataAtOldmanHouse");
+                },
+                // prepareAction = () =>
+                // {
+                //     StageHandler.instance.EventTrigger("TalkWithMerchant");
+                // },
             }
         );
         questList.Add(
@@ -462,6 +524,14 @@ public class Database : MonoBehaviour
                     type = Quest.Objective.Type.kill,
                     amount = 1,
                 },
+                addAction = () =>
+                {
+                    //TODO trigger entrance of ranche
+                },
+                compleltedAction = () =>
+                {
+
+                }
             }
         );
         questList.Add(
@@ -469,7 +539,7 @@ public class Database : MonoBehaviour
             {
                 questId = 14,
                 questName = $"พาเด็กกลับเมือง",
-                questDescription = $"พาเด็กสู่อ้อมโกดที่อบอุ่นของ ตา/ยาย อีกครั้ง ไปคุยกับ {ColorText("char", "Sata")} เพื่อส่งภารกิจ",
+                questDescription = $"พาเด็กสู่อ้อมโกดที่อบอุ่นของ {ColorText("char", "ตา")} อีกครั้ง ไปคุยกับ {ColorText("char", "Sata")} เพื่อส่งภารกิจ",
                 MPReward = 500,
                 SBReward = "",
                 questCategory = 0,
@@ -477,15 +547,19 @@ public class Database : MonoBehaviour
                 {
                     objectiveId = (int)NPCIndex.Sata,
                     type = Quest.Objective.Type.talk,
+                    dialogue = DialogueManager.instance.GetChapter1Files("TakeToHome"),
                     amount = 1,
                 },
-                compleltedAction = () =>
+                addAction = () =>
                 {
-                    chapterCardScript.ActivateMenu(2);
+                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
+                        StageHandler.instance.EventTrigger("HappyFamily");
                 },
             }
         );
-        //* chapter 2
+    }
+    private void AddQuestChapter2()
+    {
         questList.Add(
             new Quest()
             {
@@ -501,15 +575,58 @@ public class Database : MonoBehaviour
                     type = Quest.Objective.Type.talk,
                     amount = 1,
                 },
+                addAction = () =>
+                {
+                    if (!ActionHandler.instance.IsQuestIdxInSave(15))
+                        chapterCardScript.ActivateMenu(2);
+                }
             }
         );
-        // questList.Add(
-        //     new Quest()
-        //     {
-
-        //     }
-        // );
-        // Debug.LogWarning($"questSize = {questList.Count}");
+        questList.Add(
+            new Quest()
+            {
+                questId = 16,
+                questName = $"เดินทางไปป่า {ColorText("town", "Braewood")}",
+                questDescription = $"ตอนนี้ได้เบาะแสของเจ้าชาย {ColorText("char", "Cain")} แล้วเดินทางไปยังป่า {ColorText("town", "Braewood")} กัน",
+                location = SceneIndex.BraewoodForest,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)SceneIndex.BraewoodForest,
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.BraewoodForest)
+                        QuestLog.CompleteQuest(QuestLog.GetQuestById(16));
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 17,
+                questName = $"หาเบาะแสจาก {ColorText("char", "ชาวบ้าน")}",
+                questDescription = $"ต้องทำตัวให้กลมกลืน และสืบหาเบาะแสเกี่ยวกับเจ้าชาย {ColorText("char", "Cain")} ลองถาม {ColorText("char", "ชาวบ้าน")} ดู",
+                location = SceneIndex.BraewoodForest,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Villager,
+                    type = Quest.Objective.Type.talk,
+                    amount = 3,
+                },
+                addAction = () =>
+                {
+                    //TODO event prepare villagers
+                },
+            }
+        );
     }
     private string ColorText(string type, string text)
     {

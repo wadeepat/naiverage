@@ -26,7 +26,7 @@ public class NPC : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.isStopped = true;
         animator = GetComponent<Animator>();
-        interactObject = CanvasManager.instance.GetCanvasObject("InteractText");
+        interactObject = GameObject.Find("Canvas").transform.Find("InteractText").gameObject;
         lightObject = transform.Find("Light").gameObject;
         text = interactObject.GetComponent<TextMeshProUGUI>();
     }
