@@ -2616,9 +2616,9 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 2
 --- !u!114 &8273567064382297286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2633,6 +2633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idx: 0
   inkJSON: {fileID: 4900000, guid: cec8353ff62addc4b8f04a1e31ffc890, type: 3}
+  quest: {fileID: 0}
 --- !u!1 &8308122043887490704
 GameObject:
   m_ObjectHideFlags: 0

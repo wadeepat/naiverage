@@ -12,7 +12,7 @@ public class PickupArea : MonoBehaviour
             ActionHandler.instance.ActivateTutorialCard("PickupItems", true);
             transform.Find("Light").gameObject.SetActive(false);
 
-            QuestLog.CompleteQuest(QuestLog.GetQuestById(0));
+            QuestLog.CompleteQuest(QuestLog.GetActiveQuestById(0));
             GameObject.Destroy(this);
         }
     }

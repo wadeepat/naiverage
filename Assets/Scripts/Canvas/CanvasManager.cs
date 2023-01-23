@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -14,7 +15,23 @@ public class CanvasManager : MonoBehaviour
             return;
         }
         instance = this;
+        // if (SceneManager.GetActiveScene().buildIndex != 0)
         DontDestroyOnLoad(this.gameObject);
+    }
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += DestroySelf;
+    }
+
+    // called second
+    void DestroySelf(Scene scene, LoadSceneMode mode)
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+            Destroy(this.gameObject);
+    }
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= DestroySelf;
     }
     public GameObject GetCanvasObject(string name)
     {

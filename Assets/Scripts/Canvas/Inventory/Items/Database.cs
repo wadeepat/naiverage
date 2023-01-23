@@ -211,7 +211,7 @@ public class Database : MonoBehaviour
                 {
                     if (PotionPanel.activeSelf)
                     {
-                        QuestLog.CompleteQuest(QuestLog.GetQuestById(2));
+                        QuestLog.CompleteQuest(QuestLog.GetActiveQuestById(2));
                     }
                 },
                 compleltedAction = () =>
@@ -244,7 +244,8 @@ public class Database : MonoBehaviour
                 compleltedAction = () =>
                 {
                     ActionHandler.instance.ActivateTutorialCard("UsePotion", false);
-                    DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
+                    // DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
+                    DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(0, "CompletedUsePotion"));
                 },
             }
         );
@@ -272,7 +273,7 @@ public class Database : MonoBehaviour
                 compleltedAction = () =>
                 {
                     ActivateTutorialCard("NormalAttack", false);
-                    DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
+                    // DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
                     StageHandler.instance.EventTrigger("SataAppear");
                 },
             }
@@ -319,7 +320,7 @@ public class Database : MonoBehaviour
                 {
                     objectiveId = (int)NPCIndex.Sata,
                     type = Quest.Objective.Type.talk,
-                    dialogue = DialogueManager.instance.GetTutorialFiles("FinishedWebsterQ"),
+                    dialogue = DialogueManager.instance.GetDialogueFile(0, "FinishedWebsterQ"),
                     amount = 1,
                 },
                 addAction = () =>
@@ -350,19 +351,22 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
+                    // Debug.Log("Add 7");
                     ActivateTutorialCard("WarpAndMap", true);
-                    if (!ActionHandler.instance.IsQuestIdxInSave(7))
-                    {
-                        StageHandler.instance.EventTrigger("CompletedTutorial");
-                        StageHandler.instance.EventTrigger("SataLeadToTown");
-                    }
-                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
-                        QuestLog.CompleteQuest(QuestLog.GetQuestById(7));
+                    // if (!ActionHandler.instance.IsQuestIdxInSave(7))
+                    // {
+                    StageHandler.instance.EventTrigger("CompletedTutorial");
+                    StageHandler.instance.EventTrigger("SataLeadToTown");
+                    // }
+                    // Debug.Log("Active Scene: " + StageHandler.instance.activeSceneIndex);
+                    // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
+                    // QuestLog.CompleteQuest(QuestLog.GetActiveQuestById(7));
                 },
-                // prepareAction = () =>
-                // {
-                //     if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown) QuestLog.CompleteQuest(QuestLog.GetQuestById(7));
-                // },
+                prepareAction = () =>
+                {
+                    // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown) 
+                    QuestLog.CompleteQuest(Database.questList[7]);
+                },
                 compleltedAction = () =>
                 {
                     ActivateTutorialCard("WarpAndMap", false);
@@ -392,15 +396,15 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
-                    if (!ActionHandler.instance.IsQuestIdxInSave(8))
-                        StageHandler.instance.EventTrigger("AaronMoveToMainDoor");
-                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.Rachne)
-                        StageHandler.instance.EventTrigger("Spawn10Webster");
+                    // if (!ActionHandler.instance.IsQuestIdxInSave(8))
+                    StageHandler.instance.EventTrigger("AaronMoveToMainDoor");
+                    // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.Rachne)
+                    //     StageHandler.instance.EventTrigger("Spawn10Webster");
                 },
-                // prepareAction = () =>
-                // {
-                //     StageHandler.instance.EventTrigger("Spawn10Webster");
-                // },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("Spawn10Webster");
+                },
                 compleltedAction = () =>
                 {
                     QuestLog.AddQuest(questList[9]);
@@ -422,13 +426,18 @@ public class Database : MonoBehaviour
                     objectiveId = (int)NPCIndex.Aaron,
                     npc = NPCIndex.Aaron,
                     type = Quest.Objective.Type.talk,
-                    dialogue = DialogueManager.instance.GetChapter1Files("AaronQuest"),
+                    dialogue = DialogueManager.instance.GetDialogueFile(1, "AaronQuest"),
                     amount = 1,
                 },
                 addAction = () =>
                 {
                     if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
-                        StageHandler.instance.EventTrigger("AaronQuest");
+                        StageHandler.instance.EventTrigger("AaronAtMainDoor");
+                },
+                prepareAction = () =>
+                {
+                    // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
+                    StageHandler.instance.EventTrigger("AaronAtMainDoor");
                 },
             }
         );
@@ -453,6 +462,11 @@ public class Database : MonoBehaviour
                     if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
                         StageHandler.instance.EventTrigger("ReceiveTheBook");
                 },
+                prepareAction = () =>
+                {
+                    // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
+                    StageHandler.instance.EventTrigger("ReceiveTheBook");
+                },
             }
         );
         questList.Add(
@@ -476,10 +490,10 @@ public class Database : MonoBehaviour
                     if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
                         StageHandler.instance.EventTrigger("TalkWithMerchant");
                 },
-                // prepareAction = () =>
-                // {
-                //     StageHandler.instance.EventTrigger("TalkWithMerchant");
-                // },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("TalkWithMerchant");
+                },
             }
         );
         questList.Add(
@@ -488,13 +502,14 @@ public class Database : MonoBehaviour
                 questId = 12,
                 questName = $"มอบยาให้กับ {ColorText("char", "Sata")}",
                 questDescription = $"ไปคุยกับ {ColorText("char", "Sata")} ที่บ้านของ {ColorText("char", "คุณตา")} บริเวณนอกปราสาท",
+                location = SceneIndex.NaverTown,
                 MPReward = 500,
                 SBReward = "",
                 questCategory = 0,
                 objective = new Quest.Objective()
                 {
                     objectiveId = (int)NPCIndex.Sata,
-                    dialogue = DialogueManager.instance.GetChapter1Files("WakeUpTheWoman"),
+                    dialogue = DialogueManager.instance.GetDialogueFile(1, "WakeUpTheWoman"),
                     type = Quest.Objective.Type.talk,
                     amount = 1,
                 },
@@ -503,10 +518,10 @@ public class Database : MonoBehaviour
                     if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
                         StageHandler.instance.EventTrigger("SataAtOldmanHouse");
                 },
-                // prepareAction = () =>
-                // {
-                //     StageHandler.instance.EventTrigger("TalkWithMerchant");
-                // },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("SataAtOldmanHouse");
+                },
             }
         );
         questList.Add(
@@ -515,6 +530,7 @@ public class Database : MonoBehaviour
                 questId = 13,
                 questName = $"ช่วยเหลือเด็กน้อย",
                 questDescription = $"กำจัด {ColorText("monster", "Rachne")} ที่ป่า {ColorText("town", "Rachne")} ซะ",
+                location = SceneIndex.Rachne,
                 MPReward = 1000,
                 SBReward = "",
                 questCategory = 0,
@@ -524,13 +540,20 @@ public class Database : MonoBehaviour
                     type = Quest.Objective.Type.kill,
                     amount = 1,
                 },
-                addAction = () =>
+                // addAction = () =>
+                // {
+                //     if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.Rachne)
+                //         StageHandler.instance.EventTrigger("RachneEntrance");
+                // },
+                prepareAction = () =>
                 {
-                    //TODO trigger entrance of ranche
+                    // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.Rachne)
+                    StageHandler.instance.EventTrigger("RachneEntrance");
                 },
                 compleltedAction = () =>
                 {
-
+                    StageHandler.instance.EventTrigger("ExitGate");
+                    QuestLog.AddQuest(Database.questList[14]);
                 }
             }
         );
@@ -540,6 +563,7 @@ public class Database : MonoBehaviour
                 questId = 14,
                 questName = $"พาเด็กกลับเมือง",
                 questDescription = $"พาเด็กสู่อ้อมโกดที่อบอุ่นของ {ColorText("char", "ตา")} อีกครั้ง ไปคุยกับ {ColorText("char", "Sata")} เพื่อส่งภารกิจ",
+                location = SceneIndex.NaverTown,
                 MPReward = 500,
                 SBReward = "",
                 questCategory = 0,
@@ -547,13 +571,18 @@ public class Database : MonoBehaviour
                 {
                     objectiveId = (int)NPCIndex.Sata,
                     type = Quest.Objective.Type.talk,
-                    dialogue = DialogueManager.instance.GetChapter1Files("TakeToHome"),
+                    dialogue = DialogueManager.instance.GetDialogueFile(1, "TakeToHome"),
                     amount = 1,
                 },
-                addAction = () =>
+                // addAction = () =>
+                // {
+                //     if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
+                //         StageHandler.instance.EventTrigger("HappyFamily");
+                // },
+                prepareAction = () =>
                 {
-                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
-                        StageHandler.instance.EventTrigger("HappyFamily");
+                    // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
+                    StageHandler.instance.EventTrigger("HappyFamily");
                 },
             }
         );
@@ -566,6 +595,7 @@ public class Database : MonoBehaviour
                 questId = 15,
                 questName = $"พบแม่ทัพ",
                 questDescription = $"ไปพบ {ColorText("char", "Aaron")} กับพวกทหารที่หน้าเมือง {ColorText("town", "Naver")}",
+                location = SceneIndex.NaverTown,
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -573,13 +603,24 @@ public class Database : MonoBehaviour
                 {
                     objectiveId = (int)NPCIndex.Aaron,
                     type = Quest.Objective.Type.talk,
+                    dialogue = DialogueManager.instance.GetDialogueFile(1, "AssembleArmy"),
                     amount = 1,
                 },
                 addAction = () =>
                 {
-                    if (!ActionHandler.instance.IsQuestIdxInSave(15))
-                        chapterCardScript.ActivateMenu(2);
-                }
+                    // if (!ActionHandler.instance.IsQuestIdxInSave(15))
+                    chapterCardScript.ActivateMenu(2);
+                    // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
+                    // {
+                    //     StageHandler.instance.EventTrigger("AaronAtMainDoor");
+                    //     GameObject.Find("Army").SetActive(true);
+                    // }
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("AaronAtMainDoor");
+                    GameObject.Find("Army").SetActive(true);
+                },
             }
         );
         questList.Add(
@@ -600,8 +641,14 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
-                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.BraewoodForest)
-                        QuestLog.CompleteQuest(QuestLog.GetQuestById(16));
+                    // if (!ActionHandler.instance.IsQuestIdxInSave(16))
+                    StageHandler.instance.EventTrigger("UnlockBraewood");
+                    // else if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.BraewoodForest)
+                    // QuestLog.CompleteQuest(QuestLog.GetActiveQuestById(16));
+                },
+                prepareAction = () =>
+                {
+                    QuestLog.CompleteQuest(QuestLog.GetActiveQuestById(16));
                 },
             }
         );
@@ -618,12 +665,75 @@ public class Database : MonoBehaviour
                 objective = new Quest.Objective()
                 {
                     objectiveId = (int)NPCIndex.Villager,
-                    type = Quest.Objective.Type.talk,
-                    amount = 3,
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
                 },
                 addAction = () =>
                 {
-                    //TODO event prepare villagers
+                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.BraewoodForest)
+                        StageHandler.instance.EventTrigger("VillagersHint");
+                },
+                prepareAction = () =>
+                {
+                    // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.BraewoodForest)
+                    StageHandler.instance.EventTrigger("VillagersHint");
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 18,
+                questName = $"คุยกับ {ColorText("char", "ยาม")}",
+                questDescription = $"{ColorText("char", "ชาวบ้าน")} บอกว่ายามน่าจะรู้อะไรบางอย่าง  ลองถาม {ColorText("char", "ยาม")} ตรงทางเข้าป่าดู",
+                location = SceneIndex.BraewoodForest,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Villager,
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.BraewoodForest)
+                        StageHandler.instance.EventTrigger("GuardHint");
+                },
+                prepareAction = () =>
+                {
+                    // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.BraewoodForest)
+                    StageHandler.instance.EventTrigger("GuardHint");
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 19,
+                questName = $"ตามหาเจ้าชาย {ColorText("char", "Cain")}",
+                questDescription = $"เจ้าชาย {ColorText("char", "Cain")} อยู่ในถ้ำอย่างนั้นเหรอ ลองไปสำรวจดูละกัน",
+                location = SceneIndex.Cave,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)SceneIndex.Cave,
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    // if (!ActionHandler.instance.IsQuestIdxInSave(19))
+                    StageHandler.instance.EventTrigger("UnlockCave");
+                    // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.Cave)
+                    // QuestLog.CompleteQuest(Database.questList[19]);
+                },
+                prepareAction = () =>
+                {
+                    QuestLog.CompleteQuest(Database.questList[19]);
                 },
             }
         );

@@ -69,6 +69,19 @@ MonoBehaviour:
     json: {fileID: 4900000, guid: 958654c0a2c2a74488bbbd240d5311b9, type: 3}
   - name: TakeToHome
     json: {fileID: 4900000, guid: 298558aa7643a5f49a182ce655c7ea3e, type: 3}
+  chapter2Files:
+  - name: AssembleArmy
+    json: {fileID: 4900000, guid: d9e4763c93043ae46b1416cf68981b8e, type: 3}
+  - name: TalkWithGuard
+    json: {fileID: 4900000, guid: f6fb1bbd34da3104e8f5f92bbe41f278, type: 3}
+  - name: TalkToVillager0
+    json: {fileID: 4900000, guid: 117250e3608587f48a6f98bc8e66f6fd, type: 3}
+  - name: TalkToVillager1
+    json: {fileID: 4900000, guid: 8bcb99f40e5b26d47b13b0d8892c0759, type: 3}
+  - name: AskGuardAboutCain
+    json: {fileID: 4900000, guid: b5deb3f1b1af8d34ebee4ff4679f012c, type: 3}
+  chapter3Files: []
+  chapter4Files: []
   dialoguePanel: {fileID: 0}
   continueText: {fileID: 0}
   displayNameText: {fileID: 0}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Ink.Runtime;
+using StarterAssets;
 public class ActionHandler : MonoBehaviour, IDataPersistence
 {
     [Header("INK Files")]
@@ -37,7 +38,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     }
     public void CheckIsUsePotionQuest()
     {
-        Quest q = QuestLog.GetQuestById(3);
+        Quest q = QuestLog.GetActiveQuestById(3);
         if (q != null) QuestLog.CompleteQuest(q);
     }
     public void ActivateTutorialCard(string cardName, bool active)
@@ -46,10 +47,10 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     }
     private void DeactivateAllCard()
     {
-        foreach (GameObject card in TutorialGuidingObject.transform)
-        {
-            card.SetActive(false);
-        }
+        // foreach (GameObject card in TutorialGuidingObject.transform)
+        // {
+        //     card.SetActive(false);
+        // }
     }
     public void ReceiveActionThenContinueStory(string action, UnityAction ContinueStory)
     {
@@ -147,13 +148,15 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     private void SetForActivateUI()
     {
         DialogueManager.dialogueIsPlaying = true;
-        DialogueManager.instance.LockCamera();
+        // DialogueManager.instance.LockCamera();
+        PlayerManager.instance.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(true);
         DialogueManager.instance.EnablePlayerControll();
     }
     private void ResetForDeactivateUI()
     {
         DialogueManager.dialogueIsPlaying = false;
-        DialogueManager.instance.UnlockCamera();
+        // DialogueManager.instance.UnlockCamera();
+        PlayerManager.instance.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(false);
         DialogueManager.instance.DisablePlayerControll();
     }
 }

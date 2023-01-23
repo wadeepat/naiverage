@@ -29,9 +29,9 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     ไม่รู้สิ...เพราะข้ารู้สึกคุ้นเคยกับเจ้า และรู้ว่าเจ้าไม่มีทางทำงานพลาดแน่นอน
     เอาเถอะเจ้าลองไปตามแผนที่นี้ดู และเอานี่ไปมอบให้เขาด้วย
     (ได้รับไอเทมเควส: จดหมาย)
-    #quest:
     #speaker:quest
     \– เควส: เดินไปยังป่า <color=\#FF7272>Braewood</color> รางวัล:\ -
+    #quest:16
 ->DONE
 === TalkWithGuard===
     //ตัวละครเอกอยู่ที่ Braewood (เดินไปคุยกับยามหน้าประตู)
@@ -47,7 +47,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     (ก่อนอื่นลองไปถามคนที่อยู่แถวนี้ดูก่อน)
     #speaker:quest
     \- เควส: เข้าไปคุยกับชาวบ้านเพื่อตามหาเจ้าชาย รางวัล: \-
-    #quest:
+    #quest:17
 ->DONE
 ===TalkToVillager0===
     #speaker:Me
@@ -63,7 +63,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     #speaker:ชาวบ้าน2
     ถ้า <color=\#FEF4E8>Cain</color> ละก็ข้ายังไม่เห็นนะ คนที่รู้น่าจะเป็นยามหน้าประตู
     ยามนั่นน่าจะรู้ว่าเขาอยู่ไหนแน่นอน
-    #event:enableGuardTalk 
+    #event:enableGuardTalk
 ->DONE
 ===AskGuardAboutCain===
     #speaker:Me
@@ -74,9 +74,8 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     (งั้นเราต้องรีบไปหาเขาแล้ว)
     #speaker:ยามหน้าประตู
     ถ้าเจ้าจะไปก็ระวังตัวด้วยละกัน ในถ้ำมันอันตราย
-    #speaker:quest
+    #speaker:quest #event:FindCain
     \- เควส: ตามหาเจ้าชายคาอินในถ้ำ รางวัล: \-
-    #quest:
 ->DONE
     //(เข้าไปในถ้ำเจอเจ้าชายยืนอยู่ตรงทางเข้าถ้ำ)
 ===FirstMetCain===
@@ -108,6 +107,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     ข้าว่าตอนนี้พวกเราออกจากถ้ำกันก่อนดีกว่า ถ้ายิ่งมืดยิ่งอันตราย พวกสัตว์ร้ายในถ้ำจะยิ่งดุร้ายขึ้น
     #speaker:quest
     \- เควส:ออกจากถ้ำไปคุยกับ <color=\#FEF4E8>Cain</color> รางวัล: \- 
+    #quest:
 ->DONE
 ===PriceAndVillager===
     #speaker:ชาวบ้านชาย

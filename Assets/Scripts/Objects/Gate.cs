@@ -16,7 +16,7 @@ public class Gate : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "Player")
+        if (this.enabled && collider.gameObject.tag == "Player")
         {
             text.text = "Press F to enter " + toScene.ToString();
             interactObject.SetActive(true);
@@ -24,7 +24,7 @@ public class Gate : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player" && InputManager.instance.GetInteractPressed())
+        if (this.enabled && other.gameObject.tag == "Player" && InputManager.instance.GetInteractPressed())
         {
             interactObject.SetActive(false);
             AudioManager.instance.Play("click");
@@ -34,7 +34,7 @@ public class Gate : MonoBehaviour
     }
     private void OnTriggerExit(Collider collider)
     {
-        if (collider.gameObject.tag == "Player")
+        if (this.enabled && collider.gameObject.tag == "Player")
         {
             interactObject.SetActive(false);
         }
