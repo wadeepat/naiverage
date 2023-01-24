@@ -135,7 +135,6 @@ public class InputManager : MonoBehaviour
     }
     public void PotionPressed(InputAction.CallbackContext context)
     {
-        // Debug.Log("potion");
         if (context.interaction is HoldInteraction)
         {
             if (context.performed) selectPotion = true;
@@ -143,9 +142,8 @@ public class InputManager : MonoBehaviour
         }
         else if (context.interaction is PressInteraction)
         {
-
             if (context.performed) usePotion = true;
-            else if (context.canceled) usePotion = false;
+            // else if (context.canceled) usePotion = false;                         
         }
     }
     public void BackPressed(InputAction.CallbackContext context)

@@ -7,15 +7,16 @@ public class UseSkill : MonoBehaviour
 {
     public Transform LHPoint, RHPoint, Point;
     public GameObject fire, water, wind, special;
+    public GameObject[] allSkill;
     private GameObject spell1, spell2;
     private Animator _anim;
     private Image[] slotSkillsM;
-    public GameObject[] allSkill;
     private GameObject skill;
     void Start()
     {
         _anim = GetComponent<Animator>();
-        skill = GameObject.Find("Canvas").transform.Find("Panel").Find("Character panel").Find("All funtion").Find("Skill").gameObject;
+        // skill = GameObject.Find("Canvas").transform.Find("Panel").Find("Character panel").Find("All funtion").Find("Skill").gameObject;
+        skill = GameObject.Find("Canvas/Panel/Character panel/All funtion/Skill");
     }
 
     // Update is called once per frame
@@ -37,7 +38,8 @@ public class UseSkill : MonoBehaviour
         // if (InputManager.instance.GetSkill3Pressed())
         // {
         //     UseSkill3();
-        // }
+        // }        
+
         skill.GetComponent<SkillsUnlock>().CooldownSkill();
 
         if (_anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Done"))

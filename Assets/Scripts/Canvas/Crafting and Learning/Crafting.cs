@@ -21,7 +21,7 @@ public class Crafting : MonoBehaviour
     {
         page = 1;
         firstPage = 1;
-        lastPage = 2;
+        lastPage = 3;
         currentPage.text = "" + page;
         allPage.text = "" + lastPage;
         for(int i=0; i<4; i++){

@@ -19,8 +19,14 @@ public class PlayerStatus : MonoBehaviour
     private static int critRate;
     private static int defense;
     private static int resist;
-
     private static int reHp; // Can not upgrade
+
+    private bool poison, agony, buff;
+    private static int temp;
+    private float poisonTime, agonyTime, buffTime;
+    private float time = 0.0f;
+    private float interpolationPeriod = 1.0f;
+
 
 
     void Start()
@@ -49,6 +55,9 @@ public class PlayerStatus : MonoBehaviour
 
         if (hp < HP) hp += reHp * Time.deltaTime;
         if (mp < MP) mp += reMp * Time.deltaTime;
+
+        CheckTimeAndStatus();
+
     }
 
 
@@ -74,13 +83,38 @@ public class PlayerStatus : MonoBehaviour
 
 
 
-    public static void healthHP(int h)
+    public static void HealthHP(int h)
     {
         hp += h;
         if (hp > HP)
             hp = HP;
     }
 
+    public static void GetMP(int m)
+    {
+        mp += m;
+        if (mp > MP)
+            mp = MP;
+    }
+
+    public void PhialOfFreedom(){
+        poison = false;
+        agony = false;
+    }
+    public void ElixirOfRage(){
+        if(!buff){
+            temp = attack;
+            attack = (int)(attack+(attack*(20.0f/100)));
+        }
+        buff = true;
+        buffTime = 20.0f;
+        
+    }
+    public static void MaxHPnMP()
+    {
+        hp = HP;
+        mp = MP;
+    }
     public static void UseMana(int m)
     {
         if (mp > m)
@@ -143,6 +177,58 @@ public class PlayerStatus : MonoBehaviour
     {
         //ATK + ATK * CRIT DMG
         return attack + (attack * crit / 100);
+    }
+
+    public void CheckTimeAndStatus(){
+        time += Time.deltaTime;
+        poisonTime -= Time.deltaTime;
+        agonyTime -= Time.deltaTime;
+        buffTime -= Time.deltaTime;
+        if (time >= interpolationPeriod) {
+            time = 0.0f;
+            StatusEffect();
+        }
+    }
+    public void Poison(){
+        poison = true;
+        if(poisonTime < 0){
+            poisonTime = 15.0f;
+        }
+    }
+
+    public void Agony(){
+        agony = true;
+        if(agonyTime < 0){
+            agonyTime = 5.0f;
+        }
+
+    }
+
+    public void StatusEffect(){
+
+        //Enemy
+        if(poison){
+            hp -= 2.0f;
+            if ( poisonTime < 0 )
+            {
+                poison = false;
+            }
+        }else if(agony){
+            hp -= 5.0f;
+            if ( agonyTime <= 0 )
+            {
+                agony = false;
+            }
+        }
+
+        //self
+        if(buff){
+            if ( buffTime <= 0 )
+            {
+                attack = temp;
+                buff = false;
+            }
+        }
     }
 
 

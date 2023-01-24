@@ -52,6 +52,7 @@ public class Enemy : MonoBehaviour
     protected float idleTimer;
     protected float stayTimer;
     protected float damageAnimTimer;
+
     //GUI
     protected GameObject canvas;
     protected GameObject healthBar;
@@ -59,7 +60,13 @@ public class Enemy : MonoBehaviour
     //values
     protected float hp;
     protected float cooldownTime;
+    protected float poisonTime, illusionTime, agonyTime;
     protected bool isDie = false;
+    protected bool poison, illusion, agony = false;
+
+    //every 1 seconds
+    private float time = 0.0f;
+    private float interpolationPeriod = 1.0f;
 
     protected virtual void Start()
     {
@@ -95,6 +102,10 @@ public class Enemy : MonoBehaviour
             slider.value = (float)hp / (float)maxHealthPoint;
         else
             slider.value = 0;
+        
+        CheckTimeAndStatus();
+        
+        
     }
     public virtual void OnChaseStateEnter()
     {
@@ -233,6 +244,7 @@ public class Enemy : MonoBehaviour
     {
         StayThisPosition();
         hp -= damageAmount;
+        Debug.Log(damageAmount);
         if (hp <= 0)
         {
             hp = 0;
@@ -261,12 +273,75 @@ public class Enemy : MonoBehaviour
         hp += health;
         if (hp > maxHealthPoint) hp = maxHealthPoint;
     }
+    public void CheckTimeAndStatus(){
+        time += Time.deltaTime;
+        poisonTime -= Time.deltaTime;
+        illusionTime -= Time.deltaTime;
+        agonyTime -= Time.deltaTime;
+        if (time >= interpolationPeriod) {
+            time = 0.0f;
+            StatusEffect();
+        }
+    }
+    public void Poison(){
+        poison = true;
+        if(poisonTime < 0){
+            poisonTime = 15.0f;
+            animator.speed = 0.5f; 
+        }
+    }
+    public void Illusion(){
+        illusion = true;
+        if(illusionTime < 0){
+            illusionTime = 3.0f;
+            animator.speed = 0.2f; 
+            animator.SetTrigger("damaged");
+        }
+
+    }
+    public void Agony(){
+        agony = true;
+        if(agonyTime < 0){
+            agonyTime = 5.0f;
+        }
+
+    }
+
+    public void StatusEffect(){
+        if(poison) agent.speed = chaseSpeed/2;
+        else if(illusion) agent.speed = 0.0f;
+        else agent.speed = chaseSpeed;
+        if(poison){
+            hp -= 2.0f;
+            if ( poisonTime < 0 )
+            {
+                poison = false;
+                animator.speed = 1.0f;
+            }
+        }else if(illusion){
+
+            if ( illusionTime <= 0 )
+            {
+                illusion = false;
+                animator.speed = 1.0f;
+            }
+        }else if(agony){
+            hp -= 5.0f;
+            if ( agonyTime <= 0 )
+            {
+                agony = false;
+            }
+        }
+
+    }
     public virtual void SetToRun()
     {
         agent.speed = chaseSpeed;
     }
     public virtual void SetToWalk()
-    {
+    {   
         agent.speed = moveSpeed;
+    
     }
+
 }
