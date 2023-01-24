@@ -32,12 +32,12 @@ public class NPC : MonoBehaviour
     }
     private void Update()
     {
-        // Debug.Log(transform.name);
         if (agent.enabled && !agent.isStopped)
         {
             float distance = Vector2.Distance(transform.position, agent.destination);
             if (distance < agent.stoppingDistance)
             {
+                Debug.Log($"npc position \nTarget:{agent.destination}\nObject:{transform.position}\nDiff:{distance}");
                 agent.isStopped = true;
                 animator.SetBool("isWalking", false);
             }
@@ -68,7 +68,7 @@ public class NPC : MonoBehaviour
                 DialogueManager.instance.EnterDialogueMode(quest);
                 quest = null;
             }
-            else
+            else if (inkJSON != null)
                 DialogueManager.instance.EnterDialogueMode(inkJSON);
         }
     }

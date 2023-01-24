@@ -111,9 +111,17 @@ public class QuestLog
             return completedQuest[index - questList.Count];
     }
 
-    public static Quest GetQuestById(int id)
+    public static Quest GetActiveQuestById(int id)
     {
         foreach (Quest q in questList)
+        {
+            if (q.questId == id) return q;
+        }
+        return null;
+    }
+    public static Quest GetCompleteQuestById(int id)
+    {
+        foreach (Quest q in completedQuest)
         {
             if (q.questId == id) return q;
         }
@@ -127,15 +135,15 @@ public class QuestLog
                 if (q.updateAction != null) q.updateAction();
             }
     }
-    // public static void DoQuestPrepare(SceneIndex location)
-    // {
-    //     if (questList?.Count > 0)
-    //         foreach (Quest q in questList.ToArray())
-    //         {
-    //             Debug.Log(q.questName + " " + q.location.ToString());
-    //             if (q.location == location && q.prepareAction != null) q.prepareAction();
-    //         }
-    // }
+    public static void DoQuestPrepare(SceneIndex location)
+    {
+        if (questList?.Count > 0)
+            foreach (Quest q in questList.ToArray())
+            {
+                Debug.Log(q.questName + " " + q.location.ToString());
+                if (q.location == location && q.prepareAction != null) q.prepareAction();
+            }
+    }
     public static void DoQuest(Quest.Objective.Type type, int id)
     {
 

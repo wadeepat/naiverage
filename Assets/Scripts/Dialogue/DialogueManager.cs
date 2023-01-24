@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 using Ink.Runtime;
 using StarterAssets;
@@ -21,6 +22,9 @@ public class DialogueManager : MonoBehaviour
     [Header("Ink Files")]
     [SerializeField] private JSONfile[] tutorialFiles;
     [SerializeField] private JSONfile[] chapter1Files;
+    [SerializeField] private JSONfile[] chapter2Files;
+    [SerializeField] private JSONfile[] chapter3Files;
+    [SerializeField] private JSONfile[] chapter4Files;
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI continueText;
@@ -51,13 +55,28 @@ public class DialogueManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogWarning("Found more than one Dialog Manager in the scene.");
+            // Debug.LogWarning("Found more than one Dialogue Manager in the scene.");
             Destroy(this.gameObject);
             return;
         }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
         dialogueVariables = new DialogueVariables(loadGlobalsJSON);
+    }
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += DestroySelf;
+    }
+
+    // called second
+    void DestroySelf(Scene scene, LoadSceneMode mode)
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+            Destroy(this.gameObject);
+    }
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= DestroySelf;
     }
     private void Start()
     {
@@ -322,20 +341,71 @@ public class DialogueManager : MonoBehaviour
     {
         _thirdPersonController.SetLockCameraPosition(false);
     }
-    public TextAsset GetTutorialFiles(string name)
+    public TextAsset GetDialogueFile(int chapter, string name)
     {
-        foreach (JSONfile file in tutorialFiles)
+        JSONfile[] files = { };
+        switch (chapter)
+        {
+            case 0:
+                files = tutorialFiles;
+                break;
+            case 1:
+                files = chapter1Files;
+                break;
+            case 2:
+                files = chapter2Files;
+                break;
+            case 3:
+                files = chapter3Files;
+                break;
+            case 4:
+                files = chapter4Files;
+                break;
+        }
+        foreach (JSONfile file in files)
         {
             if (file.name == name) return file.json;
         }
         return null;
     }
-    public TextAsset GetChapter1Files(string name)
-    {
-        foreach (JSONfile file in chapter1Files)
-        {
-            if (file.name == name) return file.json;
-        }
-        return null;
-    }
+    // public TextAsset GetTutorialFiles(string name)
+    // {
+    //     foreach (JSONfile file in tutorialFiles)
+    //     {
+    //         if (file.name == name) return file.json;
+    //     }
+    //     return null;
+    // }
+    // public TextAsset GetChapter1Files(string name)
+    // {
+    //     foreach (JSONfile file in chapter1Files)
+    //     {
+    //         if (file.name == name) return file.json;
+    //     }
+    //     return null;
+    // }
+    // public TextAsset GetChapter2Files(string name)
+    // {
+    //     foreach (JSONfile file in chapter2Files)
+    //     {
+    //         if (file.name == name) return file.json;
+    //     }
+    //     return null;
+    // }
+    // public TextAsset GetChapter3Files(string name)
+    // {
+    //     foreach (JSONfile file in chapter3Files)
+    //     {
+    //         if (file.name == name) return file.json;
+    //     }
+    //     return null;
+    // }
+    // public TextAsset GetChapter4Files(string name)
+    // {
+    //     foreach (JSONfile file in chapter4Files)
+    //     {
+    //         if (file.name == name) return file.json;
+    //     }
+    //     return null;
+    // }
 }

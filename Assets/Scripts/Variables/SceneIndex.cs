@@ -10,7 +10,11 @@ public enum SceneIndex
     NaverTown = 2,
     CalfordCastle = 3,
     BraewoodForest = 4,
-    Cave = 5
+    Cave = 5,
+    RachneField = 6,
+    TrollField = 7,
+    AbelField = 8,
+    CainField = 9,
 }
 
 [System.Serializable]

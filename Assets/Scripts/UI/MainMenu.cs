@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
         // Debug.Log(PlayerPrefs.HasKey("INK_VARIABLES2"));
         // Debug.Log(PlayerPrefs.HasKey("INK_VARIABLES3"));
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         AudioManager.instance.Play("medievalTheme");
         if (!DataPersistenceManager.instance.HasSomeData())
         {
@@ -46,7 +47,7 @@ public class MainMenu : MonoBehaviour
     public void ActivateMenu()
     {
         this.gameObject.SetActive(true);
-        if (!DataPersistenceManager.instance.HasGameData())
+        if (!DataPersistenceManager.instance.HasSomeData())
         {
             buttons[1].interactable = false;
         }

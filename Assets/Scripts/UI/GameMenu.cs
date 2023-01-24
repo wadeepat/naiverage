@@ -5,13 +5,13 @@ using StarterAssets;
 public class GameMenu : MonoBehaviour
 {
     [SerializeField] private ConfirmationPopupMenu confirmationPopupMenu;
-    private GameObject _player;
-    private ThirdPersonController _thirdPersonController;
-    private void Awake()
-    {
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _thirdPersonController = _player.GetComponent<ThirdPersonController>();
-    }
+    // private GameObject _player;
+    // private ThirdPersonController _thirdPersonController;
+    // private void Awake()
+    // {
+    //     _player = GameObject.FindGameObjectWithTag("Player");
+    //     _thirdPersonController = _player.GetComponent<ThirdPersonController>();
+    // }
     public void ClickedResume()
     {
         this.DeactivateMenu();
@@ -30,6 +30,7 @@ public class GameMenu : MonoBehaviour
                 DataPersistenceManager.instance.SaveGame(true);
                 AudioManager.instance.StopAllTrack();
                 SceneLoadingManager.instance.LoadScene(SceneIndex.MainMenu);
+                this.ActivateMenu();
             },
             () =>
             {
@@ -53,7 +54,8 @@ public class GameMenu : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             DialogueManager.dialogueIsPlaying = true;
-            _thirdPersonController.SetLockCameraPosition(true);
+            PlayerManager.instance.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(true);
+            // _thirdPersonController.SetLockCameraPosition(true);
         }
     }
     public void DeactivateMenu()
@@ -63,6 +65,7 @@ public class GameMenu : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         DialogueManager.dialogueIsPlaying = false;
-        _thirdPersonController.SetLockCameraPosition(false);
+        PlayerManager.instance.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(false);
+        // _thirdPersonController.SetLockCameraPosition(false);
     }
 }
