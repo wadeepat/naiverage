@@ -6,9 +6,9 @@ public class Database : MonoBehaviour
 {
     public static readonly Dictionary<string, string> COLORS = new Dictionary<string, string>(){
         {"button","#900C3F"},
-        {"char","#FEF4E8"},
+        {"char","#FFD495"},
         {"item","#40FF6F"},
-        {"menu","#363062"},
+        {"menu","#8EA7E9"},
         {"monster","#FFBD39"},
         {"town","#FF7272"},
     };
@@ -602,6 +602,7 @@ public class Database : MonoBehaviour
                 objective = new Quest.Objective()
                 {
                     objectiveId = (int)NPCIndex.Aaron,
+                    npc = NPCIndex.Aaron,
                     type = Quest.Objective.Type.talk,
                     dialogue = DialogueManager.instance.GetDialogueFile(1, "AssembleArmy"),
                     amount = 1,
@@ -610,16 +611,16 @@ public class Database : MonoBehaviour
                 {
                     // if (!ActionHandler.instance.IsQuestIdxInSave(15))
                     chapterCardScript.ActivateMenu(2);
-                    // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
-                    // {
-                    //     StageHandler.instance.EventTrigger("AaronAtMainDoor");
-                    //     GameObject.Find("Army").SetActive(true);
-                    // }
+                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
+                    {
+                        StageHandler.instance.EventTrigger("AaronAtMainDoor");
+                        StageHandler.instance.EventTrigger("Army");
+                    }
                 },
                 prepareAction = () =>
                 {
                     StageHandler.instance.EventTrigger("AaronAtMainDoor");
-                    GameObject.Find("Army").SetActive(true);
+                    StageHandler.instance.EventTrigger("Army");
                 },
             }
         );

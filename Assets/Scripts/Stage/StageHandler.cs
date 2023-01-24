@@ -259,15 +259,15 @@ public class StageHandler : MonoBehaviour
                 {
                     if (npc.idx == NPCIndex.Sata)
                     {
-                        npc.Object.transform.position = n_frontOfRanche1.localToWorldMatrix.GetPosition();
-                        npc.Object.transform.rotation = n_frontOfRanche1.localToWorldMatrix.rotation;
+                        npc.Object.transform.position = n_frontOfRanche1.position;
+                        npc.Object.transform.rotation = n_frontOfRanche1.rotation;
                         npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(1, "IntroduceAaron");
                         npc.Object.SetActive(true);
                     }
                     else if (npc.idx == NPCIndex.Aaron)
                     {
-                        npc.Object.transform.position = n_frontOfRanche0.localToWorldMatrix.GetPosition();
-                        npc.Object.transform.rotation = n_frontOfRanche0.localToWorldMatrix.rotation;
+                        npc.Object.transform.position = n_frontOfRanche0.position;
+                        npc.Object.transform.rotation = n_frontOfRanche0.rotation;
                         npc.Object.SetActive(true);
                     }
                 }
@@ -287,8 +287,8 @@ public class StageHandler : MonoBehaviour
                 {
                     if (npc.idx == NPCIndex.Aaron)
                     {
-                        npc.Object.transform.position = n_mainDoor.localToWorldMatrix.GetPosition();
-                        npc.Object.transform.rotation = n_mainDoor.localToWorldMatrix.rotation;
+                        npc.Object.transform.localPosition = n_mainDoor.position;
+                        npc.Object.transform.localRotation = n_mainDoor.rotation;
                         npc.Object.SetActive(true);
                         break;
                     }
@@ -299,8 +299,8 @@ public class StageHandler : MonoBehaviour
                 {
                     if (npc.idx == NPCIndex.Sata)
                     {
-                        npc.Object.transform.position = n_frontOfCastle.localToWorldMatrix.GetPosition();
-                        npc.Object.transform.rotation = n_frontOfCastle.localToWorldMatrix.rotation;
+                        npc.Object.transform.localPosition = n_frontOfCastle.position;
+                        npc.Object.transform.localRotation = n_frontOfCastle.rotation;
                         npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(1, "ReceiveTheBook");
                         npc.Object.SetActive(true);
                         break;
@@ -334,9 +334,10 @@ public class StageHandler : MonoBehaviour
                 {
                     if (npc.idx == NPCIndex.Sata)
                     {
+                        npc.Object.SetActive(false);
+                        npc.Object.transform.position = n_oldmanHouse.transform.position;
+                        npc.Object.transform.rotation = n_oldmanHouse.transform.rotation;
                         npc.Object.SetActive(true);
-                        npc.Object.gameObject.transform.position = n_oldmanHouse.transform.localToWorldMatrix.GetPosition();
-                        npc.Object.gameObject.transform.rotation = n_oldmanHouse.transform.localToWorldMatrix.rotation;
                         break;
                     }
                 }
@@ -353,22 +354,22 @@ public class StageHandler : MonoBehaviour
                 }
                 break;
             case "Cain'sHint":
-                // Transform oldmanPosition = new Transform();
-
-                // foreach (NPC_Details npc in NPCs)
-                // {
-                //     if (npc.info == "Oldman")
-                //     {
-                //         oldmanPosition = npc.Object.transform;
-                //         break;
-                //     }
-                // }
                 foreach (NPC_Details npc in NPCs)
                 {
                     if (npc.info == "FemaleVillager")
                     {
                         npc.Object.SetActive(true);
                         npc.Object.GetComponent<NPC>().Goto(n_oldmanHouse);
+                        break;
+                    }
+                }
+                break;
+            case "Army":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.info == "Army")
+                    {
+                        npc.Object.SetActive(true);
                         break;
                     }
                 }
