@@ -87,6 +87,7 @@ INCLUDE tutorial_globals.ink
         ->DONE
         +[ปฏิเสธ]
         งั้นเหรอ ไม่เป็นไร
+        #event:GoToNaver
         ข้าจะรอเจ้าตรงนี้ พร้อมเดินทางเมื่อไหร่ก็บอกนะ
         ->DONE
 ->DONE

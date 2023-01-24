@@ -319,6 +319,7 @@ public class Database : MonoBehaviour
                 objective = new Quest.Objective()
                 {
                     objectiveId = (int)NPCIndex.Sata,
+                    npc = NPCIndex.Sata,
                     type = Quest.Objective.Type.talk,
                     dialogue = DialogueManager.instance.GetDialogueFile(0, "FinishedWebsterQ"),
                     amount = 1,
@@ -330,6 +331,7 @@ public class Database : MonoBehaviour
                 compleltedAction = () =>
                 {
                     ActivateTutorialCard("TalkToNPC", false);
+                    StageHandler.instance.EventTrigger("GoToNaver");
                 },
             }
         );

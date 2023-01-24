@@ -227,6 +227,16 @@ public class StageHandler : MonoBehaviour
             case "Spawn5Webster":
                 SpawnMonsterAt(1, MonsterId.Webster, 5);
                 break;
+            case "GoToNaver":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Sata)
+                    {
+                        npc.Object.GetComponent<NPC>().inkJSON = DialogueManager.instance.GetDialogueFile(0, "GoToNaver");
+                        break;
+                    }
+                }
+                break;
             case "SataLeadToTown":
                 foreach (NPC_Details npc in NPCs)
                 {

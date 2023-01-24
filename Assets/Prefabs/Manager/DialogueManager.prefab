@@ -56,6 +56,8 @@ MonoBehaviour:
     json: {fileID: 4900000, guid: 707a8e5fd83a6ed45b8bd92f5a3f8d50, type: 3}
   - name: FinishedWebsterQ
     json: {fileID: 4900000, guid: 323d02fa31bafa14584f39d0cbaace78, type: 3}
+  - name: GoToNaver
+    json: {fileID: 4900000, guid: f24d2c6c73adff94eab939a299b9970f, type: 3}
   chapter1Files:
   - name: IntroduceAaron
     json: {fileID: 4900000, guid: 844a8cfd105408d41adb64707f673fee, type: 3}
