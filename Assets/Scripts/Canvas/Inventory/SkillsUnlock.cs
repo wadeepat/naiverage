@@ -65,7 +65,6 @@ public class SkillsUnlock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         for(int i=0; i < slotsNumber; i++){
             slot[i].sprite = slotSprite[i];
             slotSprite[i] = skill[i].itemSprite;
@@ -204,9 +203,9 @@ public class SkillsUnlock : MonoBehaviour
     }
 
     public void CooldownSkill(){
-        if (slotSkillsM[0].fillAmount < 1.0f) slotSkillsM[0].fillAmount += 0.1f * Time.deltaTime;
-        if (slotSkillsM[1].fillAmount < 1.0f) slotSkillsM[1].fillAmount += 0.1f * Time.deltaTime;
-        if (slotSkillsM[2].fillAmount < 1.0f) slotSkillsM[2].fillAmount += 0.1f * Time.deltaTime;
+        if (slotSkillsM[0] != null && slotSkillsM[0].fillAmount < 1.0f) slotSkillsM[0].fillAmount += 0.1f * Time.deltaTime;
+        if (slotSkillsM[1] != null && slotSkillsM[1].fillAmount < 1.0f) slotSkillsM[1].fillAmount += 0.1f * Time.deltaTime;
+        if (slotSkillsM[2] != null && slotSkillsM[2].fillAmount < 1.0f) slotSkillsM[2].fillAmount += 0.1f * Time.deltaTime;
     }
 
 }

@@ -111,14 +111,18 @@ public class Database : MonoBehaviour
     private void AddPotionList()
     {
         potionList.Add(new Potion(0, "None", "None", Resources.Load<Sprite>("0"), 0, true, 0, 0, 0, 0, 0, 0));
-        potionList.Add(new Potion(1, "HP", "Potion", Resources.Load<Sprite>("p1"), 0, true, 1, 2, 0, 2, 3, 0));
-        potionList.Add(new Potion(2, "Stamina", "Potion", Resources.Load<Sprite>("p2"), 0, true, 1, 0, 0, 5, 0, 0));
-        potionList.Add(new Potion(3, "t1", "None", Resources.Load<Sprite>("0"), 0, true, 0, 0, 0, 0, 0, 0));
-        potionList.Add(new Potion(4, "t2", "Potion", Resources.Load<Sprite>("p1"), 0, true, 1, 2, 0, 2, 3, 0));
-        potionList.Add(new Potion(5, "t3", "Potion", Resources.Load<Sprite>("p2"), 0, true, 1, 0, 0, 5, 0, 0));
-        potionList.Add(new Potion(6, "t4", "None", Resources.Load<Sprite>("0"), 0, true, 0, 0, 0, 0, 0, 0));
-        potionList.Add(new Potion(7, "t5", "Potion", Resources.Load<Sprite>("p1"), 0, true, 1, 2, 0, 2, 3, 0));
-        potionList.Add(new Potion(8, "t6", "Potion", Resources.Load<Sprite>("p2"), 0, true, 1, 0, 0, 5, 0, 0));
+        potionList.Add(new Potion(1, "HP(S)", "Potion", Resources.Load<Sprite>("Potions/p1"), 0, true, 1, 2, 0, 2, 3, 0));
+        potionList.Add(new Potion(2, "MP(S)", "Potion", Resources.Load<Sprite>("Potions/p2"), 0, true, 1, 0, 0, 5, 0, 0));
+        potionList.Add(new Potion(3, "Flask of Poison", "None", Resources.Load<Sprite>("Potions/p3"), 0, true, 0, 0, 0, 0, 0, 0));
+        potionList.Add(new Potion(4, "Flask of Illusion", "Potion", Resources.Load<Sprite>("Potions/p4"), 0, true, 0, 0, 0, 0, 0, 0));
+        potionList.Add(new Potion(5, "HP(M)", "Potion", Resources.Load<Sprite>("Potions/p5"), 0, true, 1, 0, 0, 5, 0, 0));
+        potionList.Add(new Potion(6, "MP(M)", "None", Resources.Load<Sprite>("Potions/p6"), 0, true, 0, 0, 0, 0, 0, 0));
+        potionList.Add(new Potion(7, "Phial of Freedom", "Potion", Resources.Load<Sprite>("Potions/p7"), 0, true, 1, 2, 0, 2, 3, 0));
+        potionList.Add(new Potion(8, "Flask of Agony", "Potion", Resources.Load<Sprite>("Potions/p8"), 0, true, 1, 0, 0, 5, 0, 0));
+        potionList.Add(new Potion(9, "Elixir of Rage", "Potion", Resources.Load<Sprite>("Potions/p9"), 0, true, 1, 0, 0, 5, 0, 0));
+        potionList.Add(new Potion(10, "HP(L)", "Potion", Resources.Load<Sprite>("Potions/p10"), 0, true, 1, 0, 0, 5, 0, 0));
+        potionList.Add(new Potion(11, "MP(L)", "Potion", Resources.Load<Sprite>("Potions/p11"), 0, true, 1, 0, 0, 5, 0, 0));
+        potionList.Add(new Potion(12, "Holy water", "Potion", Resources.Load<Sprite>("Potions/p12"), 0, true, 1, 0, 0, 5, 0, 0));
     }
     private void AddItemList()
     {
