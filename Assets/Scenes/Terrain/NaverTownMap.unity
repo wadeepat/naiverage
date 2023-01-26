@@ -13926,7 +13926,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1038182082}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &429314413
 PrefabInstance:
@@ -20602,6 +20602,37 @@ Transform:
   m_Father: {fileID: 310452341}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &632125956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 632125957}
+  m_Layer: 0
+  m_Name: mainDoor1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &632125957
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632125956}
+  m_LocalRotation: {x: 0, y: 0.98167706, z: 0, w: 0.19055213}
+  m_LocalPosition: {x: 126.07, y: 0, z: 85.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1038182082}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 158.03, z: 0}
 --- !u!1 &634323264
 GameObject:
   m_ObjectHideFlags: 0
@@ -24074,7 +24105,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1038182082}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 232.9, z: 0}
 --- !u!1 &741764807
 GameObject:
@@ -36791,6 +36822,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1743845767}
+  - {fileID: 632125957}
   - {fileID: 428662059}
   - {fileID: 1930978855}
   - {fileID: 741734012}
@@ -69215,7 +69247,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1038182082}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1933917899
 GameObject:
@@ -70118,7 +70150,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1038182082}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 256.4, z: 0}
 --- !u!1 &1957632218
 GameObject:
@@ -72921,6 +72953,7 @@ MonoBehaviour:
   n_calfordGate: {fileID: 928923791}
   n_braewoodGate: {fileID: 889208667}
   n_mainDoor: {fileID: 1743845767}
+  n_mainDoor1: {fileID: 632125957}
   n_frontOfRanche0: {fileID: 428662059}
   n_frontOfRanche1: {fileID: 1930978855}
   n_frontOfCastle: {fileID: 741734012}

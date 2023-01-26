@@ -82,6 +82,16 @@ MonoBehaviour:
     json: {fileID: 4900000, guid: 8bcb99f40e5b26d47b13b0d8892c0759, type: 3}
   - name: AskGuardAboutCain
     json: {fileID: 4900000, guid: b5deb3f1b1af8d34ebee4ff4679f012c, type: 3}
+  - name: FirstMetCain
+    json: {fileID: 4900000, guid: fe7bbcb8ef9787246aa30f50f38706cc, type: 3}
+  - name: HelpCainComplete
+    json: {fileID: 4900000, guid: 12c98f9fdfbd3c545842f4c94c13a980, type: 3}
+  - name: PrinceAndVillagers
+    json: {fileID: 4900000, guid: 311ac50d56a0058429df2687e871f60e, type: 3}
+  - name: SaveTheManLife
+    json: {fileID: 4900000, guid: 52a925a03089ff4418be68622ddccacb, type: 3}
+  - name: BackToFriend
+    json: {fileID: 4900000, guid: 3948bcb7c5714a642860040b53e40a97, type: 3}
   chapter3Files: []
   chapter4Files: []
   dialoguePanel: {fileID: 0}

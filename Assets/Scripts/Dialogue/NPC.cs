@@ -57,14 +57,16 @@ public class NPC : MonoBehaviour
     {
         if (this.enabled && other.gameObject.tag == "Player" && InputManager.instance.GetInteractPressed() && !DialogueManager.dialogueIsPlaying)
         {
-            if (inkJSON == null && quest == null && QuestLog.IsThereSomeQuestTalk(idx) == -1) return;
+            // if (inkJSON == null && quest == null && QuestLog.IsThereSomeQuestTalk(idx) == -1) return;
 
             if (QuestLog.IsThereSomeQuestTalk(idx) != -1)
             {
+                Debug.Log("have talk quest");
                 QuestLog.DoQuest(Quest.Objective.Type.talk, (int)idx);
             }
             else if (quest != null)
             {
+                Debug.Log("have quest");
                 DialogueManager.instance.EnterDialogueMode(quest);
                 quest = null;
             }
