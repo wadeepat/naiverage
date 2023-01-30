@@ -57,11 +57,8 @@ public class NPC : MonoBehaviour
     {
         if (this.enabled && other.gameObject.tag == "Player" && InputManager.instance.GetInteractPressed() && !DialogueManager.dialogueIsPlaying)
         {
-            // if (inkJSON == null && quest == null && QuestLog.IsThereSomeQuestTalk(idx) == -1) return;
-
             if (QuestLog.IsThereSomeQuestTalk(idx) != -1)
             {
-                Debug.Log("have talk quest");
                 QuestLog.DoQuest(Quest.Objective.Type.talk, (int)idx);
             }
             else if (quest != null)
@@ -72,6 +69,8 @@ public class NPC : MonoBehaviour
             }
             else if (inkJSON != null)
                 DialogueManager.instance.EnterDialogueMode(inkJSON);
+            else return;
+            if (!ThereisAnyTalk()) interactObject.SetActive(false);
         }
     }
     private void OnTriggerExit(Collider collider)
@@ -84,6 +83,13 @@ public class NPC : MonoBehaviour
 
         //     interactObject.SetActive(false);
         // }
+    }
+    private bool ThereisAnyTalk()
+    {
+        if (inkJSON == null &&
+            quest == null &&
+            QuestLog.IsThereSomeQuestTalk(idx) == -1) return false;
+        else return true;
     }
     public void Goto(Transform place)
     {

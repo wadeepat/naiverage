@@ -115,8 +115,10 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     ...
     ข้าว่าตอนนี้พวกเราออกจากถ้ำกันก่อนดีกว่า ถ้ายิ่งมืดยิ่งอันตราย พวกสัตว์ร้ายในถ้ำจะยิ่งดุร้ายขึ้น
     #speaker:quest
-    \- เควส:ออกจากถ้ำไปคุยกับ <color=\#FFD495>Cain</color> รางวัล: \- 
-    #quest:22
+    \- เควส:ออกจากถ้ำไปคุยกับ <color=\#FFD495>Cain</color> รางวัล: \-
+        +[รับภารกิจ]
+            #quest:22
+            ->DONE 
 ->DONE
 ===PrinceAndVillagers===
     #speaker:ชาวบ้านชาย
@@ -164,7 +166,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
             ->DONE
 ->DONE
 ===ManInCave===
-    #speaker:ชาวบ้านชาย
+    #speaker:ชาวบ้านชาย #event:FoundTheMan
     !!!!
     ท…ท่าน!!! ช…ช่วยข้าด้วย!!!!
     #speaker:Me

@@ -1,4 +1,5 @@
 INCLUDE ../Tutorial/tutorial_globals.ink
+
 ===AaronWelcomeToNaver===
     #speaker:Aaron
     !!!
@@ -21,8 +22,8 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     #speaker:quest
     \– เควส: เข้าไปยังปราสาท รางวัล: \- 
         +[รับภารกิจ]
-                #quest:
-                ->DONE
+            #quest:
+            ->DONE
     //(คาอิน อาเบล ซามูเอล Aaron และไลลา)
 ->DONE
 
@@ -117,7 +118,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     //(คาอิน อาเบล ซามูเอล Aaron และไลลา)
 ->DONE
 
-===FamilyMeeting===
+===FamilyMeetingAgain===
     #speaker:Abel
     !!!!
     อ่าวท่านพี่… นึกว่าหนีหัวซุกหัวซุนไปที่ไหนสักที่ซะอีก

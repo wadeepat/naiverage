@@ -652,6 +652,10 @@ public class Database : MonoBehaviour
                 {
                     QuestLog.CompleteQuest(QuestLog.GetActiveQuestById(16));
                 },
+                compleltedAction = () =>
+                {
+                    DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(2, "TalkWithGuard"));
+                }
             }
         );
         questList.Add(
@@ -727,10 +731,7 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
-                    // if (!ActionHandler.instance.IsQuestIdxInSave(19))
                     StageHandler.instance.EventTrigger("UnlockCave");
-                    // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.Cave)
-                    // QuestLog.CompleteQuest(Database.questList[19]);
                 },
                 prepareAction = () =>
                 {
@@ -781,6 +782,7 @@ public class Database : MonoBehaviour
                 objective = new Quest.Objective()
                 {
                     objectiveId = (int)NPCIndex.Cain,
+                    npc = NPCIndex.Cain,
                     type = Quest.Objective.Type.talk,
                     dialogue = DialogueManager.instance.GetDialogueFile(2, "HelpCainComplete"),
                     amount = 1,
@@ -800,25 +802,28 @@ public class Database : MonoBehaviour
             {
                 questId = 22,
                 questName = $"กลับไปยังหมู่บ้าน",
-                questDescription = $"เจ้าชาย {ColorText("char", "Cain")} ดูเหนื่อย ๆ นะกลับไปพักกันก่อนดีกว่า",
+                questDescription = $"เจ้าชาย {ColorText("char", "Cain")} ดูเหนื่อย ๆ นะกลับไปพักกันก่อนดีกว่า ไปหา {ColorText("char", "Cain")} ที่ป่า {ColorText("town", "Braewood")}",
                 location = SceneIndex.BraewoodForest,
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
                 objective = new Quest.Objective()
                 {
-                    objectiveId = (int)SceneIndex.BraewoodForest,
-                    type = Quest.Objective.Type.interact,
+                    objectiveId = (int)NPCIndex.Cain,
+                    npc = NPCIndex.Cain,
+                    type = Quest.Objective.Type.talk,
+                    dialogue = DialogueManager.instance.GetDialogueFile(2, "PrinceAndVillagers"),
                     amount = 1,
                 },
                 prepareAction = () =>
                 {
-                    QuestLog.CompleteQuest(questList[22]);
-                },
-                compleltedAction = () =>
-                {
                     StageHandler.instance.EventTrigger("HelpHisFriend");
+                    // QuestLog.CompleteQuest(questList[22]);
                 },
+                // compleltedAction = () =>
+                // {
+                //     StageHandler.instance.EventTrigger("HelpHisFriend");
+                // },
             }
         );
         questList.Add(
@@ -841,10 +846,10 @@ public class Database : MonoBehaviour
                 {
                     StageHandler.instance.EventTrigger("LostMan");
                 },
-                compleltedAction = () =>
-                {
-                    StageHandler.instance.EventTrigger("LostMan");
-                },
+                // compleltedAction = () =>
+                // {
+                //     StageHandler.instance.EventTrigger("LostMan");
+                // },
             }
         );
         questList.Add(
@@ -894,6 +899,11 @@ public class Database : MonoBehaviour
                     dialogue = DialogueManager.instance.GetDialogueFile(2, "SaveTheManLife"),
                     type = Quest.Objective.Type.talk,
                     amount = 1,
+                },
+                addAction = () =>
+                {
+                    //! remove when implement troll field
+                    StageHandler.instance.EventTrigger("CainAndHurt");
                 },
                 prepareAction = () =>
                 {

@@ -10060,6 +10060,18 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 139339666243476548, guid: ab8cd77442cce7e478d7c56a2b476dbf, type: 2}
+    - target: {fileID: 6949852785076288023, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1575763870}
+    - target: {fileID: 6949852785076288023, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MakeChoice
+      objectReference: {fileID: 0}
+    - target: {fileID: 6949852785076288023, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7103132682812525341, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -12976,6 +12988,7 @@ MonoBehaviour:
   n_calfordGate: {fileID: 0}
   n_braewoodGate: {fileID: 0}
   n_mainDoor: {fileID: 0}
+  n_mainDoor1: {fileID: 0}
   n_frontOfRanche0: {fileID: 0}
   n_frontOfRanche1: {fileID: 0}
   n_frontOfCastle: {fileID: 0}
@@ -12984,6 +12997,7 @@ MonoBehaviour:
   b_naverGate: {fileID: 0}
   b_caveGate: {fileID: 0}
   c_braewoodGate: {fileID: 0}
+  c_middle: {fileID: 0}
   c_TrollGate: {fileID: 0}
   exitGate: {fileID: 0}
 --- !u!114 &1743858931

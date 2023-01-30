@@ -90,8 +90,8 @@ public class StageHandler : MonoBehaviour
                 break;
             case SceneIndex.BraewoodForest:
                 AudioManager.instance.Play("braewoodBackground");
-                if (QuestLog.GetCompleteQuestById(17) == null)
-                    DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(2, "TalkWithGuard"));
+                // if (QuestLog.GetCompleteQuestById(17) == null && QuestLog.GetActiveQuestById(17) == null)
+                //     DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(2, "TalkWithGuard"));
                 if (QuestLog.GetCompleteQuestById(19) == null && QuestLog.GetActiveQuestById(19) == null)
                     b_caveGate.gameObject.SetActive(false);
                 if (QuestLog.GetCompleteQuestById(26) != null && QuestLog.GetCompleteQuestById(27) == null)
@@ -457,6 +457,21 @@ public class StageHandler : MonoBehaviour
                 PlayerManager.instance.mapEnable[SceneIndex.Cave] = true;
                 b_caveGate.gameObject.SetActive(true);
                 break;
+            case "HelpHisFriend":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Cain)
+                    {
+                        npc.Object.SetActive(true);
+                    }
+                    else if (npc.info == "Friend")
+                    {
+                        npc.Object.SetActive(true);
+                    }
+                    // DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(2, "PrinceAndVillagers"));
+                }
+                Debug.Log("HelpFriend");
+                break;
             case "FriendLeave":
                 Transform place = null;
                 foreach (NPC_Details npc in NPCs)
@@ -530,29 +545,22 @@ public class StageHandler : MonoBehaviour
                 SpawnMonsterAt(0, MonsterId.Skeleton, 1);
                 SpawnMonsterAt(1, MonsterId.Skeleton, 2);
                 break;
-            case "HelpHisFriend":
-                foreach (NPC_Details npc in NPCs)
-                {
-                    if (npc.idx == NPCIndex.Cain)
-                        npc.Object.SetActive(true);
-                    else if (npc.info == "Friend")
-                    {
-                        npc.Object.SetActive(true);
-                        break;
-                    }
-                    DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(2, "PrinceAndVillagers"));
-                }
-                break;
             case "LostMan":
                 foreach (NPC_Details npc in NPCs)
                 {
-                    if (npc.info == "Hurt")
+                    if (npc.info == "Hurt" || npc.info == "Center")
                     {
                         npc.Object.SetActive(true);
-                        break;
                     }
                 }
-                GameObject.Find("LostMan").SetActive(true);
+                break;
+            case "FoundTheMan":
+                QuestLog.CompleteQuest(Database.questList[23]);
+                break;
+            case "TrollEntrance":
+                //TODO TrollField
+                c_TrollGate.gameObject.SetActive(true);
+                QuestLog.CompleteQuest(Database.questList[24]);
                 break;
             case "CainAndHurt":
                 foreach (NPC_Details npc in NPCs)

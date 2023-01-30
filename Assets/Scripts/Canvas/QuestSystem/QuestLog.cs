@@ -166,8 +166,9 @@ public class QuestLog
     {
         foreach (Quest q in questList)
         {
-            if (q.objective.type == Quest.Objective.Type.talk
-            && q.objective.npc == idx)
+            if (q.objective.type == Quest.Objective.Type.talk &&
+                q.objective.npc == idx &&
+                q.location == (SceneIndex)StageHandler.instance.activeSceneIndex)
                 return q.questId;
         }
         return -1;
