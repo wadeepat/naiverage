@@ -78,6 +78,8 @@ public class StageHandler : MonoBehaviour
                     DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(0, "Opening"));
                 if (!PlayerManager.instance.playerEvents["finishedTutorial"])
                     EventTrigger("SetupForTutorial");
+                if (QuestLog.GetActiveQuestById(29) != null)
+                    t_RachneGate.gameObject.SetActive(true);
                 break;
             case SceneIndex.NaverTown:
                 AudioManager.instance.Play("naverBackground");
@@ -90,8 +92,6 @@ public class StageHandler : MonoBehaviour
                 break;
             case SceneIndex.BraewoodForest:
                 AudioManager.instance.Play("braewoodBackground");
-                // if (QuestLog.GetCompleteQuestById(17) == null && QuestLog.GetActiveQuestById(17) == null)
-                //     DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(2, "TalkWithGuard"));
                 if (QuestLog.GetCompleteQuestById(19) == null && QuestLog.GetActiveQuestById(19) == null)
                     b_caveGate.gameObject.SetActive(false);
                 if (QuestLog.GetCompleteQuestById(26) != null && QuestLog.GetCompleteQuestById(27) == null)
@@ -587,6 +587,10 @@ public class StageHandler : MonoBehaviour
         {
             case "ExitGate":
                 exitGate.gameObject.SetActive(true);
+                break;
+            case "Commanment":
+                //TODO implement about commandment
+                OtherEvents("ExitGate");
                 break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in OtherEvents");

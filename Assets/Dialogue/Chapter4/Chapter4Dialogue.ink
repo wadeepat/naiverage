@@ -60,8 +60,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
         +[เลือกช่วย <color=\#FFD495>Abel</color> เป็นผู้ปกครอง]
             ->ChooseAbel
         +[เลือกที่จะไปกับหนังสือ]
-            #event:
-            ->DONE
+            ->ChooseTheBook
         +[ไม่เอาสักทาง]
             ->DontChoose
     //ขึ้นแสง 4 ทาง คือ คาอิน อาเบล ไม่เอาสักทาง และหนังสือ
@@ -72,6 +71,8 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     เจ้ากล้าหันหลังให้กลับข้าอย่างนั้นหรือ!!!
     กล้าดีอย่างไร!!!
     //วาร์ปไปที่ต่อสู่กับอาเบล
+    //test
+    #event
 ->DONE
 ===ChooseAbel===
     #speaker:Cain 
@@ -80,12 +81,15 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     ข้าไม่คิดเลยว่าเราจะต้องต่อสู้กันแบบนี้
     เอาล่ะ เรามาตัดสินกัน
     //วาร์ปไปที่ต่อสู่กับคาอิน
+     //test
+    ->Ending2
 ->DONE
 ===ChooseTheBook===
     #speaker:The Book 
     (ขอบใจที่เชื่อข้า...)
     (เอาล่ะ... การเดินทางนี้เหลืออีกไม่มากแล้ว)
     (ข้าเชื่อว่าเจ้าสามารถทำได้ พยายามเข้าล่ะ)
+    #quest:
 ->DONE
 ===DontChoose===
     #speaker:Me

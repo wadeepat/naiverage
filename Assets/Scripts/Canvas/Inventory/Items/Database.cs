@@ -968,7 +968,55 @@ public class Database : MonoBehaviour
     }
     private void AddQuestChapter3()
     {
-
+        questList.Add(
+            new Quest()
+            {
+                questId = 28,
+                questName = $"ไปยังปราสาท",
+                questDescription = $"ตามเจ้าชาย {ColorText("char", "Cain")} ไปยังปราสาท {ColorText("town", "Calford")}",
+                // location = SceneIndex.CalfordCastle,
+                location = SceneIndex.NaverTown,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    //! fix this when implemented castle
+                    // objectiveId = (int)SceneIndex.CalfordCastle,
+                    objectiveId = (int)SceneIndex.NaverTown,
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
+                },
+                prepareAction = () =>
+                {
+                    QuestLog.CompleteQuest(questList[28]);
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 29,
+                questName = $"บัญญัติที่ถูกเก็บซ่อน",
+                questDescription = $"{ColorText("char", "Samuel")} ได้บอกว่าบัญญัติอยู่ในที่อยู่ของ {ColorText("monster", "Rachne")} ตามเขาไปพร้อมกับคนอื่น ๆ",
+                location = SceneIndex.RachneField,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)SceneIndex.Rachne,
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
+                },
+                prepareAction = () =>
+                {
+                    //TODO implement about commandment
+                    StageHandler.instance.EventTrigger("Commanment");
+                    QuestLog.CompleteQuest(questList[29]);
+                },
+            }
+        );
     }
     private string ColorText(string type, string text)
     {

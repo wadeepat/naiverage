@@ -9,6 +9,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     [Header("INK Files")]
     [SerializeField] private TextAsset SataKnowPlayerNameJSON;
     public string playerName { get; private set; }
+    public int playerPath { get; private set; }
     public static ActionHandler instance;
 
     private GameObject CanvasObject;
@@ -54,9 +55,30 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     }
     public void ReceiveActionThenContinueStory(string action, UnityAction ContinueStory)
     {
-        if (action == "GetPlayerName")
+        switch (action)
         {
-            GetPlayerName();
+            case "GetPlayerName":
+                GetPlayerName();
+                break;
+            case "Ending1":
+                playerPath = 1;
+                SceneLoadingManager.instance.LoadScene(SceneIndex.BlackScene);
+                break;
+            case "Ending2":
+                playerPath = 2;
+                SceneLoadingManager.instance.LoadScene(SceneIndex.BlackScene);
+                break;
+            case "Ending3":
+                playerPath = 3;
+                SceneLoadingManager.instance.LoadScene(SceneIndex.BlackScene);
+                break;
+            case "TrueEnding":
+                playerPath = 4;
+                SceneLoadingManager.instance.LoadScene(SceneIndex.BlackScene);
+                break;
+            default:
+                Debug.LogWarning("There is no action: " + action);
+                break;
         }
     }
     public bool IsInputWindowActivated()
@@ -110,17 +132,18 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     }
     public void LoadData(GameData data)
     {
-        Debug.Log("Load from Action Handler");
+        // Debug.Log("Load from Action Handler");
         playerName = data.name;
+        playerPath = data.playerPath;
         questIdxList = data.questIdxList;
         QuestLog.LoadQuest(data.questIdxList, data.completedQuestIdxList);
     }
 
     public void SaveData(GameData data)
     {
-        Debug.Log("Save from Action Handler");
-
+        // Debug.Log("Save from Action Handler");
         data.name = playerName;
+        data.playerPath = playerPath;
 
         var allQuestList = QuestLog.GetAllQuestList();
 
@@ -128,23 +151,6 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
         data.questIdxList = allQuestList.q;
         data.completedQuestIdxList = allQuestList.c;
     }
-
-    // public void LoadData(GameData data)
-    // {
-    //     Debug.Log("data from UI_Quest: " + data.questList.ToString());
-    //     // if(QuestLog.que)
-    //     QuestLog.LoadQuest(data.questList, data.completedQuestList);
-    // }
-
-    // public void SaveData(GameData data)
-    // {
-    //     // (List<Quest> q, List<Quest> c) = QuestLog.GetAllQuestList();
-    //     var allQuestList = QuestLog.GetAllQuestList();
-
-
-    //     data.questList = allQuestList.q;
-    //     data.completedQuestList = allQuestList.c;
-    // }
     private void SetForActivateUI()
     {
         DialogueManager.dialogueIsPlaying = true;

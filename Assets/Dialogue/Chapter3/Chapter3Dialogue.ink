@@ -22,7 +22,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     #speaker:quest
     \– เควส: เข้าไปยังปราสาท รางวัล: \- 
         +[รับภารกิจ]
-            #quest:
+            #quest:28
             ->DONE
     //(คาอิน อาเบล ซามูเอล Aaron และไลลา)
 ->DONE
