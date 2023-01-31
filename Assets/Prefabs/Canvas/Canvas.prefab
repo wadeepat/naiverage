@@ -4781,6 +4781,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5144966548249172637, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+      propertyPath: m_VerticalFit
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5222321910249703154, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -5316,6 +5320,22 @@ PrefabInstance:
     - target: {fileID: 7853525324229284306, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082061037744917744, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082061037744917744, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+      propertyPath: m_ChildAlignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082061037744917744, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+      propertyPath: m_ChildScaleWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082061037744917744, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
+      propertyPath: m_ChildControlWidth
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8678434044046248143, guid: 9647b780372ef464ab22d4acd96163fa, type: 3}
       propertyPath: m_AnchorMax.y
