@@ -8226,6 +8226,10 @@ PrefabInstance:
       propertyPath: choices.Array.data[2]
       value: 
       objectReference: {fileID: 814965171}
+    - target: {fileID: 1374411293204347148, guid: 4477deec801e55240838d419d582462f, type: 3}
+      propertyPath: choices.Array.data[3]
+      value: 
+      objectReference: {fileID: 772939424}
     - target: {fileID: 1374411293204347150, guid: 4477deec801e55240838d419d582462f, type: 3}
       propertyPath: m_Name
       value: DialogueManager
@@ -25034,6 +25038,11 @@ Transform:
   m_Father: {fileID: 1349492623}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &772939424 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1995415339158833239, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
+  m_PrefabInstance: {fileID: 814965163}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &776625147
 GameObject:
   m_ObjectHideFlags: 0
@@ -26351,6 +26360,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2826824378808943532, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899851338722655992, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3072770418944902942, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}

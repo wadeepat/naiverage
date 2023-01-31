@@ -44,7 +44,7 @@ public class OpenUI : MonoBehaviour
     void Update()
     {
         bool i = Input.GetKeyDown("i");
-        if (i)
+        if (i && !DialogueManager.dialogueIsPlaying)
         {
             if (inven == true)
             {
@@ -70,7 +70,8 @@ public class OpenUI : MonoBehaviour
         if (l == true)
         {
             // Player.SetActive(false);
-            attack.attackAble = false;
+            PlayerManager.instance.player.GetComponent<PlayerAttackController>().attackAble = false;
+            // attack.attackAble = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             assetsInputs.cursorInputForLook = false;
@@ -80,7 +81,8 @@ public class OpenUI : MonoBehaviour
         else
         {
             // Player.SetActive(true);
-            attack.attackAble = true;
+            PlayerManager.instance.player.GetComponent<PlayerAttackController>().attackAble = true;
+            // attack.attackAble = true;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             assetsInputs.cursorInputForLook = true;
