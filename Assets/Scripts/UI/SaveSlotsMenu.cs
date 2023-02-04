@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SaveSlotsMenu : MonoBehaviour
+public class SaveSlotsMenu : MonoBehaviour, IDataPersistence
 {
     [Header("Menu Navigation")]
     [SerializeField] private MainMenu mainMenu;
@@ -12,9 +12,11 @@ public class SaveSlotsMenu : MonoBehaviour
     [SerializeField] private Button backBtn;
     [Header("Confirmation Popup")]
     [SerializeField] private ConfirmationPopupMenu confirmationPopupMenu;
+    [Header("Input Text")]
+    [SerializeField] private InputTextUI inputText;
     private SaveSlot[] saveSlots;
     private bool isLoadingGame = false;
-
+    private string saveName = "Didn'tLoad";
     private void Awake()
     {
         saveSlots = saveSlotsObject.GetComponentsInChildren<SaveSlot>();
@@ -24,11 +26,12 @@ public class SaveSlotsMenu : MonoBehaviour
         AudioManager.instance.Play("click");
 
         DisableMenuButton();
+        DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
 
         //case: loading game
         if (isLoadingGame)
         {
-            DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
+            // DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
             //TODO load the current screen
             // SceneLoadingManager.instance.LoadScene(SceneIndex.Rachne);
             SceneLoadingManager.instance.LoadScene(saveSlot.GetPlayerLocation());
@@ -41,7 +44,7 @@ public class SaveSlotsMenu : MonoBehaviour
                 //action of confirm btn
                 () =>
                 {
-                    DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
+                    // DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
                     DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
                     DataPersistenceManager.instance.NewGame();
 
@@ -58,12 +61,34 @@ public class SaveSlotsMenu : MonoBehaviour
         //case: newgame with empty slot
         else
         {
-            DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
-            // DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
-            DataPersistenceManager.instance.NewGame();
+            inputText.ActivateMenu(
+            title: "ตั้งชื่อ slot",
+            cancelText: "ยกเลิก",
+            confirmAction: (string value) =>
+            {
+                if (value != "")
+                {
+                    DataPersistenceManager.instance.NewGame();
+                    this.saveName = value;
+                    DataPersistenceManager.instance.SaveGame(true);
+                    SceneLoadingManager.instance.LoadScene(SceneIndex.Rachne);
+                    // DataPersistenceManager.instance.LoadGame(true);
+                    // DataPersistenceManager.instance.SaveGame(true);
+                    // ActivateMenu(this.isLoadingGame);
+                }
+            },
+            cancelAction: () =>
+            {
+                inputText.DeactivateMenu();
+                ActivateMenu(this.isLoadingGame);
+            }
+        );
 
-            DataPersistenceManager.instance.SaveGame(false);
-            SceneLoadingManager.instance.LoadScene(SceneIndex.Rachne);
+            // DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
+            // DataPersistenceManager.instance.NewGame();
+
+            // DataPersistenceManager.instance.SaveGame(false);
+            // SceneLoadingManager.instance.LoadScene(SceneIndex.Rachne);
         }
     }
     public void onBackClicked()
@@ -71,6 +96,32 @@ public class SaveSlotsMenu : MonoBehaviour
         AudioManager.instance.Play("click");
         mainMenu.ActivateMenu();
         this.DeactivateMenu();
+    }
+    public void onEditClicked(SaveSlot saveSlot)
+    {
+        AudioManager.instance.Play("click");
+        DisableMenuButton();
+        DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
+        inputText.ActivateMenu(
+            title: "เปลี่ยนชื่อ slot",
+            cancelText: "ยกเลิก",
+            confirmAction: (string value) =>
+            {
+                if (value != "")
+                {
+                    this.saveName = value;
+                    DataPersistenceManager.instance.LoadGame(true);
+                    DataPersistenceManager.instance.SaveGame(true);
+                    ActivateMenu(this.isLoadingGame);
+
+                }
+            },
+            cancelAction: () =>
+            {
+                inputText.DeactivateMenu();
+                ActivateMenu(this.isLoadingGame);
+            }
+        );
     }
     public void onClearClicked(SaveSlot saveSlot)
     {
@@ -130,5 +181,16 @@ public class SaveSlotsMenu : MonoBehaviour
             saveSlot.SetInteractable(false);
         }
         backBtn.interactable = false;
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.saveName = data.saveName;
+        // throw new System.NotImplementedException();
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.saveName = this.saveName;
     }
 }

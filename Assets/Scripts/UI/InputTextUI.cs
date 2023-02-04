@@ -19,7 +19,7 @@ public class InputTextUI : MonoBehaviour
     //     cancelBtn = transform.Find("CancelBtn").GetComponent<Button>();
     //     DeactivateMenu();
     // }
-    public void ActivateMenu(string title, UnityAction<string> confirmAction, UnityAction cancelAction)
+    public void ActivateMenu(string title, UnityAction<string> confirmAction, UnityAction cancelAction, string confirmText = "ยืนยัน", string cancelText = "เคลียร์")
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -28,6 +28,8 @@ public class InputTextUI : MonoBehaviour
 
         this.title.text = title;
         this.inputField.text = "";
+        confirmBtn.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = confirmText;
+        cancelBtn.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = cancelText;
 
         confirmBtn.onClick.RemoveAllListeners();
         cancelBtn.onClick.RemoveAllListeners();
@@ -48,10 +50,10 @@ public class InputTextUI : MonoBehaviour
         });
     }
 
-    private void DeactivateMenu()
+    public void DeactivateMenu()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
 
         this.gameObject.SetActive(false);
     }

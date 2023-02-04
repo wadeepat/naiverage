@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class GameData
 {
     public string name;
+    public string saveName;
     public long lastUpdated;
     public SceneIndex playerLocation;
     public int playerPath;
@@ -15,6 +16,7 @@ public class GameData
     //if want to use dictionary use SeriablizableDictionary instead
     public GameData()
     {
+        saveName = "untitle";
         playerLocation = SceneIndex.Rachne;
         playerPath = 0;
         playerEvents = new SerializableDictionary<string, bool>{
