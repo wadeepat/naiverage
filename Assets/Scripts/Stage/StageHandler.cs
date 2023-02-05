@@ -102,6 +102,9 @@ public class StageHandler : MonoBehaviour
                 if (QuestLog.GetCompleteQuestById(20) == null && QuestLog.GetActiveQuestById(20) == null)
                     EventTrigger("FirstMetCain");
                 break;
+            case SceneIndex.BlackScene:
+                AudioManager.instance.Play("endingBackground");
+                break;
         }
         QuestLog.DoQuestPrepare(sceneIndex);
     }
@@ -591,6 +594,9 @@ public class StageHandler : MonoBehaviour
             case "Commanment":
                 //TODO implement about commandment
                 OtherEvents("ExitGate");
+                break;
+            case "BackToMenu":
+                SceneLoadingManager.instance.LoadScene(SceneIndex.MainMenu);
                 break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in OtherEvents");

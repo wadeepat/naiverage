@@ -93,7 +93,15 @@ MonoBehaviour:
   - name: BackToFriend
     json: {fileID: 4900000, guid: 3948bcb7c5714a642860040b53e40a97, type: 3}
   chapter3Files: []
-  chapter4Files: []
+  chapter4Files:
+  - name: Ending1
+    json: {fileID: 4900000, guid: ed748f5d207d3e849a4358af70236425, type: 3}
+  - name: Ending2
+    json: {fileID: 4900000, guid: 7a15d92af9248de4d902a4e655280a5d, type: 3}
+  - name: Ending3
+    json: {fileID: 4900000, guid: 4000986baacd17544b2fa8d35cdfadd4, type: 3}
+  - name: TrueEnding
+    json: {fileID: 4900000, guid: 8d87f4886af2a8f43beae03a834c2bc4, type: 3}
   dialoguePanel: {fileID: 0}
   continueText: {fileID: 0}
   displayNameText: {fileID: 0}

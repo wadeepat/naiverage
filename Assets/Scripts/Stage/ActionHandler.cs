@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Events;
-using Ink.Runtime;
 using StarterAssets;
 public class ActionHandler : MonoBehaviour, IDataPersistence
 {
@@ -23,10 +22,13 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     private void Awake()
     {
         instance = this;
-        CanvasObject = GameObject.Find("Canvas");
-        TutorialGuidingObject = CanvasObject.transform.Find("TutorialGuiding").gameObject;
-        UI_Input_Window = CanvasObject.transform.Find("UI_Input_Window").GetComponent<InputTextUI>();
-        confirmationPopup = CanvasObject.transform.Find("ConfirmationPopupMenu").GetComponent<ConfirmationPopupMenu>();
+        if (SceneManager.GetActiveScene().buildIndex != (int)SceneIndex.BlackScene)
+        {
+            CanvasObject = GameObject.Find("Canvas");
+            TutorialGuidingObject = CanvasObject.transform.Find("TutorialGuiding").gameObject;
+            UI_Input_Window = CanvasObject.transform.Find("UI_Input_Window").GetComponent<InputTextUI>();
+            confirmationPopup = CanvasObject.transform.Find("ConfirmationPopupMenu").GetComponent<ConfirmationPopupMenu>();
+        }
     }
     private void OnEnable()
     {
@@ -62,14 +64,17 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                 break;
             case "Ending1":
                 playerPath = 1;
+                DataPersistenceManager.instance.SaveGame(true);
                 SceneLoadingManager.instance.LoadScene(SceneIndex.BlackScene);
                 break;
             case "Ending2":
                 playerPath = 2;
+                DataPersistenceManager.instance.SaveGame(true);
                 SceneLoadingManager.instance.LoadScene(SceneIndex.BlackScene);
                 break;
             case "Ending3":
                 playerPath = 3;
+                DataPersistenceManager.instance.SaveGame(true);
                 SceneLoadingManager.instance.LoadScene(SceneIndex.BlackScene);
                 break;
             case "TrueEnding":
@@ -83,7 +88,9 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     }
     public bool IsInputWindowActivated()
     {
-        return UI_Input_Window.IsActivated();
+        if (UI_Input_Window != null)
+            return UI_Input_Window.IsActivated();
+        else return false;
     }
 
     public void AskToSave()
@@ -136,8 +143,11 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
         // Debug.Log("Load from Action Handler");
         playerName = data.name;
         playerPath = data.playerPath;
-        questIdxList = data.questIdxList;
-        QuestLog.LoadQuest(data.questIdxList, data.completedQuestIdxList);
+        if (StageHandler.instance.activeSceneIndex != (int)SceneIndex.BlackScene)
+        {
+            questIdxList = data.questIdxList;
+            QuestLog.LoadQuest(data.questIdxList, data.completedQuestIdxList);
+        }
     }
 
     public void SaveData(GameData data)
@@ -146,24 +156,27 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
         data.name = playerName;
         data.playerPath = playerPath;
 
-        var allQuestList = QuestLog.GetAllQuestList();
+        if (StageHandler.instance.activeSceneIndex != (int)SceneIndex.BlackScene)
+        {
+            var allQuestList = QuestLog.GetAllQuestList();
 
 
-        data.questIdxList = allQuestList.q;
-        data.completedQuestIdxList = allQuestList.c;
+            data.questIdxList = allQuestList.q;
+            data.completedQuestIdxList = allQuestList.c;
+        }
     }
     private void SetForActivateUI()
     {
         DialogueManager.dialogueIsPlaying = true;
         // DialogueManager.instance.LockCamera();
-        PlayerManager.instance.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(true);
+        PlayerManager.instance?.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(true);
         DialogueManager.instance.EnablePlayerControll();
     }
     private void ResetForDeactivateUI()
     {
         DialogueManager.dialogueIsPlaying = false;
         // DialogueManager.instance.UnlockCamera();
-        PlayerManager.instance.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(false);
+        PlayerManager.instance?.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(false);
         DialogueManager.instance.DisablePlayerControll();
     }
 }

@@ -107,6 +107,12 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - s_name: endingBackground
+    clip: {fileID: 8300000, guid: 4ff12c9f749037246a8c6bcbf3cd0e6a, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
   - s_name: save
     clip: {fileID: 8300000, guid: 557128255e699ce41b63ab16250e7413, type: 3}
     volume: 0.75
