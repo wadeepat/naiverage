@@ -73,11 +73,11 @@ public class ChapterCard : MonoBehaviour
         header.text = cardDetails[idx].header;
         desc.text = cardDetails[idx].description;
         timer = 0;
-        this.gameObject.SetActive(true);
+        gameObject.SetActive(true);
     }
     public void DeactivateMenu()
     {
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
         if (cardIdx != 0)
             ActionHandler.instance.AskToSave();
     }

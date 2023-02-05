@@ -26,6 +26,7 @@ public class SaveSlotsMenu : MonoBehaviour, IDataPersistence
         AudioManager.instance.Play("click");
 
         DisableMenuButton();
+        Debug.Log("Selected ID: " + saveSlot.GetProfileId());
         DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
 
         //case: loading game
