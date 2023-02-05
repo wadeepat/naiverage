@@ -53,11 +53,29 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - s_name: addQuest
+    clip: {fileID: 8300000, guid: 21fffcdd1640eb04a849700642c22f01, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - s_name: completeQuest
+    clip: {fileID: 8300000, guid: 995162fea1a46314d89d5063d68474fa, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   - s_name: loading
     clip: {fileID: 8300000, guid: ed61521fe94f7324f8ea021f36f0e376, type: 3}
     volume: 0.6
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - s_name: newChapter
+    clip: {fileID: 8300000, guid: 2a2965c2452783048a21cce27b76e104, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
   - s_name: medievalTheme
     clip: {fileID: 8300000, guid: ff50389a5d7605c4d9e7cff6ca4da10f, type: 3}
@@ -88,6 +106,18 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - s_name: save
+    clip: {fileID: 8300000, guid: 557128255e699ce41b63ab16250e7413, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - s_name: delete
+    clip: {fileID: 8300000, guid: fe7c167652895e7459a346ddb3284dd1, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
   - s_name: singleFootstepInGrass
     clip: {fileID: 8300000, guid: c59555e5e17f2b24db9e6235197f9db1, type: 3}

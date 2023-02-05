@@ -90,7 +90,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
             ได้สิ...ยานั้นน่ะราคา 50,000,000 MP
     #speaker:Me
     -ใช้ MP มากขนาดนั้นข้าไม่มีหรอก
-    #speaker:พ่อค้า #event:AbelFirstMet
+    #speaker:พ่อค้า #event:AbelFirstMet #sound:singleFootstepInGrass
     ถ้าอย่างนั้น ข้าคงต้องให้ลูกค้าคนอื่นที่มีกำลังจ่ายพอล่ะนะ ฮ่าๆ
     #speaker:???
     (มีคนเดินเข้ามา)
@@ -175,7 +175,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     ได้เลย
     #speaker:ชาวบ้านหญิง
     ข…ข้าพอจะทราบว่าพวกเขาไปที่ใด
-    #speaker:ทุกคน #event:Cain'sHint
+    #speaker:ทุกคน #event:Cain'sHint #sound:singleFootstepInGrass
     !!!
     #speaker:ชาวบ้านหญิง
     เจ้าชาย ชาวบ้านบางส่วนรวมถึงสามีของข้าต้องการหนีไปตั้งถิ่นฐานใหม่ที่ทางตอนเหนือ
@@ -255,7 +255,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     ได้เลย
     #speaker:ชาวบ้านหญิง
     ข…ข้าพอจะทราบว่าพวกเขาไปที่ใด
-    #speaker:ทุกคน #event:Cain'sHint
+    #speaker:ทุกคน #event:Cain'sHint #sound:singleFootstepInGrass
     !!!
     #speaker:ชาวบ้านหญิง
     เจ้าชาย ชาวบ้านบางส่วนรวมถึงสามีของข้าต้องการหนีไปตั้งถิ่นฐานใหม่ที่ทางตอนเหนือ

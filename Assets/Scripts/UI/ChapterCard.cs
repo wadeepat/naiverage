@@ -68,6 +68,7 @@ public class ChapterCard : MonoBehaviour
     }
     public void ActivateMenu(int idx)
     {
+        AudioManager.instance.Play("newChapter");
         cardIdx = idx;
         header.text = cardDetails[idx].header;
         desc.text = cardDetails[idx].description;

@@ -166,7 +166,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
             ->DONE
 ->DONE
 ===ManInCave===
-    #speaker:ชาวบ้านชาย #event:FoundTheMan
+    #speaker:ชาวบ้านชาย #event:FoundTheMan #sound:singleFootstepInGrass
     !!!!
     ท…ท่าน!!! ช…ช่วยข้าด้วย!!!!
     #speaker:Me

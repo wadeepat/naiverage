@@ -94,6 +94,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
             displayText: $"ยืนยันที่จะบันทึกเกมใน slot ที่ชื่อ <color={Database.COLORS["char"]}>{playerName}</color> อยู่ใช่หรือไม่?",
             confirmAction: () =>
             {
+                AudioManager.instance.Play("save");
                 DataPersistenceManager.instance.SaveGame(true);
                 DataPersistenceManager.instance.LoadGame(true);
                 ResetForDeactivateUI();

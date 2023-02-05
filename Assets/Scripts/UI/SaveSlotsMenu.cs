@@ -132,6 +132,7 @@ public class SaveSlotsMenu : MonoBehaviour, IDataPersistence
             "ยืนยันที่จะลบข้อมูล slot นี้ใช่หรือไม่?",
             () =>
             {
+                AudioManager.instance.Play("delete");
                 DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
                 ActivateMenu(isLoadingGame);
             },
