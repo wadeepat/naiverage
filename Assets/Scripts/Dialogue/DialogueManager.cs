@@ -71,7 +71,8 @@ public class DialogueManager : MonoBehaviour
     // called second
     void DestroySelf(Scene scene, LoadSceneMode mode)
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        int sceneIdx = SceneManager.GetActiveScene().buildIndex;
+        if (sceneIdx == 0)
             Destroy(this.gameObject);
     }
     void OnDisable()

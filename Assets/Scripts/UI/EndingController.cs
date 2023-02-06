@@ -7,6 +7,7 @@ public class EndingController : MonoBehaviour
 {
     void Start()
     {
+        GameObject.Find("Canvas").transform.GetChild(0).gameObject.SetActive(true);
         TextAsset file = null;
         switch (ActionHandler.instance.playerPath)
         {

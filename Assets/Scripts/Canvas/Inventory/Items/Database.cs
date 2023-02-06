@@ -53,7 +53,6 @@ public class Database : MonoBehaviour
         //* chapter 3
         AddQuestChapter3();
     }
-
     private void AddMonsterList()
     {
         //* Monster section id, hp, atk, def, res, reHp
@@ -957,12 +956,13 @@ public class Database : MonoBehaviour
                 },
                 prepareAction = () =>
                 {
-                    QuestLog.CompleteQuest(questList[27]);
+                    StageHandler.instance.EventTrigger("WelcomeCain");
+                    // QuestLog.CompleteQuest(questList[27]);
                 },
-                compleltedAction = () =>
-                {
-                    chapterCardScript.ActivateMenu(3);
-                },
+                // compleltedAction = () =>
+                // {
+                //     chapterCardScript.ActivateMenu(3);
+                // },
             }
         );
     }
@@ -975,7 +975,7 @@ public class Database : MonoBehaviour
                 questName = $"ไปยังปราสาท",
                 questDescription = $"ตามเจ้าชาย {ColorText("char", "Cain")} ไปยังปราสาท {ColorText("town", "Calford")}",
                 // location = SceneIndex.CalfordCastle,
-                location = SceneIndex.NaverTown,
+                location = SceneIndex.CalfordCastle,
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 0,
@@ -983,13 +983,20 @@ public class Database : MonoBehaviour
                 {
                     //! fix this when implemented castle
                     // objectiveId = (int)SceneIndex.CalfordCastle,
-                    objectiveId = (int)SceneIndex.NaverTown,
-                    type = Quest.Objective.Type.interact,
+                    objectiveId = (int)NPCIndex.Cain,
+                    npc = NPCIndex.Cain,
+                    dialogue = DialogueManager.instance.GetDialogueFile(3, "FamilyMeeting"),
+                    type = Quest.Objective.Type.talk,
                     amount = 1,
+                },
+                addAction = () =>
+                {
+                    chapterCardScript.ActivateMenu(3);
+                    StageHandler.instance.EventTrigger("UnlockCalford");
                 },
                 prepareAction = () =>
                 {
-                    QuestLog.CompleteQuest(questList[28]);
+                    StageHandler.instance.EventTrigger("Family");
                 },
             }
         );
@@ -1005,15 +1012,19 @@ public class Database : MonoBehaviour
                 questCategory = 0,
                 objective = new Quest.Objective()
                 {
-                    objectiveId = (int)SceneIndex.Rachne,
-                    type = Quest.Objective.Type.interact,
+                    objectiveId = (int)NPCIndex.Samuel,
+                    npc = NPCIndex.Samuel,
+                    dialogue = DialogueManager.instance.GetDialogueFile(4, "TheCommandment"),
+                    type = Quest.Objective.Type.talk,
                     amount = 1,
+                },
+                addAction = () =>
+                {
+                    chapterCardScript.ActivateMenu(4);
                 },
                 prepareAction = () =>
                 {
-                    //TODO implement about commandment
                     StageHandler.instance.EventTrigger("Commanment");
-                    QuestLog.CompleteQuest(questList[29]);
                 },
             }
         );

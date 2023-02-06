@@ -1,7 +1,7 @@
 INCLUDE ../Tutorial/tutorial_globals.ink
 
 ===AaronWelcomeToNaver===
-    #speaker:Aaron
+    #speaker:Aaron #event:CainBack
     !!!
     ท่าน <color=\#FFD495>Cain</color> !!! ท…ทำไมท่านถึง…
     #speaker:Cain
@@ -87,7 +87,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     #speaker:quest
     \– เควส: บัญญัติที่ถูกเก็บซ่อน รางวัล: \- 
         +[รับภารกิจ]
-            #quest:
+            #quest:29
             ->DONE
     //(บอกว่าอยู่ที่ไหน) (เควสรองขึ้น)
 ->DONE

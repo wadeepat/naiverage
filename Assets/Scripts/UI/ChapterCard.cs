@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using StarterAssets;
 public class ChapterCard : MonoBehaviour
 {
     private class ChapterCardDetails
@@ -55,7 +56,10 @@ public class ChapterCard : MonoBehaviour
     private float timer = 0;
     private float readTime = 1.75f;
     private float displayTime = 3.5f;
-
+    // private void Awake()
+    // {
+    //     gameObject = this;
+    // }
     private void Update()
     {
         if (timer >= displayTime) DeactivateMenu();
@@ -66,18 +70,34 @@ public class ChapterCard : MonoBehaviour
         }
         else timer += Time.deltaTime;
     }
+    private void SetForActivateUI()
+    {
+        DialogueManager.dialogueIsPlaying = true;
+        // DialogueManager.instance.LockCamera();
+        PlayerManager.instance?.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(true);
+        // DialogueManager.instance.EnablePlayerControll();
+    }
+    private void ResetForDeactivateUI()
+    {
+        DialogueManager.dialogueIsPlaying = false;
+        // DialogueManager.instance.UnlockCamera();
+        PlayerManager.instance?.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(false);
+        // DialogueManager.instance.DisablePlayerControll();
+    }
     public void ActivateMenu(int idx)
     {
+        SetForActivateUI();
         AudioManager.instance.Play("newChapter");
         cardIdx = idx;
         header.text = cardDetails[idx].header;
         desc.text = cardDetails[idx].description;
         timer = 0;
-        gameObject.SetActive(true);
+        transform.gameObject.SetActive(true);
     }
     public void DeactivateMenu()
     {
-        gameObject.SetActive(false);
+        ResetForDeactivateUI();
+        transform.gameObject.SetActive(false);
         if (cardIdx != 0)
             ActionHandler.instance.AskToSave();
     }

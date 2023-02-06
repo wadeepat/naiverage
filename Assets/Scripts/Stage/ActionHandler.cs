@@ -64,21 +64,25 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                 break;
             case "Ending1":
                 playerPath = 1;
+                PlayerManager.instance.playerLocation = SceneIndex.BlackScene;
                 DataPersistenceManager.instance.SaveGame(true);
                 SceneLoadingManager.instance.LoadScene(SceneIndex.BlackScene);
                 break;
             case "Ending2":
                 playerPath = 2;
+                PlayerManager.instance.playerLocation = SceneIndex.BlackScene;
                 DataPersistenceManager.instance.SaveGame(true);
                 SceneLoadingManager.instance.LoadScene(SceneIndex.BlackScene);
                 break;
             case "Ending3":
                 playerPath = 3;
+                PlayerManager.instance.playerLocation = SceneIndex.BlackScene;
                 DataPersistenceManager.instance.SaveGame(true);
                 SceneLoadingManager.instance.LoadScene(SceneIndex.BlackScene);
                 break;
             case "TrueEnding":
                 playerPath = 4;
+                PlayerManager.instance.playerLocation = SceneIndex.BlackScene;
                 SceneLoadingManager.instance.LoadScene(SceneIndex.BlackScene);
                 break;
             default:
@@ -143,7 +147,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
         // Debug.Log("Load from Action Handler");
         playerName = data.name;
         playerPath = data.playerPath;
-        if (StageHandler.instance.activeSceneIndex != (int)SceneIndex.BlackScene)
+        if (SceneManager.GetActiveScene().buildIndex != (int)SceneIndex.BlackScene)
         {
             questIdxList = data.questIdxList;
             QuestLog.LoadQuest(data.questIdxList, data.completedQuestIdxList);

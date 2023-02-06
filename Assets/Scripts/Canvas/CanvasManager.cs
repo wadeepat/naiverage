@@ -27,7 +27,7 @@ public class CanvasManager : MonoBehaviour
     void DestroySelf(Scene scene, LoadSceneMode mode)
     {
         int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        if (activeSceneIndex == (int)SceneIndex.MainMenu || activeSceneIndex == (int)SceneIndex.BlackScene)
+        if (activeSceneIndex == (int)SceneIndex.MainMenu)
             Destroy(this.gameObject);
     }
     void OnDisable()

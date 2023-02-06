@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
     // #region  Singleton
     public GameObject player { get; private set; }
     public static PlayerManager instance { get; private set; }
-    public SceneIndex playerLocation { get; private set; }
+    public SceneIndex playerLocation;
     public SerializableDictionary<string, bool> playerEvents;
     public SerializableDictionary<SceneIndex, bool> mapEnable;
     void Awake()

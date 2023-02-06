@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using StarterAssets;
 using UnityEngine.InputSystem;
 public class OpenUI : MonoBehaviour
@@ -33,11 +34,12 @@ public class OpenUI : MonoBehaviour
 
         inven = true;
         craft = true;
-        attack = Player.GetComponent<PlayerAttackController>();
-        assetsInputs = Player.GetComponent<StarterAssetsInputs>();
-        playerInput = Player.GetComponent<PlayerInput>();
-
-
+        if (SceneManager.GetActiveScene().buildIndex != (int)SceneIndex.BlackScene)
+        {
+            attack = Player.GetComponent<PlayerAttackController>();
+            assetsInputs = Player.GetComponent<StarterAssetsInputs>();
+            playerInput = Player.GetComponent<PlayerInput>();
+        }
     }
 
     // Update is called once per frame
