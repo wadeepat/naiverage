@@ -14,19 +14,22 @@ public class SaveSlotsMenu : MonoBehaviour, IDataPersistence
     [SerializeField] private ConfirmationPopupMenu confirmationPopupMenu;
     [Header("Input Text")]
     [SerializeField] private InputTextUI inputText;
+
     private SaveSlot[] saveSlots;
+    private GameObject EditBtns;
     private bool isLoadingGame = false;
     private string saveName = "Didn'tLoad";
     private void Awake()
     {
         saveSlots = saveSlotsObject.GetComponentsInChildren<SaveSlot>();
+        EditBtns = transform.Find("List/EditBtns").gameObject;
     }
     public void OnSaveSlotClicked(SaveSlot saveSlot)
     {
         AudioManager.instance.Play("click");
 
         DisableMenuButton();
-        Debug.Log("Selected ID: " + saveSlot.GetProfileId());
+        // Debug.Log("Selected ID: " + saveSlot.GetProfileId());
         DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
 
         //case: loading game
@@ -111,8 +114,8 @@ public class SaveSlotsMenu : MonoBehaviour, IDataPersistence
                 if (value != "")
                 {
                     this.saveName = value;
-                    DataPersistenceManager.instance.LoadGame(true);
                     DataPersistenceManager.instance.SaveGame(true);
+                    DataPersistenceManager.instance.LoadGame(true);
                     ActivateMenu(this.isLoadingGame);
 
                 }
@@ -160,6 +163,7 @@ public class SaveSlotsMenu : MonoBehaviour, IDataPersistence
             profilesGameData.TryGetValue(saveSlot.GetProfileId(), out profileData);
             saveSlot.SetData(profileData);
 
+            EditBtns.SetActive(isLoadingGame);
             if (isLoadingGame && profileData == null)
             {
                 saveSlot.SetInteractable(false);
@@ -188,11 +192,14 @@ public class SaveSlotsMenu : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         this.saveName = data.saveName;
+        // Debug.Log("Load Name as : " + data.saveName);
+
         // throw new System.NotImplementedException();
     }
 
     public void SaveData(GameData data)
     {
         data.saveName = this.saveName;
+        // Debug.Log("Save name as : " + data.saveName);
     }
 }

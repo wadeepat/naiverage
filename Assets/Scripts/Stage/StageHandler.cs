@@ -76,15 +76,23 @@ public class StageHandler : MonoBehaviour
                 // }
                 if (QuestLog.GetCompleteQuestById(0) == null)
                     DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(0, "Opening"));
-                if (!PlayerManager.instance.playerEvents["finishedTutorial"])
+                if (!PlayerManager.playerEvents["finishedTutorial"])
                     EventTrigger("SetupForTutorial");
                 if (QuestLog.GetActiveQuestById(29) != null)
                     t_RachneGate.gameObject.SetActive(true);
                 break;
             case SceneIndex.NaverTown:
                 AudioManager.instance.Play("naverBackground");
-                if (QuestLog.GetCompleteQuestById(8) == null)
-                    EventTrigger("IntroduceAaron");
+                if (PlayerManager.playerEvents["backToPast"])
+                {
+                    if (QuestLog.GetCompleteQuestById(30) == null)
+                        EventTrigger("ReceiveTheBook");
+                }
+                else
+                {
+                    if (QuestLog.GetCompleteQuestById(8) == null)
+                        EventTrigger("IntroduceAaron");
+                }
                 if (!PlayerManager.instance.mapEnable[SceneIndex.CalfordCastle])
                     n_calfordGate.gameObject.SetActive(false);
                 if (!PlayerManager.instance.mapEnable[SceneIndex.BraewoodForest])
@@ -106,7 +114,8 @@ public class StageHandler : MonoBehaviour
                 break;
             case SceneIndex.RachneField:
                 AudioManager.instance.Play("forestBackground");
-                if (QuestLog.GetActiveQuestById(13) != null)
+                if (QuestLog.GetActiveQuestById(13) != null ||
+                QuestLog.GetActiveQuestById(31) != null)
                     EventTrigger("SpawnRachne");
                 break;
             case SceneIndex.BlackScene:
@@ -145,6 +154,7 @@ public class StageHandler : MonoBehaviour
     {
         // Debug.Log("Previous " + ((SceneIndex)previousScene).ToString());
         Transform player = PlayerManager.instance.player.transform;
+        player.gameObject.SetActive(false);
         switch (activeSceneIndex)
         {
             case (int)SceneIndex.Rachne:
@@ -208,6 +218,7 @@ public class StageHandler : MonoBehaviour
                 player.rotation = c_braewoodGate.rotation;
                 break;
         }
+        player.gameObject.SetActive(true);
         PlayerManager.instance.ChangePlayerLocationToCurrent();
     }
     private void RachneEvents(string eventName)
@@ -234,7 +245,7 @@ public class StageHandler : MonoBehaviour
                 DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(0, "CompletedUsePotion"));
                 break;
             case "CompletedTutorial":
-                PlayerManager.instance.playerEvents["finishedTutorial"] = true;
+                PlayerManager.playerEvents["finishedTutorial"] = true;
                 PlayerManager.instance.mapEnable[SceneIndex.NaverTown] = true;
                 t_naverGate.gameObject.SetActive(true);
                 break;
@@ -327,10 +338,28 @@ public class StageHandler : MonoBehaviour
                 {
                     if (npc.idx == NPCIndex.Sata)
                     {
+                        npc.Object.SetActive(false);
                         npc.Object.transform.localPosition = n_frontOfCastle.position;
-                        npc.Object.transform.localRotation = n_frontOfCastle.rotation;
-                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(1, "ReceiveTheBook");
+                        npc.Object.transform.rotation = n_frontOfCastle.rotation;
                         npc.Object.SetActive(true);
+                        Debug.Log("rotation: " + n_frontOfCastle.rotation);
+
+                        PlayerManager.instance.player.SetActive(false);
+                        // PlayerManager.instance.player.transform.rotation = n_frontOfCastle.rotation;
+                        PlayerManager.instance.player.transform.rotation = Quaternion.Euler(0, 5, 0);
+                        PlayerManager.instance.player.SetActive(true);
+
+                        Debug.Log("Player rotation: " + PlayerManager.instance.player.transform.rotation);
+
+                        PlayerManager.instance.player.transform.position = new Vector3(n_frontOfCastle.position.x, n_frontOfCastle.position.y, n_frontOfCastle.position.z - 1);
+                        if (PlayerManager.playerEvents["backToPast"])
+                        {
+                            DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(1, "ReceiveTheBookAgain"));
+                        }
+                        else
+                        {
+                            npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(1, "ReceiveTheBook");
+                        }
                         break;
                     }
                 }
@@ -637,6 +666,13 @@ public class StageHandler : MonoBehaviour
                 break;
             case "BackToMenu":
                 SceneLoadingManager.instance.LoadScene(SceneIndex.MainMenu);
+                break;
+            case "BackToPast":
+                PlayerManager.playerEvents["backToPast"] = true;
+                PlayerManager.instance.mapEnable[SceneIndex.CalfordCastle] = false;
+                PlayerManager.instance.mapEnable[SceneIndex.BraewoodForest] = false;
+                PlayerManager.instance.mapEnable[SceneIndex.Cave] = false;
+                SceneLoadingManager.instance.LoadScene(SceneIndex.NaverTown);
                 break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in OtherEvents");

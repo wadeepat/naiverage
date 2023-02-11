@@ -430,6 +430,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChapterCard
       objectReference: {fileID: 0}
+    - target: {fileID: 7095186117328206743, guid: fd37cd11db7854848974bcaa8b8d600d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd37cd11db7854848974bcaa8b8d600d, type: 3}
 --- !u!224 &5853866591814800052 stripped

@@ -9,16 +9,17 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     [SerializeField] private TextAsset SataKnowPlayerNameJSON;
     public string playerName { get; private set; }
     public int playerPath { get; private set; }
-    public static ActionHandler instance;
+    public ChapterCard chapterCardScript { get; private set; }
 
     private GameObject CanvasObject;
-    private ChapterCard chapterCardScript;
     private GameObject TutorialGuidingObject;
     private GameObject[] tutorialGuidingCards;
+    public static GameObject PotionPanel { get; private set; }
     private InputTextUI UI_Input_Window;
     private ConfirmationPopupMenu confirmationPopup;
 
     private List<int> questIdxList = new List<int>();
+    public static ActionHandler instance;
     private void Awake()
     {
         instance = this;
@@ -26,6 +27,8 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
         {
             CanvasObject = GameObject.Find("Canvas");
             TutorialGuidingObject = CanvasObject.transform.Find("TutorialGuiding").gameObject;
+            chapterCardScript = CanvasObject.transform.Find("ChapterCard").GetComponent<ChapterCard>();
+            PotionPanel = CanvasObject.transform.Find("Panel/Character panel/All funtion/Potion").gameObject;
             UI_Input_Window = CanvasObject.transform.Find("UI_Input_Window").GetComponent<InputTextUI>();
             confirmationPopup = CanvasObject.transform.Find("ConfirmationPopupMenu").GetComponent<ConfirmationPopupMenu>();
         }
@@ -90,16 +93,18 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                 break;
         }
     }
-    public bool IsInputWindowActivated()
+    public bool IsSomeWindowsActivated()
     {
-        if (UI_Input_Window != null)
-            return UI_Input_Window.IsActivated();
+        if (UI_Input_Window?.IsActivated() == true)
+            return true;
+        else if (chapterCardScript?.IsActivated() == true)
+            return true;
         else return false;
     }
 
     public void AskToSave()
     {
-        if (DialogueManager.dialogueIsPlaying) Debug.LogWarning("From ComfirmPopup there is other using dialogueIsPlaying");
+        // if (DialogueManager.dialogueIsPlaying) Debug.LogWarning("From ComfirmPopup there is other using dialogueIsPlaying");
         SetForActivateUI();
         confirmationPopup.ActivateMenu(
             displayText: $"ยืนยันที่จะบันทึกเกมใน slot ที่ชื่อ <color={Database.COLORS["char"]}>{playerName}</color> อยู่ใช่หรือไม่?",
@@ -115,7 +120,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     }
     private void GetPlayerName()
     {
-        if (DialogueManager.dialogueIsPlaying) Debug.LogWarning("From InputField there is other using dialogueIsPlaying");
+        // if (DialogueManager.dialogueIsPlaying) Debug.LogWarning("From InputField there is other using dialogueIsPlaying");
         SetForActivateUI();
         UI_Input_Window.ActivateMenu(
             "เจ้าชื่ออะไร",
@@ -171,14 +176,14 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     }
     private void SetForActivateUI()
     {
-        DialogueManager.dialogueIsPlaying = true;
+        // DialogueManager.dialogueIsPlaying = true;
         // DialogueManager.instance.LockCamera();
         PlayerManager.instance?.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(true);
         DialogueManager.instance.EnablePlayerControll();
     }
     private void ResetForDeactivateUI()
     {
-        DialogueManager.dialogueIsPlaying = false;
+        // DialogueManager.dialogueIsPlaying = false;
         // DialogueManager.instance.UnlockCamera();
         PlayerManager.instance?.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(false);
         DialogueManager.instance.DisablePlayerControll();

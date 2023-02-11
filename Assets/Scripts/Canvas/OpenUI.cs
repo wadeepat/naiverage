@@ -46,7 +46,8 @@ public class OpenUI : MonoBehaviour
     void Update()
     {
         bool i = Input.GetKeyDown("i");
-        if (i && !DialogueManager.dialogueIsPlaying)
+        if (i &&
+        (!DialogueManager.dialogueIsPlaying || ActionHandler.instance.IsSomeWindowsActivated()))
         {
             if (inven == true)
             {

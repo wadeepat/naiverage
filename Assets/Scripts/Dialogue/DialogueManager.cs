@@ -73,7 +73,10 @@ public class DialogueManager : MonoBehaviour
     {
         int sceneIdx = SceneManager.GetActiveScene().buildIndex;
         if (sceneIdx == 0)
+        {
             Destroy(this.gameObject);
+            instance = null;
+        }
     }
     void OnDisable()
     {
@@ -104,7 +107,7 @@ public class DialogueManager : MonoBehaviour
         if (canContinueToNextLine
         && currentStory.currentChoices.Count == 0
         && InputManager.instance.GetNextPressed()
-        && !ActionHandler.instance.IsInputWindowActivated())
+        && !ActionHandler.instance.IsSomeWindowsActivated())
         {
             ContinueStory();
         }
@@ -288,6 +291,7 @@ public class DialogueManager : MonoBehaviour
         {
             choices[i].gameObject.SetActive(false);
         }
+        // Debug.Log(dialogueVariables == null ? "dialogue null" : "dialogue not null");
     }
 
     private void HideChoices()
@@ -306,6 +310,8 @@ public class DialogueManager : MonoBehaviour
             currentStory.ChooseChoiceIndex(choiceIdx);
             ContinueStory();
         }
+        // if (dialogueVariables == null) LoadDialogue();
+        // Debug.Log(dialogueVariables == null ? "Make choice dialogue null" : "Make choice dialogue not null");
         dialogueVariables.SaveVariables();
     }
 

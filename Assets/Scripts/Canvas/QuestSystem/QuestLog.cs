@@ -141,7 +141,7 @@ public class QuestLog
         if (questList?.Count > 0)
             foreach (Quest q in questList.ToArray())
             {
-                Debug.Log(q.questName + " " + q.location.ToString());
+                // Debug.Log(q.questName + " " + q.location.ToString());
                 if (q.location == location && q.prepareAction != null) q.prepareAction();
             }
     }

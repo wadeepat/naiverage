@@ -11371,12 +11371,20 @@ PrefabInstance:
       value: MakeChoice
       objectReference: {fileID: 0}
     - target: {fileID: 4506240408069164020, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 891028010}
+    - target: {fileID: 4506240408069164020, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1374411293204347148, guid: 4477deec801e55240838d419d582462f, type: 3}
+      objectReference: {fileID: 1871635776}
     - target: {fileID: 4506240408069164020, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: MakeChoice
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506240408069164020, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4506240408492069444, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -55191,6 +55199,17 @@ Transform:
   m_Father: {fileID: 2048391881}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &891028010 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4506240408069164021, guid: 10ea182c90ce98e44886ddbbe6b278f2, type: 3}
+  m_PrefabInstance: {fileID: 150368988}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150368990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &891250540
 GameObject:
   m_ObjectHideFlags: 0

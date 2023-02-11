@@ -83,7 +83,8 @@ public class UI_QuestLog : MonoBehaviour
         {
             UpdateQuestText(questButtons[i], active[i]);
         }
-        for (int i = 0; i < completed.Count; i++)
+        if (completed.Count == 0) return;
+        for (int i = completed.Count - 1; i >= 0; i--)
         {
             UpdateQuestText(questButtons[i + active.Count], completed[i], true);
         }

@@ -22,6 +22,7 @@ public class GameData
         playerEvents = new SerializableDictionary<string, bool>{
             {"sataAskToJoin",false},
             {"finishedTutorial",false},
+            {"backToPast",false},
         };
         mapEnable = new SerializableDictionary<SceneIndex, bool>{
             {SceneIndex.Rachne,true},

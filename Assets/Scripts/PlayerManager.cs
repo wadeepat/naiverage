@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
     public GameObject player { get; private set; }
     public static PlayerManager instance { get; private set; }
     public SceneIndex playerLocation;
-    public SerializableDictionary<string, bool> playerEvents;
+    public static SerializableDictionary<string, bool> playerEvents;
     public SerializableDictionary<SceneIndex, bool> mapEnable;
     void Awake()
     {
@@ -54,7 +54,7 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
     {
         data.playerLocation = this.playerLocation;
         data.mapEnable = this.mapEnable;
-        data.playerEvents = this.playerEvents;
+        data.playerEvents = playerEvents;
         // Debug.Log("Save from PlayerManager Location: " + this.playerLocation + " " + data.playerLocation);
     }
 }

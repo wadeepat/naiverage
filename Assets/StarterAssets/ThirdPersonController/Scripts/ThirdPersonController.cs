@@ -188,7 +188,8 @@ namespace StarterAssets
             {
                 _attackInfo.GetComponent<PlayerAttackController>().FaceToClosestEnemy();
             }
-            else if(_animator.GetCurrentAnimatorStateInfo(0).IsTag("Skill")){
+            else if (_animator.GetCurrentAnimatorStateInfo(0).IsTag("Skill"))
+            {
                 _attackInfo.GetComponent<PlayerAttackController>().FaceToClosestEnemy();
             }
             else
@@ -263,7 +264,8 @@ namespace StarterAssets
         private void Move()
         {
             Vector2 move = InputManager.instance.GetMoveDirection();
-            if (DialogueManager.dialogueIsPlaying) move = Vector2.zero;
+            if (DialogueManager.dialogueIsPlaying ||
+            ActionHandler.instance.IsSomeWindowsActivated()) move = Vector2.zero;
             // set target speed based on move speed, sprint speed and if sprint is pressed
             // float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
             float targetSpeed = InputManager.instance.GetSprintPressed() ? SprintSpeed : MoveSpeed;

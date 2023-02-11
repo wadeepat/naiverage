@@ -98,7 +98,7 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void NewGame()
     {
-        Debug.Log("NewGame At: " + selectedProfileId);
+        // Debug.Log("NewGame At: " + selectedProfileId);
         this.gameData = new GameData();
         PlayerPrefs.DeleteKey(saveVariablesKey + selectedProfileId);
         // Debug.Log("gameData new");
@@ -106,7 +106,7 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void LoadGame(bool isLoadFromFile)
     {
-        Debug.Log("LoadGame At: " + selectedProfileId);
+        // Debug.Log("LoadGame At: " + selectedProfileId);
 
         // if (disableDataPersistence) return;
         // Debug.LogWarning("Load game");
@@ -134,7 +134,7 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void SaveGame(bool isSaveToFile)
     {
-        Debug.Log("SaveGame At: " + selectedProfileId);
+        // Debug.Log("SaveGame At: " + selectedProfileId);
 
         //if don't have any data to save, log a warning 
         if (this.gameData == null)

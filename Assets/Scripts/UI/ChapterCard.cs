@@ -56,10 +56,7 @@ public class ChapterCard : MonoBehaviour
     private float timer = 0;
     private float readTime = 1.75f;
     private float displayTime = 3.5f;
-    // private void Awake()
-    // {
-    //     gameObject = this;
-    // }
+
     private void Update()
     {
         if (timer >= displayTime) DeactivateMenu();
@@ -72,14 +69,14 @@ public class ChapterCard : MonoBehaviour
     }
     private void SetForActivateUI()
     {
-        DialogueManager.dialogueIsPlaying = true;
+        // DialogueManager.dialogueIsPlaying = true;
         // DialogueManager.instance.LockCamera();
         PlayerManager.instance?.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(true);
         // DialogueManager.instance.EnablePlayerControll();
     }
     private void ResetForDeactivateUI()
     {
-        DialogueManager.dialogueIsPlaying = false;
+        // DialogueManager.dialogueIsPlaying = false;
         // DialogueManager.instance.UnlockCamera();
         PlayerManager.instance?.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(false);
         // DialogueManager.instance.DisablePlayerControll();
@@ -92,13 +89,19 @@ public class ChapterCard : MonoBehaviour
         header.text = cardDetails[idx].header;
         desc.text = cardDetails[idx].description;
         timer = 0;
-        transform.gameObject.SetActive(true);
+        this.gameObject.SetActive(true);
+        Debug.Log("ActiveCard " + DialogueManager.dialogueIsPlaying);
     }
     public void DeactivateMenu()
     {
         ResetForDeactivateUI();
-        transform.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
         if (cardIdx != 0)
             ActionHandler.instance.AskToSave();
+        Debug.Log("DeactiveCard " + DialogueManager.dialogueIsPlaying);
+    }
+    public bool IsActivated()
+    {
+        return this.gameObject.activeSelf;
     }
 }
