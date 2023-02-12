@@ -48,12 +48,36 @@ public class SaveSlotsMenu : MonoBehaviour, IDataPersistence
                 //action of confirm btn
                 () =>
                 {
-                    // DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
-                    DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
-                    DataPersistenceManager.instance.NewGame();
+                    inputText.ActivateMenu(
+                        title: "ตั้งชื่อ slot",
+                        cancelText: "ยกเลิก",
+                        confirmAction: (string value) =>
+                        {
+                            if (value != "")
+                            {
+                                DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
 
-                    DataPersistenceManager.instance.SaveGame(true);
-                    SceneLoadingManager.instance.LoadScene(SceneIndex.Rachne);
+                                DataPersistenceManager.instance.NewGame();
+                                this.saveName = value;
+                                DataPersistenceManager.instance.SaveGame(true);
+                                SceneLoadingManager.instance.LoadScene(SceneIndex.Rachne);
+                                // DataPersistenceManager.instance.LoadGame(true);
+                                // DataPersistenceManager.instance.SaveGame(true);
+                                // ActivateMenu(this.isLoadingGame);
+                            }
+                        },
+                        cancelAction: () =>
+                        {
+                            inputText.DeactivateMenu();
+                            ActivateMenu(this.isLoadingGame);
+                        }
+                    );
+                    // DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
+                    // DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
+                    // DataPersistenceManager.instance.NewGame();
+
+                    // DataPersistenceManager.instance.SaveGame(true);
+                    // SceneLoadingManager.instance.LoadScene(SceneIndex.Rachne);
                 },
                 //action of cancel btn
                 () =>
