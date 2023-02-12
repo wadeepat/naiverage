@@ -37,7 +37,7 @@ public class NPC : MonoBehaviour
             float distance = Vector2.Distance(transform.position, agent.destination);
             if (distance < agent.stoppingDistance)
             {
-                Debug.Log($"npc position \nTarget:{agent.destination}\nObject:{transform.position}\nDiff:{distance}");
+                // Debug.Log($"npc position \nTarget:{agent.destination}\nObject:{transform.position}\nDiff:{distance}");
                 agent.isStopped = true;
                 animator.SetBool("isWalking", false);
             }

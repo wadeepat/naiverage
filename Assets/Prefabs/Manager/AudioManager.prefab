@@ -59,6 +59,12 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - s_name: makeChoice
+    clip: {fileID: 8300000, guid: 21fffcdd1640eb04a849700642c22f01, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   - s_name: completeQuest
     clip: {fileID: 8300000, guid: 995162fea1a46314d89d5063d68474fa, type: 3}
     volume: 0.75

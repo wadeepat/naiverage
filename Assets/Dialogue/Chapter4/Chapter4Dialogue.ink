@@ -72,7 +72,8 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     กล้าดีอย่างไร!!!
     //วาร์ปไปที่ต่อสู่กับอาเบล
     //test
-    #event
+    #action:Ending1
+    //#event
 ->DONE
 ===ChooseAbel===
     #speaker:Cain 
@@ -82,14 +83,15 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     เอาล่ะ เรามาตัดสินกัน
     //วาร์ปไปที่ต่อสู่กับคาอิน
      //test
-    ->Ending2
+     #action:Ending2
+    // ->Ending2
 ->DONE
 ===ChooseTheBook===
     #speaker:The Book 
     (ขอบใจที่เชื่อข้า...)
     (เอาล่ะ... การเดินทางนี้เหลืออีกไม่มากแล้ว)
     (ข้าเชื่อว่าเจ้าสามารถทำได้ พยายามเข้าล่ะ)
-    #quest:
+    #event:BackToPast
 ->DONE
 ===DontChoose===
     #speaker:Me
@@ -111,6 +113,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     (ส่วนข้านั้นก็ยังคงจำอะไรไม่ได้เช่นเคย แม้จะได้รับความช่วยเหลือจาก <color=\#FFD495>Cain</color> แต่ความทรงจำก็ไม่กลับมาอีก)
     (ในเมื่อทำอะไรไม่ได้ ข้าจึงละทิ้งตัวตนเก่าของตนเอง ปล่อยวางทุกสิ่งเพื่อออกไปใช้ชีวิตอยู่ในเมืองใหม่ที่ <color=\#FFD495>Cain</color> ได้สร้างขึ้น)
     (...ใช้ชีวิตอย่างสามัญชนธรรมดา กับโลกเวทย์มนต์ที่แสนจะธรรมดา…)
+    #event:BackToMenu
 ->DONE
 ===Ending2===
     #speaker:Abel
@@ -125,6 +128,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     (ส่วนข้านั้นก็ยังคงจำอะไรไม่ได้เช่นเคย และเลือกที่จะออกจากเมืองนี้ไป)
     (ในเมื่อทำอะไรไม่ได้ ข้าจึงละทิ้งตัวตนเก่าของตนเอง ปล่อยวางทุกสิ่งเพื่อออกไปใช้ชีวิต)
     (...ออกเดินทางเพื่อตามหาตนเอง…)
+    #event:BackToMenu
 ->DONE
 ===Ending3===
     #speaker:Me
@@ -203,6 +207,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     ลาก่อน
     #speaker:Me
     !!!
+    #action:TrueEnding
 ->DONE
 
 ===TrueEnding===
