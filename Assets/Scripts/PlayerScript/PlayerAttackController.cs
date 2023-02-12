@@ -47,6 +47,19 @@ public class PlayerAttackController : MonoBehaviour
         {
             return;
         }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (element == 0) element = 2;
+            else element -= 1;
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (element == 2) element = 0;
+            else element += 1;
+        }
+        if(_anim.GetCurrentAnimatorStateInfo(0).IsTag("Skill")){
+            return;
+        }
         if (_anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
         {
             _anim.SetBool("Hit1", false);
@@ -62,21 +75,11 @@ public class PlayerAttackController : MonoBehaviour
             noOfClicks = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if (element == 0) element = 2;
-            else element -= 1;
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (element == 2) element = 0;
-            else element += 1;
-        }
-
         if (Time.time - _lastClickedTime > _maxComboDelay)
         {
             noOfClicks = 0;
         }
+
 
         //cooldown time
         if (Time.time > _nextFireTime)

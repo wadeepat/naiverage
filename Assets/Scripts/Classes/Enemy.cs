@@ -60,9 +60,9 @@ public class Enemy : MonoBehaviour
     //values
     protected float hp;
     protected float cooldownTime;
-    protected float poisonTime, illusionTime, agonyTime;
+    protected float poisonTime, illusionTime, agonyTime, burnTime;
     protected bool isDie = false;
-    protected bool poison, illusion, agony = false;
+    protected bool poison, illusion, agony, burn;
 
     //every 1 seconds
     private float time = 0.0f;
@@ -305,6 +305,13 @@ public class Enemy : MonoBehaviour
             agonyTime = 5.0f;
         }
 
+    }
+
+    public void Burn(){
+        burn = true;
+        if(agonyTime < 0){
+            agonyTime = 5.0f;
+        }
     }
 
     public void StatusEffect(){

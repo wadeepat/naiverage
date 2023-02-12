@@ -7,13 +7,15 @@ public class UseSkill : MonoBehaviour
 {
     public Transform LHPoint, RHPoint, Point;
     public GameObject fire, water, wind, special;
-    public GameObject[] allSkill;
     private GameObject spell1, spell2;
+    public GameObject[] allSkill;
     private Animator _anim;
     private Image[] slotSkillsM;
     private GameObject skill;
+    private PlayerAttackController _attackInfo;
     void Start()
     {
+        _attackInfo = GetComponent<PlayerAttackController>();
         _anim = GetComponent<Animator>();
         // skill = GameObject.Find("Canvas").transform.Find("Panel").Find("Character panel").Find("All funtion").Find("Skill").gameObject;
         skill = GameObject.Find("Canvas/Panel/Character panel/All funtion/Skill");
@@ -40,62 +42,43 @@ public class UseSkill : MonoBehaviour
         //     UseSkill3();
         // }        
 
+
         skill.GetComponent<SkillsUnlock>().CooldownSkill();
-
-        if (_anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Done"))
-        {
-            _anim.SetBool("Skill", false);
-            _anim.SetInteger("SkillNum", 0);
-            Destroy(spell1);
-            Destroy(spell2);
-        }else if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            slotSkillsM = skill.GetComponent<SkillsUnlock>().slotSkillsM;
-            GetSkillSlot1();
-        }else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            GetSkillSlot2();
-        }else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            GetSkillSlot3();
+        if(!_anim.GetCurrentAnimatorStateInfo(0).IsTag("AttackCombo")){
+           if (_anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Done"))
+            {
+                _anim.SetBool("Skill", false);
+                _anim.SetInteger("SkillNum", 0);
+                Destroy(spell1);
+                Destroy(spell2);
+            }else if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                slotSkillsM = skill.GetComponent<SkillsUnlock>().slotSkillsM;
+                GetSkillSlot(0);
+            }else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                GetSkillSlot(1);
+            }else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                GetSkillSlot(2);
+            } 
         }
+        
     }
 
-    private void GetSkillSlot1()
+    private void GetSkillSlot(int id)
     {
-        if (!CheckCooldown(0))
+        _attackInfo.GetComponent<PlayerAttackController>().FaceToClosestEnemy();
+        if (!CheckCooldown(id))
         {
-            PlayerStatus.UseMana(20);
-            int num = skill.GetComponent<SkillsUnlock>().GetSkillId(0);
+            PlayerStatus.UseMana(30);
+            int num = skill.GetComponent<SkillsUnlock>().GetSkillId(id);
             AnimetionSkill(num);
-            UsingSkill(skill.GetComponent<SkillsUnlock>().GetSkillId(0));
-            SetCooldown(0);
+            UsingSkill(skill.GetComponent<SkillsUnlock>().GetSkillId(id));
+            SetCooldown(id);
         }
 
     }
-    private void GetSkillSlot2()
-    {
-        if (!CheckCooldown(1))
-        {
-            PlayerStatus.UseMana(20);
-            int num = skill.GetComponent<SkillsUnlock>().GetSkillId(1);
-            AnimetionSkill(num);
-            UsingSkill(skill.GetComponent<SkillsUnlock>().GetSkillId(1));
-            SetCooldown(1);
-        }
-    }
-    private void GetSkillSlot3()
-    {
-        if (!CheckCooldown(2))
-        {
-            PlayerStatus.UseMana(20);
-            int num = skill.GetComponent<SkillsUnlock>().GetSkillId(2);
-            AnimetionSkill(num);
-            UsingSkill(skill.GetComponent<SkillsUnlock>().GetSkillId(2));
-            SetCooldown(2);
-        }
-    }
-
 
     public void AnimetionSkill(int num)
     {

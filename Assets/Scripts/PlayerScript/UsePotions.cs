@@ -1,29 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using StarterAssets;
 
 public class UsePotions : MonoBehaviour
 {
-    private GameObject Player, Panel, SlotPotion;
-    Potions protions;
-    PlayerStatus player;
-
+    private GameObject Player, Panel, SlotPotion,positionP;
+    private bool l;
     //TODO implement for other potions
     public delegate void OnUsePotion();
     public static OnUsePotion onUsePotion;
+    Potions potions;
+    PlayerStatus player;
+    PlayerAttackController attack;
+    StarterAssetsInputs assetsInputs;
     void Start()
     {
         Panel = GameObject.Find("Canvas/Panel");
         Player = GameObject.Find("Player");
         SlotPotion = GameObject.Find("Canvas/Panel/Slot potion");
-        protions = Panel.GetComponent<Potions>();
+        positionP = GameObject.Find("Canvas/Panel/PositionP");
+        potions = Panel.GetComponent<Potions>();
         player = Player.GetComponent<PlayerStatus>();
+        attack = Player.GetComponent<PlayerAttackController>();
+        assetsInputs = Player.GetComponent<StarterAssetsInputs>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         if (InputManager.instance.GetUsePotionPressed())
         {
             UsePotionT(0);
@@ -31,16 +36,26 @@ public class UsePotions : MonoBehaviour
         else  if (InputManager.instance.GetSelectingPotion())
         {
             SelectPotion();
+        }else{
+            if(l){
+                attack.attackAble = true;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                assetsInputs.cursorInputForLook = true;
+                assetsInputs.cursorLocked = true;
+                SlotPotion.gameObject.transform.position = positionP.gameObject.transform.position;
+                l = false;
+            }
         }
 
 
     }
 
-    void UsePotionT(int slot)
+    public void UsePotionT(int slot)
     {
-        if (protions.slotP[slot] != -1 &&protions.slotP[slot] != 0)
+        int skillId = potions.yourPotions[potions.slotP[slot]].id;
+        if (potions.slotP[slot] != -1 && skillId != 0)
         {
-            int skillId = protions.yourPotions[protions.slotP[slot]].id;
             switch(skillId){
                 case 1:
                     PlayerStatus.HealthHP(20);
@@ -79,14 +94,13 @@ public class UsePotions : MonoBehaviour
                     PlayerStatus.MaxHPnMP();
                     break;
             }
-            
-            protions.slotStack[protions.slotP[slot]] -= 1;
-            if (protions.slotStack[protions.slotP[slot]] == 0)
+            potions.slotStack[potions.slotP[slot]] -= 1;
+            if (potions.slotStack[potions.slotP[slot]] == 0)
             {
-                protions.yourPotions[protions.slotP[slot]] = Database.potionList[0];
-                protions.slotStack[protions.slotP[slot]] = 0;
-                protions.slotP[slot] = -1;
-                protions.slot[slot].sprite = protions.slotSprite[0];
+                potions.yourPotions[potions.slotP[slot]] = Database.potionList[0];
+                potions.slotStack[potions.slotP[slot]] = 0;
+                potions.slotP[slot] = -1;
+                potions.slot[slot].sprite = potions.slotSprite[0];
             }
         }
         onUsePotion?.Invoke();
@@ -94,7 +108,15 @@ public class UsePotions : MonoBehaviour
 
     void SelectPotion()
     {
-        Debug.Log("select");
+        l = true;
+        attack.attackAble = false;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        assetsInputs.cursorInputForLook = false;
+        assetsInputs.cursorLocked = false;
+        assetsInputs.look = new Vector2(0,0);
+        SlotPotion.gameObject.gameObject.transform.position = new Vector2(Screen.width/2+50,Screen.height/2-50);
     }
 
+    
 }

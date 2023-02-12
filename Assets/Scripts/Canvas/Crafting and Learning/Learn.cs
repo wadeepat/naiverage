@@ -14,12 +14,13 @@ public class Learn
     public Text[] text;
     public Sprite[] slotInSprite;
     public Image[] slotInSkill;
+    public Button button;
 
     public Learn(){
 
     }
 
-    public Learn(int SkillId, Text SkillName, Sprite ItemSprite,Image SkillSprite, Image[] SlotInSkill, Sprite[] SlotInSprite, Text[] Text){
+    public Learn(int SkillId, Text SkillName, Sprite ItemSprite,Image SkillSprite, Image[] SlotInSkill, Sprite[] SlotInSprite, Text[] Text, Button Button){
         SkillId = skillId;
         SkillName = skillName;
         ItemSprite = itemSprite;
@@ -27,5 +28,6 @@ public class Learn
         SlotInSkill = slotInSkill;
         SlotInSprite = slotInSprite;
         Text = text;
+        Button = button;
     }
 }

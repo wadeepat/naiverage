@@ -3217,6 +3217,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6474638697412158029, guid: 3377fd7fde198b145a08d351d7e6a969, type: 3}
+      propertyPath: disableDataPersistence
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474638697412158029, guid: 3377fd7fde198b145a08d351d7e6a969, type: 3}
+      propertyPath: overrideSelectedProfileId
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6474638697412158898, guid: 3377fd7fde198b145a08d351d7e6a969, type: 3}
       propertyPath: m_RootOrder
       value: 5

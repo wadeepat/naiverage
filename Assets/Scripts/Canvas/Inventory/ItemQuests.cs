@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class ItemQuests : MonoBehaviour
+public class ItemQuests : MonoBehaviour, IDataPersistence
 {
     public List<Item> yourItemQuests = new List<Item>();
     public int[] slotStack;
@@ -22,14 +22,14 @@ public class ItemQuests : MonoBehaviour
     void Start()
     {
 
-        for(int i=0; i < slotsNumber; i++){
-            yourItemQuests[i] = Database.itemQuestList[0];
-        }
-        // test
-        yourItemQuests[0] = Database.itemQuestList[1];
-        slotStack[0] += 1;
-        yourItemQuests[1] = Database.itemQuestList[2];
-        slotStack[1] += 1;
+        // for(int i=0; i < slotsNumber; i++){
+        //     yourItemQuests[i] = Database.itemQuestList[0];
+        // }
+        // // test
+        // yourItemQuests[0] = Database.itemQuestList[1];
+        // slotStack[0] += 1;
+        // yourItemQuests[1] = Database.itemQuestList[2];
+        // slotStack[1] += 1;
         a = -1;
         b = -1;
 
@@ -86,5 +86,21 @@ public class ItemQuests : MonoBehaviour
     
     public void Exit(Image slotX){
         b = -1;
+    }
+        public void LoadData(GameData data)
+    {
+        yourItemQuests = data.questsInventory;
+        for(int i=0; i<slotsNumber; i++){
+            if(yourItemQuests[i] == null) yourItemQuests[i] = Database.itemQuestList[0];
+        }
+        slotStack = data.stackQuests;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.questsInventory = yourItemQuests;
+        data.stackQuests = slotStack;
+        if(data == null) Debug.Log("data null");
+        if(data.questsInventory == null) Debug.Log("questsInventory null");
     }
 }
