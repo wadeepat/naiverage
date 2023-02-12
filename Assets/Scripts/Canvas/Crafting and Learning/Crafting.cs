@@ -75,7 +75,11 @@ public class Crafting : MonoBehaviour
             currentPage.text = "" + page;
         }
     }
+    
 
+    public void CraftAbleFunction(int button){
+
+    }
     public void CraftItem(int button){
         int a = 0;
         int b = 0;
@@ -99,9 +103,6 @@ public class Crafting : MonoBehaviour
         }else{
             craftAble = false;
         }
-
-
-
         if(craftAble == true){
             a = Database.potionList[craftableItemId].q1;
             b = Database.potionList[craftableItemId].q2;

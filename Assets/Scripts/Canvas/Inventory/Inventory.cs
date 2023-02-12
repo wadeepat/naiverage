@@ -140,7 +140,7 @@ public class Inventory : MonoBehaviour, IDataPersistence
         Debug.Log("Load from Inventory");
         yourInventory = data.inventoryItem;
         for(int i=0; i<slotsNumber; i++){
-            if(yourInventory[i] == null) yourInventory[i] = Database.itemList[0];
+            if(yourInventory[i].id == 0) yourInventory[i] = Database.itemList[0];
         }
         slotStack = data.stackItem;
     }

@@ -187,7 +187,7 @@ public class Potions : MonoBehaviour, IDataPersistence
     {
         yourPotions = data.inventoryPotion;
         for(int i=0; i<slotsNumber; i++){
-            if(yourPotions[i] == null) yourPotions[i] = Database.potionList[0];
+            if(yourPotions[i].id == 0) yourPotions[i] = Database.potionList[0];
         }
         slotStack = data.stackPotion;
         slotP = data.slotP;
