@@ -130,7 +130,7 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.LoadData(gameData);
         }
         //Debug for load data
-        // Debug.Log("Game Data Load: " + gameData.ToString());
+        // Debug.Log("Game Data Load: " + gameData.ToString()); 
     }
     public void SaveGame(bool isSaveToFile)
     {

@@ -33,4 +33,8 @@ public class MagicPearls : MonoBehaviour
         MP.stack -= cost;
     }
 
+    public static void GetPearl(int cost){
+        MP.stack += cost;
+    }
+
 }

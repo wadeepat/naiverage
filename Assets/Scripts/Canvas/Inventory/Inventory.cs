@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour, IDataPersistence
 {
-    public List<Item> yourInventory = new List<Item>();
+    public List<Item> yourInventory;
     public int[] slotStack;
-
     [SerializeField] private List<Item> draggedItem = new List<Item>();
     [SerializeField] private Image[] slot;
     [SerializeField] private Sprite[] slotSprite;
@@ -23,14 +21,12 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        for(int i=0; i < slotsNumber; i++){
-            yourInventory[i] = Database.itemList[0];
-        }
+        
         //test
-        yourInventory[0] = Database.itemList[1];
-        slotStack[0] += 98;
-        a = -1;
-        b = -1;
+        // yourInventory[0] = Database.itemList[1];
+        // slotStack[0] += 98;
+        // a = -1;
+        // b = -1;
     }
 
     void Update()
@@ -137,5 +133,22 @@ public class Inventory : MonoBehaviour
 
     public void Exit(Image slotX){
         b = -1;
+    }
+
+    public void LoadData(GameData data)
+    {
+        Debug.Log("Load from Inventory");
+        yourInventory = data.inventoryItem;
+        for(int i=0; i<slotsNumber; i++){
+            if(yourInventory[i] == null) yourInventory[i] = Database.itemList[0];
+        }
+        slotStack = data.stackItem;
+    }
+
+    public void SaveData(GameData data)
+    {
+        Debug.Log("Save from Inventory");
+        data.inventoryItem = yourInventory;
+        data.stackItem = slotStack;
     }
 }

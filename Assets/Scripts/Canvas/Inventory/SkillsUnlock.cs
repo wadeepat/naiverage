@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SkillsUnlock : MonoBehaviour
 {
     public List<Skill> skill = new List<Skill>();
-    public int[] slotStack;
+    // public int[] slotStack;
     public int[] slotStackSkills;
     public Image[] slotSkillsM;
 
@@ -32,25 +32,6 @@ public class SkillsUnlock : MonoBehaviour
         for(int i=0; i < slotsNumber; i++){
             skill[i] = Database.skillList[0];
         }
-        skill[0] = Database.skillList[1];
-        slotStack[0] += 1;
-        skill[1] = Database.skillList[2];
-        slotStack[1] += 1;
-        skill[2] = Database.skillList[3];
-        slotStack[2] += 1;
-        skill[3] = Database.skillList[4];
-        slotStack[3] += 1;
-        skill[4] = Database.skillList[5];
-        slotStack[4] += 1;
-        skill[5] = Database.skillList[6];
-        slotStack[5] += 1;
-        skill[6] = Database.skillList[7];
-        slotStack[6] += 1;
-        skill[7] = Database.skillList[8];
-        slotStack[7] += 1;
-        skill[8] = Database.skillList[9];
-        slotStack[8] += 1;
-
         for(int j=0; j<3; j++) slotStackSkills[j] = -1;
         a = -1;
         b = -1;
@@ -73,7 +54,7 @@ public class SkillsUnlock : MonoBehaviour
             if(slotStackSkills[i] == -1){
                 slotSkills[i].sprite = Database.skillList[0].itemSprite;
                 continue;
-            }else if(skill[slotStackSkills[i]].id == 0 || slotStack[slotStackSkills[i]] == 1){
+            }else if(skill[slotStackSkills[i]].id == 0){
                 slotSkills[i].sprite = slotSprite[slotStackSkills[i]];
             }else{
                 slotSkills[i].sprite = slotSprite[slotStackSkills[i]];
@@ -102,36 +83,9 @@ public class SkillsUnlock : MonoBehaviour
                     slotStackSkills[i] = a;
                 }
             }
-            if(skill[a].id == skill[b].id){
-                if(slotStack[b] == maxStacks){
-                    draggedSkill[0] = skill[a];
-                    slotTemporary = slotStack[a];
-                    skill[a] = skill[b];
-                    slotStack[a] = slotStack[b];
-                    skill[b] = draggedSkill[0];
-                    slotStack[b] = slotTemporary;
-                }else{
-                    slotStack[b] += slotStack[a];
-                    if(slotStack[b] > maxStacks){
-                        slotStack[a] = slotStack[b] - maxStacks;
-                        slotStack[b] = maxStacks;
-                    }else if(slotStack[b] == maxStacks){
-                        slotStack[a] = 0;
-                        skill[a] = Database.skillList[0];
-                    }else{
-                        slotStack[a] = 0;
-                        skill[a] = Database.skillList[0];
-                    }
-                }
-                
-            }else{
-                draggedSkill[0] = skill[a];
-                slotTemporary = slotStack[a];
-                skill[a] = skill[b];
-                slotStack[a] = slotStack[b];
-                skill[b] = draggedSkill[0];
-                slotStack[b] = slotTemporary;
-            }
+            draggedSkill[0] = skill[a];
+            skill[a] = skill[b];
+            skill[b] = draggedSkill[0];
         }
         a=-1;
         b=-1;
@@ -202,10 +156,32 @@ public class SkillsUnlock : MonoBehaviour
         return skill[slotStackSkills[num]].id;
     }
 
+    public void learnSkill(int id){
+        for(int i=0; i<slotsNumber; i++){
+            if(skill[i].id == 0) {
+                skill[i] = Database.skillList[id];
+                break;
+            }
+        }
+    }
+
     public void CooldownSkill(){
         if (slotSkillsM[0] != null && slotSkillsM[0].fillAmount < 1.0f) slotSkillsM[0].fillAmount += 0.1f * Time.deltaTime;
         if (slotSkillsM[1] != null && slotSkillsM[1].fillAmount < 1.0f) slotSkillsM[1].fillAmount += 0.1f * Time.deltaTime;
         if (slotSkillsM[2] != null && slotSkillsM[2].fillAmount < 1.0f) slotSkillsM[2].fillAmount += 0.1f * Time.deltaTime;
     }
+    // public void LoadData(GameData data)
+    // {
+    //     skill = data.skill;
+    //     for(int i=0; i<slotsNumber; i++){
+    //         if(skill[i] == null) skill[i] = Database.skillList[0];
+    //     }
+    //     slotStackSkills = data.slotS;
+    // }
 
+    // public void SaveData(GameData data)
+    // {
+    //     data.skill = skill;
+    //     data.slotS = slotStackSkills;
+    // }
 }

@@ -50,7 +50,7 @@ public class AcidRain : MonoBehaviour
             if (Time.time > nextActionTime ) {
                 nextActionTime += period;
                 // int damage = PlayerStatus.damageSkill(70);
-                target.gameObject.GetComponent<Enemy>().TakeDamaged(0.1f);
+                target.gameObject.GetComponent<Enemy>().Poison();
                 // Instantiate(hit, gameObject.transform.position, gameObject.transform.rotation);
             }else if(Time.time > cooldownTime){
                 cooldownTime += periodC;

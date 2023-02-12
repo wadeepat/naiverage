@@ -3527,7 +3527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6258561347786932771
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3653,6 +3653,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7444153631237129805}
+  - component: {fileID: 4773091122222196929}
   m_Layer: 0
   m_Name: Slot potion
   m_TagString: Untagged
@@ -3681,9 +3682,21 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1050, y: -450}
+  m_AnchoredPosition: {x: 900, y: -420}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4773091122222196929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130128594132762765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 104f2ae26ffafb24ab0b21dbb9f2187c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1169281731361747855
 GameObject:
   m_ObjectHideFlags: 0
@@ -5235,6 +5248,7 @@ RectTransform:
   m_Children:
   - {fileID: 7404720472786332603}
   - {fileID: 7444153631237129805}
+  - {fileID: 3659166084210850061}
   - {fileID: 6332682323693055654}
   - {fileID: 6332682321951464020}
   - {fileID: 6097256899573387110}
@@ -8919,54 +8933,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2425a481e5823eb40aacf19e420f0227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yourSkillbook:
-  - id: 0
-    bookName: 
-    description: 
-    itemSprite: {fileID: 0}
-    stack: 0
-  - id: 0
-    bookName: 
-    description: 
-    itemSprite: {fileID: 0}
-    stack: 0
-  - id: 0
-    bookName: 
-    description: 
-    itemSprite: {fileID: 0}
-    stack: 0
-  - id: 0
-    bookName: 
-    description: 
-    itemSprite: {fileID: 0}
-    stack: 0
-  - id: 0
-    bookName: 
-    description: 
-    itemSprite: {fileID: 0}
-    stack: 0
-  - id: 0
-    bookName: 
-    description: 
-    itemSprite: {fileID: 0}
-    stack: 0
-  - id: 0
-    bookName: 
-    description: 
-    itemSprite: {fileID: 0}
-    stack: 0
-  - id: 0
-    bookName: 
-    description: 
-    itemSprite: {fileID: 0}
-    stack: 0
+  yourSkillbook: []
   draggedItem:
   - id: 0
     bookName: 
     description: 
     itemSprite: {fileID: 0}
     stack: 0
-  slotStack: 0000000000000000000000000000000000000000000000000000000000000000
   slot:
   - {fileID: 6716548859371288949}
   - {fileID: 4985089358649950354}
@@ -9025,6 +8998,7 @@ MonoBehaviour:
     slotInSkill:
     - {fileID: 3528355060888431886}
     - {fileID: 451067954795614455}
+    button: {fileID: 1292175460967987716}
   - skillId: 2
     skillName: {fileID: 1430266957721057247}
     itemSprite: {fileID: 0}
@@ -9038,6 +9012,7 @@ MonoBehaviour:
     slotInSkill:
     - {fileID: 7086174551489525287}
     - {fileID: 2304812303457986591}
+    button: {fileID: 2370763258758081654}
   - skillId: 3
     skillName: {fileID: 3644767938937915632}
     itemSprite: {fileID: 0}
@@ -9051,6 +9026,7 @@ MonoBehaviour:
     slotInSkill:
     - {fileID: 3781381570529375281}
     - {fileID: 1908838729635303419}
+    button: {fileID: 6078362538175015359}
   - skillId: 4
     skillName: {fileID: 736624589321126299}
     itemSprite: {fileID: 0}
@@ -9064,7 +9040,7 @@ MonoBehaviour:
     slotInSkill:
     - {fileID: 5409310079010416625}
     - {fileID: 8370929724926188684}
-  Learned: 0
+    button: {fileID: 1892889524126749413}
 --- !u!114 &7206948900674487937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10495,66 +10471,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 13
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4786758111365979384}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: StartDragSlot
-          m_Mode: 2
+        - m_Target: {fileID: 4773091122222196929}
+          m_TargetAssemblyTypeName: SelectPotion, Assembly-CSharp
+          m_MethodName: PClick
+          m_Mode: 3
           m_Arguments:
-            m_ObjectArgument: {fileID: 4002891542943889641}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 6
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4786758111365979384}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: DropSlot
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 4002891542943889641}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4786758111365979384}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: EnterSlot
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 4002891542943889641}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4786758111365979384}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: ExitSlot
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 4002891542943889641}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-            m_IntArgument: 0
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -10615,6 +10543,7 @@ GameObject:
   - component: {fileID: 4031900415788861339}
   - component: {fileID: 2004379327482352775}
   - component: {fileID: 7447280397060700671}
+  - component: {fileID: 5837408963387021643}
   m_Layer: 5
   m_Name: Slot potion T
   m_TagString: Untagged
@@ -10665,7 +10594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.53673327, b: 0.504717, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10726,6 +10655,67 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5837408963387021643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2499768101350459115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4773091122222196929}
+          m_TargetAssemblyTypeName: SelectPotion, Assembly-CSharp
+          m_MethodName: PEnter
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2004379327482352775}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4773091122222196929}
+          m_TargetAssemblyTypeName: SelectPotion, Assembly-CSharp
+          m_MethodName: PExit
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2004379327482352775}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4773091122222196929}
+          m_TargetAssemblyTypeName: SelectPotion, Assembly-CSharp
+          m_MethodName: PClick
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2523077051131357439
 GameObject:
   m_ObjectHideFlags: 0
@@ -11758,7 +11748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1138420565734340066
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12152,6 +12142,7 @@ GameObject:
   - component: {fileID: 669668296056384323}
   - component: {fileID: 937360255273278746}
   - component: {fileID: 4802906042957820093}
+  - component: {fileID: 8325790976789863042}
   m_Layer: 5
   m_Name: Slot potion B
   m_TagString: Untagged
@@ -12263,6 +12254,67 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8325790976789863042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2901611248838485210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4773091122222196929}
+          m_TargetAssemblyTypeName: SelectPotion, Assembly-CSharp
+          m_MethodName: PEnter
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 937360255273278746}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4773091122222196929}
+          m_TargetAssemblyTypeName: SelectPotion, Assembly-CSharp
+          m_MethodName: PExit
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 937360255273278746}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4773091122222196929}
+          m_TargetAssemblyTypeName: SelectPotion, Assembly-CSharp
+          m_MethodName: PClick
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2927094959357296851
 GameObject:
   m_ObjectHideFlags: 0
@@ -12635,66 +12687,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 13
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4786758111365979384}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: StartDragSlot
-          m_Mode: 2
+        - m_Target: {fileID: 4773091122222196929}
+          m_TargetAssemblyTypeName: SelectPotion, Assembly-CSharp
+          m_MethodName: PClick
+          m_Mode: 3
           m_Arguments:
-            m_ObjectArgument: {fileID: 3591739969890616002}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 6
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4786758111365979384}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: DropSlot
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 3591739969890616002}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4786758111365979384}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: EnterSlot
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 3591739969890616002}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4786758111365979384}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: ExitSlot
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 3591739969890616002}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-            m_IntArgument: 0
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -19789,7 +19793,7 @@ RectTransform:
   m_Children:
   - {fileID: 5260497700947875768}
   m_Father: {fileID: 1107307897535487316}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -23412,8 +23416,8 @@ GameObject:
   - component: {fileID: 5553481786505572766}
   - component: {fileID: 3418587296873175878}
   - component: {fileID: 8496128671048681441}
-  - component: {fileID: 3355793677241340398}
   - component: {fileID: 6964794054391319024}
+  - component: {fileID: 3291200953259691629}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -23480,83 +23484,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3355793677241340398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5595648124460483981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 13
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4786758111365979384}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: StartDragSlot
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 8496128671048681441}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 6
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4786758111365979384}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: DropSlot
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 8496128671048681441}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4786758111365979384}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: EnterSlot
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 8496128671048681441}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4786758111365979384}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: ExitSlot
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 8496128671048681441}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &6964794054391319024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23601,6 +23528,35 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3291200953259691629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5595648124460483981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4773091122222196929}
+          m_TargetAssemblyTypeName: SelectPotion, Assembly-CSharp
+          m_MethodName: PClick
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &5601239225346742552
 GameObject:
   m_ObjectHideFlags: 0
@@ -25966,7 +25922,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1107307897535487316}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -26656,7 +26612,7 @@ RectTransform:
   - {fileID: 6332682322514797935}
   - {fileID: 4054629827737317012}
   m_Father: {fileID: 1107307897535487316}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -31961,6 +31917,7 @@ GameObject:
   - component: {fileID: 514678957921705229}
   - component: {fileID: 3196825103887982071}
   - component: {fileID: 3873848013612449150}
+  - component: {fileID: 6335161495555958878}
   m_Layer: 5
   m_Name: Slot potion L
   m_TagString: Untagged
@@ -32072,6 +32029,67 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6335161495555958878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7983303665142964681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4773091122222196929}
+          m_TargetAssemblyTypeName: SelectPotion, Assembly-CSharp
+          m_MethodName: PEnter
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 3196825103887982071}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4773091122222196929}
+          m_TargetAssemblyTypeName: SelectPotion, Assembly-CSharp
+          m_MethodName: PExit
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 3196825103887982071}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4773091122222196929}
+          m_TargetAssemblyTypeName: SelectPotion, Assembly-CSharp
+          m_MethodName: PClick
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7995364548121264867
 GameObject:
   m_ObjectHideFlags: 0
@@ -34203,66 +34221,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 13
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4786758111365979384}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: StartDrag
-          m_Mode: 2
+        - m_Target: {fileID: 4773091122222196929}
+          m_TargetAssemblyTypeName: SelectPotion, Assembly-CSharp
+          m_MethodName: PClick
+          m_Mode: 3
           m_Arguments:
-            m_ObjectArgument: {fileID: 48498842313385700}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 6
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4786758111365979384}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: DropSlot
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 48498842313385700}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4786758111365979384}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: EnterSlot
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 48498842313385700}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4786758111365979384}
-          m_TargetAssemblyTypeName: Potions, Assembly-CSharp
-          m_MethodName: ExitSlot
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 48498842313385700}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-            m_IntArgument: 0
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -35316,6 +35286,42 @@ Transform:
   m_Father: {fileID: 4435389139812313159}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8894336179061015752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3659166084210850061}
+  m_Layer: 0
+  m_Name: PositionP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3659166084210850061
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8894336179061015752}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1107307897535487316}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 900, y: -420}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8920509284407136044
 GameObject:
   m_ObjectHideFlags: 0
@@ -36543,6 +36549,7 @@ GameObject:
   - component: {fileID: 2919897529310103957}
   - component: {fileID: 2909934429487606552}
   - component: {fileID: 3581054136646782721}
+  - component: {fileID: 3760565340250205629}
   m_Layer: 5
   m_Name: Slot potion R
   m_TagString: Untagged
@@ -36654,6 +36661,67 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3760565340250205629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9160696750881347592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4773091122222196929}
+          m_TargetAssemblyTypeName: SelectPotion, Assembly-CSharp
+          m_MethodName: PEnter
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2909934429487606552}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4773091122222196929}
+          m_TargetAssemblyTypeName: SelectPotion, Assembly-CSharp
+          m_MethodName: PExit
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2909934429487606552}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4773091122222196929}
+          m_TargetAssemblyTypeName: SelectPotion, Assembly-CSharp
+          m_MethodName: PClick
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &9207501260660941492
 GameObject:
   m_ObjectHideFlags: 0
@@ -45339,13 +45407,49 @@ PrefabInstance:
       propertyPath: m_text
       value: Learn
       objectReference: {fileID: 0}
+    - target: {fileID: 607237891707501484, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 53503534364981101}
+    - target: {fileID: 607237891707501484, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3465950272172089828}
+    - target: {fileID: 607237891707501484, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: click
+      objectReference: {fileID: 0}
+    - target: {fileID: 607237891707501484, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LearningSkills, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 607237891707501484, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1359419141311310863, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
       propertyPath: m_Name
       value: Skill
       objectReference: {fileID: 0}
+    - target: {fileID: 1521659710986737156, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1608886335423155140, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
       propertyPath: m_Name
       value: Slot 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2564374122550411867, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3465950272172089828}
+    - target: {fileID: 2564374122550411867, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PreviousItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 2564374122550411867, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LearningSkills, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3095162132962828385, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
       propertyPath: m_Text
@@ -45364,6 +45468,10 @@ PrefabInstance:
       value: Skill
       objectReference: {fileID: 0}
     - target: {fileID: 3263728167537896193, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268542371028347645, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -45503,6 +45611,26 @@ PrefabInstance:
       propertyPath: m_FontData.m_Alignment
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5076434041984860406, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 53503534364981101}
+    - target: {fileID: 5076434041984860406, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3465950272172089828}
+    - target: {fileID: 5076434041984860406, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: click
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076434041984860406, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LearningSkills, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076434041984860406, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5086557667497035401, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
       propertyPath: m_FontData.m_Alignment
       value: 3
@@ -45510,6 +45638,18 @@ PrefabInstance:
     - target: {fileID: 5180781918977076935, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
       propertyPath: m_text
       value: Learn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609589163074414615, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3465950272172089828}
+    - target: {fileID: 5609589163074414615, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: click
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609589163074414615, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LearningSkills, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5736571914549118024, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
       propertyPath: m_text
@@ -45535,13 +45675,49 @@ PrefabInstance:
       propertyPath: m_FontData.m_Alignment
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7431732818574309239, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7972259754493336291, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
       propertyPath: m_Text
       value: Skill
       objectReference: {fileID: 0}
+    - target: {fileID: 8251506231107838541, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3465950272172089828}
+    - target: {fileID: 8251506231107838541, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 8251506231107838541, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LearningSkills, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8947287612882607458, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
       propertyPath: m_Name
       value: Slot 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8994072994184035941, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 53503534364981101}
+    - target: {fileID: 8994072994184035941, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3465950272172089828}
+    - target: {fileID: 8994072994184035941, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: click
+      objectReference: {fileID: 0}
+    - target: {fileID: 8994072994184035941, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LearningSkills, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8994072994184035941, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9122805479344047742, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
       propertyPath: m_Name
@@ -45549,6 +45725,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+--- !u!114 &53503534364981101 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6668120265665947006, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+  m_PrefabInstance: {fileID: 6645053704776405523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &224680127245823090 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6857223295570607713, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
@@ -45582,6 +45769,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1292175460967987716 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5609589163074414615, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+  m_PrefabInstance: {fileID: 6645053704776405523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1430266957721057247 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5759731306781369804, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
@@ -45591,6 +45789,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1892889524126749413 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5076434041984860406, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+  m_PrefabInstance: {fileID: 6645053704776405523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1908838729635303419 stripped
@@ -45635,6 +45844,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2370763258758081654 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8994072994184035941, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+  m_PrefabInstance: {fileID: 6645053704776405523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3528355060888431886 stripped
@@ -45756,6 +45976,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6078362538175015359 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 607237891707501484, guid: 690e2dd853308d04e9f2a5d1b668c3e5, type: 3}
+  m_PrefabInstance: {fileID: 6645053704776405523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &7086174551489525287 stripped

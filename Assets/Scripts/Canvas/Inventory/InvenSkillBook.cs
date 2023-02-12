@@ -6,9 +6,11 @@ using UnityEngine.UI;
 
 public class InvenSkillBook : MonoBehaviour
 {
-    public List<SkillBook> yourSkillbook = new List<SkillBook>();
+    public List<SkillBook> yourSkillbook;
     public List<SkillBook> draggedItem = new List<SkillBook>();
-    public int[] slotStack;
+    // public int[] slotStack;
+
+    public static int amount;
 
     [SerializeField] private Image[] slot;
     [SerializeField] private Sprite[] slotSprite;
@@ -23,18 +25,19 @@ public class InvenSkillBook : MonoBehaviour
     void Start()
     {
 
-        for(int i=0; i < slotsNumber; i++){
-            yourSkillbook[i] = Database.skillBookList[0];
-        }
+        // for(int i=0; i < slotsNumber; i++){
+        //     yourSkillbook[i] = Database.skillBookList[0];
+        // }
         // test
-        yourSkillbook[0] = Database.skillBookList[1];
-        slotStack[0] += 1;
-        yourSkillbook[1] = Database.skillBookList[2];
-        slotStack[1] += 1;
-        yourSkillbook[2] = Database.skillBookList[3];
-        slotStack[2] += 1;
-        yourSkillbook[3] = Database.skillBookList[4];
-        slotStack[3] += 1;
+        yourSkillbook.Add(Database.skillBookList[1]);
+        yourSkillbook.Add(Database.skillBookList[2]);
+        yourSkillbook.Add(Database.skillBookList[3]);
+        yourSkillbook.Add(Database.skillBookList[4]);
+        yourSkillbook.Add(Database.skillBookList[5]);
+        yourSkillbook.Add(Database.skillBookList[6]);
+        yourSkillbook.Add(Database.skillBookList[7]);
+        yourSkillbook.Add(Database.skillBookList[8]);
+        yourSkillbook.Add(Database.skillBookList[9]);
         a = -1;
         b = -1;
 
@@ -42,54 +45,67 @@ public class InvenSkillBook : MonoBehaviour
 
     void Update()
     {
-        for(int i=0; i < slotsNumber; i++){
-            if(yourSkillbook[i].id == 0 || slotStack[i] == 1){
-                stackText[i].text = "";
-            }else{
-                stackText[i].text = ""+ slotStack[i];
-            }
-        }
+        // for(int i=0; i < slotsNumber; i++){
+        //     if(yourSkillbook[i].id == 0 || slotStack[i] == 1){
+        //         stackText[i].text = "";
+        //     }else{
+        //         stackText[i].text = ""+ slotStack[i];
+        //     }
+        // }
 
-        for(int i=0; i < slotsNumber; i++){
-            slot[i].sprite = slotSprite[i];
-        }
-
-        for(int i=0; i < slotsNumber; i++){
-            slotSprite[i] = yourSkillbook[i].itemSprite;
-        }
+        // for(int i=0; i < slotsNumber; i++){
+        //     slot[i].sprite = slotSprite[i];
+        //     slotSprite[i] = yourSkillbook[i].itemSprite;
+        // }
+        // int num = 0;
+        // foreach (var yourSK in yourSkillbook){
+        //     stackText[num].text = "";
+        //     slot[num].sprite = slotSprite[num];
+        //     slotSprite[num] = yourSK.itemSprite;
+        //     num++;
+        // }
 
     }
 
-    public void StartDrag(Image slotX){
-        for(int i=0; i < slotsNumber; i++){
-            if(slot[i] == slotX){
-                a = i;
-            }
-        }
-    }
+    // public void StartDrag(Image slotX){
+    //     for(int i=0; i < slotsNumber; i++){
+    //         if(slot[i] == slotX){
+    //             a = i;
+    //         }
+    //     }
+    // }
 
-    public void Drop(Image slotX){
-        if(a!=b && a != -1 && b !=-1){
-            draggedItem[0] = yourSkillbook[a];
-            slotTemporary = slotStack[a];
-            yourSkillbook[a] = yourSkillbook[b];
-            slotStack[a] = slotStack[b];
-            yourSkillbook[b] = draggedItem[0];
-            slotStack[b] = slotTemporary;
-        }
-        a=-1;
-        b=-1;
-    }
+    // public void Drop(Image slotX){
+    //     if(a!=b && a != -1 && b !=-1){
+    //         draggedItem[0] = yourSkillbook[a];
+    //         slotTemporary = slotStack[a];
+    //         yourSkillbook[a] = yourSkillbook[b];
+    //         slotStack[a] = slotStack[b];
+    //         yourSkillbook[b] = draggedItem[0];
+    //         slotStack[b] = slotTemporary;
+    //     }
+    //     a=-1;
+    //     b=-1;
+    // }
 
-    public void Enter(Image slotX){
-        for(int i=0; i < slotsNumber; i++){
-            if(slot[i] == slotX){
-                b = i;
-            }
-        }
-    }
+    // public void Enter(Image slotX){
+    //     for(int i=0; i < slotsNumber; i++){
+    //         if(slot[i] == slotX){
+    //             b = i;
+    //         }
+    //     }
+    // }
     
-    public void Exit(Image slotX){
-        b = -1;
-    }
+    // public void Exit(Image slotX){
+    //     b = -1;
+    // }
+    // public void LoadData(GameData data)
+    // {
+    //     yourSkillbook = data.skillBooks;
+    // }
+
+    // public void SaveData(GameData data)
+    // {
+    //     data.skillBooks = yourSkillbook;
+    // }
 }

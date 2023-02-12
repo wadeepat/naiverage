@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Potions : MonoBehaviour
+public class Potions : MonoBehaviour, IDataPersistence
 {
-    public List<Potion> yourPotions = new List<Potion>();
+    public List<Potion> yourPotions;
     public List<Potion> draggedItem = new List<Potion>();
     public int[] slotP;
     public int[] slotStack;
@@ -31,17 +31,7 @@ public class Potions : MonoBehaviour
 
     void Start()
     {
-
-        for(int i=0; i < slotsNumber; i++){
-            yourPotions[i] = Database.potionList[0];
-        }
-
-        // test
-        yourPotions[0] = Database.potionList[1];
-        slotStack[0] += 16;
-        yourPotions[1] = Database.potionList[2];
-        slotStack[1] += 1;
-        for(int j=0; j<4; j++) slotP[j] = -1;
+        
         a = -1;
         b = -1;
         aSlot = -1;
@@ -192,5 +182,20 @@ public class Potions : MonoBehaviour
         }
         aSlot=-1;
         bSlot=-1;
+    }
+    public void LoadData(GameData data)
+    {
+        yourPotions = data.inventoryPotion;
+        for(int i=0; i<slotsNumber; i++){
+            if(yourPotions[i] == null) yourPotions[i] = Database.potionList[0];
+        }
+        slotStack = data.stackPotion;
+        slotP = data.slotP;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.inventoryPotion = yourPotions;
+        data.stackPotion = slotStack;
     }
 }
