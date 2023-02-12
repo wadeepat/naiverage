@@ -17,7 +17,7 @@ public class OpenUI : MonoBehaviour
     [SerializeField] private GameObject UpgradeStatus;
 
 
-    public GameObject Player;
+    private GameObject Player;
 
     public bool inven;
     public bool craft;
@@ -36,8 +36,9 @@ public class OpenUI : MonoBehaviour
         craft = true;
         if (SceneManager.GetActiveScene().buildIndex != (int)SceneIndex.BlackScene)
         {
+            Player = PlayerManager.instance.player;
             attack = Player.GetComponent<PlayerAttackController>();
-            assetsInputs = Player.GetComponent<StarterAssetsInputs>();
+            assetsInputs = Player?.GetComponent<StarterAssetsInputs>();
             playerInput = Player.GetComponent<PlayerInput>();
         }
     }

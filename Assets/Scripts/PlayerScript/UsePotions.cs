@@ -5,7 +5,7 @@ using StarterAssets;
 
 public class UsePotions : MonoBehaviour
 {
-    private GameObject Player, Panel, SlotPotion,positionP;
+    private GameObject Player, Panel, SlotPotion, positionP;
     private bool l;
     //TODO implement for other potions
     public delegate void OnUsePotion();
@@ -19,8 +19,11 @@ public class UsePotions : MonoBehaviour
         Panel = GameObject.Find("Canvas/Panel");
         Player = GameObject.Find("Player");
         SlotPotion = GameObject.Find("Canvas/Panel/Slot potion");
+        positionP = GameObject.Find("Canvas/Panel/PositionP");
         potions = Panel.GetComponent<Potions>();
         player = Player?.GetComponent<PlayerStatus>();
+        attack = player?.GetComponent<PlayerAttackController>();
+        assetsInputs = player?.GetComponent<StarterAssetsInputs>();
     }
 
     // Update is called once per frame
@@ -50,7 +53,7 @@ public class UsePotions : MonoBehaviour
 
     public void UsePotionT(int slot)
     {
-        if (potions.slotP[slot] != -1 && potions.slotP[slot] != 0)
+        if (potions.slotP[slot] != -1)
         {
             int skillId = potions.yourPotions[potions.slotP[slot]].id;
             switch (skillId)
@@ -113,7 +116,7 @@ public class UsePotions : MonoBehaviour
         assetsInputs.cursorInputForLook = false;
         assetsInputs.cursorLocked = false;
         assetsInputs.look = new Vector2(0,0);
-        SlotPotion.gameObject.gameObject.transform.position = new Vector2(Screen.width/2+50,Screen.height/2-50);
+        SlotPotion.gameObject.transform.position = new Vector2(Screen.width/2+50,Screen.height/2-50);
     }
 
     

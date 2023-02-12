@@ -91,7 +91,7 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
     {
         yourItemQuests = data.questsInventory;
         for(int i=0; i<slotsNumber; i++){
-            if(yourItemQuests[i] == null) yourItemQuests[i] = Database.itemQuestList[0];
+            if(yourItemQuests[i].id == 0) yourItemQuests[i] = Database.itemQuestList[0];
         }
         slotStack = data.stackQuests;
     }

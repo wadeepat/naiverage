@@ -5226,7 +5226,6 @@ GameObject:
   - component: {fileID: 4582796975659350726}
   - component: {fileID: 4786758111365979384}
   - component: {fileID: 4388282034011254540}
-  - component: {fileID: 1467047613806405585}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -5377,9 +5376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef356bb3353cbe440b44a9718562d11b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerEvents:
-    keys: []
-    values: 
+  playerLocation: 0
   mapEnable:
     keys: 
     values: 
@@ -6030,18 +6027,6 @@ MonoBehaviour:
   - {fileID: 4402350893106200797}
   - {fileID: 4402350893762638685}
   - {fileID: 4402350894864237021}
---- !u!114 &1467047613806405585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1633056576546316402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aff29c2ce96db2f4498c85947138baa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1821311261628058283
 GameObject:
   m_ObjectHideFlags: 0
@@ -9174,7 +9159,6 @@ MonoBehaviour:
     n2: 0
     q1: 0
     q2: 0
-  slotStack: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   slotStackSkills: 000000000000000000000000
   slotSkillsM:
   - {fileID: 244063810863806647}
