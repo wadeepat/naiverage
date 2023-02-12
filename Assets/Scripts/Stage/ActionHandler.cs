@@ -99,6 +99,8 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
             return true;
         else if (chapterCardScript?.IsActivated() == true)
             return true;
+        else if (confirmationPopup?.IsActivated() == true)
+            return true;
         else return false;
     }
 

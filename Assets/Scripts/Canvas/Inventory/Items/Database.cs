@@ -58,6 +58,8 @@ public class Database : MonoBehaviour
         AddQuestChapter3();
         //* chapter 4
         AddQuestChapter4();
+        //* turn back time
+        AddQuestTurnBack();
     }
     // private void Start()
     // {
@@ -364,27 +366,18 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
-                    // Debug.Log("Add 7");
                     ActionHandler.instance.ActivateTutorialCard("WarpAndMap", true);
-                    // if (!ActionHandler.instance.IsQuestIdxInSave(7))
-                    // {
                     StageHandler.instance.EventTrigger("CompletedTutorial");
                     StageHandler.instance.EventTrigger("SataLeadToTown");
-                    // }
-                    // Debug.Log("Active Scene: " + StageHandler.instance.activeSceneIndex);
-                    // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
-                    // QuestLog.CompleteQuest(QuestLog.GetActiveQuestById(7));
                 },
                 prepareAction = () =>
                 {
-                    // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown) 
                     QuestLog.CompleteQuest(Database.questList[7]);
                 },
                 compleltedAction = () =>
                 {
                     ActionHandler.instance.ActivateTutorialCard("WarpAndMap", false);
                     ActionHandler.instance.chapterCardScript.ActivateMenu(1);
-                    // StageHandler.instance.EventTrigger("IntroduceAaron");
                 },
             }
         );
@@ -527,12 +520,13 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
-                    if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
-                        StageHandler.instance.EventTrigger("SataAtOldmanHouse");
+                    StageHandler.instance.EventTrigger("SataAtOldmanHouse");
+                    StageHandler.instance.EventTrigger("AbelGoToHouse");
                 },
                 prepareAction = () =>
                 {
                     StageHandler.instance.EventTrigger("SataAtOldmanHouse");
+                    StageHandler.instance.EventTrigger("AbelAtOldmanHouse");
                 },
             }
         );
@@ -552,11 +546,6 @@ public class Database : MonoBehaviour
                     type = Quest.Objective.Type.kill,
                     amount = 1,
                 },
-                // addAction = () =>
-                // {
-                //     if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.Rachne)
-                //         StageHandler.instance.EventTrigger("RachneEntrance");
-                // },
                 prepareAction = () =>
                 {
                     // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.Rachne)
@@ -654,10 +643,7 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
-                    // if (!ActionHandler.instance.IsQuestIdxInSave(16))
                     StageHandler.instance.EventTrigger("UnlockBraewood");
-                    // else if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.BraewoodForest)
-                    // QuestLog.CompleteQuest(QuestLog.GetActiveQuestById(16));
                 },
                 prepareAction = () =>
                 {
@@ -692,7 +678,6 @@ public class Database : MonoBehaviour
                 },
                 prepareAction = () =>
                 {
-                    // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.BraewoodForest)
                     StageHandler.instance.EventTrigger("VillagersHint");
                 },
             }
@@ -958,8 +943,10 @@ public class Database : MonoBehaviour
                 questCategory = 0,
                 objective = new Quest.Objective()
                 {
-                    objectiveId = (int)SceneIndex.NaverTown,
-                    type = Quest.Objective.Type.interact,
+                    objectiveId = (int)NPCIndex.Cain,
+                    npc = NPCIndex.Cain,
+                    dialogue = DialogueManager.instance.GetDialogueFile(3, "WelcomeCain"),
+                    type = Quest.Objective.Type.talk,
                     amount = 1,
                 },
                 addAction = () =>
@@ -1039,41 +1026,13 @@ public class Database : MonoBehaviour
                 },
             }
         );
-        questList.Add(
-            new Quest()
-            {
-                questId = 30,
-                questName = $"บัญญัติที่ถูกเก็บซ่อน",
-                questDescription = $"{ColorText("char", "Samuel")} ได้บอกว่าบัญญัติอยู่ในที่อยู่ของ {ColorText("monster", "Rachne")} ตามเขาไปพร้อมกับคนอื่น ๆ",
-                location = SceneIndex.RachneField,
-                MPReward = 0,
-                SBReward = "",
-                questCategory = 0,
-                objective = new Quest.Objective()
-                {
-                    objectiveId = (int)NPCIndex.Samuel,
-                    npc = NPCIndex.Samuel,
-                    dialogue = DialogueManager.instance.GetDialogueFile(4, "TheCommandment"),
-                    type = Quest.Objective.Type.talk,
-                    amount = 1,
-                },
-                addAction = () =>
-                {
-                    ActionHandler.instance.chapterCardScript.ActivateMenu(4);
-                },
-                prepareAction = () =>
-                {
-                    StageHandler.instance.EventTrigger("Commanment");
-                },
-            }
-        );
     }
     private void AddQuestTurnBack()
     {
         questList.Add(
             new Quest()
             {
-                questId = 31,
+                questId = 30,
                 questName = $"ช่วยเหลือเด็กน้อยอีกครั้ง",
                 questDescription = $"กำจัด {ColorText("monster", "Rachne")} ที่ป่า {ColorText("town", "Rachne")} ซะ",
                 location = SceneIndex.Rachne,
@@ -1097,14 +1056,14 @@ public class Database : MonoBehaviour
                 compleltedAction = () =>
                 {
                     StageHandler.instance.EventTrigger("ExitGate");
-                    QuestLog.AddQuest(Database.questList[32]);
+                    QuestLog.AddQuest(Database.questList[31]);
                 }
             }
         );
         questList.Add(
             new Quest()
             {
-                questId = 32,
+                questId = 31,
                 questName = $"พาเด็กกลับเมืองอีกครั้ง",
                 questDescription = $"พาเด็กสู่อ้อมโกดที่อบอุ่นของ {ColorText("char", "ตา")} อีกครั้ง ไปคุยกับ {ColorText("char", "Sata")} เพื่อส่งภารกิจ",
                 location = SceneIndex.NaverTown,
@@ -1127,7 +1086,7 @@ public class Database : MonoBehaviour
         questList.Add(
             new Quest()
             {
-                questId = 33,
+                questId = 32,
                 questName = $"พบแม่ทัพอีกครั้ง",
                 questDescription = $"ไปพบ {ColorText("char", "Aaron")} กับพวกทหารที่หน้าเมือง {ColorText("town", "Naver")}",
                 location = SceneIndex.NaverTown,
@@ -1158,13 +1117,323 @@ public class Database : MonoBehaviour
                 },
             }
         );
+        questList.Add(
+            new Quest()
+            {
+                questId = 33,
+                questName = $"ไปหาเจ้าชาย {ColorText("char", "Cain")}",
+                questDescription = $"เจ้ารู้อยู่แล้วว่าเจ้าชาย {ColorText("char", "Cain")} อยู่ในถ้ำ ไปหาเขากันเลย",
+                location = SceneIndex.Cave,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)SceneIndex.Cave,
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("UnlockBraewood");
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("FirstMetCain");
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 34,
+                questName = $"กำจัดกลุ่มโจร(1/2)",
+                questDescription = $"ในถ้ำมีโจรจะมารุกรานหมู่บ้านกำจัดให้หมด แล้วไปหาเจ้าชาย {ColorText("char", "Cain")}",
+                location = SceneIndex.Cave,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)MonsterId.Bandit,
+                    type = Quest.Objective.Type.kill,
+                    amount = 3,
+                },
+                addAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("AggressiveMon");
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("AggressiveMon");
+                },
+                compleltedAction = () =>
+                {
+                    QuestLog.AddQuest(questList[35]);
+                }
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 35,
+                questName = $"กำจัดกลุ่มโจร(2/2)",
+                questDescription = $"หมู่บ้านคงจะปลอดภัยแล้ว ไปหาเจ้าชาย {ColorText("char", "Cain")}",
+                location = SceneIndex.Cave,
+                MPReward = 500,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Cain,
+                    npc = NPCIndex.Cain,
+                    type = Quest.Objective.Type.talk,
+                    dialogue = DialogueManager.instance.GetDialogueFile(2, "HelpCainCompleteAgain"),
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("CainAtFront");
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("CainAtFront");
+                },
+            }
+        );
+
+        questList.Add(
+            new Quest()
+            {
+                questId = 36,
+                questName = $"ชายหนุ่มที่หายไปอีกครั้ง",
+                questDescription = $"เข้าไปสำรวจในถ้ำแล้วหาตัว {ColorText("char", "ชายหนุ่ม")} ที่หายไป",
+                location = SceneIndex.Cave,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)SceneIndex.Cave,
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("LostMan");
+
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("LostMan");
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 37,
+                questName = $"กำจัด Troll",
+                questDescription = $"สถานการณ์ไม่ดีนัก ต้องไปจัดการ {ColorText("monster", "Troll")} เพื่อช่วยเหลือ {ColorText("char", "ชายหนุ่ม")} ข้างในนั้นมีประตูลับซ่อนอยู่",
+                location = SceneIndex.Cave,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)MonsterId.Troll,
+                    type = Quest.Objective.Type.kill,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("TrollEntrance");
+                },
+                prepareAction = () =>
+                {
+                    //TODO Troll
+                    StageHandler.instance.EventTrigger("TrollEntrance");
+                },
+                compleltedAction = () =>
+                {
+                    // StageHandler.instance.EventTrigger("ExitGate");
+                    QuestLog.AddQuest(questList[38]);
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 38,
+                questName = $"กลับไปดู {ColorText("char", "ชายหนุ่ม")}",
+                questDescription = $"{ColorText("monster", "Troll")} ถูกจัดการเรียบร้อยแล้ว กลับไปหา{ColorText("char", "ชายหนุ่ม")} ใน {ColorText("town", "Cave")} กันเถอะ",
+                location = SceneIndex.Cave,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Cain,
+                    npc = NPCIndex.Cain,
+                    dialogue = DialogueManager.instance.GetDialogueFile(2, "SaveTheManLifeAgain"),
+                    type = Quest.Objective.Type.talk,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    //! remove when implement troll field
+                    StageHandler.instance.EventTrigger("CainAndHurt");
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("CainAndHurt");
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 39,
+                questName = $"กลับไปหา {ColorText("char", "Cain")}",
+                questDescription = $"เจ้าชาย {ColorText("char", "Cain")} ได้ช่วยชายหนุ่มออกไปแล้ว กลับไปที่ป่า {ColorText("town", "Braewood")} แล้วคุยกับเจ้าชาย {ColorText("char", "Cain")} เพื่อรับรางวัลกันเถอะ",
+                location = SceneIndex.BraewoodForest,
+                MPReward = 1000,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Cain,
+                    npc = NPCIndex.Cain,
+                    dialogue = DialogueManager.instance.GetDialogueFile(2, "BackToFriendAgain"),
+                    type = Quest.Objective.Type.talk,
+                    amount = 1,
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("TheManIsSaved");
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 40,
+                questName = $"พา {ColorText("char", "Cain")} กลับเมือง",
+                questDescription = $"เดินทางกลับเมือง {ColorText("town", "Naver")} ไปกับเจ้าชาย {ColorText("char", "Cain")}",
+                location = SceneIndex.NaverTown,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Cain,
+                    npc = NPCIndex.Cain,
+                    dialogue = DialogueManager.instance.GetDialogueFile(3, "WelcomeCainAgain"),
+                    type = Quest.Objective.Type.talk,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("CainGoToNaver");
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("WelcomeCain");
+                    // QuestLog.CompleteQuest(questList[27]);
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 41,
+                questName = $"ไปยังปราสาท",
+                questDescription = $"ตามเจ้าชาย {ColorText("char", "Cain")} ไปยังปราสาท {ColorText("town", "Calford")}",
+                location = SceneIndex.CalfordCastle,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    //! fix this when implemented castle
+                    // objectiveId = (int)SceneIndex.CalfordCastle,
+                    objectiveId = (int)NPCIndex.Cain,
+                    npc = NPCIndex.Cain,
+                    dialogue = DialogueManager.instance.GetDialogueFile(3, "FamilyMeetingAgain"),
+                    type = Quest.Objective.Type.talk,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    ActionHandler.instance.chapterCardScript.ActivateMenu(7);
+                    StageHandler.instance.EventTrigger("UnlockCalford");
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("Family");
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 42,
+                questName = $"ค้นหาสิ่งที่ถูกซ่อนไว้",
+                questDescription = $"{ColorText("char", "The Book")} ได้บอกว่ามีอะไรบางอย่างดูแถวนี้ ลองสำรวจปราสาท {ColorText("town", "Calford")} ดู",
+                location = SceneIndex.CalfordCastle,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)SceneIndex.CalfordCastle,
+                    // npc = NPCIndex.Samuel,
+                    // dialogue = DialogueManager.instance.GetDialogueFile(4, "TheCommandment"),
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    // ActionHandler.instance.chapterCardScript.ActivateMenu(4);
+                    StageHandler.instance.EventTrigger("TheSoul");
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("TheSoul");
+                },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 44,
+                questName = $"บัญญัติที่แท้จริง",
+                questDescription = $"เจ้าได้ดวงจิตมาแล้วไปหา {ColorText("char", "Samuel")} กับคนอื่น ๆ ที่ที่อยู่ของ {ColorText("monster", "Rachne")} กัน",
+                location = SceneIndex.RachneField,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Samuel,
+                    npc = NPCIndex.Samuel,
+                    dialogue = DialogueManager.instance.GetDialogueFile(4, "FoundTheSoul"),
+                    type = Quest.Objective.Type.talk,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    ActionHandler.instance.chapterCardScript.ActivateMenu(8);
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("Commanment");
+                },
+            }
+        );
     }
     private string ColorText(string type, string text)
     {
         return $"<color={COLORS[type]}>{text}</color>";
     }
-    // private void ActivateTutorialCard(string cardName, bool active)
-    // {
-    //     TutorialCardObject.transform.Find(cardName).gameObject.SetActive(active);
-    // }
 }

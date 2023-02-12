@@ -12,6 +12,10 @@ public class ConfirmationPopupMenu : MonoBehaviour
     [SerializeField] private Button confirmBtn;
     [SerializeField] private Button cancelBtn;
 
+    public bool IsActivated()
+    {
+        return this.gameObject.activeSelf;
+    }
     public void ActivateMenu(string displayText, UnityAction confirmAction, UnityAction cancelAction)
     {
         this.gameObject.SetActive(true);

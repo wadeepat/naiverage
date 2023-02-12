@@ -85,7 +85,8 @@ public class StageHandler : MonoBehaviour
                 AudioManager.instance.Play("naverBackground");
                 if (PlayerManager.playerEvents["backToPast"])
                 {
-                    if (QuestLog.GetCompleteQuestById(30) == null)
+                    if (QuestLog.GetActiveQuestById(30) == null
+                    && QuestLog.GetCompleteQuestById(30) == null)
                         EventTrigger("ReceiveTheBook");
                 }
                 else
@@ -109,13 +110,14 @@ public class StageHandler : MonoBehaviour
                 break;
             case SceneIndex.Cave:
                 AudioManager.instance.Play("caveBackground");
-                if (QuestLog.GetCompleteQuestById(20) == null && QuestLog.GetActiveQuestById(20) == null)
+                if (QuestLog.GetCompleteQuestById(20) == null &&
+                QuestLog.GetActiveQuestById(20) == null)
                     EventTrigger("FirstMetCain");
                 break;
             case SceneIndex.RachneField:
                 AudioManager.instance.Play("forestBackground");
                 if (QuestLog.GetActiveQuestById(13) != null ||
-                QuestLog.GetActiveQuestById(31) != null)
+                QuestLog.GetActiveQuestById(30) != null)
                     EventTrigger("SpawnRachne");
                 break;
             case SceneIndex.BlackScene:
@@ -342,18 +344,15 @@ public class StageHandler : MonoBehaviour
                         npc.Object.transform.localPosition = n_frontOfCastle.position;
                         npc.Object.transform.rotation = n_frontOfCastle.rotation;
                         npc.Object.SetActive(true);
-                        Debug.Log("rotation: " + n_frontOfCastle.rotation);
 
-                        PlayerManager.instance.player.SetActive(false);
-                        // PlayerManager.instance.player.transform.rotation = n_frontOfCastle.rotation;
-                        PlayerManager.instance.player.transform.rotation = Quaternion.Euler(0, 5, 0);
-                        PlayerManager.instance.player.SetActive(true);
 
-                        Debug.Log("Player rotation: " + PlayerManager.instance.player.transform.rotation);
-
-                        PlayerManager.instance.player.transform.position = new Vector3(n_frontOfCastle.position.x, n_frontOfCastle.position.y, n_frontOfCastle.position.z - 1);
                         if (PlayerManager.playerEvents["backToPast"])
                         {
+                            PlayerManager.instance.player.SetActive(false);
+                            PlayerManager.instance.player.transform.rotation = Quaternion.Euler(0, 5, 0);
+                            PlayerManager.instance.player.transform.position = new Vector3(n_frontOfCastle.position.x, n_frontOfCastle.position.y, n_frontOfCastle.position.z - 1);
+                            PlayerManager.instance.player.SetActive(true);
+
                             DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(1, "ReceiveTheBookAgain"));
                         }
                         else
@@ -386,6 +385,29 @@ public class StageHandler : MonoBehaviour
                     }
                 }
                 break;
+            case "AbelGotoHouse":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Abel)
+                    {
+                        npc.Object.GetComponent<NPC>().Goto(n_oldmanHouse);
+                        break;
+                    }
+                }
+                break;
+            case "AbelAtOldmanHouse":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Abel)
+                    {
+                        npc.Object.SetActive(false);
+                        npc.Object.transform.rotation = n_oldmanHouse.transform.rotation;
+                        npc.Object.transform.position = new Vector3(n_oldmanHouse.transform.position.x, n_oldmanHouse.transform.position.y, n_oldmanHouse.transform.position.z - 1);
+                        npc.Object.SetActive(true);
+                        break;
+                    }
+                }
+                break;
             case "SataAtOldmanHouse":
                 foreach (NPC_Details npc in NPCs)
                 {
@@ -410,6 +432,17 @@ public class StageHandler : MonoBehaviour
                     }
                 }
                 break;
+            case "SamuelCall":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Samuel)
+                    {
+                        npc.Object.SetActive(true);
+                        npc.Object.GetComponent<NPC>().Goto(n_oldmanHouse);
+                        break;
+                    }
+                }
+                break;
             case "Cain'sHint":
                 foreach (NPC_Details npc in NPCs)
                 {
@@ -427,7 +460,13 @@ public class StageHandler : MonoBehaviour
                     if (npc.info == "Army")
                     {
                         npc.Object.SetActive(true);
-                        break;
+                    }
+                    else if (npc.idx == NPCIndex.Sata)
+                    {
+                        npc.Object.SetActive(false);
+                        npc.Object.transform.position = n_mainDoor1.position;
+                        npc.Object.transform.rotation = n_mainDoor1.rotation;
+                        npc.Object.SetActive(true);
                     }
                 }
                 break;
@@ -445,6 +484,7 @@ public class StageHandler : MonoBehaviour
                 }
                 break;
             case "UnlockBraewood":
+                if (PlayerManager.playerEvents["backToPast"]) BraewoodEvents("UnlockCave");
                 PlayerManager.instance.mapEnable[SceneIndex.BraewoodForest] = true;
                 n_braewoodGate.gameObject.SetActive(true);
                 break;
@@ -459,7 +499,10 @@ public class StageHandler : MonoBehaviour
                     if (npc.idx == NPCIndex.Cain)
                     {
                         npc.Object.SetActive(true);
-                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(3, "WelcomeCain");
+                        // if (PlayerManager.playerEvents["backToPast"])
+                        //     npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(3, "WelcomeCainAgain");
+                        // else
+                        //     npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(3, "WelcomeCain");
                     }
                 }
                 break;
@@ -481,6 +524,9 @@ public class StageHandler : MonoBehaviour
                 {
                     npc.Object.SetActive(true);
                 }
+                break;
+            case "TheSoul":
+                //TODO
                 break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in CalfordEvents");
@@ -520,7 +566,7 @@ public class StageHandler : MonoBehaviour
                 break;
             case "UnlockCave":
                 PlayerManager.instance.mapEnable[SceneIndex.Cave] = true;
-                b_caveGate.gameObject.SetActive(true);
+                if (b_caveGate != null) b_caveGate?.gameObject.SetActive(true);
                 break;
             case "HelpHisFriend":
                 foreach (NPC_Details npc in NPCs)
@@ -566,7 +612,7 @@ public class StageHandler : MonoBehaviour
                     }
                     else if (npc.idx == NPCIndex.Cain)
                     {
-                        npc.Object.GetComponent<NPC>().inkJSON = DialogueManager.instance.GetDialogueFile(2, "BackToFriend");
+                        npc.Object.GetComponent<NPC>().inkJSON = DialogueManager.instance.GetDialogueFile(2, "BackToFriendAgain");
                     }
                     else continue;
                     npc.Object.SetActive(true);
@@ -604,18 +650,42 @@ public class StageHandler : MonoBehaviour
                 break;
             case "FirstMetCain":
                 CaveEvents("CainAtFront");
-                DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(2, "FirstMetCain"));
+                if (PlayerManager.playerEvents["backToPast"])
+                    DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(2, "FirstMetCainAgain"));
+                else
+                    DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(2, "FirstMetCain"));
                 break;
             case "AggressiveMon":
-                SpawnMonsterAt(0, MonsterId.Skeleton, 1);
-                SpawnMonsterAt(1, MonsterId.Skeleton, 2);
+                if (PlayerManager.playerEvents["backToPast"])
+                {
+                    SpawnMonsterAt(0, MonsterId.Bandit, 1);
+                    SpawnMonsterAt(1, MonsterId.Bandit, 2);
+                }
+                else
+                {
+                    SpawnMonsterAt(0, MonsterId.Skeleton, 1);
+                    SpawnMonsterAt(1, MonsterId.Skeleton, 2);
+                }
                 break;
             case "LostMan":
-                foreach (NPC_Details npc in NPCs)
+                if (PlayerManager.playerEvents["backToPast"])
                 {
-                    if (npc.info == "Hurt" || npc.info == "Center")
+                    foreach (NPC_Details npc in NPCs)
                     {
-                        npc.Object.SetActive(true);
+                        if (npc.info == "Hurt" || npc.info == "Center1")
+                        {
+                            npc.Object.SetActive(true);
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (NPC_Details npc in NPCs)
+                    {
+                        if (npc.info == "Hurt" || npc.info == "Center")
+                        {
+                            npc.Object.SetActive(true);
+                        }
                     }
                 }
                 break;
@@ -625,7 +695,15 @@ public class StageHandler : MonoBehaviour
             case "TrollEntrance":
                 //TODO TrollField
                 c_TrollGate.gameObject.SetActive(true);
-                QuestLog.CompleteQuest(Database.questList[24]);
+                if (PlayerManager.playerEvents["backToPast"])
+                {
+                    QuestLog.CompleteQuest(Database.questList[37]);
+
+                }
+                else
+                {
+                    QuestLog.CompleteQuest(Database.questList[24]);
+                }
                 break;
             case "CainAndHurt":
                 foreach (NPC_Details npc in NPCs)

@@ -1,7 +1,7 @@
 INCLUDE ../Tutorial/tutorial_globals.ink
 
 ===AaronWelcomeToNaver===
-    #speaker:Aaron #event:CainBack
+    #speaker:Aaron #questComplete:27
     !!!
     ท่าน <color=\#FFD495>Cain</color> !!! ท…ทำไมท่านถึง…
     #speaker:Cain
@@ -24,7 +24,6 @@ INCLUDE ../Tutorial/tutorial_globals.ink
         +[รับภารกิจ]
             #quest:28
             ->DONE
-    //(คาอิน อาเบล ซามูเอล Aaron และไลลา)
 ->DONE
 
 ===FamilyMeeting===
@@ -81,7 +80,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     #speaker:Abel
     แล้วข้าจะรู้ได้อย่างไรว่าอยู่ที่ใด
     #speaker:Samuel
-    ทางเข้าลับอยู่ในที่อยู่ของ(ชื่อบอสแมงมุง) ขอรับ
+    ทางเข้าลับอยู่ในที่อยู่ของ <color=\#FFBD39>Rachne</color> ขอรับ
     พวกท่านไม่ต้องกลัวไป ไม่ได้อันตรายขนาดนั้นขอรับ
     ตามกระผมมาขอรับ
     #speaker:quest
@@ -113,8 +112,8 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     #speaker:quest
     \– เควส: เข้าไปยังปราสาท รางวัล: \- 
         +[รับภารกิจ]
-                #quest:
-                ->DONE
+            #quest:41
+            ->DONE
     //(คาอิน อาเบล ซามูเอล Aaron และไลลา)
 ->DONE
 
@@ -172,7 +171,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     #speaker:Abel
     แล้วข้าจะรู้ได้อย่างไรว่าอยู่ที่ใด
     #speaker:Samuel
-    ทางเข้าลับอยู่ในที่อยู่ของ(ชื่อบอสแมงมุง) ขอรับ
+    ทางเข้าลับอยู่ในที่อยู่ของ <color=\#FFBD39>Rachne</color> ขอรับ
     พวกท่านไม่ต้องกลัวไป ไม่ได้อันตรายขนาดนั้นขอรับ
     ตามกระผมมาขอรับ
     #speaker:The book 
@@ -186,9 +185,9 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     #speaker:The book 
     (ข้าก็ไม่รู้แต่ว่าเจ้าช่วยออกไปตามหาให้ข้าที ตอนนี้ทุกอย่างขึ้นอยู่กับเจ้านะ)
     #speaker:quest
-    \- เควส: บัญญัติที่ถูกเก็บซ่อน รางวัล: \- 
+    \- เควส: ค้นหาสิ่งที่ถูกซ่อนไว้ รางวัล: \- 
         +[รับภารกิจ]
-            #quest:
+            #quest:42
             ->DONE
     //(บอกว่าอยู่ที่ไหน) (เควสรองขึ้น)
 ->DONE
