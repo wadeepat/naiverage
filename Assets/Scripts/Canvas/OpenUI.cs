@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using StarterAssets;
 using UnityEngine.InputSystem;
 public class OpenUI : MonoBehaviour
@@ -33,18 +34,20 @@ public class OpenUI : MonoBehaviour
 
         inven = true;
         craft = true;
-        attack = Player.GetComponent<PlayerAttackController>();
-        assetsInputs = Player.GetComponent<StarterAssetsInputs>();
-        playerInput = Player.GetComponent<PlayerInput>();
-
-
+        if (SceneManager.GetActiveScene().buildIndex != (int)SceneIndex.BlackScene)
+        {
+            attack = Player.GetComponent<PlayerAttackController>();
+            assetsInputs = Player.GetComponent<StarterAssetsInputs>();
+            playerInput = Player.GetComponent<PlayerInput>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         bool i = Input.GetKeyDown("i");
-        if (i)
+        if (i &&
+        (!DialogueManager.dialogueIsPlaying || ActionHandler.instance.IsSomeWindowsActivated()))
         {
             if (inven == true)
             {
@@ -70,7 +73,8 @@ public class OpenUI : MonoBehaviour
         if (l == true)
         {
             // Player.SetActive(false);
-            attack.attackAble = false;
+            PlayerManager.instance.player.GetComponent<PlayerAttackController>().attackAble = false;
+            // attack.attackAble = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             assetsInputs.cursorInputForLook = false;
@@ -80,7 +84,8 @@ public class OpenUI : MonoBehaviour
         else
         {
             // Player.SetActive(true);
-            attack.attackAble = true;
+            PlayerManager.instance.player.GetComponent<PlayerAttackController>().attackAble = true;
+            // attack.attackAble = true;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             assetsInputs.cursorInputForLook = true;

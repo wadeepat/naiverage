@@ -19,11 +19,8 @@ public class UsePotions : MonoBehaviour
         Panel = GameObject.Find("Canvas/Panel");
         Player = GameObject.Find("Player");
         SlotPotion = GameObject.Find("Canvas/Panel/Slot potion");
-        positionP = GameObject.Find("Canvas/Panel/PositionP");
         potions = Panel.GetComponent<Potions>();
-        player = Player.GetComponent<PlayerStatus>();
-        attack = Player.GetComponent<PlayerAttackController>();
-        assetsInputs = Player.GetComponent<StarterAssetsInputs>();
+        player = Player?.GetComponent<PlayerStatus>();
     }
 
     // Update is called once per frame
@@ -33,7 +30,7 @@ public class UsePotions : MonoBehaviour
         {
             UsePotionT(0);
         }
-        else  if (InputManager.instance.GetSelectingPotion())
+        else if (InputManager.instance.GetSelectingPotion())
         {
             SelectPotion();
         }else{
@@ -53,10 +50,11 @@ public class UsePotions : MonoBehaviour
 
     public void UsePotionT(int slot)
     {
-        int skillId = potions.yourPotions[potions.slotP[slot]].id;
-        if (potions.slotP[slot] != -1 && skillId != 0)
+        if (potions.slotP[slot] != -1 && potions.slotP[slot] != 0)
         {
-            switch(skillId){
+            int skillId = potions.yourPotions[potions.slotP[slot]].id;
+            switch (skillId)
+            {
                 case 1:
                     PlayerStatus.HealthHP(20);
                     break;

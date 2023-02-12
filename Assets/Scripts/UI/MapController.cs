@@ -21,7 +21,7 @@ public class MapController : MonoBehaviour
         {
             // if (PlayerManager.instance.mapEnable[scene])
             // {
-            Debug.Log("loading" + sceneName);
+            // Debug.Log("loading" + sceneName);
             DeactivateMenu();
             SceneLoadingManager.instance.LoadScene(scene);
             // }
@@ -29,7 +29,8 @@ public class MapController : MonoBehaviour
     }
     public void ActivateMenu()
     {
-        if (DialogueManager.dialogueIsPlaying)
+        if (DialogueManager.dialogueIsPlaying ||
+        ActionHandler.instance.IsSomeWindowsActivated())
         {
             if (this.gameObject.activeSelf)
             {

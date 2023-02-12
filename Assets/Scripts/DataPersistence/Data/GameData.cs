@@ -1,14 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 [System.Serializable]
 public class GameData
 {
     public string name;
+    public string saveName;
     public long lastUpdated;
     public SceneIndex playerLocation;
-    public Vector3 playerPosition;
+    public int playerPath;
     public SerializableDictionary<string, bool> playerEvents;
     public SerializableDictionary<SceneIndex, bool> mapEnable;
     public List<int> questIdxList;
@@ -27,12 +26,13 @@ public class GameData
     //if want to use dictionary use SeriablizableDictionary instead
     public GameData()
     {
-        playerPosition = Vector3.zero;
+        saveName = "untitle";
         playerLocation = SceneIndex.Rachne;
+        playerPath = 0;
         playerEvents = new SerializableDictionary<string, bool>{
             {"sataAskToJoin",false},
             {"finishedTutorial",false},
-            // {"metAaron",false}
+            {"backToPast",false},
         };
         mapEnable = new SerializableDictionary<SceneIndex, bool>{
             {SceneIndex.Rachne,true},
@@ -59,6 +59,7 @@ public class GameData
         string temp = "\n";
         temp += $"name: {this.name}\n";
         temp += $"lastUpdate: {this.lastUpdated}\n";
+        temp += $"playerPath: {this.playerPath}\n";
         temp += $"playerLocation: {this.playerLocation.ToString()}\n";
         temp += $"tutorialEvents:\n";
         foreach (var i in playerEvents)

@@ -43,7 +43,8 @@ public class PlayerAttackController : MonoBehaviour
     void Update()
     {
         // Debug.Log("Elemt" + (Element)element);
-        if (DialogueManager.dialogueIsPlaying)
+        if (DialogueManager.dialogueIsPlaying ||
+        ActionHandler.instance.IsSomeWindowsActivated())
         {
             return;
         }

@@ -48,8 +48,8 @@ public class DialogueManager : MonoBehaviour
     private const string SPEAKER_TAG = "speaker";
     private GameObject _player;
     private string playerName;
-    public GameObject Player;
-    StarterAssetsInputs assetsInputs;
+    // public GameObject Player;
+    // StarterAssetsInputs assetsInputs;
     ThirdPersonController _thirdPersonController;
     private void Awake()
     {
@@ -71,8 +71,12 @@ public class DialogueManager : MonoBehaviour
     // called second
     void DestroySelf(Scene scene, LoadSceneMode mode)
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        int sceneIdx = SceneManager.GetActiveScene().buildIndex;
+        if (sceneIdx == 0)
+        {
             Destroy(this.gameObject);
+            instance = null;
+        }
     }
     void OnDisable()
     {
@@ -81,7 +85,7 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-        _thirdPersonController = _player.GetComponent<ThirdPersonController>();
+        _thirdPersonController = _player?.GetComponent<ThirdPersonController>();
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         choicesText = new TextMeshProUGUI[choices.Length];
@@ -91,7 +95,7 @@ public class DialogueManager : MonoBehaviour
             choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
             index++;
         }
-        assetsInputs = Player.GetComponent<StarterAssetsInputs>();
+        // assetsInputs = Player?.GetComponent<StarterAssetsInputs>();
     }
     private void Update()
     {
@@ -103,7 +107,7 @@ public class DialogueManager : MonoBehaviour
         if (canContinueToNextLine
         && currentStory.currentChoices.Count == 0
         && InputManager.instance.GetNextPressed()
-        && !ActionHandler.instance.IsInputWindowActivated())
+        && !ActionHandler.instance.IsSomeWindowsActivated())
         {
             ContinueStory();
         }
@@ -115,10 +119,10 @@ public class DialogueManager : MonoBehaviour
     public void EnterDialogueMode(TextAsset inkJSON)
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-        _thirdPersonController = _player.GetComponent<ThirdPersonController>();
+        _thirdPersonController = _player?.GetComponent<ThirdPersonController>();
 
-        _player.GetComponent<Animator>().SetFloat("Speed", 0f);
-        _player.GetComponent<Animator>().SetTrigger("reset");
+        _player?.GetComponent<Animator>().SetFloat("Speed", 0f);
+        _player?.GetComponent<Animator>().SetTrigger("reset");
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
@@ -287,6 +291,7 @@ public class DialogueManager : MonoBehaviour
         {
             choices[i].gameObject.SetActive(false);
         }
+        // Debug.Log(dialogueVariables == null ? "dialogue null" : "dialogue not null");
     }
 
     private void HideChoices()
@@ -305,6 +310,8 @@ public class DialogueManager : MonoBehaviour
             currentStory.ChooseChoiceIndex(choiceIdx);
             ContinueStory();
         }
+        // if (dialogueVariables == null) LoadDialogue();
+        // Debug.Log(dialogueVariables == null ? "Make choice dialogue null" : "Make choice dialogue not null");
         dialogueVariables.SaveVariables();
     }
 
@@ -322,24 +329,24 @@ public class DialogueManager : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        assetsInputs.cursorInputForLook = true;
-        assetsInputs.cursorLocked = true;
+        // assetsInputs.cursorInputForLook = true;
+        // assetsInputs.cursorLocked = true;
     }
     public void DisablePlayerControll()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        assetsInputs.cursorInputForLook = false;
-        assetsInputs.cursorLocked = false;
-        assetsInputs.look = new Vector2(0, 0);
+        // assetsInputs.cursorInputForLook = false;
+        // assetsInputs.cursorLocked = false;
+        // assetsInputs.look = new Vector2(0, 0);
     }
     public void LockCamera()
     {
-        _thirdPersonController.SetLockCameraPosition(true);
+        _thirdPersonController?.SetLockCameraPosition(true);
     }
     public void UnlockCamera()
     {
-        _thirdPersonController.SetLockCameraPosition(false);
+        _thirdPersonController?.SetLockCameraPosition(false);
     }
     public TextAsset GetDialogueFile(int chapter, string name)
     {
@@ -368,44 +375,4 @@ public class DialogueManager : MonoBehaviour
         }
         return null;
     }
-    // public TextAsset GetTutorialFiles(string name)
-    // {
-    //     foreach (JSONfile file in tutorialFiles)
-    //     {
-    //         if (file.name == name) return file.json;
-    //     }
-    //     return null;
-    // }
-    // public TextAsset GetChapter1Files(string name)
-    // {
-    //     foreach (JSONfile file in chapter1Files)
-    //     {
-    //         if (file.name == name) return file.json;
-    //     }
-    //     return null;
-    // }
-    // public TextAsset GetChapter2Files(string name)
-    // {
-    //     foreach (JSONfile file in chapter2Files)
-    //     {
-    //         if (file.name == name) return file.json;
-    //     }
-    //     return null;
-    // }
-    // public TextAsset GetChapter3Files(string name)
-    // {
-    //     foreach (JSONfile file in chapter3Files)
-    //     {
-    //         if (file.name == name) return file.json;
-    //     }
-    //     return null;
-    // }
-    // public TextAsset GetChapter4Files(string name)
-    // {
-    //     foreach (JSONfile file in chapter4Files)
-    //     {
-    //         if (file.name == name) return file.json;
-    //     }
-    //     return null;
-    // }
 }

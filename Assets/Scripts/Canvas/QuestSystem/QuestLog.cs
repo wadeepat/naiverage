@@ -48,7 +48,7 @@ public class QuestLog
     public static void AddQuest(Quest quest)
     {
         // Debug.Log($"<color=#FFA>Add quest: {quest.questName}</color>");
-        AudioManager.instance.Play("click");
+        AudioManager.instance.Play("addQuest");
         questList.Add(quest);
         // HandleOwnedItems(quest);
         if (quest.addAction != null) quest.addAction();
@@ -68,6 +68,7 @@ public class QuestLog
     public static void CompleteQuest(Quest quest)
     {
         // Debug.Log($"<color=#AEF>Complete quest: {quest.questName}</color>");
+        // AudioManager.instance.Play("completeQuest");
         if (quest.objective.dialogue) DialogueManager.instance.EnterDialogueMode(quest.objective.dialogue);
         questList.Remove(quest);
         completedQuest.Add(quest);
@@ -140,7 +141,7 @@ public class QuestLog
         if (questList?.Count > 0)
             foreach (Quest q in questList.ToArray())
             {
-                Debug.Log(q.questName + " " + q.location.ToString());
+                // Debug.Log(q.questName + " " + q.location.ToString());
                 if (q.location == location && q.prepareAction != null) q.prepareAction();
             }
     }
@@ -166,8 +167,9 @@ public class QuestLog
     {
         foreach (Quest q in questList)
         {
-            if (q.objective.type == Quest.Objective.Type.talk
-            && q.objective.npc == idx)
+            if (q.objective.type == Quest.Objective.Type.talk &&
+                q.objective.npc == idx &&
+                q.location == (SceneIndex)StageHandler.instance.activeSceneIndex)
                 return q.questId;
         }
         return -1;

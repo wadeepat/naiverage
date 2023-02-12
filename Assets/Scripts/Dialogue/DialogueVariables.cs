@@ -68,7 +68,7 @@ public class DialogueVariables
         selectedProfileId = DataPersistenceManager.instance.selectedProfileId;
         if (PlayerPrefs.HasKey(saveVariablesKey + selectedProfileId) && !DataPersistenceManager.instance.disableDataPersistence)
         {
-            Debug.Log("load dialogue save from: " + saveVariablesKey + DataPersistenceManager.instance.selectedProfileId);
+            // Debug.Log("load dialogue save from: " + saveVariablesKey + DataPersistenceManager.instance.selectedProfileId);
             string jsonState = PlayerPrefs.GetString(saveVariablesKey + selectedProfileId);
             globalVariablesStory.state.LoadJson(jsonState);
         }

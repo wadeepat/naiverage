@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using StarterAssets;
 public class ChapterCard : MonoBehaviour
 {
     private class ChapterCardDetails
@@ -25,7 +26,31 @@ public class ChapterCard : MonoBehaviour
         },
         new ChapterCardDetails(){
             header = "บทที่ 2: เจ้าชายที่หายไป",
-            description ="“เจ้าได้ค้นพบปริศนาอันใหม่แล้ว”\n“ชักจะไม่ง่ายแล้วสิ”\n“เจ้าจะได้เจอเรื่องราวต่าง ๆ อีกมากมาย”"
+            description ="“เจ้าได้ค้นพบรับรู้ปริศนาใหม่แล้ว”\n“เรื่องชักจะไม่ง่ายแล้วสิ”\n“เจ้าจะได้เจอเรื่องราวต่าง ๆ อีกมากมาย”"
+        },
+        new ChapterCardDetails(){
+            header = "บทที่ 3: การพบการของสองพี่น้อง",
+            description ="“เรื่องราวของเจ้าชายทั้งสองจะเป็นอย่างไร”\n“ปริศนาของเรื่องราวต่าง ๆ”\n“ เจ้าจะได้เห็นชัดเจนขึ้น”"
+        },
+        new ChapterCardDetails(){
+            header = "บทที่ 4: เส้นทางถูกเลือก",
+            description ="“เรื่องวุ่นวายต่าง ๆ เหล่านี้”\n“เจ้าเห็นมันอย่างชัดเจนหรือยัง”\n“เลือกเส้นทางที่ลิขิตด้วยตัวเจ้าเอง”"
+        },
+        new ChapterCardDetails(){
+            header = "บทที่ 1.1: หวนคืนสู่การเป็นทหาร",
+            description ="“การผจญภัยได้เริ่มขึ้นอีกครั้ง”"
+        },
+        new ChapterCardDetails(){
+            header = "บทที่ 2.1: ตามหาเจ้าชาย",
+            description ="“เจ้าชายผู้น่าสงสหาร”\n“การเปลี่ยนแปลง”\n"
+        },
+        new ChapterCardDetails(){
+            header = "บทที่ 3.1: สองพี่น้อง",
+            description ="“เหตุผลของการกลับมา”\n“สิ่งที่ซ่อนอยู่”"
+        },
+        new ChapterCardDetails(){
+            header = "บทที่ 4.1: เส้นทางที่แท้จริง",
+            description ="“การเปลี่ยนแปลง”\n“ความลับของบัญญัติ”\n“บทสรุปของเรื่องราวที่แท้จริง”"
         },
     };
     private float timer = 0;
@@ -42,18 +67,41 @@ public class ChapterCard : MonoBehaviour
         }
         else timer += Time.deltaTime;
     }
+    private void SetForActivateUI()
+    {
+        // DialogueManager.dialogueIsPlaying = true;
+        // DialogueManager.instance.LockCamera();
+        PlayerManager.instance?.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(true);
+        // DialogueManager.instance.EnablePlayerControll();
+    }
+    private void ResetForDeactivateUI()
+    {
+        // DialogueManager.dialogueIsPlaying = false;
+        // DialogueManager.instance.UnlockCamera();
+        PlayerManager.instance?.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(false);
+        // DialogueManager.instance.DisablePlayerControll();
+    }
     public void ActivateMenu(int idx)
     {
+        SetForActivateUI();
+        AudioManager.instance.Play("newChapter");
         cardIdx = idx;
         header.text = cardDetails[idx].header;
         desc.text = cardDetails[idx].description;
         timer = 0;
         this.gameObject.SetActive(true);
+        Debug.Log("ActiveCard " + DialogueManager.dialogueIsPlaying);
     }
     public void DeactivateMenu()
     {
+        ResetForDeactivateUI();
         this.gameObject.SetActive(false);
         if (cardIdx != 0)
             ActionHandler.instance.AskToSave();
+        Debug.Log("DeactiveCard " + DialogueManager.dialogueIsPlaying);
+    }
+    public bool IsActivated()
+    {
+        return this.gameObject.activeSelf;
     }
 }

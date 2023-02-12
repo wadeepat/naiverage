@@ -15,6 +15,7 @@ public enum SceneIndex
     TrollField = 7,
     AbelField = 8,
     CainField = 9,
+    BlackScene = 10,
 }
 
 [System.Serializable]

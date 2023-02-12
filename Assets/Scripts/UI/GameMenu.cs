@@ -40,7 +40,8 @@ public class GameMenu : MonoBehaviour
     }
     public void ActivateMenu()
     {
-        if (DialogueManager.dialogueIsPlaying)
+        if (DialogueManager.dialogueIsPlaying ||
+        ActionHandler.instance.IsSomeWindowsActivated())
         {
             if (this.gameObject.activeSelf)
             {

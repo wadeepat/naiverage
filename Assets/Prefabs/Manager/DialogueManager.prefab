@@ -71,6 +71,8 @@ MonoBehaviour:
     json: {fileID: 4900000, guid: 958654c0a2c2a74488bbbd240d5311b9, type: 3}
   - name: TakeToHome
     json: {fileID: 4900000, guid: 298558aa7643a5f49a182ce655c7ea3e, type: 3}
+  - name: ReceiveTheBookAgain
+    json: {fileID: 4900000, guid: bdb6ae31df1af2148b55d11e21f9374c, type: 3}
   chapter2Files:
   - name: AssembleArmy
     json: {fileID: 4900000, guid: d9e4763c93043ae46b1416cf68981b8e, type: 3}
@@ -82,8 +84,36 @@ MonoBehaviour:
     json: {fileID: 4900000, guid: 8bcb99f40e5b26d47b13b0d8892c0759, type: 3}
   - name: AskGuardAboutCain
     json: {fileID: 4900000, guid: b5deb3f1b1af8d34ebee4ff4679f012c, type: 3}
-  chapter3Files: []
-  chapter4Files: []
+  - name: FirstMetCain
+    json: {fileID: 4900000, guid: fe7bbcb8ef9787246aa30f50f38706cc, type: 3}
+  - name: HelpCainComplete
+    json: {fileID: 4900000, guid: 12c98f9fdfbd3c545842f4c94c13a980, type: 3}
+  - name: PrinceAndVillagers
+    json: {fileID: 4900000, guid: 311ac50d56a0058429df2687e871f60e, type: 3}
+  - name: SaveTheManLife
+    json: {fileID: 4900000, guid: 52a925a03089ff4418be68622ddccacb, type: 3}
+  - name: BackToFriend
+    json: {fileID: 4900000, guid: 3948bcb7c5714a642860040b53e40a97, type: 3}
+  chapter3Files:
+  - name: WelcomeCain
+    json: {fileID: 4900000, guid: d4f9943c5e71f604a88b6d1368a54925, type: 3}
+  - name: FamilyMeeting
+    json: {fileID: 4900000, guid: 522779ca50cd778458ff94cb9245b491, type: 3}
+  - name: WelcomeCainAgain
+    json: {fileID: 4900000, guid: f3361480cec994a4ab73db58ffdb5e1d, type: 3}
+  - name: FamilyMeetingAgain
+    json: {fileID: 4900000, guid: 045b11ff842232d4f96bddebb7cd3fca, type: 3}
+  chapter4Files:
+  - name: Ending1
+    json: {fileID: 4900000, guid: ed748f5d207d3e849a4358af70236425, type: 3}
+  - name: Ending2
+    json: {fileID: 4900000, guid: 7a15d92af9248de4d902a4e655280a5d, type: 3}
+  - name: Ending3
+    json: {fileID: 4900000, guid: 4000986baacd17544b2fa8d35cdfadd4, type: 3}
+  - name: TrueEnding
+    json: {fileID: 4900000, guid: 8d87f4886af2a8f43beae03a834c2bc4, type: 3}
+  - name: TheCommandment
+    json: {fileID: 4900000, guid: bfb9a944ad3e2c249a9c0c9b723ce3f5, type: 3}
   dialoguePanel: {fileID: 0}
   continueText: {fileID: 0}
   displayNameText: {fileID: 0}
@@ -92,7 +122,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Player: {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1575763871
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -29,6 +29,7 @@ public class StageHandler : MonoBehaviour
     [SerializeField] private Transform n_calfordGate;
     [SerializeField] private Transform n_braewoodGate;
     [SerializeField] private Transform n_mainDoor;
+    [SerializeField] private Transform n_mainDoor1;
     [SerializeField] private Transform n_frontOfRanche0;
     [SerializeField] private Transform n_frontOfRanche1;
     [SerializeField] private Transform n_frontOfCastle;
@@ -46,6 +47,8 @@ public class StageHandler : MonoBehaviour
     [Header("Cave")]
     [Header("Gates")]
     [SerializeField] private Transform c_braewoodGate;
+
+    [SerializeField] private Transform c_middle;
     [SerializeField] private Transform c_TrollGate;
     [Header("Field")]
     [Header("Gates")]
@@ -73,29 +76,50 @@ public class StageHandler : MonoBehaviour
                 // }
                 if (QuestLog.GetCompleteQuestById(0) == null)
                     DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(0, "Opening"));
-                if (!PlayerManager.instance.playerEvents["finishedTutorial"])
-                {
+                if (!PlayerManager.playerEvents["finishedTutorial"])
                     EventTrigger("SetupForTutorial");
-                }
+                if (QuestLog.GetActiveQuestById(29) != null)
+                    t_RachneGate.gameObject.SetActive(true);
                 break;
             case SceneIndex.NaverTown:
                 AudioManager.instance.Play("naverBackground");
-                if (QuestLog.GetCompleteQuestById(8) == null)
-                    EventTrigger("IntroduceAaron");
-                if (QuestLog.GetCompleteQuestById(16) == null && QuestLog.GetActiveQuestById(16) == null)
+                if (PlayerManager.playerEvents["backToPast"])
+                {
+                    if (QuestLog.GetCompleteQuestById(30) == null)
+                        EventTrigger("ReceiveTheBook");
+                }
+                else
+                {
+                    if (QuestLog.GetCompleteQuestById(8) == null)
+                        EventTrigger("IntroduceAaron");
+                }
+                if (!PlayerManager.instance.mapEnable[SceneIndex.CalfordCastle])
+                    n_calfordGate.gameObject.SetActive(false);
+                if (!PlayerManager.instance.mapEnable[SceneIndex.BraewoodForest])
                     n_braewoodGate.gameObject.SetActive(false);
-                // QuestLog.AddQuest(Database.questList[9]);
-                // EventTrigger("AaronQuest");
                 break;
             case SceneIndex.CalfordCastle:
                 break;
             case SceneIndex.BraewoodForest:
-                if (QuestLog.GetCompleteQuestById(17) == null)
-                    DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(2, "TalkWithGuard"));
+                AudioManager.instance.Play("braewoodBackground");
                 if (QuestLog.GetCompleteQuestById(19) == null && QuestLog.GetActiveQuestById(19) == null)
                     b_caveGate.gameObject.SetActive(false);
+                // if (QuestLog.GetCompleteQuestById(25) != null && QuestLog.GetCompleteQuestById(26) == null)
+                //     EventTrigger("TheManIsSaved");
                 break;
             case SceneIndex.Cave:
+                AudioManager.instance.Play("caveBackground");
+                if (QuestLog.GetCompleteQuestById(20) == null && QuestLog.GetActiveQuestById(20) == null)
+                    EventTrigger("FirstMetCain");
+                break;
+            case SceneIndex.RachneField:
+                AudioManager.instance.Play("forestBackground");
+                if (QuestLog.GetActiveQuestById(13) != null ||
+                QuestLog.GetActiveQuestById(31) != null)
+                    EventTrigger("SpawnRachne");
+                break;
+            case SceneIndex.BlackScene:
+                AudioManager.instance.Play("endingBackground");
                 break;
         }
         QuestLog.DoQuestPrepare(sceneIndex);
@@ -130,18 +154,19 @@ public class StageHandler : MonoBehaviour
     {
         // Debug.Log("Previous " + ((SceneIndex)previousScene).ToString());
         Transform player = PlayerManager.instance.player.transform;
+        player.gameObject.SetActive(false);
         switch (activeSceneIndex)
         {
             case (int)SceneIndex.Rachne:
-                if (previousScene == (int)SceneIndex.NaverTown)
-                {
-                    player.position = t_naverGate.position;
-                    player.rotation = t_naverGate.rotation;
-                }
-                else
+                if (previousScene == (int)SceneIndex.Rachne)
                 {
                     player.position = t_startGate.position;
                     player.rotation = t_startGate.rotation;
+                }
+                else
+                {
+                    player.position = t_naverGate.position;
+                    player.rotation = t_naverGate.rotation;
                 }
                 break;
             case (int)SceneIndex.NaverTown:
@@ -170,8 +195,10 @@ public class StageHandler : MonoBehaviour
                 }
                 break;
             case (int)SceneIndex.CalfordCastle:
+                player.gameObject.SetActive(false);
                 player.position = cc_naverGate.position;
                 player.rotation = cc_naverGate.rotation;
+                player.gameObject.SetActive(true);
                 break;
             case (int)SceneIndex.BraewoodForest:
                 switch (previousScene)
@@ -191,6 +218,7 @@ public class StageHandler : MonoBehaviour
                 player.rotation = c_braewoodGate.rotation;
                 break;
         }
+        player.gameObject.SetActive(true);
         PlayerManager.instance.ChangePlayerLocationToCurrent();
     }
     private void RachneEvents(string eventName)
@@ -217,7 +245,7 @@ public class StageHandler : MonoBehaviour
                 DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(0, "CompletedUsePotion"));
                 break;
             case "CompletedTutorial":
-                PlayerManager.instance.playerEvents["finishedTutorial"] = true;
+                PlayerManager.playerEvents["finishedTutorial"] = true;
                 PlayerManager.instance.mapEnable[SceneIndex.NaverTown] = true;
                 t_naverGate.gameObject.SetActive(true);
                 break;
@@ -297,6 +325,7 @@ public class StageHandler : MonoBehaviour
                 {
                     if (npc.idx == NPCIndex.Aaron)
                     {
+                        npc.Object.SetActive(false);
                         npc.Object.transform.localPosition = n_mainDoor.position;
                         npc.Object.transform.localRotation = n_mainDoor.rotation;
                         npc.Object.SetActive(true);
@@ -309,10 +338,28 @@ public class StageHandler : MonoBehaviour
                 {
                     if (npc.idx == NPCIndex.Sata)
                     {
+                        npc.Object.SetActive(false);
                         npc.Object.transform.localPosition = n_frontOfCastle.position;
-                        npc.Object.transform.localRotation = n_frontOfCastle.rotation;
-                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(1, "ReceiveTheBook");
+                        npc.Object.transform.rotation = n_frontOfCastle.rotation;
                         npc.Object.SetActive(true);
+                        Debug.Log("rotation: " + n_frontOfCastle.rotation);
+
+                        PlayerManager.instance.player.SetActive(false);
+                        // PlayerManager.instance.player.transform.rotation = n_frontOfCastle.rotation;
+                        PlayerManager.instance.player.transform.rotation = Quaternion.Euler(0, 5, 0);
+                        PlayerManager.instance.player.SetActive(true);
+
+                        Debug.Log("Player rotation: " + PlayerManager.instance.player.transform.rotation);
+
+                        PlayerManager.instance.player.transform.position = new Vector3(n_frontOfCastle.position.x, n_frontOfCastle.position.y, n_frontOfCastle.position.z - 1);
+                        if (PlayerManager.playerEvents["backToPast"])
+                        {
+                            DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(1, "ReceiveTheBookAgain"));
+                        }
+                        else
+                        {
+                            npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(1, "ReceiveTheBook");
+                        }
                         break;
                     }
                 }
@@ -384,9 +431,40 @@ public class StageHandler : MonoBehaviour
                     }
                 }
                 break;
+            case "SataAtMainDoor":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Sata)
+                    {
+                        npc.Object.SetActive(false);
+                        npc.Object.GetComponent<CapsuleCollider>().enabled = false;
+                        npc.Object.transform.position = n_mainDoor1.position;
+                        npc.Object.SetActive(true);
+                        break;
+                    }
+                }
+                break;
             case "UnlockBraewood":
                 PlayerManager.instance.mapEnable[SceneIndex.BraewoodForest] = true;
                 n_braewoodGate.gameObject.SetActive(true);
+                break;
+            case "UnlockCalford":
+                PlayerManager.instance.mapEnable[SceneIndex.CalfordCastle] = true;
+                n_calfordGate.gameObject.SetActive(true);
+                break;
+            case "WelcomeCain":
+                NaverTownEvents("AaronAtMainDoor");
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Cain)
+                    {
+                        npc.Object.SetActive(true);
+                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(3, "WelcomeCain");
+                    }
+                }
+                break;
+            case "CainBack":
+                QuestLog.CompleteQuest(Database.questList[27]);
                 break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in NaverTownEvents");
@@ -398,6 +476,12 @@ public class StageHandler : MonoBehaviour
         //TODO implement calford events
         switch (eventName)
         {
+            case "Family":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    npc.Object.SetActive(true);
+                }
+                break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in CalfordEvents");
                 break;
@@ -405,7 +489,6 @@ public class StageHandler : MonoBehaviour
     }
     private void BraewoodEvents(string eventName)
     {
-        //TODO implement braewood events
         switch (eventName)
         {
             case "VillagersHint":
@@ -437,7 +520,68 @@ public class StageHandler : MonoBehaviour
                 break;
             case "UnlockCave":
                 PlayerManager.instance.mapEnable[SceneIndex.Cave] = true;
-                c_braewoodGate.gameObject.SetActive(true);
+                b_caveGate.gameObject.SetActive(true);
+                break;
+            case "HelpHisFriend":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Cain)
+                    {
+                        npc.Object.SetActive(true);
+                    }
+                    else if (npc.info == "Friend")
+                    {
+                        npc.Object.SetActive(true);
+                    }
+                    // DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(2, "PrinceAndVillagers"));
+                }
+                Debug.Log("HelpFriend");
+                break;
+            case "FriendLeave":
+                Transform place = null;
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.info == "Normal")
+                    {
+                        place = npc.Object.transform;
+                        break;
+                    }
+                }
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.info == "Friend")
+                    {
+                        npc.Object.GetComponent<NPC>().Goto(place);
+                        break;
+                    }
+                }
+                break;
+            case "TheManIsSaved":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    int n = 0;
+                    if (npc.info == "Hurt" || npc.info == "Friend")
+                    {
+
+                    }
+                    else if (npc.idx == NPCIndex.Cain)
+                    {
+                        npc.Object.GetComponent<NPC>().inkJSON = DialogueManager.instance.GetDialogueFile(2, "BackToFriend");
+                    }
+                    else continue;
+                    npc.Object.SetActive(true);
+                    if (++n == 3) break;
+                }
+                break;
+            case "CainGoToNaver":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Cain)
+                    {
+                        npc.Object.GetComponent<NPC>().Goto(b_naverGate);
+                        break;
+                    }
+                }
                 break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in BraewoodEvents");
@@ -446,9 +590,57 @@ public class StageHandler : MonoBehaviour
     }
     private void CaveEvents(string eventName)
     {
-        //TODO implement cave events
         switch (eventName)
         {
+            case "CainAtFront":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Cain)
+                    {
+                        npc.Object.SetActive(true);
+                        break;
+                    }
+                }
+                break;
+            case "FirstMetCain":
+                CaveEvents("CainAtFront");
+                DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(2, "FirstMetCain"));
+                break;
+            case "AggressiveMon":
+                SpawnMonsterAt(0, MonsterId.Skeleton, 1);
+                SpawnMonsterAt(1, MonsterId.Skeleton, 2);
+                break;
+            case "LostMan":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.info == "Hurt" || npc.info == "Center")
+                    {
+                        npc.Object.SetActive(true);
+                    }
+                }
+                break;
+            case "FoundTheMan":
+                QuestLog.CompleteQuest(Database.questList[23]);
+                break;
+            case "TrollEntrance":
+                //TODO TrollField
+                c_TrollGate.gameObject.SetActive(true);
+                QuestLog.CompleteQuest(Database.questList[24]);
+                break;
+            case "CainAndHurt":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Cain)
+                    {
+                        npc.Object.SetActive(false);
+                        npc.Object.transform.position = c_middle.position;
+                        npc.Object.transform.rotation = c_middle.rotation;
+                        npc.Object.SetActive(true);
+                    }
+                    else if (npc.info == "Hurt")
+                        npc.Object.SetActive(true);
+                }
+                break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in CaveEvents");
                 break;
@@ -458,8 +650,29 @@ public class StageHandler : MonoBehaviour
     {
         switch (eventName)
         {
+
+            case "SpawnRachne":
+                SpawnMonsterAt(0, MonsterId.Rachne, 1);
+                break;
             case "ExitGate":
                 exitGate.gameObject.SetActive(true);
+                break;
+            case "Commanment":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    npc.Object.SetActive(true);
+                }
+                OtherEvents("ExitGate");
+                break;
+            case "BackToMenu":
+                SceneLoadingManager.instance.LoadScene(SceneIndex.MainMenu);
+                break;
+            case "BackToPast":
+                PlayerManager.playerEvents["backToPast"] = true;
+                PlayerManager.instance.mapEnable[SceneIndex.CalfordCastle] = false;
+                PlayerManager.instance.mapEnable[SceneIndex.BraewoodForest] = false;
+                PlayerManager.instance.mapEnable[SceneIndex.Cave] = false;
+                SceneLoadingManager.instance.LoadScene(SceneIndex.NaverTown);
                 break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in OtherEvents");

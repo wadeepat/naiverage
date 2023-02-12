@@ -7,3 +7,6 @@ VAR toldName = false
 VAR usePotionComplete = false
 
 VAR cainAskToGo = false
+VAR cainAskToGoAgain = false
+
+VAR turnbacktime = false
