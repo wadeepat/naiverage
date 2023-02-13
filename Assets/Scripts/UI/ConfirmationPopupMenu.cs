@@ -16,10 +16,8 @@ public class ConfirmationPopupMenu : MonoBehaviour
     {
         return this.gameObject.activeSelf;
     }
-    public void ActivateMenu(string displayText, UnityAction confirmAction, UnityAction cancelAction)
+    public void ActivateMenu(string displayText, bool enableCancelBtn, UnityAction confirmAction, UnityAction cancelAction)
     {
-        this.gameObject.SetActive(true);
-
         this.displayTest.text = displayText;
 
         confirmBtn.onClick.RemoveAllListeners();
@@ -35,6 +33,9 @@ public class ConfirmationPopupMenu : MonoBehaviour
             DeactivateMenu();
             cancelAction();
         });
+        cancelBtn.gameObject.SetActive(enableCancelBtn);
+
+        this.gameObject.SetActive(true);
     }
 
     private void DeactivateMenu()

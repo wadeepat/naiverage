@@ -31,8 +31,8 @@ public class PlayerStatus : MonoBehaviour
 
     void Start()
     {
-        sliderHealth = CanvasManager.instance.GetCanvasObject("Panel").transform.Find("Bar").Find("HealthBar").GetComponent<Slider>();
-        sliderMana = CanvasManager.instance.GetCanvasObject("Panel").transform.Find("Bar").Find("StaminaBar").GetComponent<Slider>();
+        sliderHealth = CanvasManager.instance.GetCanvasObject("Panel/Bar/HealthBar").GetComponent<Slider>();
+        sliderMana = CanvasManager.instance.GetCanvasObject("Panel/Bar/StaminaBar").GetComponent<Slider>();
         hp = HP;
         mp = MP;
         reHp = 1;
@@ -60,9 +60,6 @@ public class PlayerStatus : MonoBehaviour
 
     }
 
-
-
-
     public void TakeDamaged(int damageAmount)
     {
         int a = (int)(damageAmount * (100.0f / (100 + defense)));
@@ -70,6 +67,8 @@ public class PlayerStatus : MonoBehaviour
         if (hp <= 0)
         {
             hp = 0;
+            PlayerManager.instance.player.tag = "Untagged";
+            ActionHandler.instance.AskToLoad();
             // healthBar.SetActive(false);
             // animator.SetTrigger("die");
             // GetComponent<BoxCollider>().enabled = false;
@@ -97,18 +96,21 @@ public class PlayerStatus : MonoBehaviour
             mp = MP;
     }
 
-    public void PhialOfFreedom(){
+    public void PhialOfFreedom()
+    {
         poison = false;
         agony = false;
     }
-    public void ElixirOfRage(){
-        if(!buff){
+    public void ElixirOfRage()
+    {
+        if (!buff)
+        {
             temp = attack;
-            attack = (int)(attack+(attack*(20.0f/100)));
+            attack = (int)(attack + (attack * (20.0f / 100)));
         }
         buff = true;
         buffTime = 20.0f;
-        
+
     }
     public static void MaxHPnMP()
     {
@@ -179,51 +181,62 @@ public class PlayerStatus : MonoBehaviour
         return attack + (attack * crit / 100);
     }
 
-    public void CheckTimeAndStatus(){
+    public void CheckTimeAndStatus()
+    {
         time += Time.deltaTime;
         poisonTime -= Time.deltaTime;
         agonyTime -= Time.deltaTime;
         buffTime -= Time.deltaTime;
-        if (time >= interpolationPeriod) {
+        if (time >= interpolationPeriod)
+        {
             time = 0.0f;
             StatusEffect();
         }
     }
-    public void Poison(){
+    public void Poison()
+    {
         poison = true;
-        if(poisonTime < 0){
+        if (poisonTime < 0)
+        {
             poisonTime = 15.0f;
         }
     }
 
-    public void Agony(){
+    public void Agony()
+    {
         agony = true;
-        if(agonyTime < 0){
+        if (agonyTime < 0)
+        {
             agonyTime = 5.0f;
         }
 
     }
 
-    public void StatusEffect(){
+    public void StatusEffect()
+    {
 
         //Enemy
-        if(poison){
+        if (poison)
+        {
             hp -= 2.0f;
-            if ( poisonTime < 0 )
+            if (poisonTime < 0)
             {
                 poison = false;
             }
-        }else if(agony){
+        }
+        else if (agony)
+        {
             hp -= 5.0f;
-            if ( agonyTime <= 0 )
+            if (agonyTime <= 0)
             {
                 agony = false;
             }
         }
 
         //self
-        if(buff){
-            if ( buffTime <= 0 )
+        if (buff)
+        {
+            if (buffTime <= 0)
             {
                 attack = temp;
                 buff = false;

@@ -44,9 +44,9 @@ public class SaveSlotsMenu : MonoBehaviour, IDataPersistence
         else if (saveSlot.hasData)
         {
             confirmationPopupMenu.ActivateMenu(
-                "เริ่มเกมด้วย slot นี้จะเขียนทับข้อมูลเก่า ยืนยันที่จะทำใช่หรือไม่?",
-                //action of confirm btn
-                () =>
+                displayText: "เริ่มเกมด้วย slot นี้จะเขียนทับข้อมูลเก่า ยืนยันที่จะทำใช่หรือไม่?",
+                enableCancelBtn: true,
+                confirmAction: () =>
                 {
                     inputText.ActivateMenu(
                         title: "ตั้งชื่อ slot",
@@ -72,15 +72,9 @@ public class SaveSlotsMenu : MonoBehaviour, IDataPersistence
                             ActivateMenu(this.isLoadingGame);
                         }
                     );
-                    // DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
-                    // DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
-                    // DataPersistenceManager.instance.NewGame();
-
-                    // DataPersistenceManager.instance.SaveGame(true);
-                    // SceneLoadingManager.instance.LoadScene(SceneIndex.Rachne);
                 },
                 //action of cancel btn
-                () =>
+                cancelAction: () =>
                 {
                     this.ActivateMenu(isLoadingGame);
                 }
@@ -158,6 +152,7 @@ public class SaveSlotsMenu : MonoBehaviour, IDataPersistence
 
         confirmationPopupMenu.ActivateMenu(
             "ยืนยันที่จะลบข้อมูล slot นี้ใช่หรือไม่?",
+            true,
             () =>
             {
                 AudioManager.instance.Play("delete");
