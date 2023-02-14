@@ -33900,20 +33900,20 @@ MonoBehaviour:
   LHPoint: {fileID: 1347545796}
   RHPoint: {fileID: 1314185205}
   Point: {fileID: 874836840}
-  fire: {fileID: 0}
-  water: {fileID: 0}
-  wind: {fileID: 0}
-  special: {fileID: 0}
+  fire: {fileID: 2051031914710327363, guid: 83eb20212ae7e544aa088377971f389e, type: 3}
+  water: {fileID: 1654736843778140, guid: 7cf260bce67f68c42a4eb304493fe8b9, type: 3}
+  wind: {fileID: 1654736843778140, guid: a38fbb175a289074ca9b08d3c592a80d, type: 3}
+  special: {fileID: 1654736843778140, guid: 41ae07b52cae8f7498167fbd52aa2c63, type: 3}
   allSkill:
   - {fileID: 1434627103891488, guid: 10f4fd8a08baeb94e8c5f4be3f1c8614, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4337801869660493228, guid: d3933488aeda58948beda1c44bb968c2, type: 3}
+  - {fileID: 2811844132228647658, guid: 75462310a36f6174aae4da08a2fa927e, type: 3}
+  - {fileID: 1206498299807332555, guid: fc493b32c8bcabd4cbc0bd61a72ae536, type: 3}
+  - {fileID: 1032870836932200, guid: 26255240385821a4185c7163c7a7aec6, type: 3}
+  - {fileID: 100006, guid: 4b249c5a1d90862498166ff4c4d9a1da, type: 3}
+  - {fileID: 1434627103891488, guid: b5f790573dbc6ba46a8dd9bcd1c008e8, type: 3}
+  - {fileID: 277542664871859187, guid: 587540f3b1e8b5e4cba5e6f3b16e3f7a, type: 3}
+  - {fileID: 100008, guid: 0a7a848459600f74a854a1112e3ecd9f, type: 3}
 --- !u!114 &919695979
 MonoBehaviour:
   m_ObjectHideFlags: 0

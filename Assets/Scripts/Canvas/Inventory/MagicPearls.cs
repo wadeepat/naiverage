@@ -16,7 +16,7 @@ public class MagicPearls : MonoBehaviour
     void Start()
     {
         MP = Database.magicPearl;
-        MP.stack = 1000;
+        MP.stack = 500000;
     }
 
     // Update is called once per frame
