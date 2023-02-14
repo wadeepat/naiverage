@@ -385,11 +385,12 @@ public class StageHandler : MonoBehaviour
                     }
                 }
                 break;
-            case "AbelGotoHouse":
+            case "AbelGoToHouse":
                 foreach (NPC_Details npc in NPCs)
                 {
                     if (npc.idx == NPCIndex.Abel)
                     {
+                        // Debug.Log("Goooo");
                         npc.Object.GetComponent<NPC>().Goto(n_oldmanHouse);
                         break;
                     }

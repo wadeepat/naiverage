@@ -44,19 +44,37 @@ public class SaveSlotsMenu : MonoBehaviour, IDataPersistence
         else if (saveSlot.hasData)
         {
             confirmationPopupMenu.ActivateMenu(
-                "เริ่มเกมด้วย slot นี้จะเขียนทับข้อมูลเก่า ยืนยันที่จะทำใช่หรือไม่?",
-                //action of confirm btn
-                () =>
+                displayText: "เริ่มเกมด้วย slot นี้จะเขียนทับข้อมูลเก่า ยืนยันที่จะทำใช่หรือไม่?",
+                enableCancelBtn: true,
+                confirmAction: () =>
                 {
-                    // DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
-                    DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
-                    DataPersistenceManager.instance.NewGame();
+                    inputText.ActivateMenu(
+                        title: "ตั้งชื่อ slot",
+                        cancelText: "ยกเลิก",
+                        confirmAction: (string value) =>
+                        {
+                            if (value != "")
+                            {
+                                DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
 
-                    DataPersistenceManager.instance.SaveGame(true);
-                    SceneLoadingManager.instance.LoadScene(SceneIndex.Rachne);
+                                DataPersistenceManager.instance.NewGame();
+                                this.saveName = value;
+                                DataPersistenceManager.instance.SaveGame(true);
+                                SceneLoadingManager.instance.LoadScene(SceneIndex.Rachne);
+                                // DataPersistenceManager.instance.LoadGame(true);
+                                // DataPersistenceManager.instance.SaveGame(true);
+                                // ActivateMenu(this.isLoadingGame);
+                            }
+                        },
+                        cancelAction: () =>
+                        {
+                            inputText.DeactivateMenu();
+                            ActivateMenu(this.isLoadingGame);
+                        }
+                    );
                 },
                 //action of cancel btn
-                () =>
+                cancelAction: () =>
                 {
                     this.ActivateMenu(isLoadingGame);
                 }
@@ -134,6 +152,7 @@ public class SaveSlotsMenu : MonoBehaviour, IDataPersistence
 
         confirmationPopupMenu.ActivateMenu(
             "ยืนยันที่จะลบข้อมูล slot นี้ใช่หรือไม่?",
+            true,
             () =>
             {
                 AudioManager.instance.Play("delete");

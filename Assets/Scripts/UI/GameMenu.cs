@@ -24,6 +24,7 @@ public class GameMenu : MonoBehaviour
     {
         confirmationPopupMenu.ActivateMenu(
             "ต้องการที่จะกลับไปที่เมนูหลักใช่หรือไม่?\nข้อมูลหลังจากจุด checkpoint จะไม่ถูกบันทึก(ตอนนี้เซฟ)",
+            true,
             () =>
             {
                 //TODO change to save when checkpoint

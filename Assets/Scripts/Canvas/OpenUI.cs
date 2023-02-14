@@ -28,6 +28,10 @@ public class OpenUI : MonoBehaviour
     PlayerInput playerInput;
 
     SwitchInventory switchInv;
+    private void OnEnable()
+    {
+        show(false);
+    }
     void Start()
     {
         show(false);

@@ -40,7 +40,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     private void OnDisable()
     {
         UsePotions.onUsePotion -= CheckIsUsePotionQuest;
-        DeactivateAllCard();
+        DeactivateAllElement();
     }
     public void CheckIsUsePotionQuest()
     {
@@ -51,12 +51,14 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     {
         TutorialGuidingObject.transform.Find(cardName).gameObject.SetActive(active);
     }
-    private void DeactivateAllCard()
+    private void DeactivateAllElement()
     {
-        // foreach (GameObject card in TutorialGuidingObject.transform)
-        // {
-        //     card.SetActive(false);
-        // }
+        foreach (Transform card in TutorialGuidingObject.transform)
+        {
+            card.gameObject.SetActive(false);
+        }
+        confirmationPopup.gameObject.SetActive(false);
+
     }
     public void ReceiveActionThenContinueStory(string action, UnityAction ContinueStory)
     {
@@ -86,6 +88,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
             case "TrueEnding":
                 playerPath = 4;
                 PlayerManager.instance.playerLocation = SceneIndex.BlackScene;
+                DataPersistenceManager.instance.SaveGame(true);
                 SceneLoadingManager.instance.LoadScene(SceneIndex.BlackScene);
                 break;
             default:
@@ -110,12 +113,29 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
         SetForActivateUI();
         confirmationPopup.ActivateMenu(
             displayText: $"ยืนยันที่จะบันทึกเกมใน slot ที่ชื่อ <color={Database.COLORS["char"]}>{playerName}</color> อยู่ใช่หรือไม่?",
+            enableCancelBtn: true,
             confirmAction: () =>
             {
                 AudioManager.instance.Play("save");
                 DataPersistenceManager.instance.SaveGame(true);
                 DataPersistenceManager.instance.LoadGame(true);
                 ResetForDeactivateUI();
+            },
+            cancelAction: () => { ResetForDeactivateUI(); }
+        );
+    }
+    public void AskToLoad()
+    {
+        SetForActivateUI();
+        confirmationPopup.ActivateMenu(
+            displayText: $"เจ้าได้ต่อสู้จนถึงแก่ความตาย\nจึงต้องกลับไปเริ่มใหม่ยังจุดที่ save ล่าสุด",
+            enableCancelBtn: false,
+            confirmAction: () =>
+            {
+                AudioManager.instance.Play("save");
+                DataPersistenceManager.instance.LoadGame(true);
+                ResetForDeactivateUI();
+                SceneLoadingManager.instance.LoadScene(PlayerManager.instance.playerLocation);
             },
             cancelAction: () => { ResetForDeactivateUI(); }
         );

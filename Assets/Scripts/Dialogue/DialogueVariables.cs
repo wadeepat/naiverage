@@ -80,7 +80,7 @@ public class DialogueVariables
             variables.Remove(name);
             variables.Add(name, value);
         }
-        Debug.Log("Variable changed: " + name + " = " + value);
+        // Debug.Log("Variable changed: " + name + " = " + value);
     }
     private void VariablesToStory(Story story)
     {

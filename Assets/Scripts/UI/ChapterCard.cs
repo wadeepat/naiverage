@@ -90,7 +90,7 @@ public class ChapterCard : MonoBehaviour
         desc.text = cardDetails[idx].description;
         timer = 0;
         this.gameObject.SetActive(true);
-        Debug.Log("ActiveCard " + DialogueManager.dialogueIsPlaying);
+        // Debug.Log("ActiveCard " + DialogueManager.dialogueIsPlaying);
     }
     public void DeactivateMenu()
     {
@@ -98,7 +98,7 @@ public class ChapterCard : MonoBehaviour
         this.gameObject.SetActive(false);
         if (cardIdx != 0)
             ActionHandler.instance.AskToSave();
-        Debug.Log("DeactiveCard " + DialogueManager.dialogueIsPlaying);
+        // Debug.Log("DeactiveCard " + DialogueManager.dialogueIsPlaying);
     }
     public bool IsActivated()
     {
