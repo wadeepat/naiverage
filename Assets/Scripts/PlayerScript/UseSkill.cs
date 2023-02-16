@@ -7,18 +7,26 @@ public class UseSkill : MonoBehaviour
 {
     public Transform LHPoint, RHPoint, Point;
     public GameObject fire, water, wind, special;
-    private GameObject spell1, spell2;
     public GameObject[] allSkill;
+
+    private bool calling = false;
+    private GameObject spell1, spell2;
     private Animator _anim;
     private Image[] slotSkillsM;
+    private int[] slotStackSkills;
+    private int[] a;
     private GameObject skill;
     private PlayerAttackController _attackInfo;
     void Start()
     {
+        calling = false;
         _attackInfo = GetComponent<PlayerAttackController>();
         _anim = GetComponent<Animator>();
         // skill = GameObject.Find("Canvas").transform.Find("Panel").Find("Character panel").Find("All funtion").Find("Skill").gameObject;
         skill = GameObject.Find("Canvas/Panel/Character panel/All funtion/Skill");
+        slotSkillsM = skill.GetComponent<SkillsUnlock>().slotSkillsM;
+        slotStackSkills = skill.GetComponent<SkillsUnlock>().slotStackSkills;
+
     }
 
     // Update is called once per frame
@@ -44,23 +52,19 @@ public class UseSkill : MonoBehaviour
 
 
         skill.GetComponent<SkillsUnlock>().CooldownSkill();
-        if(!_anim.GetCurrentAnimatorStateInfo(0).IsTag("AttackCombo")){
-           if (_anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Done"))
+        if(!_anim.GetCurrentAnimatorStateInfo(0).IsTag("AttackCombo") && !calling){
+           if (Input.GetKeyDown(KeyCode.Alpha1) && slotStackSkills[0] != -1)
             {
-                _anim.SetBool("Skill", false);
-                _anim.SetInteger("SkillNum", 0);
-                Destroy(spell1);
-                Destroy(spell2);
-            }else if (Input.GetKeyDown(KeyCode.Alpha1))
+                a = PlayerStatus.callStatus();
+                if(a[3] >= 30) GetSkillSlot(0);
+            }else if (Input.GetKeyDown(KeyCode.Alpha2)&& slotStackSkills[1] != -1)
             {
-                slotSkillsM = skill.GetComponent<SkillsUnlock>().slotSkillsM;
-                GetSkillSlot(0);
-            }else if (Input.GetKeyDown(KeyCode.Alpha2))
+                a = PlayerStatus.callStatus();
+                if(a[3] >= 30) GetSkillSlot(1);
+            }else if (Input.GetKeyDown(KeyCode.Alpha3)&& slotStackSkills[2] != -1)
             {
-                GetSkillSlot(1);
-            }else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                GetSkillSlot(2);
+                a = PlayerStatus.callStatus();
+                if(a[3] >= 30) GetSkillSlot(2);
             } 
         }
         
@@ -109,7 +113,19 @@ public class UseSkill : MonoBehaviour
             spell1 = Instantiate(special, LHPoint.position, transform.rotation);
             spell2 = Instantiate(special, RHPoint.position, transform.rotation);
         }
+    }
+
+    public void UsingSkillImmediately (int num){
         Instantiate(allSkill[num-1], Point.position, transform.rotation);
-        
+    }
+    public void StateSkill (){
+        calling = true;
+    }
+    public void ExitSkill (){
+        calling = false;
+        _anim.SetBool("Skill", false);
+        _anim.SetInteger("SkillNum", 0);
+        Destroy(spell1);
+        Destroy(spell2);
     }
 }

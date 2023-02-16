@@ -35601,7 +35601,7 @@ Transform:
   - {fileID: 205969131540029322}
   - {fileID: 7978579286703171326}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 30, z: 0}
 --- !u!114 &7731957736895921312
 MonoBehaviour:
@@ -35629,8 +35629,8 @@ MonoBehaviour:
   - {fileID: 1206498299807332555, guid: fc493b32c8bcabd4cbc0bd61a72ae536, type: 3}
   - {fileID: 1032870836932200, guid: 26255240385821a4185c7163c7a7aec6, type: 3}
   - {fileID: 100006, guid: 4b249c5a1d90862498166ff4c4d9a1da, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4337801869660493228, guid: 64a04c8bd21fb8b46a2e98cfd2e96f5c, type: 3}
+  - {fileID: 277542664871859187, guid: 587540f3b1e8b5e4cba5e6f3b16e3f7a, type: 3}
   - {fileID: 100008, guid: 0a7a848459600f74a854a1112e3ecd9f, type: 3}
 --- !u!1 &7731957736895921314
 GameObject:

@@ -22,6 +22,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float attackRange = 2f;
     [SerializeField] protected string attackType = "close";
     [SerializeField] protected string monsterType = "normal"; //normal will patrol, boss/mini boss won't
+    [SerializeField] protected int monsterElement = 0; // 0 = normal, 1 = fire, 2 = water, 3 = wind 
+    [SerializeField] protected int defense;
+    [SerializeField] protected int resist;
 
     [Header("If Range Attack")]
     [SerializeField] protected GameObject projectileObj;
@@ -243,6 +246,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamaged(float damageAmount)
     {
         StayThisPosition();
+        
         hp -= damageAmount;
         Debug.Log(damageAmount);
         if (hp <= 0)
@@ -267,6 +271,7 @@ public class Enemy : MonoBehaviour
         }
         damagedTimer = 0;
     }
+    
     public void RegenHP(float health)
     {
         //TODO regen hp
@@ -350,5 +355,44 @@ public class Enemy : MonoBehaviour
         agent.speed = moveSpeed;
     
     }
+    public float CalDamage(float damageAmount, int element)
+    {
+        // 0 = normal, 1 = fire, 2 = water, 3 = wind 
+        bool win = false;
+        switch(element){
+            case 0:
+                return damageAmount * (100.0f / (100 + defense));
+            case 1:
+                if(monsterElement == 2) win = false;
+                else if(monsterElement == 3) win = true;
+                else return damageAmount * (100.0f / (100 + resist));
+                break;
+            case 2:
+                if(monsterElement == 3) win = false;
+                else if(monsterElement == 1) win = true;
+                else return damageAmount * (100.0f / (100 + resist));
+                break;
+            case 3:
+                if(monsterElement == 1) win = false;
+                else if(monsterElement == 2) win = true;
+                else return damageAmount * (100.0f / (100 + resist));
+                break;
+        }
+        int num = Random.Range(1,101);
+        if(!win){
+            if(num<=50){
+                return 0f;
+            }else{
+                return damageAmount * (100.0f / (100 + (resist*2f)));
+            }
+        }else{
+            if(num<=70){
+                return damageAmount * 100.0f / (100 + (resist))*2f;
+            }
+        }
+        return damageAmount * (100.0f / (100 + resist));
+    }
 
 }
+
+
