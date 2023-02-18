@@ -27,14 +27,14 @@ EditorBuildSettings:
     path: Assets/Scenes/RachneField.unity
     guid: 3498f088a4400434c928de9bd98d8964
   - enabled: 1
+    path: Assets/Scenes/BossField.unity
+    guid: 9468aa4fc554f0f479c62c0f537652aa
+  - enabled: 1
     path: Assets/Scenes/Inventory.unity
     guid: a7d151ff0e65e1b40b68d82bfbd22f1a
   - enabled: 1
     path: Assets/Scenes/EnemyScene.unity
     guid: c90e1ddcf5cbcac44bf0a5dc118c621e
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/BlackScene.unity
     guid: 05fc2478ce21c8a44b8557a02bcac6b4
