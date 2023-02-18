@@ -105,10 +105,10 @@ public class Enemy : MonoBehaviour
             slider.value = (float)hp / (float)maxHealthPoint;
         else
             slider.value = 0;
-        
+
         CheckTimeAndStatus();
-        
-        
+
+
     }
     public virtual void OnChaseStateEnter()
     {
@@ -164,7 +164,7 @@ public class Enemy : MonoBehaviour
         animator.SetBool("isAttacking", false);
         animator.SetBool("isCooldown", true);
     }
-    public void OnCooldownStateUpdate()
+    public virtual void OnCooldownStateUpdate()
     {
         if (cooldownTimer >= cooldownTime)
         {
@@ -246,7 +246,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamaged(float damageAmount)
     {
         StayThisPosition();
-        
+
         hp -= damageAmount;
         Debug.Log(damageAmount);
         if (hp <= 0)
@@ -271,75 +271,91 @@ public class Enemy : MonoBehaviour
         }
         damagedTimer = 0;
     }
-    
+
     public void RegenHP(float health)
     {
         //TODO regen hp
         hp += health;
         if (hp > maxHealthPoint) hp = maxHealthPoint;
     }
-    public void CheckTimeAndStatus(){
+    public void CheckTimeAndStatus()
+    {
         time += Time.deltaTime;
         poisonTime -= Time.deltaTime;
         illusionTime -= Time.deltaTime;
         agonyTime -= Time.deltaTime;
-        if (time >= interpolationPeriod) {
+        if (time >= interpolationPeriod)
+        {
             time = 0.0f;
             StatusEffect();
         }
     }
-    public void Poison(){
+    public void Poison()
+    {
         poison = true;
-        if(poisonTime < 0){
+        if (poisonTime < 0)
+        {
             poisonTime = 15.0f;
-            animator.speed = 0.5f; 
+            animator.speed = 0.5f;
         }
     }
-    public void Illusion(){
+    public void Illusion()
+    {
         illusion = true;
-        if(illusionTime < 0){
+        if (illusionTime < 0)
+        {
             illusionTime = 3.0f;
-            animator.speed = 0.2f; 
+            animator.speed = 0.2f;
             animator.SetTrigger("damaged");
         }
 
     }
-    public void Agony(){
+    public void Agony()
+    {
         agony = true;
-        if(agonyTime < 0){
+        if (agonyTime < 0)
+        {
             agonyTime = 5.0f;
         }
 
     }
 
-    public void Burn(){
+    public void Burn()
+    {
         burn = true;
-        if(agonyTime < 0){
+        if (agonyTime < 0)
+        {
             agonyTime = 5.0f;
         }
     }
 
-    public void StatusEffect(){
-        if(poison) agent.speed = chaseSpeed/2;
-        else if(illusion) agent.speed = 0.0f;
+    public void StatusEffect()
+    {
+        if (poison) agent.speed = chaseSpeed / 2;
+        else if (illusion) agent.speed = 0.0f;
         else agent.speed = chaseSpeed;
-        if(poison){
+        if (poison)
+        {
             hp -= 2.0f;
-            if ( poisonTime < 0 )
+            if (poisonTime < 0)
             {
                 poison = false;
                 animator.speed = 1.0f;
             }
-        }else if(illusion){
+        }
+        else if (illusion)
+        {
 
-            if ( illusionTime <= 0 )
+            if (illusionTime <= 0)
             {
                 illusion = false;
                 animator.speed = 1.0f;
             }
-        }else if(agony){
+        }
+        else if (agony)
+        {
             hp -= 5.0f;
-            if ( agonyTime <= 0 )
+            if (agonyTime <= 0)
             {
                 agony = false;
             }
@@ -351,43 +367,51 @@ public class Enemy : MonoBehaviour
         agent.speed = chaseSpeed;
     }
     public virtual void SetToWalk()
-    {   
+    {
         agent.speed = moveSpeed;
-    
+
     }
     public float CalDamage(float damageAmount, int element)
     {
         // 0 = normal, 1 = fire, 2 = water, 3 = wind 
         bool win = false;
-        switch(element){
+        switch (element)
+        {
             case 0:
                 return damageAmount * (100.0f / (100 + defense));
             case 1:
-                if(monsterElement == 2) win = false;
-                else if(monsterElement == 3) win = true;
+                if (monsterElement == 2) win = false;
+                else if (monsterElement == 3) win = true;
                 else return damageAmount * (100.0f / (100 + resist));
                 break;
             case 2:
-                if(monsterElement == 3) win = false;
-                else if(monsterElement == 1) win = true;
+                if (monsterElement == 3) win = false;
+                else if (monsterElement == 1) win = true;
                 else return damageAmount * (100.0f / (100 + resist));
                 break;
             case 3:
-                if(monsterElement == 1) win = false;
-                else if(monsterElement == 2) win = true;
+                if (monsterElement == 1) win = false;
+                else if (monsterElement == 2) win = true;
                 else return damageAmount * (100.0f / (100 + resist));
                 break;
         }
-        int num = Random.Range(1,101);
-        if(!win){
-            if(num<=50){
+        int num = Random.Range(1, 101);
+        if (!win)
+        {
+            if (num <= 50)
+            {
                 return 0f;
-            }else{
-                return damageAmount * (100.0f / (100 + (resist*2f)));
             }
-        }else{
-            if(num<=70){
-                return damageAmount * 100.0f / (100 + (resist))*2f;
+            else
+            {
+                return damageAmount * (100.0f / (100 + (resist * 2f)));
+            }
+        }
+        else
+        {
+            if (num <= 70)
+            {
+                return damageAmount * 100.0f / (100 + (resist)) * 2f;
             }
         }
         return damageAmount * (100.0f / (100 + resist));

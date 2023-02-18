@@ -7,6 +7,7 @@ public class Boss : Enemy
     [Header("Final boss details")]
     [SerializeField] private float[] comboCd = new float[] { 0.75f, 1.5f, 0.25f, 2.5f };
     [SerializeField] private GameObject[] fireObject;
+    [SerializeField] private GameObject ultiObject;
     [SerializeField] private GameObject buffEffect;
     private int comboNo;
     private int turn;
@@ -37,6 +38,11 @@ public class Boss : Enemy
             }
         }
     }
+    public override void OnCooldownStateUpdate()
+    {
+        base.OnCooldownStateUpdate();
+        NextTurn();
+    }
     private void MonsterCombo(int comboNo)
     {
         switch (comboNo)
@@ -61,14 +67,21 @@ public class Boss : Enemy
         cooldownTimer = cd;
         animator.SetBool("isCooldown", true);
     }
-    public void ShootElement(int no, bool endCombo)
+    public void ShootElement(int no)
     {
         transform.LookAt(target);
         GameObject cainFire = Instantiate(fireObject[no], firePoint.position, transform.rotation);
-        if (endCombo) NextTurn();
+        // if (endCombo) NextTurn();
+    }
+    public void ShootUltimate()
+    {
+        transform.LookAt(target);
+        GameObject ultimate = Instantiate(ultiObject, firePoint.position, transform.rotation);
+        // NextTurn();
     }
     public void BuffMonster()
     {
+        GameObject buffFx = Instantiate(buffEffect, transform.position, buffEffect.transform.rotation);
         //TODO buff some stat if cain buff cri?? abel def? regen heal??
         if (monsterId == MonsterId.Abel)
         {
@@ -78,7 +91,7 @@ public class Boss : Enemy
         {
 
         }
-        NextTurn();
+        // NextTurn();
     }
     private void NextTurn()
     {

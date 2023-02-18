@@ -126,6 +126,8 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     }
     public void AskToLoad()
     {
+        AudioManager.instance.StopAllTrack();
+        AudioManager.instance.Play("sadness");
         SetForActivateUI();
         confirmationPopup.ActivateMenu(
             displayText: $"เจ้าได้ต่อสู้จนถึงแก่ความตาย\nจึงต้องกลับไปเริ่มใหม่ยังจุดที่ save ล่าสุด",

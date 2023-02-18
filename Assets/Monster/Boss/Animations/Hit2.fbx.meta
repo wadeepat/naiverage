@@ -61,11 +61,11 @@ ModelImporter:
       curves: []
       events:
       - time: 0.37957865
-        functionName: ShootCom2
+        functionName: ShootElement
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 99b46dabc20972147bdbd724e33db3c3, type: 3}
+        objectReferenceParameter: {fileID: 11500000, guid: de2d4ba2eccf2ea4387b5bf8648b815f, type: 3}
         floatParameter: 0
-        intParameter: 0
+        intParameter: 1
         messageOptions: 0
       transformMask: []
       maskType: 3
