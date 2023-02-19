@@ -98,9 +98,10 @@ public class Enemy : MonoBehaviour
         if (damagedTimer < RAGE_MODE_TIME) damagedTimer += Time.deltaTime;
         if (damageAnimTimer < CD_DAMAGE_ANIM) damageAnimTimer += Time.deltaTime;
         else RegenHP(1 * Time.deltaTime);
-        if (isDie) transform.position += new Vector3(0, -0.2f * Time.deltaTime, 0);
+        if (isDie && monsterType == "normal") transform.position += new Vector3(0, -0.15f * Time.deltaTime, 0);
 
-        if (healthBar.activeSelf) canvas.transform.LookAt(mainCamera);
+        // if (healthBar.activeSelf) canvas.transform.LookAt(mainCamera);
+        canvas?.transform.LookAt(mainCamera);
         if (hp >= 0)
             slider.value = (float)hp / (float)maxHealthPoint;
         else
@@ -164,6 +165,10 @@ public class Enemy : MonoBehaviour
         animator.SetBool("isAttacking", false);
         animator.SetBool("isCooldown", true);
     }
+    public virtual void OnCooldownStateEnter()
+    {
+        // Debug.Log("cooldown from enemy");
+    }
     public virtual void OnCooldownStateUpdate()
     {
         if (cooldownTimer >= cooldownTime)
@@ -185,7 +190,7 @@ public class Enemy : MonoBehaviour
     public void OnPatrollStateUpdate()
     {
         float distance = Vector2.Distance(target.position, transform.position);
-        if (distance < chaseRange)
+        if (distance < chaseRange || damagedTimer < RAGE_MODE_TIME)
         {
             animator.SetBool("isChasing", true);
             animator.SetBool("isPatrolling", false);
@@ -204,7 +209,7 @@ public class Enemy : MonoBehaviour
     public virtual void OnIdleStateUpdate()
     {
         float distance = Vector3.Distance(target.position, transform.position);
-        if (distance <= chaseRange)
+        if (distance <= chaseRange || damagedTimer < RAGE_MODE_TIME)
         {
             animator.SetBool("isChasing", true);
         }
@@ -240,7 +245,7 @@ public class Enemy : MonoBehaviour
     public void Died()
     {
         agent.enabled = false;
-        Destroy(gameObject, 7f);
+        if (monsterType == "normal") Destroy(gameObject, 7f);
         isDie = true;
     }
     public void TakeDamaged(float damageAmount)
@@ -261,17 +266,55 @@ public class Enemy : MonoBehaviour
         else
         {
             healthBar.SetActive(true);
-            if (damageAnimTimer >= CD_DAMAGE_ANIM)
+            if (monsterType == "normal")
             {
-                cooldownTime = 0.5f;
-                animator.SetTrigger("damaged");
-                animator.SetBool("isCooldown", true);
-                damageAnimTimer = 0;
+                if (damageAnimTimer >= CD_DAMAGE_ANIM &&
+                !animator.GetCurrentAnimatorStateInfo(0).IsTag("atk"))
+                {
+                    cooldownTime = 0.5f;
+                    animator.SetTrigger("damaged");
+                    animator.SetBool("isCooldown", true);
+                    damageAnimTimer = 0;
+                }
             }
+            else
+            {//Boss
+                if (damageAmount >= 0.3 * maxHealthPoint &&
+                !animator.GetCurrentAnimatorStateInfo(0).IsTag("atk"))
+                {
+                    cooldownTime = 0.5f;
+                    animator.SetTrigger("damaged");
+                    animator.SetBool("isCooldown", true);
+                }
+            }
+            Provoke();
         }
         damagedTimer = 0;
     }
+    public void Provoke()
+    {
+        if (monsterType == "boss") return;
+        // Debug.Log("Provoke Others");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        // Collider[] colliders = Physics.OverlapSphere(transform.position, 7f, LayerMask.NameToLayer("Enemy"));
+        foreach (GameObject col in enemies)
+        {
+            if (Vector3.Distance(transform.position, col.transform.position) <= 7f)
+            {
+                // Debug.Log("Provoke: " + col.name);
+                col.GetComponent<Enemy>()?.Provoked();
+            }
+        }
 
+    }
+    public void Provoked()
+    {
+        if (damagedTimer >= RAGE_MODE_TIME)
+        {
+            canvas.transform.Find("ProvokeSign")?.gameObject.SetActive(true);
+            damagedTimer = 0;
+        }
+    }
     public void RegenHP(float health)
     {
         //TODO regen hp

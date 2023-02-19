@@ -111,14 +111,12 @@ public class StageHandler : MonoBehaviour
                     EventTrigger("FirstMetCain");
                 break;
             case SceneIndex.RachneField:
-                Debug.Log("Rachen Field");
                 AudioManager.instance.Play("forestBackground");
                 if (QuestLog.GetActiveQuestById(13) != null ||
                     QuestLog.GetActiveQuestById(30) != null)
                     EventTrigger("SpawnRachne");
                 break;
             case SceneIndex.TrollField:
-                Debug.Log("Troll Field");
                 AudioManager.instance.Play("caveBackground");
                 if (QuestLog.GetActiveQuestById(24) != null ||
                     QuestLog.GetActiveQuestById(37) != null)
@@ -762,12 +760,41 @@ public class StageHandler : MonoBehaviour
                 PlayerManager.instance.mapEnable[SceneIndex.Cave] = false;
                 SceneLoadingManager.instance.LoadScene(SceneIndex.NaverTown);
                 break;
+            case "FightWithAbel":
+                ActionHandler.instance.SetPath(1);
+                LockAllMap();
+                PlayerManager.instance.playerLocation = SceneIndex.TrollField;
+                QuestLog.AddQuest(Database.questList[45]);
+                DataPersistenceManager.instance.SaveGame(true);
+                SceneLoadingManager.instance.LoadScene(SceneIndex.TrollField);
+                break;
+            case "FightWithCain":
+                ActionHandler.instance.SetPath(2);
+                LockAllMap();
+                PlayerManager.instance.playerLocation = SceneIndex.TrollField;
+                QuestLog.AddQuest(Database.questList[46]);
+                DataPersistenceManager.instance.SaveGame(true);
+                SceneLoadingManager.instance.LoadScene(SceneIndex.TrollField);
+                break;
+            case "Abel":
+                SpawnMonsterAt(0, MonsterId.Abel, 1);
+                break;
+            case "Cain":
+                SpawnMonsterAt(0, MonsterId.Cain, 1);
+                break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in OtherEvents");
                 break;
         }
     }
-    //private for tutorialScene
+    private void LockAllMap()
+    {
+        PlayerManager.instance.mapEnable[SceneIndex.Rachne] = false;
+        PlayerManager.instance.mapEnable[SceneIndex.NaverTown] = false;
+        PlayerManager.instance.mapEnable[SceneIndex.CalfordCastle] = false;
+        PlayerManager.instance.mapEnable[SceneIndex.BraewoodForest] = false;
+        PlayerManager.instance.mapEnable[SceneIndex.Cave] = false;
+    }
     private void SpawnMonsterAt(int spawnNo, MonsterId monsterIdx, int num)
     {
         if (spawnNo == 0)

@@ -4,17 +4,37 @@ using UnityEngine;
 
 public class DamageToPlayer : MonoBehaviour
 {
-    [SerializeField] private int damageAmount = 20;
+    [SerializeField] public int damageAmount = 20;
+    [SerializeField] private GameObject explosionFx;
+    // [SerializeField] private AudioClip explosionClip;
+    [SerializeField] private AudioClip explosionSound;
     public void SetDamage(int damage)
     {
         this.damageAmount = damage;
     }
+    // private void Start()
+    // {
+    //     // explosionSound = new AudioSource();
+    //     // explosionSound.sou
+    // }
     private void OnTriggerEnter(Collider target)
     {
         // Destroy(gameObject);
         if (target.gameObject.tag.Contains("Player"))
         {
-            Destroy(gameObject);
+            if (explosionFx)
+            {
+                GameObject explosion = Instantiate(explosionFx, transform.position, transform.rotation);
+                if (explosionSound)
+                {
+                    AudioSource sound = explosion.AddComponent<AudioSource>();
+                    sound.clip = explosionSound;
+                    sound.volume = 0.35f;
+                    sound.Play();
+                }
+                Destroy(explosion, 1);
+                Destroy(gameObject);
+            }
             target.gameObject.GetComponent<PlayerStatus>().TakeDamaged(damageAmount);
         }
         else if (target.gameObject.name == "Terrain")

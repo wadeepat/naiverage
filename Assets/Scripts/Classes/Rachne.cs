@@ -18,10 +18,10 @@ public class Rachne : Enemy
         StayThisPosition();
         SetToWalk();
     }
-    public override void OnIdleStateUpdate()
-    {
+    // public override void OnIdleStateUpdate()
+    // {
 
-    }
+    // }
     public override void OnChaseStateEnter()
     {
         // comboNo = Random.Range(0, 4);

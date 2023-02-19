@@ -1410,6 +1410,58 @@ public class Database : MonoBehaviour
                 },
             }
         );
+        questList.Add(
+            new Quest()
+            {
+                questId = 45,
+                questName = $"ต่อสู้กับ {ColorText("char", "Abel")}",
+                questDescription = $"เจ้าเลือกที่จะช่วยเหลือ {ColorText("char", "Cain")} ดังนั้นต่อสู่กับ {ColorText("char", "Abel")} เพื่อช่วยเหลือเขา",
+                location = SceneIndex.TrollField,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)MonsterId.Abel,
+                    type = Quest.Objective.Type.kill,
+                    amount = 1,
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("Abel");
+                },
+                compleltedAction = () =>
+                {
+                    DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(4, "DefeatAbel"));
+                }
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 46,
+                questName = $"ต่อสู้กับ {ColorText("char", "Cain")}",
+                questDescription = $"เจ้าเลือกที่จะช่วยเหลือ {ColorText("char", "Abel")} ดังนั้นต่อสู่กับ {ColorText("char", "Cain")} เพื่อช่วยเหลือเขา",
+                location = SceneIndex.TrollField,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)MonsterId.Cain,
+                    type = Quest.Objective.Type.kill,
+                    amount = 1,
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("Cain");
+                },
+                compleltedAction = () =>
+                {
+                    DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(4, "DefeatCain"));
+                }
+            }
+        );
     }
     private string ColorText(string type, string text)
     {
