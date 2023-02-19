@@ -25,7 +25,6 @@ public class LearningSkills : MonoBehaviour
         if(invenSkillBook.yourSkillbook.Count <= 4)lastPage = 1;
         else if(invenSkillBook.yourSkillbook.Count <= 8) lastPage = 2;
         else lastPage = 3;
-        // Debug.Log(lastPage);
         currentPage.text = "" + page;
         allPage.text = "" + lastPage;
         show(page);
@@ -101,7 +100,7 @@ public class LearningSkills : MonoBehaviour
         allPage.text = "" + lastPage;
     }
 
-        public void PreviousItem(){
+    public void PreviousItem(){
         if(page > firstPage){
             page--;
             show(page);
@@ -115,5 +114,16 @@ public class LearningSkills : MonoBehaviour
             show(page);
             currentPage.text = "" + page;
         }
+    }
+
+    public void SetDefault(){
+        page = 1;
+        firstPage = 1;
+        if(invenSkillBook.yourSkillbook.Count <= 4)lastPage = 1;
+        else if(invenSkillBook.yourSkillbook.Count <= 8) lastPage = 2;
+        else lastPage = 3;
+        currentPage.text = "" + page;
+        allPage.text = "" + lastPage;
+        show(page);
     }
 }

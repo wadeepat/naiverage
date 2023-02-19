@@ -33,7 +33,7 @@ public class EmberStrike : MonoBehaviour
             Debug.Log("destoryE");
             Instantiate(bomb, gameObject.transform.position, transform.rotation);
             int damage = PlayerStatus.damageSkill(200);
-            target.gameObject.GetComponent<Enemy>().TakeDamaged(damage);
+            target.gameObject.GetComponent<Enemy>().TakeDamaged(damage, ElementType.Fire);
         }else if (target.gameObject.name == "Terrain"){
             Debug.Log("destoryT");
             Instantiate(bomb, gameObject.transform.position, transform.rotation);

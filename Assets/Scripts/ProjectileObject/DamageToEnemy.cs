@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageToEnemy : MonoBehaviour
 {
-    [SerializeField] private int damageAmount = 20;
+    [SerializeField] protected ElementType  elementType;
     private void OnTriggerEnter(Collider target)
     {
         // Debug.Log(target.gameObject.name);
@@ -12,7 +12,7 @@ public class DamageToEnemy : MonoBehaviour
         {
             Destroy(transform.parent.gameObject);
             float a = (float)PlayerStatus.damageSkill(0);
-            target.gameObject.GetComponent<Enemy>().TakeDamaged(a);
+            target.gameObject.GetComponent<Enemy>().TakeDamaged(a, elementType);
         }
         else if (target.gameObject.name == "Terrain")
             Destroy(transform.parent.gameObject);

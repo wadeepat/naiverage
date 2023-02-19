@@ -589,6 +589,11 @@ MonoBehaviour:
   attackRange: 2
   attackType: range
   monsterType: boss
+  monsterElement: 0
+  defense: 0
+  resist: 0
+  elementType: 2
+  imageElement: {fileID: 0}
   projectileObj: {fileID: 100006, guid: 97afcf5b381c6aa4a95aed170483c974, type: 3}
   firePoint: {fileID: 2207599077941749408}
   maxHealthPoint: 300
