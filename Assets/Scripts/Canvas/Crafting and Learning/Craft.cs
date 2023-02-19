@@ -14,12 +14,13 @@ public class craft
     public Text[] craftingText;
     public Sprite[] slotInCraftingSprite;
     public Image[] slotInCrafting;
+    public Button button;
 
     public craft(){
 
     }
 
-    public craft(int CraftableItemId, Text CraftedItemName, Sprite CraftedItemSprite,Image CraftedItem, Image[] SlotInCrafting, Sprite[] SlotInCraftingSprite, Text[] CraftingText){
+    public craft(int CraftableItemId, Text CraftedItemName, Sprite CraftedItemSprite,Image CraftedItem, Image[] SlotInCrafting, Sprite[] SlotInCraftingSprite, Text[] CraftingText, Button Button){
         CraftableItemId = craftableItemId;
         CraftedItemName = craftedItemName;
         CraftedItemSprite = craftedItemSprite;
@@ -27,5 +28,6 @@ public class craft
         SlotInCrafting = slotInCrafting;
         SlotInCraftingSprite = slotInCraftingSprite;
         CraftingText = craftingText;
+        Button = button;
     }
 }

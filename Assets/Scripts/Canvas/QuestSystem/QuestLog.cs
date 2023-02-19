@@ -73,8 +73,7 @@ public class QuestLog
         questList.Remove(quest);
         completedQuest.Add(quest);
         if (quest.compleltedAction != null) quest.compleltedAction();
-        // Inventory.giveGold(quest.goldReward);
-        // Character.giveExp(quest.expReward);
+        MagicPearls.GetPearl(quest.MPReward);
         onQuestChange.Invoke(questList, completedQuest);
     }
 

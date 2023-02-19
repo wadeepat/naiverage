@@ -2951,11 +2951,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a400f30bcce7d428ba5b557ef994cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: Troll
+  monsterId: 0
   moveSpeed: 1.5
   attackRange: 2
   attackType: close
   monsterType: miniboss
+  monsterElement: 0
+  defense: 0
+  resist: 0
+  elementType: 1
+  imageElement: {fileID: 0}
   projectileObj: {fileID: 0}
   firePoint: {fileID: 0}
   maxHealthPoint: 500

@@ -32,7 +32,7 @@ public class Blaze : MonoBehaviour
             Debug.Log("destoryE");
             Instantiate(bomb, gameObject.transform.position, transform.rotation);
             int damage = PlayerStatus.damageSkill(120);
-            target.gameObject.GetComponent<Enemy>().TakeDamaged(damage);
+            target.gameObject.GetComponent<Enemy>().TakeDamaged(damage,ElementType.Fire);
             Destroy(gameObject);
         }
         else if (target.gameObject.name == "Terrain"){

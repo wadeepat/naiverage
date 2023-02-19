@@ -3676,6 +3676,11 @@ MonoBehaviour:
   attackRange: 2
   attackType: close
   monsterType: normal
+  monsterElement: 0
+  defense: 0
+  resist: 0
+  elementType: 3
+  imageElement: {fileID: 0}
   projectileObj: {fileID: 0}
   firePoint: {fileID: 0}
   maxHealthPoint: 100

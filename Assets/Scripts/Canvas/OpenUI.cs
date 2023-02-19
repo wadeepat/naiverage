@@ -9,6 +9,7 @@ public class OpenUI : MonoBehaviour
     // Start is called before the first frame update
     // Inventory inventory;
     public GameObject Panel;
+    public GameObject CharacterPanel;
     public GameObject Character;
     public GameObject Potion;
     public GameObject Skill;
@@ -20,24 +21,32 @@ public class OpenUI : MonoBehaviour
     private GameObject Player;
 
     public bool inven;
-    public bool craft;
-
 
     PlayerAttackController attack;
     StarterAssetsInputs assetsInputs;
     PlayerInput playerInput;
 
     SwitchInventory switchInv;
+    LearningSkills learnSkill;
+    Crafting craftPotion;
     private void OnEnable()
     {
+        Debug.Log("on enable");
+        Panel = GameObject.Find("Canvas/Panel");
+        CharacterPanel = Panel.transform.Find("Character panel").gameObject;
+        Character = CharacterPanel.transform.Find("All funtion/Character").gameObject;
+        Potion = CharacterPanel.transform.Find("All funtion/Potion").gameObject;
+        Skill = CharacterPanel.transform.Find("All funtion/Skill").gameObject;
+        Quest = CharacterPanel.transform.Find("All funtion/Quest").gameObject;
+        Status = CharacterPanel.transform.Find("All funtion/Character/Left/Status/Status menu").gameObject;
+        UpgradeStatus = CharacterPanel.transform.Find("All funtion/Character/Left/Status/Upgrade status").gameObject;
+        learnSkill = Skill.GetComponent<LearningSkills>();
+        craftPotion = Panel.GetComponent<Crafting>();
+        inven = true;
         show(false);
     }
     void Start()
     {
-        show(false);
-
-        inven = true;
-        craft = true;
         if (SceneManager.GetActiveScene().buildIndex != (int)SceneIndex.BlackScene)
         {
             Player = PlayerManager.instance.player;
@@ -45,35 +54,40 @@ public class OpenUI : MonoBehaviour
             assetsInputs = Player?.GetComponent<StarterAssetsInputs>();
             playerInput = Player.GetComponent<PlayerInput>();
         }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         bool i = Input.GetKeyDown("i");
-        if (i &&
-            !DialogueManager.dialogueIsPlaying &&
-            !ActionHandler.instance.IsSomeWindowsActivated())
+        if (i)
         {
-            if (inven == true)
-            {
+            if(DialogueManager.dialogueIsPlaying ||
+            ActionHandler.instance.IsSomeWindowsActivated()){
+                if (inven == false)
+                {
+                    //close
+                    inven = true;
+                    show(false);
+                    DialogueManager.dialogueIsPlaying = false;
+                    Lockscreen(false);
+                }
+            }else{
                 //open 
-                show(true);
-                Lockscreen(true);
                 inven = false;
+                show(true);
+                DialogueManager.dialogueIsPlaying = true;
+                Lockscreen(true);
             }
-            else
-            {
-                show(false);
-                Lockscreen(false);
-                inven = true;
+        }
+        if(inven && i){
 
-            }
         }
     }
     void Lockscreen(bool l)
     {
-        //Stop animetion player
+        // Stop animetion player
         // Player.SetActive(false);
         // playerInput.enabled = false;
         if (l == true)
@@ -101,17 +115,18 @@ public class OpenUI : MonoBehaviour
     }
     public void show(bool i)
     {
-        Panel.SetActive(i);
+        CharacterPanel.SetActive(i);
         Character.SetActive(i);
         Status.SetActive(true);
         UpgradeStatus.SetActive(false);
         Potion.SetActive(false);
         Skill.SetActive(false);
         Quest.SetActive(false);
+        
     }
     public void showCharacter()
     {
-        Panel.SetActive(true);
+        CharacterPanel.SetActive(true);
         Character.SetActive(true);
         Potion.SetActive(false);
         Skill.SetActive(false);
@@ -119,24 +134,26 @@ public class OpenUI : MonoBehaviour
     }
     public void showPotion()
     {
-        Panel.SetActive(true);
+        CharacterPanel.SetActive(true);
         Character.SetActive(false);
         Potion.SetActive(true);
+        craftPotion.SetDefault();
         Skill.SetActive(false);
         Quest.SetActive(false);
     }
     public void showSkill()
     {
-        Panel.SetActive(true);
+        CharacterPanel.SetActive(true);
         Character.SetActive(false);
         Potion.SetActive(false);
         Skill.SetActive(true);
+        learnSkill.SetDefault();
         Quest.SetActive(false);
     }
 
     public void showQuest()
     {
-        Panel.SetActive(true);
+        CharacterPanel.SetActive(true);
         Character.SetActive(false);
         Potion.SetActive(false);
         Skill.SetActive(false);

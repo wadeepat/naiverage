@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected int monsterElement = 0; // 0 = normal, 1 = fire, 2 = water, 3 = wind 
     [SerializeField] protected int defense;
     [SerializeField] protected int resist;
+    [SerializeField] protected ElementType  elementType;
+    [SerializeField] protected Image imageElement;
 
     [Header("If Range Attack")]
     [SerializeField] protected GameObject projectileObj;
@@ -60,6 +62,8 @@ public class Enemy : MonoBehaviour
     protected GameObject canvas;
     protected GameObject healthBar;
     protected Slider slider;
+    // public Sprite spriteElement;
+    // public Image imageElement;
     //values
     protected float hp;
     protected float cooldownTime;
@@ -68,11 +72,13 @@ public class Enemy : MonoBehaviour
     protected bool poison, illusion, agony, burn;
 
     //every 1 seconds
+    private Sprite spriteElement;
     private float time = 0.0f;
     private float interpolationPeriod = 1.0f;
 
     protected virtual void Start()
     {
+        ShowElement(elementType);
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = stoppingDistance;
         animator = GetComponent<Animator>();
@@ -248,11 +254,10 @@ public class Enemy : MonoBehaviour
         if (monsterType == "normal") Destroy(gameObject, 7f);
         isDie = true;
     }
-    public void TakeDamaged(float damageAmount)
+    public void TakeDamaged(float damageAmount, ElementType element)
     {
         StayThisPosition();
-
-        hp -= damageAmount;
+        hp -= CalDamage(damageAmount, element);
         Debug.Log(damageAmount);
         if (hp <= 0)
         {
@@ -414,27 +419,26 @@ public class Enemy : MonoBehaviour
         agent.speed = moveSpeed;
 
     }
-    public float CalDamage(float damageAmount, int element)
+    public float CalDamage(float damageAmount, ElementType element)
     {
         // 0 = normal, 1 = fire, 2 = water, 3 = wind 
         bool win = false;
-        switch (element)
-        {
-            case 0:
+        switch(element){
+            case ElementType.Physical:
                 return damageAmount * (100.0f / (100 + defense));
-            case 1:
-                if (monsterElement == 2) win = false;
-                else if (monsterElement == 3) win = true;
+            case ElementType.Fire:
+                if(elementType == ElementType.Water) win = false;
+                else if(elementType == ElementType.Wind) win = true;
                 else return damageAmount * (100.0f / (100 + resist));
                 break;
-            case 2:
-                if (monsterElement == 3) win = false;
-                else if (monsterElement == 1) win = true;
+            case ElementType.Water:
+                if(elementType == ElementType.Wind) win = false;
+                else if(elementType == ElementType.Fire) win = true;
                 else return damageAmount * (100.0f / (100 + resist));
                 break;
-            case 3:
-                if (monsterElement == 1) win = false;
-                else if (monsterElement == 2) win = true;
+            case ElementType.Wind:
+                if(elementType == ElementType.Fire) win = false;
+                else if(elementType == ElementType.Water) win = true;
                 else return damageAmount * (100.0f / (100 + resist));
                 break;
         }
@@ -458,6 +462,19 @@ public class Enemy : MonoBehaviour
             }
         }
         return damageAmount * (100.0f / (100 + resist));
+    }
+
+    void ShowElement(ElementType e){
+        if(e == ElementType.Fire){
+            spriteElement = Resources.Load<Sprite>("f");
+        }else if(e == ElementType.Water){
+            spriteElement = Resources.Load<Sprite>("wt");
+        }else if(e == ElementType.Wind){
+            spriteElement = Resources.Load<Sprite>("w");
+        }else{
+            spriteElement = Resources.Load<Sprite>("phy");
+        }
+        imageElement.sprite = spriteElement;
     }
 
 }

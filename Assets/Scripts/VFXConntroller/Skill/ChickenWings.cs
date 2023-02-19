@@ -32,7 +32,7 @@ public class ChickenWings : MonoBehaviour
         {
             Instantiate(bomb, gameObject.transform.position, transform.rotation);
             int damage = PlayerStatus.damageSkill(200);
-            target.gameObject.GetComponent<Enemy>().TakeDamaged(damage);
+            target.gameObject.GetComponent<Enemy>().TakeDamaged(damage,ElementType.Physical);
         }
         
     }

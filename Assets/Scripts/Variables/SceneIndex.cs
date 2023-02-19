@@ -29,3 +29,12 @@ public enum NPCIndex
     Cain = 5,
     Villager = 6,
 }
+
+[System.Serializable]
+public enum ElementType
+{
+    Physical,
+    Fire,
+    Water,
+    Wind
+}

@@ -11,12 +11,8 @@ public class Crafting : MonoBehaviour
     public int lastPage;
     public Text currentPage;
     public Text allPage;
-
     public craft[] craft = new craft[4];
     
-
-    public bool craftAble;
-
     void Start()
     {
         page = 1;
@@ -24,9 +20,7 @@ public class Crafting : MonoBehaviour
         lastPage = 3;
         currentPage.text = "" + page;
         allPage.text = "" + lastPage;
-        for(int i=0; i<4; i++){
-        Load(craft[i].craftableItemId, craft[i].craftedItemName, craft[i].craftedItemSprite, craft[i].craftedItem, craft[i].slotInCraftingSprite, craft[i].slotInCrafting, craft[i].craftingText);
-        }
+        show(page);
     }
 
     // Update is called once per frame
@@ -34,8 +28,17 @@ public class Crafting : MonoBehaviour
     {
     
     }
-
-    void Load(int craftableItemId, Text craftedItemName, Sprite craftedItemSprite, Image craftedItem, Sprite[] SlotInCraftingSprite, Image[] SlotInCrafting, Text[] craftingText){
+    void show(int pageNow){
+        int num;
+        if(pageNow == 1) num = 0;
+        else if(pageNow == 2)num = 4;
+        else num = 8;
+        for(int i=0; i<4; i++){
+            craft[i].craftableItemId = (i+1)+num;
+            Load(craft[i].craftableItemId, craft[i].craftedItemName, craft[i].craftedItemSprite, craft[i].craftedItem, craft[i].slotInCraftingSprite, craft[i].slotInCrafting, craft[i].craftingText, craft[i].button);
+        }
+    }
+    void Load(int craftableItemId, Text craftedItemName, Sprite craftedItemSprite, Image craftedItem, Sprite[] SlotInCraftingSprite, Image[] SlotInCrafting, Text[] craftingText, Button button){
         craftedItemName.text = "" + Database.potionList[craftableItemId].name;
 
         craftedItemSprite = Database.potionList[craftableItemId].itemSprite;
@@ -52,39 +55,33 @@ public class Crafting : MonoBehaviour
         craftingText[0].text = ""+Database.potionList[craftableItemId].q1;
         craftingText[1].text = ""+Database.potionList[craftableItemId].q2;
         craftingText[2].text = ""+Database.potionList[craftableItemId].q3;
+
+        if(CraftAbleFunction(craftableItemId)) button.gameObject.SetActive(true);
+        else button.gameObject.SetActive(false);
+
     }
 
     public void PreviousItem(){
         if(page > firstPage){
-            for(int i=0; i<4; i++){
-                craft[i].craftableItemId -= 4;
-                Load(craft[i].craftableItemId, craft[i].craftedItemName, craft[i].craftedItemSprite, craft[i].craftedItem, craft[i].slotInCraftingSprite, craft[i].slotInCrafting, craft[i].craftingText);
-            }
             page--;
+            show(page);
             currentPage.text = "" + page;
         }
     }
 
     public void NextItem(){
         if(page < lastPage){
-            for(int i=0; i<4; i++){
-                craft[i].craftableItemId += 4;
-                Load(craft[i].craftableItemId, craft[i].craftedItemName, craft[i].craftedItemSprite, craft[i].craftedItem, craft[i].slotInCraftingSprite, craft[i].slotInCrafting, craft[i].craftingText);
-            }
             page++; 
+            show(page);
             currentPage.text = "" + page;
         }
     }
     
 
-    public void CraftAbleFunction(int button){
-
-    }
-    public void CraftItem(int button){
+    bool CraftAbleFunction(int craftableItemId){
         int a = 0;
         int b = 0;
         int c = 0;
-        int craftableItemId = craft[button].craftableItemId;
         //check craftable
         for(int i=0; i < 28; i++){
             if(GetComponent<Inventory>().yourInventory[i].id == Database.potionList[craftableItemId].n1){
@@ -99,11 +96,17 @@ public class Crafting : MonoBehaviour
         }
 
         if(a >= Database.potionList[craftableItemId].q1 && b>= Database.potionList[craftableItemId].q2 && c >= Database.potionList[craftableItemId].q3){
-            craftAble = true;
+            return true;
         }else{
-            craftAble = false;
+            return false;
         }
-        if(craftAble == true){
+    }
+    public void CraftItem(int button){
+        int a = 0;
+        int b = 0;
+        int c = 0;
+        int craftableItemId = craft[button].craftableItemId;
+        if(CraftAbleFunction(craftableItemId)){
             a = Database.potionList[craftableItemId].q1;
             b = Database.potionList[craftableItemId].q2;
             c = Database.potionList[craftableItemId].q3;
@@ -157,9 +160,17 @@ public class Crafting : MonoBehaviour
                     }
                 }
             }
-            craftAble = false;
+            show(page);
         }
 
+    }
+    public void SetDefault(){
+        page = 1;
+        firstPage = 1;
+        lastPage = 3;
+        currentPage.text = "" + page;
+        allPage.text = "" + lastPage;
+        show(page);
     }
     
 }
