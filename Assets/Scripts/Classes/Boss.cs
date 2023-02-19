@@ -7,12 +7,44 @@ public class Boss : Enemy
     [Header("Final boss details")]
     [SerializeField] private float[] comboCd = new float[] { 0.75f, 1.5f, 0.25f, 2.5f };
     [SerializeField] private GameObject[] fireObject;
+    [SerializeField] private GameObject ultiObject;
     [SerializeField] private GameObject buffEffect;
+    const float DEF_BUFF_TIME = 10f;
+    const float CRIDAMAGE_BUFF_TIME = 5f;
     private int comboNo;
-    private int turn;
+    private int turn = -1;
+    //*for Abel
+    private bool defBuff = false;
+    private float defBuffTimer = 0f;
+    //*for Cain
+    private bool criDamageBuff = false;
+    private float criDamageBuffTimer = 0f;
+    protected override void Update()
+    {
+        // Debug.Log("update from boss");
+        base.Update();
+        if (defBuff)
+        {
+            if (defBuffTimer >= DEF_BUFF_TIME)
+            {
+                defBuff = false;
+            }
+            else defBuffTimer += Time.deltaTime;
+        }
+        if (criDamageBuff)
+        {
+            if (criDamageBuffTimer >= CRIDAMAGE_BUFF_TIME)
+            {
+                criDamageBuff = false;
+            }
+            else criDamageBuffTimer += Time.deltaTime;
+        }
+    }
     public override void OnChaseStateEnter()
     {
+        // ResetCombo();
         comboNo = Random.Range(0, 3);
+        Debug.Log("turn: " + turn);
     }
     public override void OnChaseStateUpdate()
     {
@@ -37,48 +69,83 @@ public class Boss : Enemy
             }
         }
     }
+    public override void OnCooldownStateEnter()
+    {
+        // base.OnCooldownStateEnter();
+        Debug.Log("cooldown from boss");
+        ResetCombo();
+        NextTurn();
+    }
     private void MonsterCombo(int comboNo)
     {
+        // Debug.Log("Start com: " + comboNo);
         switch (comboNo)
         {
             case 0:
-                TriggerCombo("com1", comboCd[comboNo]);
+                StartCombo("com1", comboCd[comboNo]);
                 break;
             case 1:
-                TriggerCombo("com2", comboCd[comboNo]);
+                StartCombo("com2", comboCd[comboNo]);
                 break;
             case 2:
-                TriggerCombo("buff", comboCd[comboNo]);
+                StartCombo("buff", comboCd[comboNo]);
                 break;
             case 3:
-                TriggerCombo("ultimate", comboCd[comboNo]);
+                StartCombo("ultimate", comboCd[comboNo]);
                 break;
         }
     }
-    private void TriggerCombo(string triggerName, float cd)
+    private void ResetCombo()
     {
-        animator.SetTrigger(triggerName);
+        animator.SetBool("com1", false);
+        animator.SetBool("com2", false);
+        animator.SetBool("buff", false);
+        animator.SetBool("ultimate", false);
+    }
+    private void StartCombo(string triggerName, float cd)
+    {
+        animator.SetBool(triggerName, true);
         cooldownTimer = cd;
         animator.SetBool("isCooldown", true);
     }
-    public void ShootElement(int no, bool endCombo)
+    public void ShootElement(int no)
     {
         transform.LookAt(target);
         GameObject cainFire = Instantiate(fireObject[no], firePoint.position, transform.rotation);
-        if (endCombo) NextTurn();
+    }
+    public void Ultimate()
+    {
+        if (monsterId == MonsterId.Cain)
+        {
+            transform.LookAt(target);
+            GameObject ultimate = Instantiate(ultiObject, firePoint.position, transform.rotation);
+        }
+        else
+        {
+            GameObject buffUltimate = Instantiate(ultiObject, transform.position, ultiObject.transform.rotation);
+            //*health 30 percent of maxHP
+            int health = (int)(maxHealthPoint * 0.3);
+            if (health + hp <= maxHealthPoint) hp += health;
+            else hp = maxHealthPoint;
+        }
     }
     public void BuffMonster()
     {
+        GameObject buffFx = Instantiate(buffEffect, transform.position, buffEffect.transform.rotation);
         //TODO buff some stat if cain buff cri?? abel def? regen heal??
         if (monsterId == MonsterId.Abel)
         {
-
+            //*increase def stat
+            defBuffTimer = 0;
+            defBuff = true;
         }
         else //Cain
         {
-
+            //*increase cri and atk
+            criDamageBuffTimer = 0;
+            criDamageBuff = true;
         }
-        NextTurn();
+        // NextTurn();
     }
     private void NextTurn()
     {

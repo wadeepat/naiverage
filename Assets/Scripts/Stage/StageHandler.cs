@@ -70,10 +70,6 @@ public class StageHandler : MonoBehaviour
         {
             case SceneIndex.Rachne:
                 AudioManager.instance.Play("forestBackground");
-                // if (DialogueManager.instance.GetVariableState("readOP").ToString().Equals("false"))
-                // {
-                //     DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(0, "Opening"));
-                // }
                 if (QuestLog.GetCompleteQuestById(0) == null)
                     DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(0, "Opening"));
                 if (!PlayerManager.playerEvents["finishedTutorial"])
@@ -117,8 +113,14 @@ public class StageHandler : MonoBehaviour
             case SceneIndex.RachneField:
                 AudioManager.instance.Play("forestBackground");
                 if (QuestLog.GetActiveQuestById(13) != null ||
-                QuestLog.GetActiveQuestById(30) != null)
+                    QuestLog.GetActiveQuestById(30) != null)
                     EventTrigger("SpawnRachne");
+                break;
+            case SceneIndex.TrollField:
+                AudioManager.instance.Play("caveBackground");
+                if (QuestLog.GetActiveQuestById(24) != null ||
+                    QuestLog.GetActiveQuestById(37) != null)
+                    SpawnMonsterAt(0, MonsterId.Troll, 1);
                 break;
             case SceneIndex.BlackScene:
                 AudioManager.instance.Play("endingBackground");
@@ -197,10 +199,8 @@ public class StageHandler : MonoBehaviour
                 }
                 break;
             case (int)SceneIndex.CalfordCastle:
-                player.gameObject.SetActive(false);
                 player.position = cc_naverGate.position;
                 player.rotation = cc_naverGate.rotation;
-                player.gameObject.SetActive(true);
                 break;
             case (int)SceneIndex.BraewoodForest:
                 switch (previousScene)
@@ -218,6 +218,13 @@ public class StageHandler : MonoBehaviour
             case (int)SceneIndex.Cave:
                 player.position = c_braewoodGate.position;
                 player.rotation = c_braewoodGate.rotation;
+                break;
+            default:
+                if (exitGate)
+                {
+                    player.position = exitGate.position;
+                    player.rotation = exitGate.rotation;
+                }
                 break;
         }
         player.gameObject.SetActive(true);
@@ -696,15 +703,15 @@ public class StageHandler : MonoBehaviour
             case "TrollEntrance":
                 //TODO TrollField
                 c_TrollGate.gameObject.SetActive(true);
-                if (PlayerManager.playerEvents["backToPast"])
-                {
-                    QuestLog.CompleteQuest(Database.questList[37]);
+                // if (PlayerManager.playerEvents["backToPast"])
+                // {
+                //     QuestLog.CompleteQuest(Database.questList[37]);
 
-                }
-                else
-                {
-                    QuestLog.CompleteQuest(Database.questList[24]);
-                }
+                // }
+                // else
+                // {
+                //     QuestLog.CompleteQuest(Database.questList[24]);
+                // }
                 break;
             case "CainAndHurt":
                 foreach (NPC_Details npc in NPCs)
@@ -753,12 +760,41 @@ public class StageHandler : MonoBehaviour
                 PlayerManager.instance.mapEnable[SceneIndex.Cave] = false;
                 SceneLoadingManager.instance.LoadScene(SceneIndex.NaverTown);
                 break;
+            case "FightWithAbel":
+                ActionHandler.instance.SetPath(1);
+                LockAllMap();
+                PlayerManager.instance.playerLocation = SceneIndex.TrollField;
+                QuestLog.AddQuest(Database.questList[45]);
+                DataPersistenceManager.instance.SaveGame(true);
+                SceneLoadingManager.instance.LoadScene(SceneIndex.TrollField);
+                break;
+            case "FightWithCain":
+                ActionHandler.instance.SetPath(2);
+                LockAllMap();
+                PlayerManager.instance.playerLocation = SceneIndex.TrollField;
+                QuestLog.AddQuest(Database.questList[46]);
+                DataPersistenceManager.instance.SaveGame(true);
+                SceneLoadingManager.instance.LoadScene(SceneIndex.TrollField);
+                break;
+            case "Abel":
+                SpawnMonsterAt(0, MonsterId.Abel, 1);
+                break;
+            case "Cain":
+                SpawnMonsterAt(0, MonsterId.Cain, 1);
+                break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in OtherEvents");
                 break;
         }
     }
-    //private for tutorialScene
+    private void LockAllMap()
+    {
+        PlayerManager.instance.mapEnable[SceneIndex.Rachne] = false;
+        PlayerManager.instance.mapEnable[SceneIndex.NaverTown] = false;
+        PlayerManager.instance.mapEnable[SceneIndex.CalfordCastle] = false;
+        PlayerManager.instance.mapEnable[SceneIndex.BraewoodForest] = false;
+        PlayerManager.instance.mapEnable[SceneIndex.Cave] = false;
+    }
     private void SpawnMonsterAt(int spawnNo, MonsterId monsterIdx, int num)
     {
         if (spawnNo == 0)

@@ -14,7 +14,6 @@ public class Database : MonoBehaviour
     };
 
     public static Pearl magicPearl = new Pearl();
-
     public static List<Item> itemList = new List<Item>();
     public static List<Item> itemQuestList = new List<Item>();
     public static List<Monster> monsterList = new List<Monster>();
@@ -23,21 +22,8 @@ public class Database : MonoBehaviour
     public static List<SkillBook> skillBookList = new List<SkillBook>();
     public static List<Skill> skillList = new List<Skill>();
 
-    // private GameObject CanvasObject;
-    // private GameObject TutorialCardObject;
-    // private GameObject PotionPanel;
-    private ChapterCard chapterCardScript;
-    // private void Update()
-    // {
-    //     if (chapterCardScript.GetObject()) Debug.Log("card have");
-    // }
     void Awake()
     {
-        // CanvasObject = GameObject.Find("Canvas");
-        // chapterCardScript = CanvasObject.transform.Find("ChapterCard").GetComponent<ChapterCard>();
-        // TutorialCardObject = CanvasObject.transform.Find("TutorialGuiding").gameObject;
-        // PotionPanel = CanvasObject.transform.Find("Panel").Find("Character panel").Find("All funtion").Find("Potion").gameObject;
-        // (id,name,description)
         AddItemList();
         AddPotionList();
         AddItemQuestList();
@@ -61,13 +47,6 @@ public class Database : MonoBehaviour
         //* turn back time
         AddQuestTurnBack();
     }
-    // private void Start()
-    // {
-    //     CanvasObject = GameObject.Find("Canvas");
-    //     chapterCardScript = CanvasObject.transform.Find("ChapterCard").GetComponent<ChapterCard>();
-    //     TutorialCardObject = CanvasObject.transform.Find("TutorialGuiding").gameObject;
-    //     PotionPanel = CanvasObject.transform.Find("Panel").Find("Character panel").Find("All funtion").Find("Potion").gameObject;
-    // }
     private void AddMonsterList()
     {
         //* Monster section id, hp, atk, def, res, reHp
@@ -874,6 +853,8 @@ public class Database : MonoBehaviour
                 },
                 compleltedAction = () =>
                 {
+
+                    StageHandler.instance.EventTrigger("ExitGate");
                     QuestLog.AddQuest(questList[25]);
                 },
             }
@@ -1251,12 +1232,11 @@ public class Database : MonoBehaviour
                 },
                 prepareAction = () =>
                 {
-                    //TODO Troll
                     StageHandler.instance.EventTrigger("TrollEntrance");
                 },
                 compleltedAction = () =>
                 {
-                    // StageHandler.instance.EventTrigger("ExitGate");
+                    StageHandler.instance.EventTrigger("ExitGate");
                     QuestLog.AddQuest(questList[38]);
                 },
             }
@@ -1394,7 +1374,6 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
-                    // ActionHandler.instance.chapterCardScript.ActivateMenu(4);
                     StageHandler.instance.EventTrigger("TheSoul");
                 },
                 prepareAction = () =>
@@ -1429,6 +1408,58 @@ public class Database : MonoBehaviour
                 {
                     StageHandler.instance.EventTrigger("Commanment");
                 },
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 45,
+                questName = $"ต่อสู้กับ {ColorText("char", "Abel")}",
+                questDescription = $"เจ้าเลือกที่จะช่วยเหลือ {ColorText("char", "Cain")} ดังนั้นต่อสู่กับ {ColorText("char", "Abel")} เพื่อช่วยเหลือเขา",
+                location = SceneIndex.TrollField,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)MonsterId.Abel,
+                    type = Quest.Objective.Type.kill,
+                    amount = 1,
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("Abel");
+                },
+                compleltedAction = () =>
+                {
+                    DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(4, "DefeatAbel"));
+                }
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 46,
+                questName = $"ต่อสู้กับ {ColorText("char", "Cain")}",
+                questDescription = $"เจ้าเลือกที่จะช่วยเหลือ {ColorText("char", "Abel")} ดังนั้นต่อสู่กับ {ColorText("char", "Cain")} เพื่อช่วยเหลือเขา",
+                location = SceneIndex.TrollField,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 0,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)MonsterId.Cain,
+                    type = Quest.Objective.Type.kill,
+                    amount = 1,
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("Cain");
+                },
+                compleltedAction = () =>
+                {
+                    DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(4, "DefeatCain"));
+                }
             }
         );
     }

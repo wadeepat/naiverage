@@ -60,6 +60,10 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
         confirmationPopup.gameObject.SetActive(false);
 
     }
+    public void SetPath(int pathNo)
+    {
+        playerPath = pathNo;
+    }
     public void ReceiveActionThenContinueStory(string action, UnityAction ContinueStory)
     {
         switch (action)
@@ -68,13 +72,13 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                 GetPlayerName();
                 break;
             case "Ending1":
-                playerPath = 1;
+                // playerPath = 1;
                 PlayerManager.instance.playerLocation = SceneIndex.BlackScene;
                 DataPersistenceManager.instance.SaveGame(true);
                 SceneLoadingManager.instance.LoadScene(SceneIndex.BlackScene);
                 break;
             case "Ending2":
-                playerPath = 2;
+                // playerPath = 2;
                 PlayerManager.instance.playerLocation = SceneIndex.BlackScene;
                 DataPersistenceManager.instance.SaveGame(true);
                 SceneLoadingManager.instance.LoadScene(SceneIndex.BlackScene);
@@ -126,6 +130,8 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     }
     public void AskToLoad()
     {
+        AudioManager.instance.StopAllTrack();
+        AudioManager.instance.Play("sadness");
         SetForActivateUI();
         confirmationPopup.ActivateMenu(
             displayText: $"เจ้าได้ต่อสู้จนถึงแก่ความตาย\nจึงต้องกลับไปเริ่มใหม่ยังจุดที่ save ล่าสุด",

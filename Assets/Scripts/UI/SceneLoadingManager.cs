@@ -28,7 +28,7 @@ public class SceneLoadingManager : MonoBehaviour
     }
     public void LoadScene(SceneIndex sceneName)
     {
-        LoadingScreen = GameObject.Find("Canvas").transform.Find("LoadingScreen").gameObject;
+        LoadingScreen = GameObject.Find("Canvas/LoadingScreen").gameObject;
         sliderLoading = LoadingScreen.transform.Find("Slider").GetComponent<Slider>();
         if ((int)sceneName == 0)
         {
