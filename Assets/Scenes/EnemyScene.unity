@@ -3357,8 +3357,8 @@ MonoBehaviour:
     model: {fileID: 924416398459543054, guid: 27e63aa5babe5e247917dbe7356a2360, type: 3}
   enableTest: 1
   monsterTestLists:
-  - monsterId: 0
-    amount: 3
+  - monsterId: 8
+    amount: 1
 --- !u!1 &1271258487
 GameObject:
   m_ObjectHideFlags: 0
