@@ -49,6 +49,7 @@ public class Inventory : MonoBehaviour, IDataPersistence
             x = ItemPickUp.y;
             if(x.GetComponent<ThisItem>().type == TypeItem.Normal) n = x.GetComponent<ThisItem>().thisId;
         }
+
         if(ItemPickUp.pick == true && x.GetComponent<ThisItem>().type == TypeItem.Normal){
             for(int i=0; i < slotsNumber; i++){
                 if(yourInventory[i].id == n){

@@ -18,7 +18,6 @@ public class ItemPickUp : MonoBehaviour
         
         pickUpText = CanvasManager.instance.GetCanvasObject("InteractText");
         text = pickUpText.GetComponent<TextMeshProUGUI>();
-        mushroom = 0;
         pick = false;
     }
 
@@ -46,6 +45,7 @@ public class ItemPickUp : MonoBehaviour
     {
         if (col.tag == "item")
         {
+            pick = true;
             Item = col.gameObject;
             // canPickUp = true;
             y = col.gameObject;
@@ -66,8 +66,7 @@ public class ItemPickUp : MonoBehaviour
                 else if(Item.GetComponent<ThisItem>().type == TypeItem.Quest) Panel.transform.GetComponent<ItemQuests>().GetItemQuest();
                 Destroy(Item);
                 Item = null;
-                mushroom += 1;
-                pick = true;
+                y = null;
                 pickUpText.SetActive(false);
             }
         }
