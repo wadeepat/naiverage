@@ -168,7 +168,7 @@ public class StageHandler : MonoBehaviour
                     player.position = t_startGate.position;
                     player.rotation = t_startGate.rotation;
                 }
-                if (previousScene == (int)SceneIndex.RachneField)
+                else if (previousScene == (int)SceneIndex.RachneField)
                 {
                     player.position = t_RachneGate.position;
                     player.rotation = t_RachneGate.rotation;
