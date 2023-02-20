@@ -18,10 +18,6 @@ public class InvenSkillBook : MonoBehaviour
 
     private GameObject x;
     private int n;
-    private int a;
-    private int b;
-    private int slotTemporary;
-    private int maxStacks = 1;
     private int slotsNumber = 8;
 
     void Start()
@@ -40,8 +36,6 @@ public class InvenSkillBook : MonoBehaviour
         yourSkillbook.Add(Database.skillBookList[7]);
         yourSkillbook.Add(Database.skillBookList[8]);
         yourSkillbook.Add(Database.skillBookList[9]);
-        a = -1;
-        b = -1;
 
     }
     public void GetSkillBook(){

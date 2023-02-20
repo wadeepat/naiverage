@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class GodOfWind : MonoBehaviour
 {
-[SerializeField] private float time = 5f;
-    float nextActionTime = 0.0f;
-    float period = 0.5f;
-    float cooldownTime = 0.0f;
-    bool cooldown = false;
-    float periodC = 0.5f;
+    [SerializeField] private float time = 5f;
     void Start()
     {
         Destroy(gameObject, time);

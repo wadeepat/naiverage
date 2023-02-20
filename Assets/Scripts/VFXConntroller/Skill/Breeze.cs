@@ -9,7 +9,6 @@ public class Breeze : MonoBehaviour
     float nextActionTime = 0.0f;
     float period = 0.95f;
     float cooldownTime = 0.0f;
-    bool cooldown = false;
     float periodC = 0.05f;
     void Start()
     {

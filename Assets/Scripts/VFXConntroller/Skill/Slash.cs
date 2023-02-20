@@ -10,18 +10,12 @@ public class Slash : MonoBehaviour
     float nextActionTime = 0.0f;
     float period = 0.5f;
     float cooldownTime = 0.0f;
-    bool cooldown = false;
     float periodC = 0.5f;
     void Start()
     {
         Destroy(gameObject, time);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     // void OnTriggerEnter(Collider col)
     // {
     //     if (col.tag == "item")

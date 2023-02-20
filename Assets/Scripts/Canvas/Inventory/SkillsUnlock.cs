@@ -22,7 +22,6 @@ public class SkillsUnlock : MonoBehaviour
     private int aSlot;
     private int bSlot;
     private int slotTemporary;
-    private int maxStacks = 1; 
     private int slotsNumber = 12;
 
 
