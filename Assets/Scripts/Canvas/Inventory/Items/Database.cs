@@ -245,6 +245,10 @@ public class Database : MonoBehaviour
                 },
                 compleltedAction = () =>
                 {
+                    InvenSkillBook add = this.transform.Find("Character panel/All funtion/Skill").GetComponent<InvenSkillBook>();
+                    add.AddSkillBook(1);
+                    add.AddSkillBook(2);
+                    add.AddSkillBook(3);
                     ActionHandler.instance.ActivateTutorialCard("UsePotion", false);
                     // DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
                     DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(0, "CompletedUsePotion"));

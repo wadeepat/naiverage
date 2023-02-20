@@ -27,7 +27,7 @@ public class LearningSkills : MonoBehaviour
         else lastPage = 3;
         currentPage.text = "" + page;
         allPage.text = "" + lastPage;
-        show(page);
+        if(invenSkillBook.yourSkillbook != null) show(page);
     }
     // Update is called once per frame
     void Update()
@@ -41,7 +41,6 @@ public class LearningSkills : MonoBehaviour
         else if(pageNow == 2)num = 4;
         else num = 8;
         for(int i=0; i<4; i++){
-            // Debug.Log(invenSkillBook.yourSkillbook.Count);
             if(i+num >= invenSkillBook.yourSkillbook.Count){     
                 Load(0, skills[i].skillName, skills[i].itemSprite, skills[i].skillSprite, skills[i].slotInSprite, skills[i].slotInSkill, skills[i].text, skills[i].button);
             }else{
@@ -119,11 +118,11 @@ public class LearningSkills : MonoBehaviour
     public void SetDefault(){
         page = 1;
         firstPage = 1;
-        if(invenSkillBook.yourSkillbook.Count <= 4)lastPage = 1;
-        else if(invenSkillBook.yourSkillbook.Count <= 8) lastPage = 2;
+        if(invenSkillBook?.yourSkillbook.Count <= 4 )lastPage = 1;
+        else if(invenSkillBook?.yourSkillbook.Count <= 8) lastPage = 2;
         else lastPage = 3;
         currentPage.text = "" + page;
         allPage.text = "" + lastPage;
-        show(page);
+        if(invenSkillBook?.yourSkillbook != null) show(page);
     }
 }

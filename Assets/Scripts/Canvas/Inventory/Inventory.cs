@@ -138,7 +138,6 @@ public class Inventory : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        Debug.Log("Load from Inventory");
         yourInventory = data.inventoryItem;
         for(int i=0; i<slotsNumber; i++){
             if(yourInventory[i].id == 0) yourInventory[i] = Database.itemList[0];
@@ -148,7 +147,6 @@ public class Inventory : MonoBehaviour, IDataPersistence
 
     public void SaveData(GameData data)
     {
-        Debug.Log("Save from Inventory");
         data.inventoryItem = yourInventory;
         data.stackItem = slotStack;
     }

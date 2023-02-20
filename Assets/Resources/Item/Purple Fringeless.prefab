@@ -114,7 +114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_Radius
-      value: 0.001
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_IsTrigger
@@ -232,7 +232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_Radius
-      value: 0.001
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_IsTrigger
@@ -350,7 +350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_Radius
-      value: 0.001
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_IsTrigger
@@ -468,7 +468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_Radius
-      value: 0.001
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_IsTrigger
@@ -586,7 +586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_Radius
-      value: 0.001
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_IsTrigger
@@ -704,7 +704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_Radius
-      value: 0.001
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_IsTrigger
@@ -822,7 +822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_Radius
-      value: 0.001
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_IsTrigger
@@ -940,7 +940,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_Radius
-      value: 0.001
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_IsTrigger
@@ -1058,7 +1058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_Radius
-      value: 0.001
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_IsTrigger
@@ -1176,7 +1176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_Radius
-      value: 0.001
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: 136155483435770882, guid: 91d9d2d8a3f807646983a0668918d3ff, type: 3}
       propertyPath: m_IsTrigger

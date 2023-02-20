@@ -105867,6 +105867,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1483924939}
     m_Modifications:
+    - target: {fileID: 2672979267257884034, guid: 0456cc6449c928f43b8a611a7340d0cd, type: 3}
+      propertyPath: m_Radius
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102968078215326012, guid: 0456cc6449c928f43b8a611a7340d0cd, type: 3}
+      propertyPath: m_Radius
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 3507906830600163003, guid: 0456cc6449c928f43b8a611a7340d0cd, type: 3}
+      propertyPath: m_Radius
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062680231584735052, guid: 0456cc6449c928f43b8a611a7340d0cd, type: 3}
+      propertyPath: m_Radius
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431722105157390230, guid: 0456cc6449c928f43b8a611a7340d0cd, type: 3}
+      propertyPath: m_Radius
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308771556854355193, guid: 0456cc6449c928f43b8a611a7340d0cd, type: 3}
+      propertyPath: m_Radius
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6768909702714572437, guid: 0456cc6449c928f43b8a611a7340d0cd, type: 3}
+      propertyPath: m_Radius
+      value: 0.003
+      objectReference: {fileID: 0}
     - target: {fileID: 6819775526662640325, guid: 0456cc6449c928f43b8a611a7340d0cd, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -105914,6 +105942,18 @@ PrefabInstance:
     - target: {fileID: 7266843722900278353, guid: 0456cc6449c928f43b8a611a7340d0cd, type: 3}
       propertyPath: m_Name
       value: Purple Fringeless
+      objectReference: {fileID: 0}
+    - target: {fileID: 7326301287273028958, guid: 0456cc6449c928f43b8a611a7340d0cd, type: 3}
+      propertyPath: m_Radius
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407525473694119510, guid: 0456cc6449c928f43b8a611a7340d0cd, type: 3}
+      propertyPath: m_Radius
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 8903344914813329482, guid: 0456cc6449c928f43b8a611a7340d0cd, type: 3}
+      propertyPath: m_Radius
+      value: 0.003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0456cc6449c928f43b8a611a7340d0cd, type: 3}

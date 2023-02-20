@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class InvenSkillBook : MonoBehaviour
+public class InvenSkillBook : MonoBehaviour, IDataPersistence
 {
-    public List<SkillBook> yourSkillbook;
+    public List<SkillBook> yourSkillbook ;
     public List<SkillBook> draggedItem = new List<SkillBook>();
     // public int[] slotStack;
 
@@ -27,15 +27,15 @@ public class InvenSkillBook : MonoBehaviour
         //     yourSkillbook[i] = Database.skillBookList[0];
         // }
         // test
-        yourSkillbook.Add(Database.skillBookList[1]);
-        yourSkillbook.Add(Database.skillBookList[2]);
-        yourSkillbook.Add(Database.skillBookList[3]);
-        yourSkillbook.Add(Database.skillBookList[4]);
-        yourSkillbook.Add(Database.skillBookList[5]);
-        yourSkillbook.Add(Database.skillBookList[6]);
-        yourSkillbook.Add(Database.skillBookList[7]);
-        yourSkillbook.Add(Database.skillBookList[8]);
-        yourSkillbook.Add(Database.skillBookList[9]);
+        // yourSkillbook.Add(Database.skillBookList[1]);
+        // yourSkillbook.Add(Database.skillBookList[2]);
+        // yourSkillbook.Add(Database.skillBookList[3]);
+        // yourSkillbook.Add(Database.skillBookList[4]);
+        // yourSkillbook.Add(Database.skillBookList[5]);
+        // yourSkillbook.Add(Database.skillBookList[6]);
+        // yourSkillbook.Add(Database.skillBookList[7]);
+        // yourSkillbook.Add(Database.skillBookList[8]);
+        // yourSkillbook.Add(Database.skillBookList[9]);
 
     }
     public void GetSkillBook(){
@@ -56,29 +56,7 @@ public class InvenSkillBook : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        // for(int i=0; i < slotsNumber; i++){
-        //     if(yourSkillbook[i].id == 0 || slotStack[i] == 1){
-        //         stackText[i].text = "";
-        //     }else{
-        //         stackText[i].text = ""+ slotStack[i];
-        //     }
-        // }
 
-        // for(int i=0; i < slotsNumber; i++){
-        //     slot[i].sprite = slotSprite[i];
-        //     slotSprite[i] = yourSkillbook[i].itemSprite;
-        // }
-        // int num = 0;
-        // foreach (var yourSK in yourSkillbook){
-        //     stackText[num].text = "";
-        //     slot[num].sprite = slotSprite[num];
-        //     slotSprite[num] = yourSK.itemSprite;
-        //     num++;
-        // }
-
-    }
 
     // public void StartDrag(Image slotX){
     //     for(int i=0; i < slotsNumber; i++){
@@ -121,4 +99,20 @@ public class InvenSkillBook : MonoBehaviour
     // {
     //     data.skillBooks = yourSkillbook;
     // }
+    public void AddSkillBook(int idSkillBook){
+        yourSkillbook.Add(Database.skillBookList[idSkillBook]);
+    }
+
+    public void LoadData(GameData data)
+    {
+        yourSkillbook = data.skillBooks;
+        // if(yourSkillbook == null){
+        //     for(int i=0; i<9; i++) yourSkillbook.Add(Database.skillBookList[i+1]);
+        // }
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.skillBooks = yourSkillbook;
+    }
 }

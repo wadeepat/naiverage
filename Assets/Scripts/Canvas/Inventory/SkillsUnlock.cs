@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class SkillsUnlock : MonoBehaviour
+public class SkillsUnlock : MonoBehaviour, IDataPersistence
 {
-    public List<Skill> skill = new List<Skill>();
+    public List<Skill> skill;
     // public int[] slotStack;
     public int[] slotStackSkills;
     public Image[] slotSkillsM;
@@ -28,10 +28,6 @@ public class SkillsUnlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(int i=0; i < slotsNumber; i++){
-            skill[i] = Database.skillList[0];
-        }
-        for(int j=0; j<3; j++) slotStackSkills[j] = -1;
         a = -1;
         b = -1;
         aSlot = -1;
@@ -39,7 +35,6 @@ public class SkillsUnlock : MonoBehaviour
         slotSkillsM[0].fillAmount = 1f;
         slotSkillsM[1].fillAmount = 1f;
         slotSkillsM[2].fillAmount = 1f;
-        for(int i=0; i<3; i++)slotStackSkills[i] = i;
     }
 
     // Update is called once per frame
@@ -169,18 +164,20 @@ public class SkillsUnlock : MonoBehaviour
         if (slotSkillsM[1] != null && slotSkillsM[1].fillAmount < 1.0f) slotSkillsM[1].fillAmount += 0.1f * Time.deltaTime;
         if (slotSkillsM[2] != null && slotSkillsM[2].fillAmount < 1.0f) slotSkillsM[2].fillAmount += 0.1f * Time.deltaTime;
     }
-    // public void LoadData(GameData data)
-    // {
-    //     skill = data.skill;
-    //     for(int i=0; i<slotsNumber; i++){
-    //         if(skill[i] == null) skill[i] = Database.skillList[0];
-    //     }
-    //     slotStackSkills = data.slotS;
-    // }
+    public void LoadData(GameData data)
+    {
+        Debug.Log("Load for skill");
+        skill = data.skill;
+        for(int i=0; i<slotsNumber; i++){
+            if(skill[i].id == 0) skill[i] = Database.skillList[0];
+        }
+        slotStackSkills = data.slotS;
+    }
 
-    // public void SaveData(GameData data)
-    // {
-    //     data.skill = skill;
-    //     data.slotS = slotStackSkills;
-    // }
+    public void SaveData(GameData data)
+    {
+        Debug.Log("Save for skill");
+        data.skill = skill;
+        data.slotS = slotStackSkills;
+    }
 }

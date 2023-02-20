@@ -52,8 +52,10 @@ public class GameData
         stackQuests = new int[8];
         skill = new List<Skill>(new Skill[12]);
         slotS = new int[3] { -1, -1, -1 };
-
+        skillBooks = new List<SkillBook>();
+        // for(int i=0; i<9; i++) skillBooks.Add(Database.skillBookList[i+1]);
     }
+
     public override string ToString()
     {
         string temp = "\n";
@@ -62,74 +64,74 @@ public class GameData
         temp += $"playerPath: {this.playerPath}\n";
         temp += $"playerLocation: {this.playerLocation.ToString()}\n";
         temp += $"tutorialEvents:\n";
-        foreach (var i in playerEvents)
-        {
-            temp += $"\t{i.Key}: {i.Value}\n";
-        }
-        temp += $"mapEnable:\n";
-        foreach (var i in mapEnable)
-        {
-            temp += $"\t{i.Key}: {i.Value}\n";
-        }
-        temp += $"questList:\n";
-        foreach (var i in questIdxList)
-        {
-            temp += $"\tid: {i}\n";
-        }
-        temp += $"completedQuest:\n";
-        foreach (var i in completedQuestIdxList)
-        {
-            temp += $"\tid: {i}\n";
-        }
-        //Inventory 
-        temp += $"inventoryItem:\n";
-        foreach (var i in inventoryItem)
-        {
-            temp += $"\tinven: {i}\n";
-        }
-        temp += $"stackItem:\n";
-        foreach (var i in stackItem)
-        {
-            temp += $"\tstack: {i}\n";
-        }
-        //Potion
-        temp += $"inventoryPotion:\n";
-        foreach (var i in inventoryPotion)
-        {
-            temp += $"\tinvenP: {i}\n";
-        }
-        temp += $"stackPotion:\n";
-        foreach (var i in stackPotion)
-        {
-            temp += $"\tstackP: {i}\n";
-        }
-        temp += $"slotP:\n";
-        foreach (var i in slotP)
-        {
-            temp += $"\tslotP: {i}\n";
-        }
-        // Quests
-        temp += $"questsInventory:\n";
-        foreach (var i in questsInventory)
-        {
-            temp += $"\tinvenQ: {i.name}\n";
-        }
-        temp += $"stackQuests:\n";
-        foreach (var i in stackQuests)
-        {
-            temp += $"\tstackQ: {i}\n";
-        }
-        // SkillBook
-        temp += $"skillBooks:\n";
-        foreach (var i in skillBooks)
-        {
-            temp += $"\tinvenSK: {i}\n";
-        }
+        // foreach (var i in playerEvents)
+        // {
+        //     temp += $"\t{i.Key}: {i.Value}\n";
+        // }
+        // temp += $"mapEnable:\n";
+        // foreach (var i in mapEnable)
+        // {
+        //     temp += $"\t{i.Key}: {i.Value}\n";
+        // }
+        // temp += $"questList:\n";
+        // foreach (var i in questIdxList)
+        // {
+        //     temp += $"\tid: {i}\n";
+        // }
+        // temp += $"completedQuest:\n";
+        // foreach (var i in completedQuestIdxList)
+        // {
+        //     temp += $"\tid: {i}\n";
+        // }
+        // //Inventory 
+        // temp += $"inventoryItem:\n";
+        // foreach (var i in inventoryItem)
+        // {
+        //     temp += $"\tinven: {i}\n";
+        // }
+        // temp += $"stackItem:\n";
+        // foreach (var i in stackItem)
+        // {
+        //     temp += $"\tstack: {i}\n";
+        // }
+        // //Potion
+        // temp += $"inventoryPotion:\n";
+        // foreach (var i in inventoryPotion)
+        // {
+        //     temp += $"\tinvenP: {i}\n";
+        // }
+        // temp += $"stackPotion:\n";
+        // foreach (var i in stackPotion)
+        // {
+        //     temp += $"\tstackP: {i}\n";
+        // }
+        // temp += $"slotP:\n";
+        // foreach (var i in slotP)
+        // {
+        //     temp += $"\tslotP: {i}\n";
+        // }
+        // // Quests
+        // temp += $"questsInventory:\n";
+        // foreach (var i in questsInventory)
+        // {
+        //     temp += $"\tinvenQ: {i.name}\n";
+        // }
+        // temp += $"stackQuests:\n";
+        // foreach (var i in stackQuests)
+        // {
+        //     temp += $"\tstackQ: {i}\n";
+        // }
+        // // SkillBook
+        // temp += $"skillBooks:\n";
+        // foreach (var i in skillBooks)
+        // {
+        //     temp += $"\tinvenSK: {i}\n";
+        // }
         //Skill
         temp += $"skill:\n";
         foreach (var i in skill)
         {
-            temp += $"\tinvenS: {i}\n";
+            if( i != null) temp += $"\tinvenS: {i.nameSkill}\n";
         }
         temp += $"slotS:\n";
         foreach (var i in slotS)
