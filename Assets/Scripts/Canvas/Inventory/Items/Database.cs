@@ -1345,8 +1345,6 @@ public class Database : MonoBehaviour
                 questCategory = 0,
                 objective = new Quest.Objective()
                 {
-                    //! fix this when implemented castle
-                    // objectiveId = (int)SceneIndex.CalfordCastle,
                     objectiveId = (int)NPCIndex.Cain,
                     npc = NPCIndex.Cain,
                     dialogue = DialogueManager.instance.GetDialogueFile(3, "FamilyMeetingAgain"),
@@ -1376,10 +1374,10 @@ public class Database : MonoBehaviour
                 questCategory = 0,
                 objective = new Quest.Objective()
                 {
-                    objectiveId = (int)SceneIndex.CalfordCastle,
+                    objectiveId = 1,
                     // npc = NPCIndex.Samuel,
                     // dialogue = DialogueManager.instance.GetDialogueFile(4, "TheCommandment"),
-                    type = Quest.Objective.Type.interact,
+                    type = Quest.Objective.Type.collect,
                     amount = 1,
                 },
                 addAction = () =>
@@ -1390,12 +1388,16 @@ public class Database : MonoBehaviour
                 {
                     StageHandler.instance.EventTrigger("TheSoul");
                 },
+                compleltedAction = () =>
+                {
+                    QuestLog.AddQuest(questList[43]);
+                }
             }
         );
         questList.Add(
             new Quest()
             {
-                questId = 44,
+                questId = 43,
                 questName = $"บัญญัติที่แท้จริง",
                 questDescription = $"เจ้าได้ดวงจิตมาแล้วไปหา {ColorText("char", "Samuel")} กับคนอื่น ๆ ที่ที่อยู่ของ {ColorText("monster", "Rachne")} กัน",
                 location = SceneIndex.RachneField,
@@ -1423,7 +1425,7 @@ public class Database : MonoBehaviour
         questList.Add(
             new Quest()
             {
-                questId = 45,
+                questId = 44,
                 questName = $"ต่อสู้กับ {ColorText("char", "Abel")}",
                 questDescription = $"เจ้าเลือกที่จะช่วยเหลือ {ColorText("char", "Cain")} ดังนั้นต่อสู่กับ {ColorText("char", "Abel")} เพื่อช่วยเหลือเขา",
                 location = SceneIndex.TrollField,
@@ -1449,7 +1451,7 @@ public class Database : MonoBehaviour
         questList.Add(
             new Quest()
             {
-                questId = 46,
+                questId = 45,
                 questName = $"ต่อสู้กับ {ColorText("char", "Cain")}",
                 questDescription = $"เจ้าเลือกที่จะช่วยเหลือ {ColorText("char", "Abel")} ดังนั้นต่อสู่กับ {ColorText("char", "Cain")} เพื่อช่วยเหลือเขา",
                 location = SceneIndex.TrollField,

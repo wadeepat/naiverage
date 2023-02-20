@@ -2382,6 +2382,14 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2315754148932531583, guid: 2aa04bb4c65e3ed4a9587033675be132, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565780931923853279, guid: 2aa04bb4c65e3ed4a9587033675be132, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 21.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6952994028383960444, guid: 2aa04bb4c65e3ed4a9587033675be132, type: 3}
       propertyPath: m_Name
       value: Canvas

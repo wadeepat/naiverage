@@ -2509,9 +2509,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1587964872549921426}
     m_Modifications:
+    - target: {fileID: 598126313695750667, guid: 2aa04bb4c65e3ed4a9587033675be132, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315754148932531583, guid: 2aa04bb4c65e3ed4a9587033675be132, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6952994028383960444, guid: 2aa04bb4c65e3ed4a9587033675be132, type: 3}
       propertyPath: m_Name
-      value: Canvas (1)
+      value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 7384949113743240786, guid: 2aa04bb4c65e3ed4a9587033675be132, type: 3}
       propertyPath: m_Pivot.x

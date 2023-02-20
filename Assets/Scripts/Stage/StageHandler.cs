@@ -74,7 +74,8 @@ public class StageHandler : MonoBehaviour
                     DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(0, "Opening"));
                 if (!PlayerManager.playerEvents["finishedTutorial"])
                     EventTrigger("SetupForTutorial");
-                if (QuestLog.GetActiveQuestById(29) != null)
+                if (QuestLog.GetActiveQuestById(29) != null ||
+                    QuestLog.GetActiveQuestById(43) != null)
                     t_RachneGate.gameObject.SetActive(true);
                 break;
             case SceneIndex.NaverTown:
@@ -530,11 +531,15 @@ public class StageHandler : MonoBehaviour
             case "Family":
                 foreach (NPC_Details npc in NPCs)
                 {
-                    npc.Object.SetActive(true);
+                    if (npc.info != "Soul")
+                        npc.Object.SetActive(true);
                 }
                 break;
             case "TheSoul":
-                //TODO
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.info == "Soul") npc.Object.SetActive(true);
+                }
                 break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in CalfordEvents");
@@ -764,7 +769,7 @@ public class StageHandler : MonoBehaviour
                 ActionHandler.instance.SetPath(1);
                 LockAllMap();
                 PlayerManager.instance.playerLocation = SceneIndex.TrollField;
-                QuestLog.AddQuest(Database.questList[45]);
+                QuestLog.AddQuest(Database.questList[44]);
                 DataPersistenceManager.instance.SaveGame(true);
                 SceneLoadingManager.instance.LoadScene(SceneIndex.TrollField);
                 break;
@@ -772,7 +777,7 @@ public class StageHandler : MonoBehaviour
                 ActionHandler.instance.SetPath(2);
                 LockAllMap();
                 PlayerManager.instance.playerLocation = SceneIndex.TrollField;
-                QuestLog.AddQuest(Database.questList[46]);
+                QuestLog.AddQuest(Database.questList[45]);
                 DataPersistenceManager.instance.SaveGame(true);
                 SceneLoadingManager.instance.LoadScene(SceneIndex.TrollField);
                 break;

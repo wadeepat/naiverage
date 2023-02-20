@@ -2952,11 +2952,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a400f30bcce7d428ba5b557ef994cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterId: 0
+  monsterId: 6
   moveSpeed: 1.5
   attackRange: 2
   attackType: close
-  monsterType: miniboss
+  monsterType: boss
   monsterElement: 0
   defense: 0
   resist: 0
@@ -4461,6 +4461,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1514517905773850688}
     m_Modifications:
+    - target: {fileID: 598126313695750667, guid: 2aa04bb4c65e3ed4a9587033675be132, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315754148932531583, guid: 2aa04bb4c65e3ed4a9587033675be132, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565780931923853279, guid: 2aa04bb4c65e3ed4a9587033675be132, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 69.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565780931923853279, guid: 2aa04bb4c65e3ed4a9587033675be132, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6952994028383960444, guid: 2aa04bb4c65e3ed4a9587033675be132, type: 3}
       propertyPath: m_Name
       value: Canvas
