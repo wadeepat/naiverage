@@ -38,3 +38,11 @@ public enum ElementType
     Water,
     Wind
 }
+
+[System.Serializable]
+public enum TypeItem {
+    Normal, 
+    Potion, 
+    Skill,
+    Quest
+}

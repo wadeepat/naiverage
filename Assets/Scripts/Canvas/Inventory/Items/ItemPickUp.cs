@@ -9,12 +9,13 @@ public class ItemPickUp : MonoBehaviour
     public int mushroom;
     private GameObject pickUpText;
     private TextMeshProUGUI text;
-
     public static bool pick;
     public static GameObject y;
+    private GameObject Panel;
     // Start is called before the first frame update
     void Start()
     {
+        
         pickUpText = CanvasManager.instance.GetCanvasObject("InteractText");
         text = pickUpText.GetComponent<TextMeshProUGUI>();
         mushroom = 0;
@@ -54,10 +55,15 @@ public class ItemPickUp : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "item")
+        if (other.tag == "item"&& Item != null)
         {
             if (InputManager.instance.GetInteractPressed())
             {
+                Panel = GameObject.Find("Canvas/Panel");
+                if(Item.GetComponent<ThisItem>().type == TypeItem.Normal) Panel.transform.GetComponent<Inventory>().GetNormalItem();
+                else if(Item.GetComponent<ThisItem>().type == TypeItem.Potion) Panel.transform.GetComponent<Potions>().GetPotion();
+                else if(Item.GetComponent<ThisItem>().type == TypeItem.Skill) Panel.transform.Find("Character panel/All funtion/Skill").GetComponent<InvenSkillBook>().GetSkillBook();
+                else if(Item.GetComponent<ThisItem>().type == TypeItem.Quest) Panel.transform.GetComponent<ItemQuests>().GetItemQuest();
                 Destroy(Item);
                 Item = null;
                 mushroom += 1;

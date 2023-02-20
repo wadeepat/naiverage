@@ -474,6 +474,7 @@ public class Enemy : MonoBehaviour
         }else{
             spriteElement = Resources.Load<Sprite>("phy");
         }
+        imageElement = this.transform.Find("Canvas/HealthBar/Element/type").GetComponent<Image>();
         imageElement.sprite = spriteElement;
     }
 

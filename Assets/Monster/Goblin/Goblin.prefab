@@ -1278,6 +1278,11 @@ MonoBehaviour:
   attackRange: 10
   attackType: range
   monsterType: normal
+  monsterElement: 0
+  defense: 0
+  resist: 0
+  elementType: 0
+  imageElement: {fileID: 0}
   projectileObj: {fileID: 8395504018587182521, guid: 346fb999713d8624592bbf0c1d483ef9, type: 3}
   firePoint: {fileID: 6658020218386557349}
   maxHealthPoint: 130
@@ -2609,6 +2614,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6623866384766984442}
     m_Modifications:
+    - target: {fileID: 598126313695750667, guid: 2aa04bb4c65e3ed4a9587033675be132, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5531499271310659858, guid: 2aa04bb4c65e3ed4a9587033675be132, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0

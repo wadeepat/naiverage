@@ -21,6 +21,8 @@ public class Potions : MonoBehaviour, IDataPersistence
     [SerializeField] private Text[] stackSlotPotionTextInv;
     [SerializeField] private Text[] stackSlotPotionTextM;
 
+    private GameObject x;
+    private int n;
     private int a;
     private int b;
     private int aSlot;
@@ -28,6 +30,7 @@ public class Potions : MonoBehaviour, IDataPersistence
     private int slotTemporary;
     private int maxStacks = 16;
     private int slotsNumber = 16;
+
 
     void Start()
     {
@@ -69,6 +72,38 @@ public class Potions : MonoBehaviour, IDataPersistence
            stackSlotPotionTextM[i].text = stackSlotPotionText[i].text;
            slotPotionInv[i].sprite = slotPotion[i].sprite;
            slotPotionM[i].sprite = slotPotion[i].sprite;
+        }
+    }
+    public void GetPotion(){
+        if(ItemPickUp.y != null){
+            x = ItemPickUp.y;
+            if(x.GetComponent<ThisItem>().type == TypeItem.Potion) n = x.GetComponent<ThisItem>().thisId;
+        }
+        if(ItemPickUp.pick == true && x.GetComponent<ThisItem>().type == TypeItem.Potion){
+            for(int i=0; i < slotsNumber; i++){
+                if(yourPotions[i].id == n){
+                    if(slotStack[i] == maxStacks){
+                        continue;
+                    }else{
+                        slotStack[i] += 1;
+                        i = slotsNumber;
+                        ItemPickUp.pick = false;
+                    }
+                    
+                }
+            }
+
+            for(int i=0; i < slotsNumber; i++){
+                if(yourPotions[i].id == 0 && ItemPickUp.pick == true){
+                    yourPotions[i] = Database.potionList[n];
+                    slotStack[i] += 1;
+                    ItemPickUp.pick = false;
+                }
+            }
+
+            //checkquest
+            // QuestLog.DoQuest(Quest.Objective.Type.collect, n);
+            ItemPickUp.pick = false;
         }
     }
 

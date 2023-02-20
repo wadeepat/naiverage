@@ -41,14 +41,15 @@ public class Inventory : MonoBehaviour, IDataPersistence
             slotSprite[i] = yourInventory[i].itemSprite;
         }
 
+
+    }
+
+    public void GetNormalItem(){
         if(ItemPickUp.y != null){
             x = ItemPickUp.y;
-            n = x.GetComponent<ThisItem>().thisId;
-        }else{
-            x = null;
+            if(x.GetComponent<ThisItem>().type == TypeItem.Normal) n = x.GetComponent<ThisItem>().thisId;
         }
-
-        if(ItemPickUp.pick == true){
+        if(ItemPickUp.pick == true && x.GetComponent<ThisItem>().type == TypeItem.Normal){
             for(int i=0; i < slotsNumber; i++){
                 if(yourInventory[i].id == n){
                     if(slotStack[i] == maxStacks){
@@ -74,7 +75,6 @@ public class Inventory : MonoBehaviour, IDataPersistence
             QuestLog.DoQuest(Quest.Objective.Type.collect, n);
             ItemPickUp.pick = false;
         }
-
     }
 
     public void StartDrag(Image slotX){
@@ -151,4 +151,5 @@ public class Inventory : MonoBehaviour, IDataPersistence
         data.inventoryItem = yourInventory;
         data.stackItem = slotStack;
     }
+
 }

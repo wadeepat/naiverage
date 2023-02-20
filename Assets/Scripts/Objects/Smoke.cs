@@ -6,7 +6,7 @@ public class Smoke : MonoBehaviour
 {
     // Start is called before the first frame update
     public int id;
-    private float time = 10f;
+    // private float time = 10f;
     // SpriteRenderer rend;
 
     void Start()

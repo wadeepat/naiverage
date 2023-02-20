@@ -16,6 +16,8 @@ public class InvenSkillBook : MonoBehaviour
     [SerializeField] private Sprite[] slotSprite;
     [SerializeField] private Text[] stackText;
 
+    private GameObject x;
+    private int n;
     private int a;
     private int b;
     private int slotTemporary;
@@ -41,6 +43,23 @@ public class InvenSkillBook : MonoBehaviour
         a = -1;
         b = -1;
 
+    }
+    public void GetSkillBook(){
+        if(ItemPickUp.y != null){
+            x = ItemPickUp.y;
+            if(x.GetComponent<ThisItem>().type == TypeItem.Skill) n = x.GetComponent<ThisItem>().thisId;
+        }
+        if(ItemPickUp.pick == true && x.GetComponent<ThisItem>().type == TypeItem.Skill){
+
+            for(int i=0; i < slotsNumber; i++){
+                if(yourSkillbook[i].id == 0 && ItemPickUp.pick == true){
+                    yourSkillbook[i] = Database.skillBookList[n];
+                }
+            }
+            //checkquest
+            // QuestLog.DoQuest(Quest.Objective.Type.collect, n);
+            ItemPickUp.pick = false;
+        }
     }
 
     void Update()

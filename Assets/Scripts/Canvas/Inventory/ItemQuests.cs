@@ -12,8 +12,10 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
     [SerializeField] private List<Item> draggedItem = new List<Item>();
     [SerializeField] private Image[] slot;
     [SerializeField] private Sprite[] slotSprite;
-    [SerializeField] private Text[] stackText;
+    // [SerializeField] private Text[] stackText;
 
+    private GameObject x;
+    private int n;
     private int a;
     private int b;
     private int slotTemporary;
@@ -37,13 +39,13 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-        for(int i=0; i < slotsNumber; i++){
-            if(yourItemQuests[i].id == 0 || slotStack[i] == 1){
-                stackText[i].text = "";
-            }else{
-                stackText[i].text = ""+ slotStack[i];
-            }
-        }
+        // for(int i=0; i < slotsNumber; i++){
+        //     if(yourItemQuests[i].id == 0 || slotStack[i] == 1){
+        //         stackText[i].text = "";
+        //     }else{
+        //         stackText[i].text = ""+ slotStack[i];
+        //     }
+        // }
 
         for(int i=0; i < slotsNumber; i++){
             slot[i].sprite = slotSprite[i];
@@ -53,6 +55,27 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
             slotSprite[i] = yourItemQuests[i].itemSprite;
         }
 
+    }
+
+    public void GetItemQuest(){
+        if(ItemPickUp.y != null){
+            x = ItemPickUp.y;
+            if(x.GetComponent<ThisItem>().type == TypeItem.Quest) n = x.GetComponent<ThisItem>().thisId;
+        }
+        if(ItemPickUp.pick == true && x.GetComponent<ThisItem>().type == TypeItem.Quest){
+
+            for(int i=0; i < slotsNumber; i++){
+                if(yourItemQuests[i].id == 0 && ItemPickUp.pick == true){
+                    yourItemQuests[i] = Database.itemQuestList[n];
+                    break;
+                    // slotStack[i] += 1;
+                }
+            }
+
+            //checkquest
+            // QuestLog.DoQuest(Quest.Objective.Type.collect, n);
+            ItemPickUp.pick = false;
+        }
     }
 
     public void StartDrag(Image slotX){
