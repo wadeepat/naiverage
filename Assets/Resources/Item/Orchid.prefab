@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 50
+  rate: 30
 --- !u!114 &8210233382477057042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 50
+  rate: 30
 --- !u!114 &3901788002188840275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 50
+  rate: 30
 --- !u!114 &1964465571436691775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,7 +491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 50
+  rate: 30
 --- !u!4 &3885517038467447218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4277683656713688, guid: 87f042f23390ab941a7cc3a3ef0b4ded, type: 3}
@@ -596,7 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 50
+  rate: 30
 --- !u!114 &3567927398844259959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,7 +710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 50
+  rate: 30
 --- !u!114 &5141067955460430984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,7 +824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 50
+  rate: 30
 --- !u!114 &6322277185188679787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -933,7 +933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 50
+  rate: 30
 --- !u!114 &2987055557047995000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1047,7 +1047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 50
+  rate: 30
 --- !u!114 &6404820611262796822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1180,4 +1180,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 50
+  rate: 30

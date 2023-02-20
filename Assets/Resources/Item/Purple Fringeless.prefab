@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!1001 &3092932489166949694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!114 &2622525487458572069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!1001 &4143930225349442382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -493,7 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!114 &7760584553060667897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!114 &8917754593661747455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,7 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!1001 &6632754632132532887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -852,7 +852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!114 &8271314897358624466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -970,7 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!114 &7250433757471072442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1088,7 +1088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!114 &9192331493294477666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1220,4 +1220,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50

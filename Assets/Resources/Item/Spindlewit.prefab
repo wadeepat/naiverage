@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 80
+  rate: 50
 --- !u!4 &5216380249131728456 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5354447124940768110, guid: 62508fcfb57cfc34c854662912fc593d, type: 3}
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 80
+  rate: 50
 --- !u!4 &6464408300699549191 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5171843243493595482, guid: 0efe55eb5117a2e47ad21a837a8b5870, type: 3}
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 80
+  rate: 50
 --- !u!1001 &3751331465863881366
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -496,7 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 80
+  rate: 50
 --- !u!4 &9097756532476158456 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5354447124940768110, guid: 62508fcfb57cfc34c854662912fc593d, type: 3}
@@ -601,7 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 80
+  rate: 50
 --- !u!114 &3951701479070669844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,7 +715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 80
+  rate: 50
 --- !u!114 &7875663164365114673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -829,7 +829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 80
+  rate: 50
 --- !u!114 &6807916388922632738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,7 +938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 80
+  rate: 50
 --- !u!114 &5443022382979866605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1071,7 +1071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 80
+  rate: 50
 --- !u!1001 &6282838141849005048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1166,7 +1166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 80
+  rate: 50
 --- !u!114 &1024117575740482823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1299,7 +1299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 80
+  rate: 50
 --- !u!1001 &7151425922445582529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1394,7 +1394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 80
+  rate: 50
 --- !u!114 &5165810821500724862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1527,7 +1527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 80
+  rate: 50
 --- !u!1001 &8993263739973746151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1627,7 +1627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 80
+  rate: 50
 --- !u!114 &7434804818481714238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1750,7 +1750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 80
+  rate: 50
 --- !u!4 &4238213960579651988 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5171843243493595482, guid: 0efe55eb5117a2e47ad21a837a8b5870, type: 3}

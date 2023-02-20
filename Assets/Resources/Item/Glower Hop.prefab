@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!4 &2214868323976387306 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4017212017536026, guid: 539eb491402fb0a49a1bec8dcd361fda, type: 3}
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!4 &2313866726631164502 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4017212017536026, guid: 539eb491402fb0a49a1bec8dcd361fda, type: 3}
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!1001 &3263673959271484873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!1001 &3461762128467166467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!1001 &3478983199247342765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -610,7 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!114 &5459809562866057505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,7 +708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!114 &4875838531709768850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -825,7 +825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!1001 &5007446219744800612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -909,7 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!114 &3626998027044195471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!114 &6193426385279217263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1105,7 +1105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 70
+  rate: 50
 --- !u!114 &4517562503408108388
 MonoBehaviour:
   m_ObjectHideFlags: 0
