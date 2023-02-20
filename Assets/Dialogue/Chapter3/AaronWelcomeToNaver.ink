@@ -1,3 +1,3 @@
 INCLUDE Chapter3Dialogue.ink
-->AaronWelcomeToNaver
+->AaronWelcome
 ->END

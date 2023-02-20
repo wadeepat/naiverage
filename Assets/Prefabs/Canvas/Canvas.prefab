@@ -3498,7 +3498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4227647534486383798, guid: 417746f6d8b3bbe4daa1447f030a2173, type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227647534486383798, guid: 417746f6d8b3bbe4daa1447f030a2173, type: 3}
       propertyPath: m_RootOrder
@@ -3506,23 +3506,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4227647534486383798, guid: 417746f6d8b3bbe4daa1447f030a2173, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227647534486383798, guid: 417746f6d8b3bbe4daa1447f030a2173, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227647534486383798, guid: 417746f6d8b3bbe4daa1447f030a2173, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4227647534486383798, guid: 417746f6d8b3bbe4daa1447f030a2173, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227647534486383798, guid: 417746f6d8b3bbe4daa1447f030a2173, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4227647534486383798, guid: 417746f6d8b3bbe4daa1447f030a2173, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3562,7 +3562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4227647534486383798, guid: 417746f6d8b3bbe4daa1447f030a2173, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 137.94
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4227647534486383798, guid: 417746f6d8b3bbe4daa1447f030a2173, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3579,6 +3579,14 @@ PrefabInstance:
     - target: {fileID: 4227647534486383799, guid: 417746f6d8b3bbe4daa1447f030a2173, type: 3}
       propertyPath: m_Name
       value: TutorialGuiding
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227647534666059519, guid: 417746f6d8b3bbe4daa1447f030a2173, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227647535199316383, guid: 417746f6d8b3bbe4daa1447f030a2173, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 417746f6d8b3bbe4daa1447f030a2173, type: 3}
