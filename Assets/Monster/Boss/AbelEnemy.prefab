@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 924416398459543048}
   - component: {fileID: 924416398459543055}
   - component: {fileID: 924416398459543056}
-  - component: {fileID: 6713855630067612899}
+  - component: {fileID: 5788204366265847207}
   m_Layer: 6
   m_Name: AbelEnemy
   m_TagString: Enemy
@@ -514,7 +514,7 @@ Transform:
   - {fileID: 924416399154573239}
   - {fileID: 8744896438955046005}
   - {fileID: 261600616678262358}
-  - {fileID: 2926261589647954493}
+  - {fileID: 5023095598533733105}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -538,9 +538,11 @@ MonoBehaviour:
   monsterElement: 0
   defense: 0
   resist: 0
+  elementType: 0
+  imageElement: {fileID: 0}
   projectileObj: {fileID: 0}
   firePoint: {fileID: 8744896438955046005}
-  maxHealthPoint: 200
+  maxHealthPoint: 100
   attackCooldown: 2
   stayCooldown: 4
   chaseSpeed: 3
@@ -641,7 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   context: {fileID: 0}
-  umaData: {fileID: 6713855630067612899}
+  umaData: {fileID: 5788204366265847207}
   defaultRendererAsset: {fileID: 0}
   umaRecipe: {fileID: 11400000, guid: 1d97eb041589729479af9716fd5b42b3, type: 2}
   umaAdditionalRecipes: []
@@ -847,7 +849,7 @@ MonoBehaviour:
   customRotation: {x: 0, y: 0, z: 0}
   previewColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _buildCharacterEnabled: 1
---- !u!114 &6713855630067612899
+--- !u!114 &5788204366265847207
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -860,7 +862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderers:
-  - {fileID: 1381418104603279381}
+  - {fileID: 6454935017428722756}
   umaGenerator: {fileID: 0}
   atlasResolutionScale: 1
   isMeshDirty: 0
@@ -5608,7 +5610,7 @@ Transform:
   m_Father: {fileID: 924416399945658949}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3322218117212325183
+--- !u!1 &5069089122124108020
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5616,8 +5618,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2926261589647954493}
-  - component: {fileID: 1381418104603279381}
+  - component: {fileID: 5023095598533733105}
+  - component: {fileID: 6454935017428722756}
   m_Layer: 6
   m_Name: UMARenderer
   m_TagString: Untagged
@@ -5625,13 +5627,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2926261589647954493
+--- !u!4 &5023095598533733105
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3322218117212325183}
+  m_GameObject: {fileID: 5069089122124108020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -5640,13 +5642,13 @@ Transform:
   m_Father: {fileID: 924416398459543059}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &1381418104603279381
+--- !u!137 &6454935017428722756
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3322218117212325183}
+  m_GameObject: {fileID: 5069089122124108020}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1

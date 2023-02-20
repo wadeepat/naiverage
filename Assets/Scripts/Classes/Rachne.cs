@@ -17,11 +17,12 @@ public class Rachne : Enemy
         animator.SetBool("shootPoison", false);
         StayThisPosition();
         SetToWalk();
+        animator.SetBool("isChasing", false);
     }
-    // public override void OnIdleStateUpdate()
-    // {
-
-    // }
+    public override void OnIdleStateUpdate()
+    {
+        if (target) animator.SetBool("isChasing", true);
+    }
     public override void OnChaseStateEnter()
     {
         // comboNo = Random.Range(0, 4);
@@ -30,6 +31,11 @@ public class Rachne : Enemy
     }
     public override void OnChaseStateUpdate()
     {
+        if (target == null)
+        {
+            animator.SetBool("isChasing", false);
+            return;
+        }
         if (agent.enabled)
         {
             if (agent.speed < chaseSpeed)

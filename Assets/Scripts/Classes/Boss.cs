@@ -40,14 +40,28 @@ public class Boss : Enemy
             else criDamageBuffTimer += Time.deltaTime;
         }
     }
+    public override void OnIdleStateEnter()
+    {
+        base.OnIdleStateEnter();
+        animator.SetBool("isChasing", false);
+    }
+    public override void OnIdleStateUpdate()
+    {
+        if (target) animator.SetBool("isChasing", true);
+    }
     public override void OnChaseStateEnter()
     {
         // ResetCombo();
         comboNo = Random.Range(0, 3);
-        Debug.Log("turn: " + turn);
+        // Debug.Log("turn: " + turn);
     }
     public override void OnChaseStateUpdate()
     {
+        if (target == null)
+        {
+            animator.SetBool("isChasing", false);
+            return;
+        }
         if (agent.enabled)
         {
             if (agent.speed < chaseSpeed)
@@ -110,14 +124,14 @@ public class Boss : Enemy
     }
     public void ShootElement(int no)
     {
-        transform.LookAt(target);
+        if (target) transform.LookAt(target);
         GameObject cainFire = Instantiate(fireObject[no], firePoint.position, transform.rotation);
     }
     public void Ultimate()
     {
         if (monsterId == MonsterId.Cain)
         {
-            transform.LookAt(target);
+            if (target) transform.LookAt(target);
             GameObject ultimate = Instantiate(ultiObject, firePoint.position, transform.rotation);
         }
         else
