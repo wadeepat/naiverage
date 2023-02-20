@@ -122,16 +122,16 @@ public class Database : MonoBehaviour
         itemList.Add(new Item(0, "None", "None", Resources.Load<Sprite>("0"), 0));
         itemList.Add(new Item(1, "Spindlewit", "Item", Resources.Load<Sprite>("1"), 0));
         itemList.Add(new Item(2, "Spin Reef", "Item", Resources.Load<Sprite>("2"), 0));
-        itemList.Add(new Item(3, "Glower Hop", "Item", Resources.Load<Sprite>("0"), 0));
-        itemList.Add(new Item(4, "Mushroom", "Item", Resources.Load<Sprite>("1"), 0));
-        itemList.Add(new Item(5, "item5", "Item", Resources.Load<Sprite>("2"), 0));
-        itemList.Add(new Item(6, "Thorn Leaf", "Item", Resources.Load<Sprite>("3"), 0));
-        itemList.Add(new Item(7, "item7", "Item", Resources.Load<Sprite>("0"), 0));
-        itemList.Add(new Item(8, "item8", "Item", Resources.Load<Sprite>("1"), 0));
-        itemList.Add(new Item(9, "item9", "Item", Resources.Load<Sprite>("2"), 0));
-        itemList.Add(new Item(10, "item10", "Item", Resources.Load<Sprite>("3"), 0));
-        itemList.Add(new Item(11, "item11", "Item", Resources.Load<Sprite>("0"), 0));
-        itemList.Add(new Item(12, "FlyingTree", "Item", Resources.Load<Sprite>("1"), 0));
+        itemList.Add(new Item(3, "Glower Hop", "Item", Resources.Load<Sprite>("3"), 0));
+        itemList.Add(new Item(4, "Mushroom", "Item", Resources.Load<Sprite>("4"), 0));
+        itemList.Add(new Item(5, "Purple Fringeless", "Item", Resources.Load<Sprite>("5"), 0));
+        itemList.Add(new Item(6, "Thorn Leaf", "Item", Resources.Load<Sprite>("6"), 0));
+        itemList.Add(new Item(7, "Orchid Special", "Item", Resources.Load<Sprite>("7"), 0));
+        itemList.Add(new Item(8, "Hosta", "Item", Resources.Load<Sprite>("8"), 0));
+        itemList.Add(new Item(9, "Snake Eye", "Item", Resources.Load<Sprite>("9"), 0));
+        itemList.Add(new Item(10, "Coleus", "Item", Resources.Load<Sprite>("10"), 0));
+        itemList.Add(new Item(11, "Arrowhead Chute", "Item", Resources.Load<Sprite>("11"), 0));
+        itemList.Add(new Item(12, "FlyingTree", "Item", Resources.Load<Sprite>("12"), 0));
     }
     private void AddQuestChapter0()
     {

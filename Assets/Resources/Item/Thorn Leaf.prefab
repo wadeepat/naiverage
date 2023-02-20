@@ -114,6 +114,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 65668967349582696, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
 --- !u!1 &379559179489753198 stripped
@@ -222,6 +226,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4577064337301668, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65668967349582696, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -334,6 +342,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 65668967349582696, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
 --- !u!4 &739855528048055553 stripped
@@ -442,6 +454,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4577064337301668, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65668967349582696, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -554,6 +570,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 65668967349582696, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
 --- !u!4 &3363856214954407003 stripped
@@ -662,6 +682,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4577064337301668, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65668967349582696, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -774,6 +798,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 65668967349582696, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
 --- !u!4 &4246855927735465352 stripped
@@ -882,6 +910,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4577064337301668, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65668967349582696, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -994,6 +1026,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 65668967349582696, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
 --- !u!1 &6516055305078711839 stripped
@@ -1102,6 +1138,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4577064337301668, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65668967349582696, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1214,6 +1254,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 65668967349582696, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
 --- !u!1 &8387690269717816946 stripped
@@ -1322,6 +1366,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4577064337301668, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65668967349582696, guid: 07a1f54b84b548546aa2fac8ec805ce5, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -1,0 +1,627 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6971168882969478566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8708201516677294115}
+  m_Layer: 0
+  m_Name: Arrowhead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8708201516677294115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6971168882969478566}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2238826495788803081}
+  - {fileID: 8790004411118124162}
+  - {fileID: 8159370018179403974}
+  - {fileID: 1566140384725440412}
+  - {fileID: 6876076027214838388}
+  - {fileID: 4903234089403256958}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1562100686318569998
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8708201516677294115}
+    m_Modifications:
+    - target: {fileID: 1112162343450436, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_Name
+      value: Arrowhead Chute Plant 3 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8908659
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000019470495
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.4542663
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000009928305
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 54.035
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136406605704187286, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+--- !u!1 &1562258470642679114 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1112162343450436, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+  m_PrefabInstance: {fileID: 1562100686318569998}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7814731577297549974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562258470642679114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54916bdc2b88f94cb0412d6435afbea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisId: 11
+  type: 0
+--- !u!114 &7466639372718447604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562258470642679114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rate: 30
+--- !u!4 &1566140384725440412 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+  m_PrefabInstance: {fileID: 1562100686318569998}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2233881055098894747
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8708201516677294115}
+    m_Modifications:
+    - target: {fileID: 1112162343450436, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_Name
+      value: Arrowhead Chute Plant 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136406605704187286, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+--- !u!1 &2234811786174729951 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1112162343450436, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+  m_PrefabInstance: {fileID: 2233881055098894747}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7843799892860261657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2234811786174729951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54916bdc2b88f94cb0412d6435afbea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisId: 11
+  type: 0
+--- !u!114 &1820617077758018650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2234811786174729951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rate: 30
+--- !u!4 &2238826495788803081 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+  m_PrefabInstance: {fileID: 2233881055098894747}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4907365864659619308
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8708201516677294115}
+    m_Modifications:
+    - target: {fileID: 1112162343450436, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_Name
+      value: Arrowhead Chute Plant 3 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.22893398
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000005003511
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.973442
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.00000002127525
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -206.469
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136406605704187286, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+--- !u!4 &4903234089403256958 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+  m_PrefabInstance: {fileID: 4907365864659619308}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4907099235884989096 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1112162343450436, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+  m_PrefabInstance: {fileID: 4907365864659619308}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3217005356759332081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4907099235884989096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54916bdc2b88f94cb0412d6435afbea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisId: 11
+  type: 0
+--- !u!114 &5556589285888498081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4907099235884989096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rate: 30
+--- !u!1001 &6880660868756252646
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8708201516677294115}
+    m_Modifications:
+    - target: {fileID: 1112162343450436, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_Name
+      value: Arrowhead Chute Plant 3 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.22893398
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000005003511
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.973442
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.00000002127525
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -206.469
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136406605704187286, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+--- !u!4 &6876076027214838388 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+  m_PrefabInstance: {fileID: 6880660868756252646}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6881208978945888418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1112162343450436, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+  m_PrefabInstance: {fileID: 6880660868756252646}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1786739563547431561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6881208978945888418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54916bdc2b88f94cb0412d6435afbea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisId: 11
+  type: 0
+--- !u!114 &2922568065557103691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6881208978945888418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rate: 30
+--- !u!1001 &8154428897271991636
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8708201516677294115}
+    m_Modifications:
+    - target: {fileID: 1112162343450436, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_Name
+      value: Arrowhead Chute Plant 3 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8908659
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000019470495
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.4542663
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000009928305
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 54.035
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136406605704187286, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+--- !u!1 &8154235936897120784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1112162343450436, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+  m_PrefabInstance: {fileID: 8154428897271991636}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6591386309852506703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8154235936897120784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54916bdc2b88f94cb0412d6435afbea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisId: 11
+  type: 0
+--- !u!114 &4316442898826004151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8154235936897120784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rate: 30
+--- !u!4 &8159370018179403974 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+  m_PrefabInstance: {fileID: 8154428897271991636}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8785925138883436816
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8708201516677294115}
+    m_Modifications:
+    - target: {fileID: 1112162343450436, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_Name
+      value: Arrowhead Chute Plant 3 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.22893398
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000005003511
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.973442
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.00000002127525
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -206.469
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136406605704187286, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+--- !u!1 &8785981760123672148 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1112162343450436, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+  m_PrefabInstance: {fileID: 8785925138883436816}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7659493981839534732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8785981760123672148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54916bdc2b88f94cb0412d6435afbea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisId: 11
+  type: 0
+--- !u!114 &5489983055430415607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8785981760123672148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f509dc0cf813f64c9beb094cdf337ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rate: 30
+--- !u!4 &8790004411118124162 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4994179056639378, guid: edc67c3f81dcc6c4c8841676c8a0edcb, type: 3}
+  m_PrefabInstance: {fileID: 8785925138883436816}
+  m_PrefabAsset: {fileID: 0}
