@@ -18,8 +18,9 @@ public class DamageToEnemy : MonoBehaviour
             Instantiate(Effect, gameObject.transform.position, transform.rotation);
 
         }
-        else if (target.gameObject.name == "Terrain")
+        else if (target.gameObject.name == "Terrain"){
             Instantiate(Effect, gameObject.transform.position, transform.rotation);
             Destroy(transform.parent.gameObject);
+        }
     }
 }
