@@ -1643,8 +1643,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1696428000519244941, guid: 97cc3f63d251c144c908b837a5c325cc, type: 3}
       propertyPath: monsterTestLists.Array.size
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1696428000519244941, guid: 97cc3f63d251c144c908b837a5c325cc, type: 3}
+      propertyPath: monsterLists.Array.data[7].model
+      value: 
+      objectReference: {fileID: 6051786700028988739, guid: 509a8df841b78f94a9864f85c412e51e, type: 3}
+    - target: {fileID: 1696428000519244941, guid: 97cc3f63d251c144c908b837a5c325cc, type: 3}
+      propertyPath: monsterLists.Array.data[8].model
+      value: 
+      objectReference: {fileID: 924416398459543054, guid: 27e63aa5babe5e247917dbe7356a2360, type: 3}
     - target: {fileID: 1696428000519244941, guid: 97cc3f63d251c144c908b837a5c325cc, type: 3}
       propertyPath: monsterTestLists.Array.data[0].amount
       value: 2
@@ -1674,6 +1682,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1696428000519244941, guid: 97cc3f63d251c144c908b837a5c325cc, type: 3}
+      propertyPath: monsterTestLists.Array.data[7].amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1696428000519244941, guid: 97cc3f63d251c144c908b837a5c325cc, type: 3}
+      propertyPath: monsterTestLists.Array.data[8].amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1696428000519244941, guid: 97cc3f63d251c144c908b837a5c325cc, type: 3}
       propertyPath: monsterTestLists.Array.data[2].monsterId
       value: 1
       objectReference: {fileID: 0}
@@ -1692,6 +1708,14 @@ PrefabInstance:
     - target: {fileID: 1696428000519244941, guid: 97cc3f63d251c144c908b837a5c325cc, type: 3}
       propertyPath: monsterTestLists.Array.data[6].monsterId
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1696428000519244941, guid: 97cc3f63d251c144c908b837a5c325cc, type: 3}
+      propertyPath: monsterTestLists.Array.data[7].monsterId
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1696428000519244941, guid: 97cc3f63d251c144c908b837a5c325cc, type: 3}
+      propertyPath: monsterTestLists.Array.data[8].monsterId
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97cc3f63d251c144c908b837a5c325cc, type: 3}

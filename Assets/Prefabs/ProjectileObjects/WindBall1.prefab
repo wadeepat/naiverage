@@ -14490,3 +14490,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementType: 3
+  Effect: {fileID: 100000, guid: 27f2868be9b00bb48ad5821e2b2bc30e, type: 3}

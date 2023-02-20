@@ -4900,6 +4900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementType: 2
+  Effect: {fileID: 1687118924408352, guid: 96dd2ab0c05fc7a499275fc6de673db1, type: 3}
 --- !u!1 &2985497843956779713
 GameObject:
   m_ObjectHideFlags: 0

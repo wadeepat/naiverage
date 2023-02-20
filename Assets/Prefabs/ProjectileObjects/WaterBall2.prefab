@@ -19405,3 +19405,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementType: 2
+  Effect: {fileID: 1280141305896002, guid: d700162009ec7464db755733e7d11dbf, type: 3}
