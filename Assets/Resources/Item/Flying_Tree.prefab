@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 1728723995307779720}
   - component: {fileID: 1728723996991958701}
   - component: {fileID: 4640416659367250744}
+  - component: {fileID: 6264492964567125094}
   m_Layer: 0
   m_Name: Flying_Tree
   m_TagString: item
@@ -281,3 +282,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rate: 10
+--- !u!136 &6264492964567125094
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728723995317163342}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 42
+  m_Height: 138.26
+  m_Direction: 1
+  m_Center: {x: 0, y: 49.8, z: 0}
