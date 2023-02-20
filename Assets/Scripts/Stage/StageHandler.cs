@@ -168,6 +168,11 @@ public class StageHandler : MonoBehaviour
                     player.position = t_startGate.position;
                     player.rotation = t_startGate.rotation;
                 }
+                if (previousScene == (int)SceneIndex.RachneField)
+                {
+                    player.position = t_RachneGate.position;
+                    player.rotation = t_RachneGate.rotation;
+                }
                 else
                 {
                     player.position = t_naverGate.position;
@@ -217,8 +222,16 @@ public class StageHandler : MonoBehaviour
                 }
                 break;
             case (int)SceneIndex.Cave:
-                player.position = c_braewoodGate.position;
-                player.rotation = c_braewoodGate.rotation;
+                if (previousScene == (int)SceneIndex.TrollField)
+                {
+                    player.position = c_TrollGate.position;
+                    player.rotation = c_TrollGate.rotation;
+                }
+                else
+                {
+                    player.position = c_braewoodGate.position;
+                    player.rotation = c_braewoodGate.rotation;
+                }
                 break;
             default:
                 if (exitGate)
@@ -625,7 +638,10 @@ public class StageHandler : MonoBehaviour
                     }
                     else if (npc.idx == NPCIndex.Cain)
                     {
-                        npc.Object.GetComponent<NPC>().inkJSON = DialogueManager.instance.GetDialogueFile(2, "BackToFriendAgain");
+                        if (PlayerManager.playerEvents["backToPast"])
+                            npc.Object.GetComponent<NPC>().inkJSON = DialogueManager.instance.GetDialogueFile(2, "BackToFriendAgain");
+                        else
+                            npc.Object.GetComponent<NPC>().inkJSON = DialogueManager.instance.GetDialogueFile(2, "BackToFriend");
                     }
                     else continue;
                     npc.Object.SetActive(true);

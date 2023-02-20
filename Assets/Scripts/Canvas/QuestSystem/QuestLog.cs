@@ -69,7 +69,8 @@ public class QuestLog
     {
         // Debug.Log($"<color=#AEF>Complete quest: {quest.questId}</color>");
         // AudioManager.instance.Play("completeQuest");
-        if (quest.objective.dialogue is not null) DialogueManager.instance.EnterDialogueMode(quest.objective.dialogue);
+        // if (quest.objective.dialogue is not null) DialogueManager.instance.EnterDialogueMode(quest.objective.dialogue);
+        if (quest.objective.dialogue != null) DialogueManager.instance.EnterDialogueMode(quest.objective.dialogue);
         questList.Remove(quest);
         completedQuest.Add(quest);
         if (quest.compleltedAction != null) quest.compleltedAction();

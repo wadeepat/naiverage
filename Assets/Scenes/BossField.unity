@@ -6594,7 +6594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a4b064d1a8b0441878420829e3ebae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toScene: 1
+  toScene: 5
 --- !u!1001 &249114703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39696,7 +39696,7 @@ MonoBehaviour:
   - monsterId: 5
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
   - monsterId: 6
-    model: {fileID: 1862107410815556, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
+    model: {fileID: 1518672436894999060, guid: b3a899cd32f663a44afd0d4fe2a3f924, type: 3}
   - monsterId: 7
     model: {fileID: 6051786700028988739, guid: 509a8df841b78f94a9864f85c412e51e, type: 3}
   - monsterId: 8

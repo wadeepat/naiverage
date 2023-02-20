@@ -1,7 +1,7 @@
 INCLUDE ../Tutorial/tutorial_globals.ink
 
-===AaronWelcomeToNaver===
-    #speaker:Aaron #questComplete:27
+===AaronWelcome===
+    #speaker:Aaron
     !!!
     ท่าน <color=\#FFD495>Cain</color> !!! ท…ทำไมท่านถึง…
     #speaker:Cain
@@ -90,7 +90,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
             ->DONE
     //(บอกว่าอยู่ที่ไหน) (เควสรองขึ้น)
 ->DONE
-===AaronWelcomeToNaverAgain===
+===AaronWelcomeA===
     #speaker:Aaron
     !!!
     ท่าน <color=\#FFD495>Cain</color> !!! ท…ทำไมท่านถึง…
