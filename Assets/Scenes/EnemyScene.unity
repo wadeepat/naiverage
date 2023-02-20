@@ -3358,7 +3358,9 @@ MonoBehaviour:
   enableTest: 1
   monsterTestLists:
   - monsterId: 0
-    amount: 1
+    amount: 2
+  - monsterId: 1
+    amount: 2
 --- !u!1 &1271258487
 GameObject:
   m_ObjectHideFlags: 0
