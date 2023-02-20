@@ -78,7 +78,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     (งั้นเราต้องรีบไปหาเขาแล้ว)
     #speaker:ยามหน้าประตู
     ถ้าเจ้าจะไปก็ระวังตัวด้วยละกัน ในถ้ำมันอันตราย
-    #speaker:quest #event:FindCain
+    #speaker:quest #questComplete:18
     \- เควส: ตามหาเจ้าชายคาอินในถ้ำ รางวัล: \-
         +[รับภารกิจ]
             #quest:19

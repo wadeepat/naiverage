@@ -17,9 +17,9 @@ public class GameData
     public List<Item> questsInventory;
     public List<SkillBook> skillBooks;
     public List<Skill> skill;
-    public int[] stackItem; 
-    public int[] stackPotion; 
-    public int[] stackQuests; 
+    public int[] stackItem;
+    public int[] stackPotion;
+    public int[] stackQuests;
     public int[] slotP;
     public int[] slotS;
     // public Dictionary<string, bool> tutorialEvents;
@@ -36,22 +36,22 @@ public class GameData
         };
         mapEnable = new SerializableDictionary<SceneIndex, bool>{
             {SceneIndex.Rachne,true},
-            {SceneIndex.NaverTown,true},
+            {SceneIndex.NaverTown,false},
             {SceneIndex.CalfordCastle,false},
             {SceneIndex.BraewoodForest,false},
             {SceneIndex.Cave,false},
         };
         questIdxList = new List<int>();
         completedQuestIdxList = new List<int>();
-        inventoryItem = new List<Item>( new Item[28] );
+        inventoryItem = new List<Item>(new Item[28]);
         stackItem = new int[28];
-        inventoryPotion = new List<Potion>( new Potion[16]);
+        inventoryPotion = new List<Potion>(new Potion[16]);
         stackPotion = new int[16];
-        slotP = new int[4]{-1,-1,-1,-1};
-        questsInventory = new List<Item>( new Item[8] );
+        slotP = new int[4] { -1, -1, -1, -1 };
+        questsInventory = new List<Item>(new Item[8]);
         stackQuests = new int[8];
         skill = new List<Skill>(new Skill[12]);
-        slotS = new int[3]{-1,-1,-1};
+        slotS = new int[3] { -1, -1, -1 };
 
     }
     public override string ToString()

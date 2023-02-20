@@ -573,10 +573,10 @@ public class StageHandler : MonoBehaviour
                     }
                 }
                 break;
-            case "FindCain":
-                QuestLog.CompleteQuest(Database.questList[18]);
-                QuestLog.AddQuest(Database.questList[19]);
-                break;
+            // case "FindCain":
+            //     QuestLog.CompleteQuest(Database.questList[18]);
+            //     QuestLog.AddQuest(Database.questList[19]);
+            //     break;
             case "UnlockCave":
                 PlayerManager.instance.mapEnable[SceneIndex.Cave] = true;
                 if (b_caveGate != null) b_caveGate?.gameObject.SetActive(true);
