@@ -9,6 +9,8 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] private static int MP = 100;
     // [SerializeField] private GameObject healthBar;
     // [SerializeField] private GameObject manaBar;
+    [SerializeField] private const float REGEN_HP_COOLDOWN = 5f;
+
     private Slider sliderHealth;
     private Slider sliderMana;
     private static float hp;
@@ -26,11 +28,16 @@ public class PlayerStatus : MonoBehaviour
     private float poisonTime, agonyTime, buffTime;
     private float time = 0.0f;
     private float interpolationPeriod = 1.0f;
+    private bool died;
 
+    //timer
+    private float damageTimer;
 
 
     void Start()
     {
+        died = false;
+
         sliderHealth = CanvasManager.instance.GetCanvasObject("Panel/Bar/HealthBar").GetComponent<Slider>();
         sliderMana = CanvasManager.instance.GetCanvasObject("Panel/Bar/StaminaBar").GetComponent<Slider>();
         hp = HP;
@@ -42,22 +49,34 @@ public class PlayerStatus : MonoBehaviour
         critRate = 20;
         defense = 10;
         resist = 10;
+
+        //timer
+        damageTimer = REGEN_HP_COOLDOWN;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (hp >= 0) sliderHealth.value = (float)hp / (float)HP;
         else sliderHealth.value = 0;
 
         if (mp >= 0) sliderMana.value = (float)mp / (float)MP;
         else sliderMana.value = 0;
 
-        if (hp < HP) hp += reHp * Time.deltaTime;
+        //Timer update
+        if (damageTimer < REGEN_HP_COOLDOWN) damageTimer += Time.deltaTime;
+        else RegenHP();
+
         if (mp < MP) mp += reMp * Time.deltaTime;
 
         CheckTimeAndStatus();
 
+    }
+
+    private void RegenHP()
+    {
+        if (hp < HP && !died) hp += reHp * Time.deltaTime;
     }
 
     public void TakeDamaged(int damageAmount)
@@ -69,15 +88,18 @@ public class PlayerStatus : MonoBehaviour
             hp = 0;
             PlayerManager.instance.player.tag = "Untagged";
             ActionHandler.instance.AskToLoad();
+            died = true;
             // healthBar.SetActive(false);
-            // animator.SetTrigger("die");
-            // GetComponent<BoxCollider>().enabled = false;
+            AnnouceTheDeath();
+            transform.GetComponent<Animator>().SetTrigger("die");
+            GetComponent<Collider>().enabled = false;
         }
         else
         {
             // healthBar.SetActive(true);
             // animator.SetTrigger("damaged");
         }
+        damageTimer = 0;
     }
 
 
@@ -243,9 +265,11 @@ public class PlayerStatus : MonoBehaviour
             }
         }
     }
-
-
-
-
+    private void AnnouceTheDeath()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+            enemy.GetComponent<Enemy>().AwarePlayerDied();
+    }
 
 }

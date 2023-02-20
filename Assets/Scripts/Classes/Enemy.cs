@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected int monsterElement = 0; // 0 = normal, 1 = fire, 2 = water, 3 = wind 
     [SerializeField] protected int defense;
     [SerializeField] protected int resist;
-    [SerializeField] protected ElementType  elementType;
+    [SerializeField] protected ElementType elementType;
     [SerializeField] protected Image imageElement;
 
     [Header("If Range Attack")]
@@ -125,14 +125,18 @@ public class Enemy : MonoBehaviour
     {
         if (agent.enabled)
         {
-            agent.SetDestination(target.position);
-            float distance = Vector3.Distance(target.position, gameObject.transform.position);
+            float distance = 1000;
+            if (target != null)
+            {
+                agent.SetDestination(target.position);
+                distance = Vector3.Distance(target.position, gameObject.transform.position);
+            }
             if (distance > chaseRange && damagedTimer >= RAGE_MODE_TIME)
             {
                 //back to patroll
                 animator.SetBool("isChasing", false);
             }
-            else if (distance < attackRange)
+            else if (distance <= attackRange)
             {
                 // Debug.Log("Can attack: " + distance + " " + attackRange);
                 //attack target
@@ -143,14 +147,17 @@ public class Enemy : MonoBehaviour
     }
     public void NormalAttack()
     {
-        transform.LookAt(target);
-        float distance = Vector2.Distance(target.position, transform.position);
-
-        if (distance < attackRange)
+        if (target != null)
         {
-            //TODO attack target
-            AttackTargetInRange(attackRange, 20);
-            // attackTimer = 0;
+            transform.LookAt(target);
+            float distance = Vector2.Distance(target.position, transform.position);
+
+            if (distance < attackRange)
+            {
+                //TODO attack target
+                AttackTargetInRange(attackRange, 20);
+                // attackTimer = 0;
+            }
 
         }
         cooldownTimer = 0;
@@ -173,7 +180,7 @@ public class Enemy : MonoBehaviour
     }
     public virtual void OnCooldownStateEnter()
     {
-        // Debug.Log("cooldown from enemy");
+        //for other enemy
     }
     public virtual void OnCooldownStateUpdate()
     {
@@ -195,7 +202,11 @@ public class Enemy : MonoBehaviour
     }
     public void OnPatrollStateUpdate()
     {
-        float distance = Vector2.Distance(target.position, transform.position);
+        float distance = 1000;
+        if (target != null)
+        {
+            distance = Vector3.Distance(target.position, gameObject.transform.position);
+        }
         if (distance < chaseRange || damagedTimer < RAGE_MODE_TIME)
         {
             animator.SetBool("isChasing", true);
@@ -214,10 +225,16 @@ public class Enemy : MonoBehaviour
     }
     public virtual void OnIdleStateUpdate()
     {
-        float distance = Vector3.Distance(target.position, transform.position);
+        float distance = 1000;
+        if (target != null)
+        {
+            distance = Vector3.Distance(target.position, gameObject.transform.position);
+        }
+
         if (distance <= chaseRange || damagedTimer < RAGE_MODE_TIME)
         {
-            animator.SetBool("isChasing", true);
+            if (target != null)
+                animator.SetBool("isChasing", true);
         }
         else if (stayTimer >= stayCooldown)
         {
@@ -230,6 +247,7 @@ public class Enemy : MonoBehaviour
     }
     protected void AttackTargetInRange(float range, int damage)
     {
+        if (target == null) return;
         float distance = Vector2.Distance(target.position, transform.position);
         if (distance <= range)
         {
@@ -247,6 +265,10 @@ public class Enemy : MonoBehaviour
         {
             agent.SetDestination(transform.position);
         }
+    }
+    public void AwarePlayerDied()
+    {
+        target = null;
     }
     public void Died()
     {
@@ -423,22 +445,23 @@ public class Enemy : MonoBehaviour
     {
         // 0 = normal, 1 = fire, 2 = water, 3 = wind 
         bool win = false;
-        switch(element){
+        switch (element)
+        {
             case ElementType.Physical:
                 return damageAmount * (100.0f / (100 + defense));
             case ElementType.Fire:
-                if(elementType == ElementType.Water) win = false;
-                else if(elementType == ElementType.Wind) win = true;
+                if (elementType == ElementType.Water) win = false;
+                else if (elementType == ElementType.Wind) win = true;
                 else return damageAmount * (100.0f / (100 + resist));
                 break;
             case ElementType.Water:
-                if(elementType == ElementType.Wind) win = false;
-                else if(elementType == ElementType.Fire) win = true;
+                if (elementType == ElementType.Wind) win = false;
+                else if (elementType == ElementType.Fire) win = true;
                 else return damageAmount * (100.0f / (100 + resist));
                 break;
             case ElementType.Wind:
-                if(elementType == ElementType.Fire) win = false;
-                else if(elementType == ElementType.Water) win = true;
+                if (elementType == ElementType.Fire) win = false;
+                else if (elementType == ElementType.Water) win = true;
                 else return damageAmount * (100.0f / (100 + resist));
                 break;
         }
@@ -464,14 +487,22 @@ public class Enemy : MonoBehaviour
         return damageAmount * (100.0f / (100 + resist));
     }
 
-    void ShowElement(ElementType e){
-        if(e == ElementType.Fire){
+    void ShowElement(ElementType e)
+    {
+        if (e == ElementType.Fire)
+        {
             spriteElement = Resources.Load<Sprite>("f");
-        }else if(e == ElementType.Water){
+        }
+        else if (e == ElementType.Water)
+        {
             spriteElement = Resources.Load<Sprite>("wt");
-        }else if(e == ElementType.Wind){
+        }
+        else if (e == ElementType.Wind)
+        {
             spriteElement = Resources.Load<Sprite>("w");
-        }else{
+        }
+        else
+        {
             spriteElement = Resources.Load<Sprite>("phy");
         }
         imageElement.sprite = spriteElement;

@@ -25,10 +25,11 @@ public class Troll : Enemy
         animator.SetBool("com4", false);
         StayThisPosition();
         SetToWalk();
+        animator.SetBool("isChasing", false);
     }
     public override void OnIdleStateUpdate()
     {
-
+        if (target) animator.SetBool("isChasing", true);
     }
     public override void OnChaseStateEnter()
     {
@@ -36,6 +37,11 @@ public class Troll : Enemy
     }
     public override void OnChaseStateUpdate()
     {
+        if (target == null)
+        {
+            animator.SetBool("isChasing", false);
+            return;
+        }
         if (agent.enabled)
         {
             if (agent.speed < chaseSpeed)
@@ -74,7 +80,7 @@ public class Troll : Enemy
     }
     public override bool EnemyAttack(string atkName)
     {
-        transform.LookAt(target);
+        if (target) transform.LookAt(target);
         return TrollAttack(atkName);
     }
     private bool TrollAttack(string atkName)
@@ -94,6 +100,8 @@ public class Troll : Enemy
     }
     private bool LowAttack(int damage = 10)
     {
+        if (target) return false;
+
         if (weaponColliderScript.isCollided)
         {
             // Debug.LogWarning("Low Attack hit");
@@ -104,6 +112,7 @@ public class Troll : Enemy
     }
     private bool HeavyAttack(int damage = 20)
     {
+        if (target) return false;
         // transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y - 25, transform.rotation.z);
         if (weaponColliderScript.isCollided)
         {
