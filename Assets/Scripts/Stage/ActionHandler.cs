@@ -53,11 +53,14 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     }
     private void DeactivateAllElement()
     {
-        foreach (Transform card in TutorialGuidingObject.transform)
+        if (TutorialGuidingObject)
         {
-            card.gameObject.SetActive(false);
+            foreach (Transform card in TutorialGuidingObject.transform)
+            {
+                card.gameObject.SetActive(false);
+            }
         }
-        confirmationPopup.gameObject.SetActive(false);
+        confirmationPopup?.gameObject.SetActive(false);
 
     }
     public void SetPath(int pathNo)
