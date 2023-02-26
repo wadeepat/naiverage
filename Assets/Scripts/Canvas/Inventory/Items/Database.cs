@@ -46,6 +46,8 @@ public class Database : MonoBehaviour
         AddQuestChapter4();
         //* turn back time
         AddQuestTurnBack();
+        //* side quest
+        AddSidequest();
     }
     private void AddMonsterList()
     {
@@ -1471,6 +1473,44 @@ public class Database : MonoBehaviour
                 prepareAction = () =>
                 {
                     StageHandler.instance.EventTrigger("Cain");
+                },
+                compleltedAction = () =>
+                {
+                    DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(4, "DefeatCain"));
+                }
+            }
+        );
+    }
+    private void AddSidequest()
+    {
+        //sidequest idx start from 46
+        questList.Add(
+            new Quest()
+            {
+                questId = 46,
+                questName = $"ชื่อเควส {ColorText("char", "Cain")}",
+                questDescription = $"คำอธิบาย {ColorText("char", "Abel")} ดังนั้นต่อสู่กับ {ColorText("char", "Cain")} เพื่อช่วยเหลือเขา",
+                location = SceneIndex.NaverTown,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 1,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)MonsterId.Cain,
+                    //สำหรับเควสให้คุย
+                    //npc = NPCIndex.Sata,
+                    // dialogue = DialogueManager.instance.GetDialogueFile(2,"ชื่อไฟล์ Dialogue"),
+                    type = Quest.Objective.Type.kill,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    //หลังจาก add quest จะทำ
+                },
+                prepareAction = () =>
+                {
+                    //เมื่อผู้เล่นอยู่ที่ location นั้นๆ จะทำ
+                    // StageHandler.instance.EventTrigger(ชื่อเหนุ);
                 },
                 compleltedAction = () =>
                 {
