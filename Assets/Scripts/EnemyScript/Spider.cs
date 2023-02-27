@@ -43,7 +43,7 @@ public class Spider : MonoBehaviour
             healthBar.SetActive(false);
             animator.SetTrigger("die");
             GetComponent<BoxCollider>().enabled = false;
-            QuestLog.DoQuest(Quest.Objective.Type.kill, 1);
+            QuestLog.DoQuest(Quest.Objective.Type.kill, 1, false);
         }
         else
         {

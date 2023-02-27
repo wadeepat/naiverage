@@ -145,12 +145,12 @@ public class QuestLog
                 if (q.location == location && q.prepareAction != null) q.prepareAction();
             }
     }
-    public static void DoQuest(Quest.Objective.Type type, int id)
+    public static void DoQuest(Quest.Objective.Type type, int id, bool isQuestItem)
     {
 
         foreach (Quest quest in questList)
         {
-            if (quest.objective.CheckIndexQuest(type, id))
+            if (quest.objective.CheckIndexQuest(type, id, isQuestItem))
             {
                 quest.objective.ForceAddObjective(1);
             }

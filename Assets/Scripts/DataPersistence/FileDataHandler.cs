@@ -78,6 +78,7 @@ public class FileDataHandler
                     writer.Write(dataToStore);
                 }
             }
+            DialogueManager.instance?.SaveDialogue();
         }
         catch (Exception e)
         {

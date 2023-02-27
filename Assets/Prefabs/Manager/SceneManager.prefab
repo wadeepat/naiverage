@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingSprites:
+  - {fileID: 21300000, guid: bfa1661e79e8a294ca7e75ea24b72ff0, type: 3}
   - {fileID: 21300000, guid: 4476c0a8356cfef4eb93e7d07b480d65, type: 3}
   - {fileID: 21300000, guid: 14f50e68f16e7b147b858ae3391fa8eb, type: 3}
   - {fileID: 21300000, guid: 1e625e5d0c52cba41bfafec4bfa9f2a7, type: 3}
@@ -52,6 +53,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 93123e6b57c131c4ead19ba080b36b90, type: 3}
   - {fileID: 21300000, guid: 3d67aad3b2ff5a343a21e82b824e5aed, type: 3}
   - {fileID: 21300000, guid: 63e15a207b4d4354e9077d653cf9f764, type: 3}
-  - {fileID: 21300000, guid: 93123e6b57c131c4ead19ba080b36b90, type: 3}
-  - {fileID: 21300000, guid: 93123e6b57c131c4ead19ba080b36b90, type: 3}
+  - {fileID: 21300000, guid: 1f8a533db04567640ba3bc47d85258c8, type: 3}
   - {fileID: 21300000, guid: 1f8a533db04567640ba3bc47d85258c8, type: 3}

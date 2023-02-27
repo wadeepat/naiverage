@@ -25,12 +25,11 @@ public class Quest
         public Type type;
         public NPCIndex npc;
         public TextAsset dialogue;
+        public bool isQuestItem = false;
         public int amount;
-        // public int objectiveId{ get; private set;}
         [System.NonSerialized]
         public int objectiveId;
         public int currentAmount;
-        // private bool interact = false;
         public bool CheckObjectiveCompleted(Type type, int id)
         {
             // if (type == Type.interact) return interact;
@@ -48,9 +47,12 @@ public class Quest
             return currentAmount >= amount;
         }
 
-        public bool CheckIndexQuest(Type type, int id)
+        public bool CheckIndexQuest(Type type, int id, bool isQuestItem)
         {
-            if (this.type == type && id == objectiveId) return true;
+            if (this.type == type &&
+                id == objectiveId &&
+                this.isQuestItem == isQuestItem)
+                return true;
             else return false;
         }
         public bool CheckCompletedQuest(Quest quest)

@@ -27,7 +27,7 @@ public class NPC : MonoBehaviour
         agent.isStopped = true;
         animator = GetComponent<Animator>();
         interactObject = GameObject.Find("Canvas").transform.Find("InteractText").gameObject;
-        lightObject = transform.Find("Light").gameObject;
+        lightObject = transform.Find("Light")?.gameObject;
         text = interactObject.GetComponent<TextMeshProUGUI>();
     }
     private void Update()
@@ -49,7 +49,7 @@ public class NPC : MonoBehaviour
         {
             if (inkJSON == null && quest == null && QuestLog.IsThereSomeQuestTalk(idx) == -1) return;
             if (lightObject != null && lightObject.activeSelf) lightObject.SetActive(false);
-            text.text = "Press F to talk ";
+            text.text = "Press F to talk with";
             interactObject.SetActive(true);
         }
     }
@@ -57,9 +57,10 @@ public class NPC : MonoBehaviour
     {
         if (this.enabled && other.gameObject.tag == "Player" && InputManager.instance.GetInteractPressed() && !DialogueManager.dialogueIsPlaying)
         {
+            AudioManager.instance.Play("talk");
             if (QuestLog.IsThereSomeQuestTalk(idx) != -1)
             {
-                QuestLog.DoQuest(Quest.Objective.Type.talk, (int)idx);
+                QuestLog.DoQuest(Quest.Objective.Type.talk, (int)idx, false);
             }
             else if (quest != null)
             {

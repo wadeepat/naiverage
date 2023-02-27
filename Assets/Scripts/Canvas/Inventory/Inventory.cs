@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour, IDataPersistence
     [SerializeField] private Image[] slot;
     [SerializeField] private Sprite[] slotSprite;
     [SerializeField] private Text[] stackText;
-    
+
     private GameObject x;
     private int n;
     private int a;
@@ -26,45 +26,57 @@ public class Inventory : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-        
-
 
     }
-
     public void UpdateSlot(){
-        for(int i=0; i < slotsNumber; i++){
-            if(yourInventory[i].id == 0 || slotStack[i] == 1){
+        if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.BlackScene) return;
+        for (int i = 0; i < slotsNumber; i++)
+        {
+            if (yourInventory[i].id == 0 || slotStack[i] == 1)
+            {
                 stackText[i].text = "";
-            }else{
-                stackText[i].text = ""+ slotStack[i];
+            }
+            else
+            {
+                stackText[i].text = "" + slotStack[i];
             }
             slot[i].sprite = slotSprite[i];
             slotSprite[i] = yourInventory[i].itemSprite;
         }
     }
 
-    public void GetNormalItem(){
-        if(ItemPickUp.y != null){
+    public void GetNormalItem()
+    {
+        if (ItemPickUp.y != null)
+        {
             x = ItemPickUp.y;
-            if(x.GetComponent<ThisItem>().type == TypeItem.Normal) n = x.GetComponent<ThisItem>().thisId;
+            if (x.GetComponent<ThisItem>().type == TypeItem.Normal) n = x.GetComponent<ThisItem>().thisId;
         }
 
-        if(ItemPickUp.pick == true && x.GetComponent<ThisItem>().type == TypeItem.Normal){
-            for(int i=0; i < slotsNumber; i++){
-                if(yourInventory[i].id == n){
-                    if(slotStack[i] == maxStacks){
+        if (ItemPickUp.pick == true && x.GetComponent<ThisItem>().type == TypeItem.Normal)
+        {
+            for (int i = 0; i < slotsNumber; i++)
+            {
+                if (yourInventory[i].id == n)
+                {
+                    if (slotStack[i] == maxStacks)
+                    {
                         continue;
-                    }else{
+                    }
+                    else
+                    {
                         slotStack[i] += 1;
                         i = slotsNumber;
                         ItemPickUp.pick = false;
                     }
-                    
+
                 }
             }
 
-            for(int i=0; i < slotsNumber; i++){
-                if(yourInventory[i].id == 0 && ItemPickUp.pick == true){
+            for (int i = 0; i < slotsNumber; i++)
+            {
+                if (yourInventory[i].id == 0 && ItemPickUp.pick == true)
+                {
                     yourInventory[i] = Database.itemList[n];
                     slotStack[i] += 1;
                     ItemPickUp.pick = false;
@@ -72,45 +84,61 @@ public class Inventory : MonoBehaviour, IDataPersistence
             }
 
             //checkquest
-            QuestLog.DoQuest(Quest.Objective.Type.collect, n);
+            QuestLog.DoQuest(Quest.Objective.Type.collect, n, false);
             ItemPickUp.pick = false;
             UpdateSlot();
         }
     }
 
-    public void StartDrag(Image slotX){
-        for(int i=0; i < slotsNumber; i++){
-            if(slot[i] == slotX){
+    public void StartDrag(Image slotX)
+    {
+        for (int i = 0; i < slotsNumber; i++)
+        {
+            if (slot[i] == slotX)
+            {
                 a = i;
             }
         }
     }
 
-    public void Drop(Image slotX){
-        if(a!=b && a != -1 && b !=-1){
-            if(yourInventory[a].id == yourInventory[b].id){
-                if(slotStack[b] == maxStacks){
+    public void Drop(Image slotX)
+    {
+        if (a != b && a != -1 && b != -1)
+        {
+            if (yourInventory[a].id == yourInventory[b].id)
+            {
+                if (slotStack[b] == maxStacks)
+                {
                     draggedItem[0] = yourInventory[a];
                     slotTemporary = slotStack[a];
                     yourInventory[a] = yourInventory[b];
                     slotStack[a] = slotStack[b];
                     yourInventory[b] = draggedItem[0];
                     slotStack[b] = slotTemporary;
-                }else{
+                }
+                else
+                {
                     slotStack[b] += slotStack[a];
-                    if(slotStack[b] > maxStacks){
+                    if (slotStack[b] > maxStacks)
+                    {
                         slotStack[a] = slotStack[b] - maxStacks;
                         slotStack[b] = maxStacks;
-                    }else if(slotStack[b] == maxStacks){
+                    }
+                    else if (slotStack[b] == maxStacks)
+                    {
                         slotStack[a] = 0;
                         yourInventory[a] = Database.itemList[0];
-                    }else{
+                    }
+                    else
+                    {
                         slotStack[a] = 0;
                         yourInventory[a] = Database.itemList[0];
                     }
                 }
-                
-            }else{
+
+            }
+            else
+            {
                 draggedItem[0] = yourInventory[a];
                 slotTemporary = slotStack[a];
                 yourInventory[a] = yourInventory[b];
@@ -118,30 +146,35 @@ public class Inventory : MonoBehaviour, IDataPersistence
                 yourInventory[b] = draggedItem[0];
                 slotStack[b] = slotTemporary;
             }
-            
+
         }
         UpdateSlot();
         a=-1;
         b=-1;
     }
 
-    public void Enter(Image slotX){
-        for(int i=0; i < slotsNumber; i++){
-            if(slot[i] == slotX){
+    public void Enter(Image slotX)
+    {
+        for (int i = 0; i < slotsNumber; i++)
+        {
+            if (slot[i] == slotX)
+            {
                 b = i;
             }
         }
     }
 
-    public void Exit(Image slotX){
+    public void Exit(Image slotX)
+    {
         b = -1;
     }
 
     public void LoadData(GameData data)
     {
         yourInventory = data.inventoryItem;
-        for(int i=0; i<slotsNumber; i++){
-            if(yourInventory[i].id == 0) yourInventory[i] = Database.itemList[0];
+        for (int i = 0; i < slotsNumber; i++)
+        {
+            if (yourInventory[i].id == 0) yourInventory[i] = Database.itemList[0];
         }
         slotStack = data.stackItem;
         UpdateSlot();

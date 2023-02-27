@@ -42,7 +42,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float chaseRange = 15f;
     [Header("Nav settings")]
     [SerializeField] protected float stoppingDistance = 3f;
-
+    [Header("Sounds")]
+    [SerializeField] protected AudioSource normalSound;
+    [SerializeField] protected AudioSource attackSound;
     //objects
     protected Transform target;
     protected NavMeshAgent agent;
@@ -97,6 +99,7 @@ public class Enemy : MonoBehaviour
             waypoints.Add(wp);
         }
         healthBar.SetActive(false);
+        if (normalSound) normalSound.pitch = Random.Range(0.4f, 1.0f);
     }
     protected virtual void Update()
     {
@@ -149,6 +152,7 @@ public class Enemy : MonoBehaviour
     {
         if (target != null)
         {
+            attackSound?.Play();
             transform.LookAt(target);
             float distance = Vector2.Distance(target.position, transform.position);
 
@@ -287,7 +291,7 @@ public class Enemy : MonoBehaviour
             healthBar.SetActive(false);
             animator.SetTrigger("die");
             GetComponent<BoxCollider>().enabled = false;
-            QuestLog.DoQuest(Quest.Objective.Type.kill, (int)monsterId);
+            QuestLog.DoQuest(Quest.Objective.Type.kill, (int)monsterId, false);
             Died();
         }
         else

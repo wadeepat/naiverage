@@ -45,12 +45,13 @@ public class DialogueVariables
     //     selectedProfileId = DataPersistenceManager.instance.selectedProfileId;
     //     PlayerPrefs.DeleteKey(saveVariablesKey + selectedProfileId);
     // }
-    public void SaveVariables()
+    public void SaveVariables(bool isSavefile)
     {
         if (globalVariablesStory != null)
         {
             //load current state of all our variables to globals story
             VariablesToStory(globalVariablesStory);
+            if (!isSavefile) return;
             if (!DataPersistenceManager.instance.disableDataPersistence) PlayerPrefs.SetString(saveVariablesKey + selectedProfileId, globalVariablesStory.state.ToJson());
         }
     }

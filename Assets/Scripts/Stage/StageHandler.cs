@@ -90,6 +90,16 @@ public class StageHandler : MonoBehaviour
                 {
                     if (QuestLog.GetCompleteQuestById(8) == null)
                         EventTrigger("IntroduceAaron");
+                    Debug.Log($"bool: {!PlayerManager.playerEvents["chickReject"]} {QuestLog.GetCompleteQuestById(14) != null} {QuestLog.GetCompleteQuestById(47) == null} {QuestLog.GetActiveQuestById(47) == null}");
+                    if (!PlayerManager.playerEvents["chickReject"] &&
+                        QuestLog.GetCompleteQuestById(14) != null &&
+                        QuestLog.GetCompleteQuestById(47) == null &&
+                        QuestLog.GetActiveQuestById(47) == null)
+                    {
+                        Debug.Log("do");
+                        NaverTownEvents("FarmerProblem");
+
+                    }
                 }
                 if (!PlayerManager.instance.mapEnable[SceneIndex.CalfordCastle])
                     n_calfordGate.gameObject.SetActive(false);
@@ -305,6 +315,9 @@ public class StageHandler : MonoBehaviour
             case "RachneEntrance":
                 t_RachneGate.gameObject.SetActive(true);
                 break;
+            case "RunChickenRun":
+                GameObject.Find("StageTrack").transform.Find("Chicken").gameObject.SetActive(true);
+                break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in TutorialEvents");
                 break;
@@ -312,7 +325,6 @@ public class StageHandler : MonoBehaviour
     }
     private void NaverTownEvents(string eventName)
     {
-        //TODO implement naver events
         switch (eventName)
         {
             case "IntroduceAaron":
@@ -521,15 +533,28 @@ public class StageHandler : MonoBehaviour
                     if (npc.idx == NPCIndex.Cain)
                     {
                         npc.Object.SetActive(true);
-                        // if (PlayerManager.playerEvents["backToPast"])
-                        //     npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(3, "WelcomeCainAgain");
-                        // else
-                        //     npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(3, "WelcomeCain");
+                        break;
                     }
                 }
                 break;
             case "CainBack":
                 QuestLog.CompleteQuest(Database.questList[27]);
+                break;
+            case "FarmerProblem":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Farmer)
+                    {
+                        Debug.Log("herer:" + DialogueManager.instance.GetDialogueFile(6, "FarmerProblem") == null);
+                        npc.Object.SetActive(true);
+                        // npc.Object.GetComponent<CapsuleCollider>().enabled = true;
+                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(5, "FarmerProblem");
+                        break;
+                    }
+                }
+                break;
+            case "chickReject":
+                PlayerManager.playerEvents["chickReject"] = true;
                 break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in NaverTownEvents");

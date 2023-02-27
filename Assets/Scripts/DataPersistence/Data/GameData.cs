@@ -33,6 +33,7 @@ public class GameData
             {"sataAskToJoin",false},
             {"finishedTutorial",false},
             {"backToPast",false},
+            {"chickReject",false},
         };
         mapEnable = new SerializableDictionary<SceneIndex, bool>{
             {SceneIndex.Rachne,true},
@@ -142,7 +143,7 @@ public class GameData
         temp += $"skill:\n";
         foreach (var i in skill)
         {
-            if( i != null) temp += $"\tinvenS: {i.nameSkill}\n";
+            if (i != null) temp += $"\tinvenS: {i.nameSkill}\n";
         }
         temp += $"slotS:\n";
         foreach (var i in slotS)

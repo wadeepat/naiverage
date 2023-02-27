@@ -12,7 +12,7 @@ public class Crafting : MonoBehaviour
     public Text currentPage;
     public Text allPage;
     public craft[] craft = new craft[4];
-    
+
     void Start()
     {
         page = 1;
@@ -26,19 +26,22 @@ public class Crafting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
+
     }
-    void show(int pageNow){
+    void show(int pageNow)
+    {
         int num;
-        if(pageNow == 1) num = 0;
-        else if(pageNow == 2)num = 4;
+        if (pageNow == 1) num = 0;
+        else if (pageNow == 2) num = 4;
         else num = 8;
-        for(int i=0; i<4; i++){
-            craft[i].craftableItemId = (i+1)+num;
+        for (int i = 0; i < 4; i++)
+        {
+            craft[i].craftableItemId = (i + 1) + num;
             Load(craft[i].craftableItemId, craft[i].craftedItemName, craft[i].craftedItemSprite, craft[i].craftedItem, craft[i].slotInCraftingSprite, craft[i].slotInCrafting, craft[i].craftingText, craft[i].button);
         }
     }
-    void Load(int craftableItemId, Text craftedItemName, Sprite craftedItemSprite, Image craftedItem, Sprite[] SlotInCraftingSprite, Image[] SlotInCrafting, Text[] craftingText, Button button){
+    void Load(int craftableItemId, Text craftedItemName, Sprite craftedItemSprite, Image craftedItem, Sprite[] SlotInCraftingSprite, Image[] SlotInCrafting, Text[] craftingText, Button button)
+    {
         craftedItemName.text = "" + Database.potionList[craftableItemId].name;
 
         craftedItemSprite = Database.potionList[craftableItemId].itemSprite;
@@ -52,61 +55,76 @@ public class Crafting : MonoBehaviour
         SlotInCrafting[1].sprite = SlotInCraftingSprite[1];
         SlotInCrafting[2].sprite = SlotInCraftingSprite[2];
 
-        craftingText[0].text = ""+Database.potionList[craftableItemId].q1;
-        craftingText[1].text = ""+Database.potionList[craftableItemId].q2;
-        craftingText[2].text = ""+Database.potionList[craftableItemId].q3;
+        craftingText[0].text = "" + Database.potionList[craftableItemId].q1;
+        craftingText[1].text = "" + Database.potionList[craftableItemId].q2;
+        craftingText[2].text = "" + Database.potionList[craftableItemId].q3;
 
-        if(CraftAbleFunction(craftableItemId)) button.gameObject.SetActive(true);
+        if (CraftAbleFunction(craftableItemId)) button.gameObject.SetActive(true);
         else button.gameObject.SetActive(false);
 
     }
 
-    public void PreviousItem(){
-        if(page > firstPage){
+    public void PreviousItem()
+    {
+        if (page > firstPage)
+        {
             page--;
             show(page);
             currentPage.text = "" + page;
         }
     }
 
-    public void NextItem(){
-        if(page < lastPage){
-            page++; 
+    public void NextItem()
+    {
+        if (page < lastPage)
+        {
+            page++;
             show(page);
             currentPage.text = "" + page;
         }
     }
-    
 
-    bool CraftAbleFunction(int craftableItemId){
+
+    bool CraftAbleFunction(int craftableItemId)
+    {
         int a = 0;
         int b = 0;
         int c = 0;
         //check craftable
-        for(int i=0; i < 28; i++){
-            if(GetComponent<Inventory>().yourInventory[i].id == Database.potionList[craftableItemId].n1){
+        for (int i = 0; i < 28; i++)
+        {
+            if (GetComponent<Inventory>().yourInventory[i].id == Database.potionList[craftableItemId].n1)
+            {
                 a += GetComponent<Inventory>().slotStack[i];
             }
-            if(GetComponent<Inventory>().yourInventory[i].id == Database.potionList[craftableItemId].n2){
+            if (GetComponent<Inventory>().yourInventory[i].id == Database.potionList[craftableItemId].n2)
+            {
                 b += GetComponent<Inventory>().slotStack[i];
             }
-            if(GetComponent<Inventory>().yourInventory[i].id == Database.potionList[craftableItemId].n3){
+            if (GetComponent<Inventory>().yourInventory[i].id == Database.potionList[craftableItemId].n3)
+            {
                 c += GetComponent<Inventory>().slotStack[i];
             }
         }
 
-        if(a >= Database.potionList[craftableItemId].q1 && b>= Database.potionList[craftableItemId].q2 && c >= Database.potionList[craftableItemId].q3){
+        if (a >= Database.potionList[craftableItemId].q1 && b >= Database.potionList[craftableItemId].q2 && c >= Database.potionList[craftableItemId].q3)
+        {
+            AudioManager.instance.Play("craft");
             return true;
-        }else{
+        }
+        else
+        {
             return false;
         }
     }
-    public void CraftItem(int button){
+    public void CraftItem(int button)
+    {
         int a = 0;
         int b = 0;
         int c = 0;
         int craftableItemId = craft[button].craftableItemId;
-        if(CraftAbleFunction(craftableItemId)){
+        if (CraftAbleFunction(craftableItemId))
+        {
             a = Database.potionList[craftableItemId].q1;
             b = Database.potionList[craftableItemId].q2;
             c = Database.potionList[craftableItemId].q3;
@@ -114,48 +132,64 @@ public class Crafting : MonoBehaviour
             //Potion
             List<Potion> yourPotions = GetComponent<Potions>().yourPotions;
             int[] slotStack = GetComponent<Potions>().slotStack;
-            
+
             //Inventory
             List<Item> yourInventory = GetComponent<Inventory>().yourInventory;
             int[] inventorySlotStack = GetComponent<Inventory>().slotStack;
 
-            for(int i =0; i < 16; i++){
-                if(yourPotions[i].id == craftableItemId){
-                    if(slotStack[i] >= 16){
+            for (int i = 0; i < 16; i++)
+            {
+                if (yourPotions[i].id == craftableItemId)
+                {
+                    if (slotStack[i] >= 16)
+                    {
                         continue;
-                    }else{
+                    }
+                    else
+                    {
                         slotStack[i] += 1;
                         i = 16;
                     }
-                }else if(yourPotions[i] == Database.potionList[0]){
+                }
+                else if (yourPotions[i] == Database.potionList[0])
+                {
                     yourPotions[i] = Database.potionList[craftableItemId];
                     slotStack[i] += 1;
                     i = 16;
                 }
             }
-            for(int j=0; j<28; j++){
-                if(yourInventory[j].id == Database.potionList[craftableItemId].n1 && a>0){
-                    if(inventorySlotStack[j]>=a){
+            for (int j = 0; j < 28; j++)
+            {
+                if (yourInventory[j].id == Database.potionList[craftableItemId].n1 && a > 0)
+                {
+                    if (inventorySlotStack[j] >= a)
+                    {
                         inventorySlotStack[j] -= a;
-                        if(inventorySlotStack[j]==0)yourInventory[j] = Database.itemList[0];
+                        if (inventorySlotStack[j] == 0) yourInventory[j] = Database.itemList[0];
                         break;
                     }
                 }
             }
-            for(int k=0; k<28; k++){
-                if(yourInventory[k].id == Database.potionList[craftableItemId].n2 && b>0){
-                    if(inventorySlotStack[k]>=b){
+            for (int k = 0; k < 28; k++)
+            {
+                if (yourInventory[k].id == Database.potionList[craftableItemId].n2 && b > 0)
+                {
+                    if (inventorySlotStack[k] >= b)
+                    {
                         inventorySlotStack[k] -= b;
-                        if(inventorySlotStack[k]==0)yourInventory[k] = Database.itemList[0];
+                        if (inventorySlotStack[k] == 0) yourInventory[k] = Database.itemList[0];
                         break;
                     }
                 }
             }
-            for(int l=0; l<28; l++){
-                if(yourInventory[l].id == Database.potionList[craftableItemId].n3 && c>0){
-                    if(inventorySlotStack[l]>=c){
+            for (int l = 0; l < 28; l++)
+            {
+                if (yourInventory[l].id == Database.potionList[craftableItemId].n3 && c > 0)
+                {
+                    if (inventorySlotStack[l] >= c)
+                    {
                         inventorySlotStack[l] -= c;
-                        if(inventorySlotStack[l]==0)yourInventory[l] = Database.itemList[0];
+                        if (inventorySlotStack[l] == 0) yourInventory[l] = Database.itemList[0];
                         break;
                     }
                 }
@@ -166,7 +200,8 @@ public class Crafting : MonoBehaviour
         }
 
     }
-    public void SetDefault(){
+    public void SetDefault()
+    {
         page = 1;
         firstPage = 1;
         lastPage = 3;
@@ -174,6 +209,6 @@ public class Crafting : MonoBehaviour
         allPage.text = "" + lastPage;
         show(page);
     }
-    
+
 }
 

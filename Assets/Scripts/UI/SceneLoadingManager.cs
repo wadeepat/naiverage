@@ -30,14 +30,14 @@ public class SceneLoadingManager : MonoBehaviour
     {
         LoadingScreen = GameObject.Find("Canvas").transform.Find("LoadingScreen").gameObject;
         sliderLoading = LoadingScreen.transform.Find("Slider").GetComponent<Slider>();
-        if ((int)sceneName == 0)
-        {
-            LoadingScreen.transform.Find("Background").GetComponent<Image>().overrideSprite = loadingSprites[0];
-        }
-        else
-        {
-            LoadingScreen.transform.Find("Background").GetComponent<Image>().overrideSprite = loadingSprites[(int)sceneName - 1];
-        }
+        // if ((int)sceneName == 0)
+        // {
+        //     LoadingScreen.transform.Find("Background").GetComponent<Image>().overrideSprite = loadingSprites[0];
+        // }
+        // else
+        // {
+        LoadingScreen.transform.Find("Background").GetComponent<Image>().overrideSprite = loadingSprites[(int)sceneName];
+        // }
 
         AudioManager.instance.StopAllTrack();
         AudioManager.instance.Play("loading");
