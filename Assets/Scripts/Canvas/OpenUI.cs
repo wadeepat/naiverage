@@ -54,7 +54,7 @@ public class OpenUI : MonoBehaviour
             assetsInputs = Player?.GetComponent<StarterAssetsInputs>();
             playerInput = Player.GetComponent<PlayerInput>();
         }
-        
+
     }
 
     // Update is called once per frame
@@ -63,26 +63,28 @@ public class OpenUI : MonoBehaviour
         bool i = Input.GetKeyDown("i");
         if (i)
         {
-            if(DialogueManager.dialogueIsPlaying ||
-            ActionHandler.instance.IsSomeWindowsActivated()){
+            if (DialogueManager.dialogueIsPlaying ||
+            ActionHandler.instance.IsSomeWindowsActivated())
+            {
                 if (inven == false)
                 {
+                    AudioManager.instance.Play("open");
                     //close
                     inven = true;
                     show(false);
                     DialogueManager.dialogueIsPlaying = false;
                     Lockscreen(false);
                 }
-            }else{
+            }
+            else
+            {
                 //open 
+                AudioManager.instance.Play("open");
                 inven = false;
                 show(true);
                 DialogueManager.dialogueIsPlaying = true;
                 Lockscreen(true);
             }
-        }
-        if(inven && i){
-
         }
     }
     void Lockscreen(bool l)
@@ -122,7 +124,7 @@ public class OpenUI : MonoBehaviour
         Potion.SetActive(false);
         Skill.SetActive(false);
         Quest.SetActive(false);
-        
+
     }
     public void showCharacter()
     {

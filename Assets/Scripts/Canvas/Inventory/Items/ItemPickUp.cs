@@ -15,7 +15,7 @@ public class ItemPickUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
         pickUpText = CanvasManager.instance.GetCanvasObject("InteractText");
         text = pickUpText.GetComponent<TextMeshProUGUI>();
         pick = false;
@@ -55,15 +55,16 @@ public class ItemPickUp : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "item"&& Item != null)
+        if (other.tag == "item" && Item != null)
         {
             if (InputManager.instance.GetInteractPressed())
             {
+                AudioManager.instance.Play("pick");
                 Panel = GameObject.Find("Canvas/Panel");
-                if(Item.GetComponent<ThisItem>().type == TypeItem.Normal) Panel.transform.GetComponent<Inventory>().GetNormalItem();
-                else if(Item.GetComponent<ThisItem>().type == TypeItem.Potion) Panel.transform.GetComponent<Potions>().GetPotion();
-                else if(Item.GetComponent<ThisItem>().type == TypeItem.Skill) Panel.transform.Find("Character panel/All funtion/Skill").GetComponent<InvenSkillBook>().GetSkillBook();
-                else if(Item.GetComponent<ThisItem>().type == TypeItem.Quest) Panel.transform.GetComponent<ItemQuests>().GetItemQuest();
+                if (Item.GetComponent<ThisItem>().type == TypeItem.Normal) Panel.transform.GetComponent<Inventory>().GetNormalItem();
+                else if (Item.GetComponent<ThisItem>().type == TypeItem.Potion) Panel.transform.GetComponent<Potions>().GetPotion();
+                else if (Item.GetComponent<ThisItem>().type == TypeItem.Skill) Panel.transform.Find("Character panel/All funtion/Skill").GetComponent<InvenSkillBook>().GetSkillBook();
+                else if (Item.GetComponent<ThisItem>().type == TypeItem.Quest) Panel.transform.GetComponent<ItemQuests>().GetItemQuest();
                 Destroy(Item);
                 Item = null;
                 y = null;

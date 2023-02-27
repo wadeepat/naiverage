@@ -23,12 +23,12 @@ public class GameMenu : MonoBehaviour
     public void ClickedMainMenu()
     {
         confirmationPopupMenu.ActivateMenu(
-            "ต้องการที่จะกลับไปที่เมนูหลักใช่หรือไม่?\nข้อมูลหลังจากจุด checkpoint จะไม่ถูกบันทึก(ตอนนี้เซฟ)",
+            "ต้องการที่จะกลับไปที่เมนูหลักใช่หรือไม่?\nข้อมูลหลังจากจุด checkpoint",
             true,
             () =>
             {
                 //TODO change to save when checkpoint
-                DataPersistenceManager.instance.SaveGame(true);
+                // DataPersistenceManager.instance.SaveGame(true);
                 AudioManager.instance.StopAllTrack();
                 SceneLoadingManager.instance.LoadScene(SceneIndex.MainMenu);
                 this.ActivateMenu();
@@ -38,9 +38,26 @@ public class GameMenu : MonoBehaviour
                 this.ActivateMenu();
             }
         );
+        // confirmationPopupMenu.ActivateMenu(
+        //     "ต้องการที่จะกลับไปที่เมนูหลักใช่หรือไม่?\nข้อมูลหลังจากจุด checkpoint จะไม่ถูกบันทึก(ตอนนี้เซฟ)",
+        //     true,
+        //     () =>
+        //     {
+        //         //TODO change to save when checkpoint
+        //         DataPersistenceManager.instance.SaveGame(true);
+        //         AudioManager.instance.StopAllTrack();
+        //         SceneLoadingManager.instance.LoadScene(SceneIndex.MainMenu);
+        //         this.ActivateMenu();
+        //     },
+        //     () =>
+        //     {
+        //         this.ActivateMenu();
+        //     }
+        // );
     }
     public void ActivateMenu()
     {
+        if (GameObject.Find("Canvas")?.transform.Find("LoadingScreen")?.gameObject.activeSelf == true) return;
         if (DialogueManager.dialogueIsPlaying ||
         ActionHandler.instance.IsSomeWindowsActivated())
         {

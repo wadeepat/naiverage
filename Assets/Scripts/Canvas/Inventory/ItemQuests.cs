@@ -80,7 +80,7 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
             }
 
             //checkquest
-            QuestLog.DoQuest(Quest.Objective.Type.collect, n);
+            QuestLog.DoQuest(Quest.Objective.Type.collect, n, true);
             ItemPickUp.pick = false;
         }
     }

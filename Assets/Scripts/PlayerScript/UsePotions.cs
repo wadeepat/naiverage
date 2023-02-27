@@ -36,8 +36,11 @@ public class UsePotions : MonoBehaviour
         else if (InputManager.instance.GetSelectingPotion())
         {
             SelectPotion();
-        }else{
-            if(l){
+        }
+        else
+        {
+            if (l)
+            {
                 attack.attackAble = true;
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
@@ -55,6 +58,7 @@ public class UsePotions : MonoBehaviour
     {
         if (potions.slotP[slot] != -1)
         {
+            AudioManager.instance.Play("usePotion");
             int skillId = potions.yourPotions[potions.slotP[slot]].id;
             switch (skillId)
             {
@@ -115,9 +119,9 @@ public class UsePotions : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         assetsInputs.cursorInputForLook = false;
         assetsInputs.cursorLocked = false;
-        assetsInputs.look = new Vector2(0,0);
-        SlotPotion.gameObject.transform.position = new Vector2(Screen.width/2+50,Screen.height/2-50);
+        assetsInputs.look = new Vector2(0, 0);
+        SlotPotion.gameObject.transform.position = new Vector2(Screen.width / 2 + 50, Screen.height / 2 - 50);
     }
 
-    
+
 }
