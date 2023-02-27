@@ -13,9 +13,9 @@ public enum SceneIndex
     Cave = 5,
     RachneField = 6,
     TrollField = 7,
-    AbelField = 8,
-    CainField = 9,
-    BlackScene = 10,
+    // AbelField = 8,
+    // CainField = 9,
+    BlackScene = 8,
 }
 
 [System.Serializable]
@@ -40,9 +40,10 @@ public enum ElementType
 }
 
 [System.Serializable]
-public enum TypeItem {
-    Normal, 
-    Potion, 
+public enum TypeItem
+{
+    Normal,
+    Potion,
     Skill,
     Quest
 }

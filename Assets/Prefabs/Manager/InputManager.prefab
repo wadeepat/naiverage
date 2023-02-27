@@ -246,6 +246,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ccbd83be-f1ed-4eae-baa3-5974a2bce29a
     m_ActionName: Player/Map[/Keyboard/m]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e25a3bfa-9072-4d99-b7ba-6d4ecf7c0fa8
+    m_ActionName: Player/Skill1[/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a780e0d3-9104-4cd4-af58-523722e7475e
+    m_ActionName: Player/Skill2[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1318cb23-613b-4c52-858e-143f61eeeecb
+    m_ActionName: Player/Skill3[/Keyboard/3]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

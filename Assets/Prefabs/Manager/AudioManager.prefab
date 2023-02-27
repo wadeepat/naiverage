@@ -47,9 +47,45 @@ MonoBehaviour:
   timeToFade: 0.8
   timeElapsed: 0.2
   sounds:
+  - s_name: pick
+    clip: {fileID: 8300000, guid: a3840464804ec8541968d71104d4b108, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - s_name: usePotion
+    clip: {fileID: 8300000, guid: 218fff842682d434ca9cb64aaead80b2, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - s_name: craft
+    clip: {fileID: 8300000, guid: c3697ba960857f34ca4c997d35df97f4, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - s_name: learn
+    clip: {fileID: 8300000, guid: 8e86f3db501cd1b4e8d9c06174e48183, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   - s_name: click
     clip: {fileID: 8300000, guid: a68f2e74995ff9847ab225e98148fe1e, type: 3}
     volume: 0.7
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - s_name: open
+    clip: {fileID: 8300000, guid: 5bf9389a7add6494c9dc57f68a32a2b7, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - s_name: talk
+    clip: {fileID: 8300000, guid: ddaeac6ab597bcb47a3031a96d9ea079, type: 3}
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
