@@ -40,7 +40,7 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-
+        UpdateSlotSprite();
     }
 
     void UpdateSlotSprite(){
