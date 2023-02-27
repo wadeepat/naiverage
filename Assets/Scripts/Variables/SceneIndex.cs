@@ -28,6 +28,7 @@ public enum NPCIndex
     Lilah = 4,
     Cain = 5,
     Villager = 6,
+    Farmer = 7,
 }
 
 [System.Serializable]

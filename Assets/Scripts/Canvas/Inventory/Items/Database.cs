@@ -1524,8 +1524,8 @@ public class Database : MonoBehaviour
             {
                 questId = 47,
                 questName = $"ไก่เจ้าปัญหา (1/2)",
-                questDescription = $"{ColorText("char", "...")} กำลังวุ่นวายกับการจับเจ้าไก่พวกนี้ ช่วยเขาจับไก่แล้วนำกลับมา",
-                location = SceneIndex.NaverTown,
+                questDescription = $"{ColorText("char", "ชาวบ้าน")} กำลังวุ่นวายกับการจับเจ้าไก่เจ้าปัญหาในป่า {ColorText("char", "Rachne")} ช่วยเขาจับไก่แล้วนำกลับมา",
+                location = SceneIndex.Rachne,
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 1,
@@ -1533,19 +1533,12 @@ public class Database : MonoBehaviour
                 {
                     objectiveId = 2,
                     isQuestItem = true,
-                    //สำหรับเควสให้คุย
-                    //npc = NPCIndex.Sata,
-                    // dialogue = DialogueManager.instance.GetDialogueFile(6,"ชื่อไฟล์ Dialogue"),
-                    type = Quest.Objective.Type.kill,
+                    type = Quest.Objective.Type.collect,
                     amount = 1,
-                },
-                addAction = () =>
-                {
-                    //TODO spawn chicken
                 },
                 prepareAction = () =>
                 {
-                    //TODO spawn chicken
+                    StageHandler.instance.EventTrigger("RunChickenRun");
                 },
                 compleltedAction = () =>
                 {
@@ -1558,26 +1551,18 @@ public class Database : MonoBehaviour
             {
                 questId = 48,
                 questName = $"ไก่เจ้าปัญหา (2/2)",
-                questDescription = $"นำไก่เหล่านี้ไปให้ {ColorText("char", "...")}",
+                questDescription = $"นำไก่เหล่านี้ไปให้ {ColorText("char", "ชาวนา")}",
                 location = SceneIndex.NaverTown,
                 MPReward = 0,
                 SBReward = "",
                 questCategory = 1,
                 objective = new Quest.Objective()
                 {
-                    objectiveId = 2,
-                    npc = NPCIndex.Sata, //?
-                    dialogue = DialogueManager.instance.GetDialogueFile(6, "ชื่อไฟล์ Dialogue"),
-                    type = Quest.Objective.Type.kill,
+                    objectiveId = (int)NPCIndex.Farmer,
+                    npc = NPCIndex.Farmer,
+                    dialogue = DialogueManager.instance.GetDialogueFile(5, "ThanksFromFarmer"),
+                    type = Quest.Objective.Type.talk,
                     amount = 1,
-                },
-                addAction = () =>
-                {
-                    //TODO spawn chicken
-                },
-                prepareAction = () =>
-                {
-                    //TODO spawn chicken
                 },
                 compleltedAction = () =>
                 {

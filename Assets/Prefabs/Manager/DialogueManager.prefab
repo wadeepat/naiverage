@@ -134,6 +134,11 @@ MonoBehaviour:
     json: {fileID: 4900000, guid: 6616a8d7fbfde3b4e9e76826e809d304, type: 3}
   - name: FoundTheSoul
     json: {fileID: 4900000, guid: 86268d89767beea43a18f69b4237934d, type: 3}
+  sideQuestFiles:
+  - name: FarmerProblem
+    json: {fileID: 4900000, guid: 656e542e1804fbd45a3d5823c4c6c6d7, type: 3}
+  - name: ThanksFromFarmer
+    json: {fileID: 4900000, guid: b9d6bbb376e5ec642bb818e0db64efbb, type: 3}
   dialoguePanel: {fileID: 0}
   continueText: {fileID: 0}
   displayNameText: {fileID: 0}

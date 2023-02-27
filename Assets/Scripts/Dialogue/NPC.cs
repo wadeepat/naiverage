@@ -27,7 +27,7 @@ public class NPC : MonoBehaviour
         agent.isStopped = true;
         animator = GetComponent<Animator>();
         interactObject = GameObject.Find("Canvas").transform.Find("InteractText").gameObject;
-        lightObject = transform.Find("Light").gameObject;
+        lightObject = transform.Find("Light")?.gameObject;
         text = interactObject.GetComponent<TextMeshProUGUI>();
     }
     private void Update()
