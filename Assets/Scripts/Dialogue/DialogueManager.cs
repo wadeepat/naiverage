@@ -25,6 +25,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private JSONfile[] chapter2Files;
     [SerializeField] private JSONfile[] chapter3Files;
     [SerializeField] private JSONfile[] chapter4Files;
+    [SerializeField] private JSONfile[] sideQuestFiles;
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI continueText;
@@ -112,6 +113,10 @@ public class DialogueManager : MonoBehaviour
             ContinueStory();
         }
     }
+    public void SaveDialogue()
+    {
+        dialogueVariables.SaveVariables(true);
+    }
     public void LoadDialogue()
     {
         dialogueVariables = new DialogueVariables(loadGlobalsJSON);
@@ -147,7 +152,7 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
-        dialogueVariables.SaveVariables();
+        dialogueVariables.SaveVariables(false);
 
         UnlockCamera();
     }
@@ -158,7 +163,7 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
-        dialogueVariables.SaveVariables();
+        dialogueVariables.SaveVariables(false);
 
         UnlockCamera();
     }
@@ -313,7 +318,7 @@ public class DialogueManager : MonoBehaviour
         }
         // if (dialogueVariables == null) LoadDialogue();
         // Debug.Log(dialogueVariables == null ? "Make choice dialogue null" : "Make choice dialogue not null");
-        dialogueVariables.SaveVariables();
+        dialogueVariables.SaveVariables(false);
     }
 
     public Ink.Runtime.Object GetVariableState(string variableName)
@@ -368,6 +373,9 @@ public class DialogueManager : MonoBehaviour
                 break;
             case 4:
                 files = chapter4Files;
+                break;
+            case 5:
+                files = sideQuestFiles;
                 break;
         }
         foreach (JSONfile file in files)
