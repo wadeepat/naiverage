@@ -20,10 +20,15 @@ public class SwitchInventory : MonoBehaviour
     public void FirstButton(){
         First.SetActive(true);
         Second.SetActive(false);
+        this.gameObject.transform.GetComponent<Potions>().UpdateSlot();
+        this.gameObject.transform.GetComponent<Inventory>().UpdateSlot();
     }
 
     public void SecondButton(){
         First.SetActive(false);
         Second.SetActive(true);
+        this.gameObject.transform.GetComponent<Potions>().UpdateSlot();
+        this.gameObject.transform.GetComponent<Inventory>().UpdateSlot();
+
     }
 }

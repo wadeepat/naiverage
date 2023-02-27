@@ -56,6 +56,7 @@ public class UsePotions : MonoBehaviour
         if (potions.slotP[slot] != -1)
         {
             int skillId = potions.yourPotions[potions.slotP[slot]].id;
+            Panel.GetComponent<Potions>().UpdateSlot();
             switch (skillId)
             {
                 case 1:

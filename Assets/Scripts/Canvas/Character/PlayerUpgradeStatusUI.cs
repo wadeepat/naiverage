@@ -13,6 +13,7 @@ public class PlayerUpgradeStatusUI : MonoBehaviour
     private int[] status;
     private int[] upgradeStatus;
     private int pearls;
+    private int cost = 500;
     // Start is called before the first frame update
     void Start()
     {
@@ -118,63 +119,63 @@ public class PlayerUpgradeStatusUI : MonoBehaviour
 
     public void PlusButton(int index)
     {
-        if (pearls + 200 > MagicPearls.CheckPearl()) return;
+        if (pearls + cost > MagicPearls.CheckPearl()) return;
         switch (index)
         {
             case 0:
                 if (upgradeStatus[0] < 500)
                 {
                     upgradeStatus[0] += 50;
-                    pearls += 200;
+                    pearls += cost;
                 }
                 break;
             case 1:
                 if (upgradeStatus[2] < 500)
                 {
                     upgradeStatus[2] += 50;
-                    pearls += 200;
+                    pearls += cost;
                 }
                 break;
             case 2:
                 if (upgradeStatus[4] < 10)
                 {
                     upgradeStatus[4] += 2;
-                    pearls += 200;
+                    pearls += cost;
                 }
                 break;
             case 3:
-                if (upgradeStatus[5] < 200)
+                if (upgradeStatus[5] < cost)
                 {
                     upgradeStatus[5] += 20;
-                    pearls += 200;
+                    pearls += cost;
                 }
                 break;
             case 4:
                 if (upgradeStatus[6] < 100)
                 {
                     upgradeStatus[6] += 10;
-                    pearls += 200;
+                    pearls += cost;
                 }
                 break;
             case 5:
                 if (upgradeStatus[7] < 60)
                 {
                     upgradeStatus[7] += 20;
-                    pearls += 200;
+                    pearls += cost;
                 }
                 break;
             case 6:
                 if (upgradeStatus[8] < 100)
                 {
                     upgradeStatus[8] += 10;
-                    pearls += 200;
+                    pearls += cost;
                 }
                 break;
             case 7:
                 if (upgradeStatus[9] < 100)
                 {
                     upgradeStatus[9] += 10;
-                    pearls += 200;
+                    pearls += cost;
                 }
                 break;
         }
@@ -183,62 +184,63 @@ public class PlayerUpgradeStatusUI : MonoBehaviour
 
     public void MinusButton(int index)
     {
+        
         switch (index)
         {
             case 0:
                 if (upgradeStatus[0] > status[0])
                 {
                     upgradeStatus[0] -= 50;
-                    pearls -= 200;
+                    pearls -= cost;
                 }
                 break;
             case 1:
                 if (upgradeStatus[2] > status[2])
                 {
                     upgradeStatus[2] -= 50;
-                    pearls -= 200;
+                    pearls -= cost;
                 }
                 break;
             case 2:
                 if (upgradeStatus[4] > status[4])
                 {
                     upgradeStatus[4] -= 2;
-                    pearls -= 200;
+                    pearls -= cost;
                 }
                 break;
             case 3:
                 if (upgradeStatus[5] > status[5])
                 {
                     upgradeStatus[5] -= 20;
-                    pearls -= 200;
+                    pearls -= cost;
                 }
                 break;
             case 4:
                 if (upgradeStatus[6] > status[6])
                 {
                     upgradeStatus[6] -= 10;
-                    pearls -= 200;
+                    pearls -= cost;
                 }
                 break;
             case 5:
                 if (upgradeStatus[7] > status[7])
                 {
                     upgradeStatus[7] -= 20;
-                    pearls -= 200;
+                    pearls -= cost;
                 }
                 break;
             case 6:
                 if (upgradeStatus[8] > status[8])
                 {
                     upgradeStatus[8] -= 10;
-                    pearls -= 200;
+                    pearls -= cost;
                 }
                 break;
             case 7:
                 if (upgradeStatus[9] > status[9])
                 {
                     upgradeStatus[9] -= 10;
-                    pearls -= 200;
+                    pearls -= cost;
                 }
                 break;
         }

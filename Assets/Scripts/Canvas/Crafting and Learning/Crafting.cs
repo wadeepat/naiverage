@@ -161,6 +161,8 @@ public class Crafting : MonoBehaviour
                 }
             }
             show(page);
+            this.gameObject.transform.GetComponent<Potions>().UpdateSlot();
+            this.gameObject.transform.GetComponent<Inventory>().UpdateSlot();
         }
 
     }

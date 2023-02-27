@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MagicPearls : MonoBehaviour
+public class MagicPearls : MonoBehaviour, IDataPersistence
 {
     public static Pearl MP = new Pearl();
     [SerializeField] private Image slot;
     [SerializeField] private Sprite slotSprite;
     [SerializeField] private Text textNum;
-    private int maxStacks;
-    private int slotStack;
+    private int tempMp;
 
     // Start is called before the first frame update
     void Start()
     {
-        MP = Database.magicPearl;
-        MP.stack = 500000;
     }
 
     // Update is called once per frame
@@ -35,6 +32,18 @@ public class MagicPearls : MonoBehaviour
 
     public static void GetPearl(int cost){
         MP.stack += cost;
+    }
+
+    public void LoadData(GameData data)
+    {
+
+        MP.stack = data.MP_stack;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.MP_stack = MP.stack;
+        
     }
 
 }

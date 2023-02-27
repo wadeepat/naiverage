@@ -5226,6 +5226,7 @@ GameObject:
   - component: {fileID: 4582796975659350726}
   - component: {fileID: 4786758111365979384}
   - component: {fileID: 4388282034011254540}
+  - component: {fileID: 8660362076964880948}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -6020,6 +6021,20 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &8660362076964880948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633056576546316402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b58ba998da6865a4dbbc5c60b22e3f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  First: {fileID: 7330285317217238993}
+  Second: {fileID: 6332682322432963043}
 --- !u!1 &1821311261628058283
 GameObject:
   m_ObjectHideFlags: 0
@@ -12847,7 +12862,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9155669190805226351}
+      - m_Target: {fileID: 8660362076964880948}
         m_TargetAssemblyTypeName: SwitchInventory, Assembly-CSharp
         m_MethodName: SecondButton
         m_Mode: 1
@@ -18547,7 +18562,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4435389139812313159}
-  - component: {fileID: 9155669190805226351}
   m_Layer: 0
   m_Name: Potion
   m_TagString: Untagged
@@ -18573,20 +18587,6 @@ Transform:
   m_Father: {fileID: 5260497700947875768}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9155669190805226351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4333434481174417890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b58ba998da6865a4dbbc5c60b22e3f6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  First: {fileID: 7330285317217238993}
-  Second: {fileID: 6332682322432963043}
 --- !u!1 &4335570764196846164
 GameObject:
   m_ObjectHideFlags: 0
@@ -23162,7 +23162,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 9155669190805226351}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SwitchInventory, Assembly-CSharp
         m_MethodName: FirstButton
         m_Mode: 1
@@ -29135,7 +29135,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9155669190805226351}
+      - m_Target: {fileID: 8660362076964880948}
         m_TargetAssemblyTypeName: SwitchInventory, Assembly-CSharp
         m_MethodName: FirstButton
         m_Mode: 1

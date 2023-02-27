@@ -39,11 +39,15 @@ public class Potions : MonoBehaviour, IDataPersistence
         b = -1;
         aSlot = -1;
         bSlot = -1;
+        UpdateSlot();
         
     }
 
     void Update()
     {
+    }
+
+    public void UpdateSlot(){
         for(int i=0; i < slotsNumber; i++){
             if(yourPotions[i].id == 0 || slotStack[i] == 1){
                 stackText[i].text = "";
@@ -105,6 +109,7 @@ public class Potions : MonoBehaviour, IDataPersistence
             // QuestLog.DoQuest(Quest.Objective.Type.collect, n);
             ItemPickUp.pick = false;
         }
+        UpdateSlot();
     }
 
     public void StartDrag(Image slotX){
@@ -155,6 +160,7 @@ public class Potions : MonoBehaviour, IDataPersistence
                 slotStack[b] = slotTemporary;
             }
         }
+        UpdateSlot();
         a=-1;
         b=-1;
     }
@@ -204,6 +210,7 @@ public class Potions : MonoBehaviour, IDataPersistence
         }else if(aSlot >= 0 && bSlot == -1){
             slotP[aSlot] = -1;
         }
+        UpdateSlot();
         aSlot=-1;
         bSlot=-1;
     }
@@ -226,6 +233,7 @@ public class Potions : MonoBehaviour, IDataPersistence
         }
         slotStack = data.stackPotion;
         slotP = data.slotP;
+        UpdateSlot();
     }
 
     public void SaveData(GameData data)

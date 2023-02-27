@@ -153,6 +153,7 @@ public class SkillsUnlock : MonoBehaviour, IDataPersistence
     public void learnSkill(int id){
         for(int i=0; i<slotsNumber; i++){
             if(skill[i].id == 0) {
+                MagicPearls.UsePearl(Database.skillList[id].q2);
                 skill[i] = Database.skillList[id];
                 break;
             }
@@ -166,7 +167,6 @@ public class SkillsUnlock : MonoBehaviour, IDataPersistence
     }
     public void LoadData(GameData data)
     {
-        Debug.Log("Load for skill");
         skill = data.skill;
         for(int i=0; i<slotsNumber; i++){
             if(skill[i].id == 0) skill[i] = Database.skillList[0];
@@ -176,7 +176,6 @@ public class SkillsUnlock : MonoBehaviour, IDataPersistence
 
     public void SaveData(GameData data)
     {
-        Debug.Log("Save for skill");
         data.skill = skill;
         data.slotS = slotStackSkills;
     }
