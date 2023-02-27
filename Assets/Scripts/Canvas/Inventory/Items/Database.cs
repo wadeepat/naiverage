@@ -100,8 +100,8 @@ public class Database : MonoBehaviour
     private void AddItemQuestList()
     {
         itemQuestList.Add(new Item(0, "None", "None", Resources.Load<Sprite>("0"), 0));
-        itemQuestList.Add(new Item(1, "Quest1", "Quest", Resources.Load<Sprite>("q1"), 0));
-        itemQuestList.Add(new Item(2, "Quest2", "Quest", Resources.Load<Sprite>("q2"), 0));
+        itemQuestList.Add(new Item(1, "Soul", "Quest", Resources.Load<Sprite>("q1"), 0));
+        itemQuestList.Add(new Item(2, "Chicken", "Quest", Resources.Load<Sprite>("chick"), 0));
     }
     private void AddPotionList()
     {
@@ -1381,6 +1381,7 @@ public class Database : MonoBehaviour
                 objective = new Quest.Objective()
                 {
                     objectiveId = 1,
+                    isQuestItem = true,
                     // npc = NPCIndex.Samuel,
                     // dialogue = DialogueManager.instance.GetDialogueFile(4, "TheCommandment"),
                     type = Quest.Objective.Type.collect,
@@ -1488,8 +1489,8 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 46,
-                questName = $"ชื่อเควส {ColorText("char", "Cain")}",
-                questDescription = $"คำอธิบาย {ColorText("char", "Abel")} ดังนั้นต่อสู่กับ {ColorText("char", "Cain")} เพื่อช่วยเหลือเขา",
+                questName = $"ชื่อเควส {ColorText("char", "")}",
+                questDescription = $"คำอธิบาย {ColorText("char", "")}",
                 location = SceneIndex.NaverTown,
                 MPReward = 0,
                 SBReward = "",
@@ -1499,7 +1500,7 @@ public class Database : MonoBehaviour
                     objectiveId = (int)MonsterId.Cain,
                     //สำหรับเควสให้คุย
                     //npc = NPCIndex.Sata,
-                    // dialogue = DialogueManager.instance.GetDialogueFile(2,"ชื่อไฟล์ Dialogue"),
+                    // dialogue = DialogueManager.instance.GetDialogueFile(6,"ชื่อไฟล์ Dialogue"),
                     type = Quest.Objective.Type.kill,
                     amount = 1,
                 },
@@ -1514,7 +1515,73 @@ public class Database : MonoBehaviour
                 },
                 compleltedAction = () =>
                 {
-                    DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(4, "DefeatCain"));
+                    //ทำเมื่อเสร็จเควส
+                }
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 47,
+                questName = $"ไก่เจ้าปัญหา (1/2)",
+                questDescription = $"{ColorText("char", "...")} กำลังวุ่นวายกับการจับเจ้าไก่พวกนี้ ช่วยเขาจับไก่แล้วนำกลับมา",
+                location = SceneIndex.NaverTown,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 1,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = 2,
+                    isQuestItem = true,
+                    //สำหรับเควสให้คุย
+                    //npc = NPCIndex.Sata,
+                    // dialogue = DialogueManager.instance.GetDialogueFile(6,"ชื่อไฟล์ Dialogue"),
+                    type = Quest.Objective.Type.kill,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    //TODO spawn chicken
+                },
+                prepareAction = () =>
+                {
+                    //TODO spawn chicken
+                },
+                compleltedAction = () =>
+                {
+                    QuestLog.AddQuest(questList[48]);
+                }
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 48,
+                questName = $"ไก่เจ้าปัญหา (2/2)",
+                questDescription = $"นำไก่เหล่านี้ไปให้ {ColorText("char", "...")}",
+                location = SceneIndex.NaverTown,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 1,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = 2,
+                    npc = NPCIndex.Sata, //?
+                    dialogue = DialogueManager.instance.GetDialogueFile(6, "ชื่อไฟล์ Dialogue"),
+                    type = Quest.Objective.Type.kill,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    //TODO spawn chicken
+                },
+                prepareAction = () =>
+                {
+                    //TODO spawn chicken
+                },
+                compleltedAction = () =>
+                {
+                    //TODO give spell book???
                 }
             }
         );
