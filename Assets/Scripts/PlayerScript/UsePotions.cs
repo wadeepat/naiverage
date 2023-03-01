@@ -60,6 +60,7 @@ public class UsePotions : MonoBehaviour
         {
             AudioManager.instance.Play("usePotion");
             int skillId = potions.yourPotions[potions.slotP[slot]].id;
+            Panel.GetComponent<Potions>().UpdateSlot();
             switch (skillId)
             {
                 case 1:

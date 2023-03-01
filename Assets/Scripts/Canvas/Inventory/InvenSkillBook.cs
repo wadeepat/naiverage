@@ -23,19 +23,6 @@ public class InvenSkillBook : MonoBehaviour, IDataPersistence
     void Start()
     {
 
-        // for(int i=0; i < slotsNumber; i++){
-        //     yourSkillbook[i] = Database.skillBookList[0];
-        // }
-        // test
-        // yourSkillbook.Add(Database.skillBookList[1]);
-        // yourSkillbook.Add(Database.skillBookList[2]);
-        // yourSkillbook.Add(Database.skillBookList[3]);
-        // yourSkillbook.Add(Database.skillBookList[4]);
-        // yourSkillbook.Add(Database.skillBookList[5]);
-        // yourSkillbook.Add(Database.skillBookList[6]);
-        // yourSkillbook.Add(Database.skillBookList[7]);
-        // yourSkillbook.Add(Database.skillBookList[8]);
-        // yourSkillbook.Add(Database.skillBookList[9]);
 
     }
     public void GetSkillBook(){
@@ -56,49 +43,6 @@ public class InvenSkillBook : MonoBehaviour, IDataPersistence
         }
     }
 
-
-
-    // public void StartDrag(Image slotX){
-    //     for(int i=0; i < slotsNumber; i++){
-    //         if(slot[i] == slotX){
-    //             a = i;
-    //         }
-    //     }
-    // }
-
-    // public void Drop(Image slotX){
-    //     if(a!=b && a != -1 && b !=-1){
-    //         draggedItem[0] = yourSkillbook[a];
-    //         slotTemporary = slotStack[a];
-    //         yourSkillbook[a] = yourSkillbook[b];
-    //         slotStack[a] = slotStack[b];
-    //         yourSkillbook[b] = draggedItem[0];
-    //         slotStack[b] = slotTemporary;
-    //     }
-    //     a=-1;
-    //     b=-1;
-    // }
-
-    // public void Enter(Image slotX){
-    //     for(int i=0; i < slotsNumber; i++){
-    //         if(slot[i] == slotX){
-    //             b = i;
-    //         }
-    //     }
-    // }
-    
-    // public void Exit(Image slotX){
-    //     b = -1;
-    // }
-    // public void LoadData(GameData data)
-    // {
-    //     yourSkillbook = data.skillBooks;
-    // }
-
-    // public void SaveData(GameData data)
-    // {
-    //     data.skillBooks = yourSkillbook;
-    // }
     public void AddSkillBook(int idSkillBook){
         yourSkillbook.Add(Database.skillBookList[idSkillBook]);
     }

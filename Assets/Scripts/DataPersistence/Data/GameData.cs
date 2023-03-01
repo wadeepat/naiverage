@@ -17,11 +17,11 @@ public class GameData
     public List<Item> questsInventory;
     public List<SkillBook> skillBooks;
     public List<Skill> skill;
-    public int[] stackItem;
-    public int[] stackPotion;
-    public int[] stackQuests;
-    public int[] slotP;
-    public int[] slotS;
+    public int[] stackItem,stackPotion,stackQuests,slotP,slotS;
+    public int MP_stack;
+    public int HP,MP,reMp,reHp,attack,critDamage,critRate,defense,resist;
+    public float hp, mp;
+
     // public Dictionary<string, bool> tutorialEvents;
     //if want to use dictionary use SeriablizableDictionary instead
     public GameData()
@@ -54,7 +54,18 @@ public class GameData
         skill = new List<Skill>(new Skill[12]);
         slotS = new int[3] { -1, -1, -1 };
         skillBooks = new List<SkillBook>();
-        // for(int i=0; i<9; i++) skillBooks.Add(Database.skillBookList[i+1]);
+        MP_stack = 2000;
+        HP = 100;
+        MP = 100;
+        hp = HP;
+        mp = MP;
+        reHp = 1;
+        reMp = 4;
+        attack = 20;
+        critDamage = 10;
+        critRate = 20;
+        defense = 10;
+        resist = 10;
     }
 
     public override string ToString()

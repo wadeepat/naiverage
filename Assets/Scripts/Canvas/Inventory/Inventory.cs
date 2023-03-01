@@ -21,16 +21,14 @@ public class Inventory : MonoBehaviour, IDataPersistence
 
     void Start()
     {
-
-        //test
-        // yourInventory[0] = Database.itemList[1];
-        // slotStack[0] += 98;
-        // a = -1;
-        // b = -1;
+        UpdateSlot();
     }
 
     void Update()
     {
+
+    }
+    public void UpdateSlot(){
         if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.BlackScene) return;
         for (int i = 0; i < slotsNumber; i++)
         {
@@ -45,8 +43,6 @@ public class Inventory : MonoBehaviour, IDataPersistence
             slot[i].sprite = slotSprite[i];
             slotSprite[i] = yourInventory[i].itemSprite;
         }
-
-
     }
 
     public void GetNormalItem()
@@ -90,6 +86,7 @@ public class Inventory : MonoBehaviour, IDataPersistence
             //checkquest
             QuestLog.DoQuest(Quest.Objective.Type.collect, n, false);
             ItemPickUp.pick = false;
+            UpdateSlot();
         }
     }
 
@@ -151,8 +148,9 @@ public class Inventory : MonoBehaviour, IDataPersistence
             }
 
         }
-        a = -1;
-        b = -1;
+        UpdateSlot();
+        a=-1;
+        b=-1;
     }
 
     public void Enter(Image slotX)
@@ -179,6 +177,7 @@ public class Inventory : MonoBehaviour, IDataPersistence
             if (yourInventory[i].id == 0) yourInventory[i] = Database.itemList[0];
         }
         slotStack = data.stackItem;
+        UpdateSlot();
     }
 
     public void SaveData(GameData data)

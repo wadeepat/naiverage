@@ -2,27 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class PlayerStatus : MonoBehaviour
+public class PlayerStatus : MonoBehaviour, IDataPersistence
 {
     // Start is called before the first frame update
-    [SerializeField] private static int HP = 100;
-    [SerializeField] private static int MP = 100;
+    [SerializeField] private static int HP;
+    [SerializeField] private static int MP;
     // [SerializeField] private GameObject healthBar;
     // [SerializeField] private GameObject manaBar;
     [SerializeField] private const float REGEN_HP_COOLDOWN = 5f;
 
+    private static float hp, mp;
+    private static int reMp,attack,critDamage,critRate,defense,resist,reHp;
+
     private Slider sliderHealth;
     private Slider sliderMana;
-    private static float hp;
-    private static float mp;
-    private static int reMp;
-    private static int attack;
-    private static int critDamage;
-    private static int critRate;
-    private static int defense;
-    private static int resist;
-    private static int reHp; // Can not upgrade
-
     private bool poison, agony, buff;
     private static int temp;
     private float poisonTime, agonyTime, buffTime;
@@ -37,19 +30,8 @@ public class PlayerStatus : MonoBehaviour
     void Start()
     {
         died = false;
-
         sliderHealth = CanvasManager.instance.GetCanvasObject("Panel/Bar/HealthBar").GetComponent<Slider>();
         sliderMana = CanvasManager.instance.GetCanvasObject("Panel/Bar/StaminaBar").GetComponent<Slider>();
-        hp = HP;
-        mp = MP;
-        reHp = 1;
-        reMp = 4;
-        attack = 20;
-        critDamage = 10;
-        critRate = 20;
-        defense = 10;
-        resist = 10;
-
         //timer
         damageTimer = REGEN_HP_COOLDOWN;
     }
@@ -270,6 +252,36 @@ public class PlayerStatus : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
             enemy.GetComponent<Enemy>().AwarePlayerDied();
+    }
+
+    public void LoadData(GameData data)
+    {
+        HP = data.HP;
+        MP = data.MP;
+        hp = data.hp;
+        mp = data.mp;
+        reHp = data.reHp;
+        reMp = data.reMp;
+        attack = data.attack;
+        critDamage = data.critDamage;
+        critRate = data.critRate;
+        defense = data.defense;
+        resist = data.resist;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.HP =HP;
+        data.MP = MP;
+        data.hp = hp;
+        data.mp = mp;
+        data.reHp = reHp;
+        data.reMp = reMp;
+        data.attack = attack;
+        data.critDamage = critDamage;
+        data.critRate = critRate;
+        data.defense = defense;
+        data.resist = resist;
     }
 
 }

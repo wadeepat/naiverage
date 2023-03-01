@@ -7,6 +7,7 @@ public class ItemPickUp : MonoBehaviour
     public GameObject Item;
     // public bool canPickUp;
     public int mushroom;
+    private GameObject game;
     private GameObject pickUpText;
     private TextMeshProUGUI text;
     public static bool pick;
@@ -51,6 +52,11 @@ public class ItemPickUp : MonoBehaviour
             y = col.gameObject;
             text.text = "Press F to pick up";
             pickUpText.SetActive(true);
+        }else if(col.tag == "MiniGame"){
+            Item = col.gameObject;
+            y = col.gameObject;
+            text.text = "Press F to solve puzzles";
+            pickUpText.SetActive(true);
         }
     }
     private void OnTriggerStay(Collider other)
@@ -70,12 +76,25 @@ public class ItemPickUp : MonoBehaviour
                 y = null;
                 pickUpText.SetActive(false);
             }
+        }else if(other.tag == "MiniGame" && Item != null){
+            if (InputManager.instance.GetInteractPressed())
+            {
+                if(y.GetComponent<ThisMiniGame>().thisId == 1){
+                    var miniGame = Resources.Load("MiniGame/FlipGame");
+                    game = miniGame as GameObject;
+                    GameObject flipGame = Instantiate(game,GameObject.Find("Canvas").transform);
+                }
+            }
         }
     }
     void OnTriggerExit(Collider col)
     {
         if (col.tag == "item")
         {
+            Item = null;
+            y = null;
+            pickUpText.SetActive(false);
+        }else if(col.tag == "MiniGame"){
             Item = null;
             y = null;
             pickUpText.SetActive(false);

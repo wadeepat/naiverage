@@ -32,6 +32,7 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
         // slotStack[0] += 1;
         // yourItemQuests[1] = Database.itemQuestList[2];
         // slotStack[1] += 1;
+        UpdateSlotSprite();
         a = -1;
         b = -1;
 
@@ -39,14 +40,10 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-        // for(int i=0; i < slotsNumber; i++){
-        //     if(yourItemQuests[i].id == 0 || slotStack[i] == 1){
-        //         stackText[i].text = "";
-        //     }else{
-        //         stackText[i].text = ""+ slotStack[i];
-        //     }
-        // }
+        UpdateSlotSprite();
+    }
 
+    void UpdateSlotSprite(){
         for (int i = 0; i < slotsNumber; i++)
         {
             slot[i].sprite = slotSprite[i];
@@ -56,7 +53,6 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
         {
             slotSprite[i] = yourItemQuests[i].itemSprite;
         }
-
     }
 
     public void GetItemQuest()
@@ -107,6 +103,7 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
             yourItemQuests[b] = draggedItem[0];
             slotStack[b] = slotTemporary;
         }
+        UpdateSlotSprite();
         a = -1;
         b = -1;
     }
@@ -134,6 +131,7 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
             if (yourItemQuests[i].id == 0) yourItemQuests[i] = Database.itemQuestList[0];
         }
         slotStack = data.stackQuests;
+        UpdateSlotSprite();
     }
 
     public void SaveData(GameData data)
