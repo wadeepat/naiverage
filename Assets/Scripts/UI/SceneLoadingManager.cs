@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SceneLoadingManager : MonoBehaviour
 {
@@ -10,7 +11,21 @@ public class SceneLoadingManager : MonoBehaviour
     [SerializeField] private Sprite[] loadingSprites;
     private GameObject LoadingScreen;
     private Slider sliderLoading;
+    private TextMeshProUGUI NameShowText;
+    private TextMeshProUGUI loadingText;
+    private const string LOADING = "loading...";
     // public LoadingScreen instance { get; private set; }
+    private string[] SceneShowName = {
+        "",
+        "Rachne Forest",
+        "Naver Town",
+        "Calford Castle",
+        "Braewood Forest",
+        "Cave",
+        "Rachne Field",
+        "Secret Field",
+        ""
+    };
 
     public static SceneLoadingManager instance { get; private set; }
     private void Awake()
@@ -30,14 +45,11 @@ public class SceneLoadingManager : MonoBehaviour
     {
         LoadingScreen = GameObject.Find("Canvas").transform.Find("LoadingScreen").gameObject;
         sliderLoading = LoadingScreen.transform.Find("Slider").GetComponent<Slider>();
-        // if ((int)sceneName == 0)
-        // {
-        //     LoadingScreen.transform.Find("Background").GetComponent<Image>().overrideSprite = loadingSprites[0];
-        // }
-        // else
-        // {
+        NameShowText = LoadingScreen.transform.Find("Place").GetComponent<TextMeshProUGUI>();
+        loadingText = LoadingScreen.transform.Find("LoadingText").GetComponent<TextMeshProUGUI>();
+
         LoadingScreen.transform.Find("Background").GetComponent<Image>().overrideSprite = loadingSprites[(int)sceneName];
-        // }
+        NameShowText.text = SceneShowName[(int)sceneName];
 
         AudioManager.instance.StopAllTrack();
         AudioManager.instance.Play("loading");
@@ -54,6 +66,9 @@ public class SceneLoadingManager : MonoBehaviour
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
         operation.allowSceneActivation = false;
 
+        loadingText.text = LOADING;
+        loadingText.maxVisibleCharacters = 7;
+
         while (!operation.isDone)
         {
             sliderLoading.value = operation.progress;
@@ -62,9 +77,11 @@ public class SceneLoadingManager : MonoBehaviour
                 yield return new WaitForSeconds(1);
                 operation.allowSceneActivation = true;
                 AudioManager.instance.Stop("loading");
-                // LoadingScreen.SetActive(false);
             }
-            yield return null;
+            if (loadingText.maxVisibleCharacters == LOADING.Length) loadingText.maxVisibleCharacters = 7;
+            else loadingText.maxVisibleCharacters++;
+
+            yield return new WaitForSeconds(0.06f);
         }
         if (LoadingScreen != null)
         {

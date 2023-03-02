@@ -8,6 +8,7 @@ public class RunAway : MonoBehaviour
     [SerializeField] private float distance = 5f;
     [SerializeField] private float runSpd = 3.5f;
     [SerializeField] private float sprintSpd = 10f;
+    [SerializeField] private AudioSource sprintSound;
     private const float ANGLE_TIME = 0.7f;
     private NavMeshAgent agent;
     private Animator animator;
@@ -77,6 +78,7 @@ public class RunAway : MonoBehaviour
             {
                 if (sprintTimer < SPRINT_TIME)
                 {
+                    if (!sprintSound.isPlaying) sprintSound.Play();
                     SetSpeed(sprintSpd);
                     sprintTimer += Time.deltaTime;
                 }
