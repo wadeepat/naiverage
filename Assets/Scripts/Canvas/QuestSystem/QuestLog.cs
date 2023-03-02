@@ -49,6 +49,7 @@ public class QuestLog
     {
         // Debug.Log($"<color=#FFA>Add quest: {quest.questId}</color>");
         AudioManager.instance.Play("addQuest");
+        quest.objective.currentAmount = 0;
         questList.Add(quest);
         // HandleOwnedItems(quest);
         if (quest.addAction != null) quest.addAction();

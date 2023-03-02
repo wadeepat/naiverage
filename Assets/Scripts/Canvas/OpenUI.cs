@@ -63,6 +63,8 @@ public class OpenUI : MonoBehaviour
         bool i = Input.GetKeyDown("i");
         if (i)
         {
+            if (GameObject.Find("Canvas")?.transform.Find("LoadingScreen")?.gameObject.activeSelf == true) return;
+
             if (DialogueManager.dialogueIsPlaying ||
             ActionHandler.instance.IsSomeWindowsActivated())
             {
@@ -85,6 +87,18 @@ public class OpenUI : MonoBehaviour
                 DialogueManager.dialogueIsPlaying = true;
                 Lockscreen(true);
             }
+        }
+        if (inven == false &&
+            InputManager.instance.GetBackPressed()
+            )
+        {
+            InputManager.instance.GetMenuPressed();
+            //close
+            AudioManager.instance.Play("open");
+            inven = true;
+            show(false);
+            DialogueManager.dialogueIsPlaying = false;
+            Lockscreen(false);
         }
     }
     void Lockscreen(bool l)

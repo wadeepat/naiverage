@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour
     private bool skillPressed = false;
     private bool skill2Pressed = false;
     private bool skill3Pressed = false;
+    private bool menuPressed = false;
 
     public static InputManager instance { get; private set; }
 
@@ -195,7 +196,17 @@ public class InputManager : MonoBehaviour
             skill3Pressed = false;
         }
     }
-
+    public void MenuPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            menuPressed = true;
+        }
+        else if (context.canceled)
+        {
+            menuPressed = false;
+        }
+    }
 
     public bool GetAttackPressed()
     {
@@ -280,6 +291,12 @@ public class InputManager : MonoBehaviour
     {
         bool result = skill3Pressed;
         skill3Pressed = false;
+        return result;
+    }
+    public bool GetMenuPressed()
+    {
+        bool result = menuPressed;
+        menuPressed = false;
         return result;
     }
 

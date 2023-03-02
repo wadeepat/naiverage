@@ -178,7 +178,7 @@ public class Database : MonoBehaviour
             {
                 objectiveId = 1,
                 type = Quest.Objective.Type.collect,
-                amount = 1,
+                amount = 3,
             },
             addAction = () =>
             {

@@ -5,6 +5,7 @@ using StarterAssets;
 public class GameMenu : MonoBehaviour
 {
     [SerializeField] private ConfirmationPopupMenu confirmationPopupMenu;
+    [SerializeField] private SettingsMenu settingsMenu;
     // private GameObject _player;
     // private ThirdPersonController _thirdPersonController;
     // private void Awake()
@@ -12,13 +13,18 @@ public class GameMenu : MonoBehaviour
     //     _player = GameObject.FindGameObjectWithTag("Player");
     //     _thirdPersonController = _player.GetComponent<ThirdPersonController>();
     // }
+    private void Update()
+    {
+        if (!settingsMenu.IsActivated() &&
+            InputManager.instance.GetBackPressed()) this.DeactivateMenu();
+    }
     public void ClickedResume()
     {
         this.DeactivateMenu();
     }
     public void ClickedOpitons()
     {
-        // TODO implement options about sound and graphics
+        settingsMenu.ActivateMenu();
     }
     public void ClickedMainMenu()
     {
@@ -68,6 +74,7 @@ public class GameMenu : MonoBehaviour
         }
         else
         {
+            InputManager.instance.GetBackPressed();
             this.gameObject.SetActive(true);
             Time.timeScale = 0;
             Cursor.visible = true;

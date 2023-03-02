@@ -199,7 +199,7 @@ namespace StarterAssets
             }
 
             // if (DialogueManager.dialogueIsPlaying) return;
-            if (InputManager.instance.GetBackPressed())
+            if (InputManager.instance.GetMenuPressed())
             {
                 gameMenu.ActivateMenu();
             }

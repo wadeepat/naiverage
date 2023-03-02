@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     [Header("sfx Config")]
+    [SerializeField] private AudioMixerGroup mixer;
     [SerializeField] private float timeToFade = 0.5f;
     [SerializeField] private float timeElapsed = 0;
     public Sound[] sounds;
@@ -31,6 +32,7 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            s.source.outputAudioMixerGroup = mixer;
         }
     }
     public void Play(string name)

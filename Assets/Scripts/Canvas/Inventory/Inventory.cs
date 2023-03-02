@@ -28,7 +28,8 @@ public class Inventory : MonoBehaviour, IDataPersistence
     {
 
     }
-    public void UpdateSlot(){
+    public void UpdateSlot()
+    {
         if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.BlackScene) return;
         for (int i = 0; i < slotsNumber; i++)
         {
@@ -149,8 +150,8 @@ public class Inventory : MonoBehaviour, IDataPersistence
 
         }
         UpdateSlot();
-        a=-1;
-        b=-1;
+        a = -1;
+        b = -1;
     }
 
     public void Enter(Image slotX)
@@ -177,7 +178,7 @@ public class Inventory : MonoBehaviour, IDataPersistence
             if (yourInventory[i].id == 0) yourInventory[i] = Database.itemList[0];
         }
         slotStack = data.stackItem;
-        UpdateSlot();
+        // UpdateSlot();
     }
 
     public void SaveData(GameData data)
