@@ -13,6 +13,10 @@ public class MapController : MonoBehaviour
         ButtonsObject = this.gameObject.transform.Find("Buttons");
         buttons = ButtonsObject.GetComponentsInChildren<Button>();
     }
+    private void Update()
+    {
+        if (InputManager.instance.GetBackPressed()) this.DeactivateMenu();
+    }
     public void MapIsClicked(string sceneName)
     {
         AudioManager.instance.Play("click");
@@ -29,8 +33,9 @@ public class MapController : MonoBehaviour
     }
     public void ActivateMenu()
     {
+        if (GameObject.Find("Canvas")?.transform.Find("LoadingScreen")?.gameObject.activeSelf == true) return;
         if (DialogueManager.dialogueIsPlaying ||
-        ActionHandler.instance.IsSomeWindowsActivated())
+            ActionHandler.instance.IsSomeWindowsActivated())
         {
             if (this.gameObject.activeSelf)
             {

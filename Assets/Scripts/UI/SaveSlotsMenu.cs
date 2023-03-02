@@ -24,6 +24,10 @@ public class SaveSlotsMenu : MonoBehaviour, IDataPersistence
         saveSlots = saveSlotsObject.GetComponentsInChildren<SaveSlot>();
         EditBtns = transform.Find("List/EditBtns").gameObject;
     }
+    private void Update()
+    {
+        if (InputManager.instance.GetBackPressed()) onBackClicked();
+    }
     public void OnSaveSlotClicked(SaveSlot saveSlot)
     {
         AudioManager.instance.Play("click");
