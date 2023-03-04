@@ -50,97 +50,97 @@ MonoBehaviour:
   sounds:
   - s_name: pick
     clip: {fileID: 8300000, guid: a3840464804ec8541968d71104d4b108, type: 3}
-    volume: 0.75
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: usePotion
     clip: {fileID: 8300000, guid: 218fff842682d434ca9cb64aaead80b2, type: 3}
-    volume: 0.75
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: craft
     clip: {fileID: 8300000, guid: c3697ba960857f34ca4c997d35df97f4, type: 3}
-    volume: 0.75
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: learn
     clip: {fileID: 8300000, guid: 8e86f3db501cd1b4e8d9c06174e48183, type: 3}
-    volume: 0.75
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: click
     clip: {fileID: 8300000, guid: a68f2e74995ff9847ab225e98148fe1e, type: 3}
-    volume: 0.7
+    volume: 0.9
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: open
     clip: {fileID: 8300000, guid: 5bf9389a7add6494c9dc57f68a32a2b7, type: 3}
-    volume: 0.75
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: talk
     clip: {fileID: 8300000, guid: ddaeac6ab597bcb47a3031a96d9ea079, type: 3}
-    volume: 0.75
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: addQuest
     clip: {fileID: 8300000, guid: 21fffcdd1640eb04a849700642c22f01, type: 3}
-    volume: 0.75
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: makeChoice
     clip: {fileID: 8300000, guid: 21fffcdd1640eb04a849700642c22f01, type: 3}
-    volume: 0.75
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: completeQuest
     clip: {fileID: 8300000, guid: 995162fea1a46314d89d5063d68474fa, type: 3}
-    volume: 0.75
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: save
     clip: {fileID: 8300000, guid: 557128255e699ce41b63ab16250e7413, type: 3}
-    volume: 0.75
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: delete
     clip: {fileID: 8300000, guid: fe7c167652895e7459a346ddb3284dd1, type: 3}
-    volume: 0.75
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: loading
     clip: {fileID: 8300000, guid: ed61521fe94f7324f8ea021f36f0e376, type: 3}
-    volume: 0.6
+    volume: 0.85
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: newChapter
     clip: {fileID: 8300000, guid: 2a2965c2452783048a21cce27b76e104, type: 3}
-    volume: 0.75
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: medievalTheme
     clip: {fileID: 8300000, guid: ff50389a5d7605c4d9e7cff6ca4da10f, type: 3}
-    volume: 0.6
+    volume: 0.85
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: forestBackground
     clip: {fileID: 8300000, guid: 40324742e7d740d428fc192465423902, type: 3}
-    volume: 0.7
+    volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -152,31 +152,31 @@ MonoBehaviour:
     source: {fileID: 0}
   - s_name: braewoodBackground
     clip: {fileID: 8300000, guid: de55399a86c1d174bb2ade9b06650adc, type: 3}
-    volume: 0.5
+    volume: 0.75
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: caveBackground
     clip: {fileID: 8300000, guid: ede44f6cfe853d84091973ab0aa74a79, type: 3}
-    volume: 0.5
+    volume: 0.75
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: endingBackground
     clip: {fileID: 8300000, guid: 4ff12c9f749037246a8c6bcbf3cd0e6a, type: 3}
-    volume: 0.6
+    volume: 0.85
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: sadness
     clip: {fileID: 8300000, guid: a7b44ba72e760f9488101c39b5768065, type: 3}
-    volume: 0.65
+    volume: 0.9
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: singleFootstepInGrass
     clip: {fileID: 8300000, guid: c59555e5e17f2b24db9e6235197f9db1, type: 3}
-    volume: 0.75
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}

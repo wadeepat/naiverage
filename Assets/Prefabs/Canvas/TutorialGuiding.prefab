@@ -751,7 +751,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E40\u0E08\u0E49\u0E32\u0E17\u0E33 <color=#363062>Quest</color>
     \u0E40\u0E2A\u0E23\u0E47\u0E08\u0E01\u0E47\u0E44\u0E1B\u0E04\u0E38\u0E22\u0E01\u0E31\u0E1A
-    <color=#363062>NPC</color> \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E23\u0E31\u0E1A\u0E23\u0E32\u0E07\u0E27\u0E31\u0E25\n"
+    <color=#363062>NPC</color> \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E23\u0E31\u0E1A\u0E23\u0E32\u0E07\u0E27\u0E31\u0E25\n\u0E23\u0E32\u0E22\u0E25\u0E30\u0E40\u0E2D\u0E35\u0E22\u0E14\u0E02\u0E2D\u0E07
+    <color=#363062>Quest</color> \u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E14\u0E39\u0E44\u0E14\u0E49\u0E17\u0E35\u0E48
+    \u0E2B\u0E21\u0E27\u0E14 <color=#363062>Quest</color> \u0E02\u0E2D\u0E07 <color=#363062>Inventory</color>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab8cd77442cce7e478d7c56a2b476dbf, type: 2}
   m_sharedMaterial: {fileID: 139339666243476548, guid: ab8cd77442cce7e478d7c56a2b476dbf, type: 2}
@@ -888,7 +890,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0E04\u0E25\u0E34\u0E01 <color=#900C3F>\u0E40\u0E21\u0E32\u0E2A\u0E4C\u0E0B\u0E49\u0E32\u0E22</color>
     \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E42\u0E08\u0E21\u0E15\u0E35\u0E1B\u0E01\u0E15\u0E34
-    \n\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E40\u0E1B\u0E25\u0E35\u0E48\u0E22\u0E19\u0E18\u0E32\u0E15\u0E38\u0E02\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35\u0E1B\u0E01\u0E15\u0E34\u0E42\u0E14\u0E22\u0E01\u0E32\u0E23\u0E01\u0E14\n<color=#900C3F>Q</color>
+    \n\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E40\u0E1B\u0E25\u0E35\u0E48\u0E22\u0E19\u0E18\u0E32\u0E15\u0E38\u0E02\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E42\u0E08\u0E21\u0E15\u0E35\u0E1B\u0E01\u0E15\u0E34\u0E42\u0E14\u0E22\u0E01\u0E32\u0E23\u0E01\u0E14
+    (\u0E18\u0E32\u0E15\u0E38\u0E21\u0E35\u0E1C\u0E25\u0E43\u0E19\u0E01\u0E32\u0E23\u0E17\u0E33\u0E04\u0E27\u0E32\u0E21\u0E40\u0E2A\u0E35\u0E22\u0E2B\u0E32\u0E22)\n<color=#900C3F>Q</color>
     \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E40\u0E1B\u0E25\u0E35\u0E48\u0E22\u0E19\u0E44\u0E1B\u0E17\u0E32\u0E07\u0E0B\u0E49\u0E32\u0E22\n<color=#900C3F>E</color>
     \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E40\u0E1B\u0E25\u0E35\u0E48\u0E22\u0E19\u0E44\u0E1B\u0E17\u0E32\u0E07\u0E02\u0E27\u0E32"
   m_isRightToLeft: 0
@@ -1222,7 +1225,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\u0E01\u0E14\u0E1B\u0E38\u0E48\u0E21 <color=#900C3F>F</color> \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E40\u0E01\u0E47\u0E1A
-    <color=#09bc8a>{\u0E0A\u0E37\u0E48\u0E2D\u0E02\u0E2D\u0E07}</color>"
+    <color=#09bc8a>Spindlewit</color>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab8cd77442cce7e478d7c56a2b476dbf, type: 2}
   m_sharedMaterial: {fileID: 139339666243476548, guid: ab8cd77442cce7e478d7c56a2b476dbf, type: 2}
@@ -1397,8 +1400,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0E43\u0E0A\u0E49\u0E1B\u0E38\u0E48\u0E21 <color=#900C3F>WASD</color>
     \u0E04\u0E27\u0E1A\u0E04\u0E38\u0E21\u0E01\u0E32\u0E23\u0E40\u0E14\u0E34\u0E19\u0E44\u0E1B\u0E17\u0E35\u0E48\u0E1A\u0E23\u0E34\u0E40\u0E27\u0E13\u0E17\u0E35\u0E48\u0E21\u0E35
-    <color=#09bc8a>{\u0E0A\u0E37\u0E48\u0E2D\u0E02\u0E2D\u0E07}</color>\n\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E01\u0E14\u0E1B\u0E38\u0E48\u0E21
-    <color=#900C3F>shift</color> \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E27\u0E34\u0E48\u0E07\u0E44\u0E14\u0E49"
+    <color=#09bc8a>Spindlewit</color>\n\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E04\u0E25\u0E34\u0E01
+    <color=#900C3F>\u0E40\u0E21\u0E32\u0E2A\u0E4C\u0E02\u0E27\u0E32</color> \u0E04\u0E49\u0E32\u0E07\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E27\u0E34\u0E48\u0E07\u0E44\u0E14\u0E49"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab8cd77442cce7e478d7c56a2b476dbf, type: 2}
   m_sharedMaterial: {fileID: 139339666243476548, guid: ab8cd77442cce7e478d7c56a2b476dbf, type: 2}
@@ -1693,7 +1696,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 70, y: 20}
-  m_SizeDelta: {x: 500, y: 132.9}
+  m_SizeDelta: {x: 500, y: 230}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &4770271936592583905
 GameObject:
@@ -1845,7 +1848,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 70, y: 20}
-  m_SizeDelta: {x: 500, y: 90}
+  m_SizeDelta: {x: 500, y: 175}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &7751181805834360736
 GameObject:
@@ -1989,8 +1992,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0E01\u0E14\u0E1B\u0E38\u0E48\u0E21 <color=#900C3F>R</color> \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E43\u0E0A\u0E49
-    <color=#363062>Potion</color> \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E25\u0E37\u0E2D\u0E14"
+  m_text: "\u0E19\u0E33 Potion \u0E17\u0E35\u0E48 Craft \u0E41\u0E25\u0E49\u0E27\u0E43\u0E2A\u0E48
+    slot\n\u0E01\u0E14\u0E1B\u0E38\u0E48\u0E21 <color=#900C3F>R</color> \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E43\u0E0A\u0E49
+    <color=#363062>Potion</color> \u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E25\u0E37\u0E2D\u0E14\nHOLD
+    <color=#900C3F>R</color> \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E04\u0E25\u0E34\u0E01\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E22\u0E32\u0E2D\u0E37\u0E48\u0E19\u0E43\u0E19
+    Slot \u0E44\u0E14\u0E49"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab8cd77442cce7e478d7c56a2b476dbf, type: 2}
   m_sharedMaterial: {fileID: 139339666243476548, guid: ab8cd77442cce7e478d7c56a2b476dbf, type: 2}
