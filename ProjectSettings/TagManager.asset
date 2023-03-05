@@ -15,6 +15,7 @@ TagManager:
   - NPC
   - Trigger
   - MiniGame
+  - Victim
   layers:
   - Default
   - TransparentFX

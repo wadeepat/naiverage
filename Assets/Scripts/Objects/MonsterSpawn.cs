@@ -35,12 +35,12 @@ public class MonsterSpawn : MonoBehaviour
         {
             foreach (MonsterAmount m in monsterTestLists)
             {
-                SpawnMonster((int)m.monsterId, m.amount);
+                SpawnMonster((int)m.monsterId, m.amount, true);
             }
         }
     }
 
-    public void SpawnMonster(int id, int amount)
+    public void SpawnMonster(int id, int amount, bool isAttackVictim)
     {
         for (int i = 0; i < amount; i++)
         {
@@ -49,6 +49,7 @@ public class MonsterSpawn : MonoBehaviour
             var tempMon = Instantiate(monsterLists[id].model, waypoints[Random.Range(0, waypoints.Count)].position, Quaternion.identity);
             tempMon.transform.localScale += Vector3.one * randomNum;
             tempMon.transform.SetParent(this.transform);
+            if (isAttackVictim) tempMon.GetComponent<Enemy>().AttackVictim();
         }
     }
 }

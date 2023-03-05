@@ -105,7 +105,9 @@ public class Troll : Enemy
         if (weaponColliderScript.isCollided)
         {
             // Debug.LogWarning("Low Attack hit");
-            target.gameObject.GetComponent<PlayerStatus>().TakeDamaged(damage);
+            if (target.gameObject.tag == "Player")
+                target.gameObject.GetComponent<PlayerStatus>().TakeDamaged(damage);
+            else target.gameObject.GetComponent<Victim>().TakeDamaged(damage, elementType);
             return true;
         }
         return false;
@@ -117,7 +119,9 @@ public class Troll : Enemy
         if (weaponColliderScript.isCollided)
         {
             // Debug.LogWarning("Heavt Attack hit");
-            target.gameObject.GetComponent<PlayerStatus>().TakeDamaged(damage);
+            if (target.gameObject.tag == "Player")
+                target.gameObject.GetComponent<PlayerStatus>().TakeDamaged(damage);
+            else target.gameObject.GetComponent<Victim>().TakeDamaged(damage, elementType);
             return true;
         }
         return false;

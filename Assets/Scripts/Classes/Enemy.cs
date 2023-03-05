@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
     protected float poisonTime, illusionTime, agonyTime, burnTime;
     protected bool isDie = false;
     protected bool poison, illusion, agony, burn;
-
+    protected bool isAttackVictim = false;
     //every 1 seconds
     private Sprite spriteElement;
     private float time = 0.0f;
@@ -87,7 +87,9 @@ public class Enemy : MonoBehaviour
         attackTimer = attackCooldown;
         hp = maxHealthPoint;
         mainCamera = Camera.main.transform;
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        if (isAttackVictim)
+            target = GameObject.FindGameObjectWithTag("Victim").transform;
+        else target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
         canvas = transform.Find("Canvas").gameObject;
         healthBar = canvas.transform.Find("HealthBar").gameObject;
@@ -108,7 +110,6 @@ public class Enemy : MonoBehaviour
         if (damageAnimTimer < CD_DAMAGE_ANIM) damageAnimTimer += Time.deltaTime;
         else RegenHP(1 * Time.deltaTime);
         if (isDie && monsterType == "normal") transform.position += new Vector3(0, -0.15f * Time.deltaTime, 0);
-
         // if (healthBar.activeSelf) canvas.transform.LookAt(mainCamera);
         canvas?.transform.LookAt(mainCamera);
         if (hp >= 0)
@@ -118,6 +119,7 @@ public class Enemy : MonoBehaviour
 
         CheckTimeAndStatus();
 
+        if (isAttackVictim) damagedTimer = 0;
 
     }
     public virtual void OnChaseStateEnter()
@@ -256,7 +258,9 @@ public class Enemy : MonoBehaviour
         if (distance <= range)
         {
             //attack target
-            target.gameObject.GetComponent<PlayerStatus>().TakeDamaged(damage);
+            if (target.gameObject.tag == "Player")
+                target.gameObject.GetComponent<PlayerStatus>().TakeDamaged(damage);
+            else target.gameObject.GetComponent<Victim>().TakeDamaged(damage, elementType);
         }
     }
     protected void ShootProjectileObject(GameObject projectileObj, Transform firepoint)
@@ -270,8 +274,10 @@ public class Enemy : MonoBehaviour
             agent.SetDestination(transform.position);
         }
     }
-    public void AwarePlayerDied()
+    public void AwarePlayerDied(bool changeToPlayer)
     {
+        // if (changeToPlayer) target = GameObject.FindGameObjectWithTag("Player").transform;
+        // else target = null;
         target = null;
     }
     public void Died()
@@ -512,7 +518,11 @@ public class Enemy : MonoBehaviour
         imageElement = this.transform.Find("Canvas/HealthBar/Element/type").GetComponent<Image>();
         imageElement.sprite = spriteElement;
     }
-
+    public void AttackVictim()
+    {
+        target = GameObject.FindGameObjectWithTag("Victim").transform;
+        isAttackVictim = true;
+    }
 }
 
 

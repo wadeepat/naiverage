@@ -37,6 +37,10 @@ public class DamageToPlayer : MonoBehaviour
             }
             target.gameObject.GetComponent<PlayerStatus>().TakeDamaged(damageAmount);
         }
+        else if (target.gameObject.tag == "Victim")
+        {
+            target.GetComponent<Victim>().TakeDamaged(damageAmount, ElementType.Physical);
+        }
         else if (target.gameObject.name == "Terrain")
             Destroy(gameObject);
     }

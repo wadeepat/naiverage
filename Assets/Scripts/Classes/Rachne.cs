@@ -85,7 +85,7 @@ public class Rachne : Enemy
     public void SummonHenchman()
     {
         // int random = Random.Range(0, 1);
-        monsterSpawn.SpawnMonster(Random.Range(0, 2), 1);
-        monsterSpawn.SpawnMonster(Random.Range(0, 2), 1);
+        monsterSpawn.SpawnMonster(Random.Range(0, 2), 1, isAttackVictim);
+        monsterSpawn.SpawnMonster(Random.Range(0, 2), 1, isAttackVictim);
     }
 }

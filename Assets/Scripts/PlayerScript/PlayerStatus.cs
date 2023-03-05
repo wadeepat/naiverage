@@ -12,7 +12,7 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
     [SerializeField] private const float REGEN_HP_COOLDOWN = 5f;
 
     private static float hp, mp;
-    private static int reMp,attack,critDamage,critRate,defense,resist,reHp;
+    private static int reMp, attack, critDamage, critRate, defense, resist, reHp;
 
     private Slider sliderHealth;
     private Slider sliderMana;
@@ -251,7 +251,7 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
-            enemy.GetComponent<Enemy>().AwarePlayerDied();
+            enemy.GetComponent<Enemy>().AwarePlayerDied(false);
     }
 
     public void LoadData(GameData data)
@@ -271,7 +271,7 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
 
     public void SaveData(GameData data)
     {
-        data.HP =HP;
+        data.HP = HP;
         data.MP = MP;
         data.hp = hp;
         data.mp = mp;

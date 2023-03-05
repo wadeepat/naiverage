@@ -10,3 +10,4 @@ VAR cainAskToGo = false
 VAR cainAskToGoAgain = false
 
 VAR turnbacktime = false
+VAR refuseMerchant = false

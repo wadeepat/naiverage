@@ -1570,6 +1570,58 @@ public class Database : MonoBehaviour
                 }
             }
         );
+        questList.Add(
+            new Quest()
+            {
+                questId = 49,
+                questName = $"ช่วยเหลือ {ColorText("char", "ชาวบ้าน")} (1/2)",
+                questDescription = $"{ColorText("char", "ชาวบ้าน")} คนหนึ่งกำลังโดนเหล่ามอนสเตอร์รุมทำร้ายที่ป่า {ColorText("char", "Rachne")} ปราบศัตรูให้หมด และให้ชาวบ้านมีชีวิตรอด",
+                location = SceneIndex.Rachne,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 1,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Villager,
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("SaveNPC");
+                },
+                compleltedAction = () =>
+                {
+                    QuestLog.AddQuest(questList[50]);
+                }
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 50,
+                questName = $"ช่วยเหลือ {ColorText("char", "ชาวบ้าน")} (2/2)",
+                questDescription = $"{ColorText("char", "ชาวบ้าน")} ปลอดภัยแล้วไปคุยกับเขาที่ป่า {ColorText("char", "Rachne")}",
+                location = SceneIndex.Rachne,
+                MPReward = 1000,
+                SBReward = "",
+                questCategory = 1,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Villager,
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("ThanksFromNPC");
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("ThanksFromNPC");
+                },
+            }
+        );
     }
     private string ColorText(string type, string text)
     {

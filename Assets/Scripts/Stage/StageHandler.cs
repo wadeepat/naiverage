@@ -23,6 +23,7 @@ public class StageHandler : MonoBehaviour
     [Header("Monster Spawn")]
     [SerializeField] private MonsterSpawn spawn0;
     [SerializeField] private MonsterSpawn spawn1;
+    [SerializeField] private MonsterSpawn spawn2;
 
     [Header("NaverTown")]
     [SerializeField] private Transform n_rachneGate;
@@ -90,16 +91,17 @@ public class StageHandler : MonoBehaviour
                 {
                     if (QuestLog.GetCompleteQuestById(8) == null)
                         EventTrigger("IntroduceAaron");
-                    Debug.Log($"bool: {!PlayerManager.playerEvents["chickReject"]} {QuestLog.GetCompleteQuestById(14) != null} {QuestLog.GetCompleteQuestById(47) == null} {QuestLog.GetActiveQuestById(47) == null}");
                     if (!PlayerManager.playerEvents["chickReject"] &&
                         QuestLog.GetCompleteQuestById(14) != null &&
                         QuestLog.GetCompleteQuestById(47) == null &&
                         QuestLog.GetActiveQuestById(47) == null)
                     {
-                        Debug.Log("do");
                         NaverTownEvents("FarmerProblem");
-
                     }
+                    if (QuestLog.GetCompleteQuestById(14) != null &&
+                        QuestLog.GetCompleteQuestById(49) == null &&
+                        QuestLog.GetActiveQuestById(49) == null)
+                        NaverTownEvents("MerchantFriend");
                 }
                 if (!PlayerManager.instance.mapEnable[SceneIndex.CalfordCastle])
                     n_calfordGate.gameObject.SetActive(false);
@@ -317,6 +319,17 @@ public class StageHandler : MonoBehaviour
                 break;
             case "RunChickenRun":
                 GameObject.Find("StageTrack").transform.Find("Chicken").gameObject.SetActive(true);
+                break;
+            case "SaveNPC":
+                GameObject.Find("StageTrack").transform.Find("Victim").gameObject.SetActive(true);
+                SpawnMonsterToVictim(2, MonsterId.Webster, 1);
+                SpawnMonsterToVictim(2, MonsterId.Venom, 2);
+                break;
+            case "ThanksFromNPC":
+                GameObject victim = GameObject.Find("StageTrack").transform.Find("Victim").gameObject;
+                victim.SetActive(true);
+                victim.GetComponent<CapsuleCollider>().enabled = true;
+                victim.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(5, "ThanksFromNPC");
                 break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in TutorialEvents");
@@ -555,6 +568,18 @@ public class StageHandler : MonoBehaviour
                 break;
             case "chickReject":
                 PlayerManager.playerEvents["chickReject"] = true;
+                break;
+            case "MerchantFriend":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.info == "Merchant")
+                    {
+                        npc.Object.GetComponent<CapsuleCollider>().enabled = true;
+                        npc.Object.SetActive(true);
+                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(5, "SaveNPC");
+                        break;
+                    }
+                }
                 break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in NaverTownEvents");
@@ -845,11 +870,26 @@ public class StageHandler : MonoBehaviour
     {
         if (spawnNo == 0)
         {
-            spawn0.SpawnMonster((int)monsterIdx, num);
+            spawn0.SpawnMonster((int)monsterIdx, num, false);
         }
         else if (spawnNo == 1)
         {
-            spawn1.SpawnMonster((int)monsterIdx, num);
+            spawn1.SpawnMonster((int)monsterIdx, num, false);
+        }
+    }
+    private void SpawnMonsterToVictim(int spawnNo, MonsterId monsterIdx, int num)
+    {
+        if (spawnNo == 0)
+        {
+            spawn0.SpawnMonster((int)monsterIdx, num, true);
+        }
+        else if (spawnNo == 1)
+        {
+            spawn1.SpawnMonster((int)monsterIdx, num, true);
+        }
+        else if (spawnNo == 2)
+        {
+            spawn2.SpawnMonster((int)monsterIdx, num, true);
         }
     }
 }

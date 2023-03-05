@@ -23,6 +23,10 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     private void Awake()
     {
         instance = this;
+
+    }
+    private void Start()
+    {
         if (SceneManager.GetActiveScene().buildIndex != (int)SceneIndex.BlackScene)
         {
             CanvasObject = GameObject.Find("Canvas");
@@ -143,6 +147,24 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
             {
                 AudioManager.instance.Play("save");
                 DataPersistenceManager.instance.LoadGame(true);
+                ResetForDeactivateUI();
+                SceneLoadingManager.instance.LoadScene(PlayerManager.instance.playerLocation);
+            },
+            cancelAction: () => { ResetForDeactivateUI(); }
+        );
+    }
+    public void AskToRetry()
+    {
+        AudioManager.instance.StopAllTrack();
+        AudioManager.instance.Play("sadness");
+        SetForActivateUI();
+        confirmationPopup.ActivateMenu(
+            displayText: $"เจ้าไม่สามารถช่วยเหลือชาวบ้านได้\nเควสล้มเหลว\nกลับไปยังเมือง <color=#{Database.COLORS["char"]}>Naver</color>",
+            enableCancelBtn: true,
+            confirmAction: () =>
+            {
+                AudioManager.instance.Play("save");
+                DataPersistenceManager.instance.LoadGame(false);
                 ResetForDeactivateUI();
                 SceneLoadingManager.instance.LoadScene(PlayerManager.instance.playerLocation);
             },
