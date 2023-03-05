@@ -53,7 +53,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     }
     public void ActivateTutorialCard(string cardName, bool active)
     {
-        TutorialGuidingObject.transform.Find(cardName).gameObject.SetActive(active);
+        TutorialGuidingObject?.transform.Find(cardName)?.gameObject.SetActive(active);
     }
     private void DeactivateAllElement()
     {
@@ -135,6 +135,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
             cancelAction: () => { ResetForDeactivateUI(); }
         );
     }
+
     public void AskToLoad()
     {
         AudioManager.instance.StopAllTrack();
@@ -153,14 +154,14 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
             cancelAction: () => { ResetForDeactivateUI(); }
         );
     }
-    public void AskToRetry()
+    public void AskToRetry(int questIdx)
     {
         AudioManager.instance.StopAllTrack();
         AudioManager.instance.Play("sadness");
         SetForActivateUI();
         confirmationPopup.ActivateMenu(
-            displayText: $"เจ้าไม่สามารถช่วยเหลือชาวบ้านได้\nเควสล้มเหลว\nกลับไปยังเมือง <color=#{Database.COLORS["char"]}>Naver</color>",
-            enableCancelBtn: true,
+            displayText: $"เจ้าไม่สามารถช่วยเหลือชาวบ้านได้\nเควสล้มเหลว\nกลับไปยังเมือง <color={Database.COLORS["char"]}>Naver</color>\nหรือกดยกเลิกเพื่อล้มเลิกภารกิจ",
+            enableCancelBtn: false,
             confirmAction: () =>
             {
                 AudioManager.instance.Play("save");
@@ -168,7 +169,14 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
                 ResetForDeactivateUI();
                 SceneLoadingManager.instance.LoadScene(PlayerManager.instance.playerLocation);
             },
-            cancelAction: () => { ResetForDeactivateUI(); }
+            cancelAction: () =>
+            {
+                DataPersistenceManager.instance.LoadGame(false);
+                QuestLog.DeleteQuest(questIdx);
+                DataPersistenceManager.instance.SaveGame(false);
+                ResetForDeactivateUI();
+                SceneLoadingManager.instance.LoadScene(PlayerManager.instance.playerLocation);
+            }
         );
     }
     private void GetPlayerName()

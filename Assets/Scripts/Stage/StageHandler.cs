@@ -91,6 +91,7 @@ public class StageHandler : MonoBehaviour
                 {
                     if (QuestLog.GetCompleteQuestById(8) == null)
                         EventTrigger("IntroduceAaron");
+                    //*side quest:catch chick
                     if (!PlayerManager.playerEvents["chickReject"] &&
                         QuestLog.GetCompleteQuestById(14) != null &&
                         QuestLog.GetCompleteQuestById(47) == null &&
@@ -98,6 +99,7 @@ public class StageHandler : MonoBehaviour
                     {
                         NaverTownEvents("FarmerProblem");
                     }
+                    //*side quest:save npc
                     if (QuestLog.GetCompleteQuestById(14) != null &&
                         QuestLog.GetCompleteQuestById(49) == null &&
                         QuestLog.GetActiveQuestById(49) == null)
@@ -107,6 +109,9 @@ public class StageHandler : MonoBehaviour
                     n_calfordGate.gameObject.SetActive(false);
                 if (!PlayerManager.instance.mapEnable[SceneIndex.BraewoodForest])
                     n_braewoodGate.gameObject.SetActive(false);
+                //*checkpoint
+                if (QuestLog.GetCompleteQuestById(10) == null)
+                    GameObject.Find("Places").transform.Find("Checkpoint").gameObject.SetActive(false);
                 break;
             case SceneIndex.CalfordCastle:
                 break;
@@ -409,6 +414,9 @@ public class StageHandler : MonoBehaviour
                     }
                 }
                 break;
+            case "Checkpoint":
+                GameObject.Find("Places").transform.Find("Checkpoint").gameObject.SetActive(true);
+                break;
             case "TalkWithMerchant":
                 foreach (NPC_Details npc in NPCs)
                 {
@@ -562,6 +570,7 @@ public class StageHandler : MonoBehaviour
                         npc.Object.SetActive(true);
                         // npc.Object.GetComponent<CapsuleCollider>().enabled = true;
                         npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(5, "FarmerProblem");
+                        npc.Object.GetComponent<NPC>().isSideQuest = true;
                         break;
                     }
                 }
@@ -577,6 +586,7 @@ public class StageHandler : MonoBehaviour
                         npc.Object.GetComponent<CapsuleCollider>().enabled = true;
                         npc.Object.SetActive(true);
                         npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(5, "SaveNPC");
+                        npc.Object.GetComponent<NPC>().isSideQuest = true;
                         break;
                     }
                 }
@@ -737,13 +747,13 @@ public class StageHandler : MonoBehaviour
             case "AggressiveMon":
                 if (PlayerManager.playerEvents["backToPast"])
                 {
-                    SpawnMonsterAt(0, MonsterId.Bandit, 1);
-                    SpawnMonsterAt(1, MonsterId.Bandit, 2);
+                    // SpawnMonsterAt(0, MonsterId.Bandit, 1);
+                    SpawnMonsterAt(1, MonsterId.Bandit, 5);
                 }
                 else
                 {
-                    SpawnMonsterAt(0, MonsterId.Skeleton, 1);
-                    SpawnMonsterAt(1, MonsterId.Skeleton, 2);
+                    // SpawnMonsterAt(0, MonsterId.Skeleton, 1);
+                    SpawnMonsterAt(1, MonsterId.Skeleton, 5);
                 }
                 break;
             case "LostMan":

@@ -56,7 +56,17 @@ public class QuestLog
         onQuestChange.Invoke(questList, completedQuest);
 
     }
-
+    public static void DeleteQuest(int questIdx)
+    {
+        foreach (Quest q in questList)
+        {
+            if (q.questId == questIdx)
+            {
+                questList.Remove(q);
+                return;
+            }
+        }
+    }
     // public static void CheckQuestObjective(Quest.Objective.Type type, int id)
     // {
     //     foreach (Quest quest in questList)
@@ -174,5 +184,11 @@ public class QuestLog
                 return q.questId;
         }
         return -1;
+    }
+    public static bool IsThereSomeSideQuestActive()
+    {
+        foreach (Quest q in questList)
+            if (q.questId > 45) return true;
+        return false;
     }
 }

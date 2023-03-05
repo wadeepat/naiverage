@@ -744,7 +744,7 @@ public class Database : MonoBehaviour
                 {
                     objectiveId = (int)MonsterId.Skeleton,
                     type = Quest.Objective.Type.kill,
-                    amount = 3,
+                    amount = 5,
                 },
                 addAction = () =>
                 {
@@ -1154,7 +1154,7 @@ public class Database : MonoBehaviour
                 {
                     objectiveId = (int)MonsterId.Bandit,
                     type = Quest.Objective.Type.kill,
-                    amount = 3,
+                    amount = 5,
                 },
                 addAction = () =>
                 {
@@ -1534,7 +1534,7 @@ public class Database : MonoBehaviour
                     objectiveId = 2,
                     isQuestItem = true,
                     type = Quest.Objective.Type.collect,
-                    amount = 1,
+                    amount = 6,
                 },
                 prepareAction = () =>
                 {
