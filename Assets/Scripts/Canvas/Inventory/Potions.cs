@@ -233,7 +233,6 @@ public class Potions : MonoBehaviour, IDataPersistence
         }
         slotStack = data.stackPotion;
         slotP = data.slotP;
-        UpdateSlot();
     }
 
     public void SaveData(GameData data)

@@ -156,6 +156,7 @@ public class OpenUI : MonoBehaviour
         craftPotion.SetDefault();
         Skill.SetActive(false);
         Quest.SetActive(false);
+        Panel.transform.GetComponent<Potions>().UpdateSlot();
     }
     public void showSkill()
     {
@@ -169,11 +170,13 @@ public class OpenUI : MonoBehaviour
 
     public void showQuest()
     {
+        
         CharacterPanel.SetActive(true);
         Character.SetActive(false);
         Potion.SetActive(false);
         Skill.SetActive(false);
         Quest.SetActive(true);
+        Panel.transform.GetComponent<ItemQuests>().UpdateSlotSprite();
     }
 
 }

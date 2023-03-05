@@ -12,7 +12,7 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
     [SerializeField] private List<Item> draggedItem = new List<Item>();
     [SerializeField] private Image[] slot;
     [SerializeField] private Sprite[] slotSprite;
-    // [SerializeField] private Text[] stackText;
+    [SerializeField] private Text[] stackText;
 
     private GameObject x;
     private int n;
@@ -32,25 +32,26 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
         // slotStack[0] += 1;
         // yourItemQuests[1] = Database.itemQuestList[2];
         // slotStack[1] += 1;
-        UpdateSlotSprite();
         a = -1;
         b = -1;
+        UpdateSlotSprite();
 
     }
 
     void Update()
     {
-        UpdateSlotSprite();
     }
 
-    void UpdateSlotSprite(){
+    public void UpdateSlotSprite(){
+        
         for (int i = 0; i < slotsNumber; i++)
         {
+            if(yourItemQuests[i].id == 0 || slotStack[i] == 1){
+            stackText[i].text = "";
+            }else{
+                stackText[i].text = ""+ slotStack[i];
+            }
             slot[i].sprite = slotSprite[i];
-        }
-
-        for (int i = 0; i < slotsNumber; i++)
-        {
             slotSprite[i] = yourItemQuests[i].itemSprite;
         }
     }
@@ -70,12 +71,13 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
                 if (yourItemQuests[i].id == 0 && ItemPickUp.pick == true)
                 {
                     yourItemQuests[i] = Database.itemQuestList[n];
+                    slotStack[i] += 1;
                     break;
-                    // slotStack[i] += 1;
                 }
             }
 
             //checkquest
+            UpdateSlotSprite();
             QuestLog.DoQuest(Quest.Objective.Type.collect, n, true);
             ItemPickUp.pick = false;
         }
@@ -131,7 +133,6 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
             if (yourItemQuests[i].id == 0) yourItemQuests[i] = Database.itemQuestList[0];
         }
         slotStack = data.stackQuests;
-        UpdateSlotSprite();
     }
 
     public void SaveData(GameData data)
