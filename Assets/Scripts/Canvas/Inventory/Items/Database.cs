@@ -247,7 +247,7 @@ public class Database : MonoBehaviour
                 },
                 compleltedAction = () =>
                 {
-                    InvenSkillBook add = this.transform.Find("Character panel/All funtion/Skill").GetComponent<InvenSkillBook>();
+                    InvenSkillBook add = GameObject.Find("Canvas/Panel").transform.Find("Character panel").Find("All funtion").Find("Skill").GetComponent<InvenSkillBook>();
                     add.AddSkillBook(1);
                     add.AddSkillBook(2);
                     add.AddSkillBook(3);
@@ -744,7 +744,7 @@ public class Database : MonoBehaviour
                 {
                     objectiveId = (int)MonsterId.Skeleton,
                     type = Quest.Objective.Type.kill,
-                    amount = 3,
+                    amount = 5,
                 },
                 addAction = () =>
                 {
@@ -1154,7 +1154,7 @@ public class Database : MonoBehaviour
                 {
                     objectiveId = (int)MonsterId.Bandit,
                     type = Quest.Objective.Type.kill,
-                    amount = 3,
+                    amount = 5,
                 },
                 addAction = () =>
                 {
@@ -1534,7 +1534,7 @@ public class Database : MonoBehaviour
                     objectiveId = 2,
                     isQuestItem = true,
                     type = Quest.Objective.Type.collect,
-                    amount = 1,
+                    amount = 6,
                 },
                 prepareAction = () =>
                 {

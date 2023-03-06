@@ -15,6 +15,7 @@ public class NPC : MonoBehaviour
     [SerializeField] private NPCIndex idx;
     public TextAsset inkJSON;
     public TextAsset quest;
+    public bool isSideQuest = false;
     private NavMeshAgent agent;
     private Animator animator;
     private GameObject interactObject;
@@ -47,15 +48,21 @@ public class NPC : MonoBehaviour
     {
         if (this.enabled && collider.gameObject.tag == "Player")
         {
-            if (inkJSON == null && quest == null && QuestLog.IsThereSomeQuestTalk(idx) == -1) return;
+            if (inkJSON == null &&
+                quest == null &&
+                QuestLog.IsThereSomeQuestTalk(idx) == -1) return;
+            if (quest != null && isSideQuest && QuestLog.IsThereSomeSideQuestActive()) return;
             if (lightObject != null && lightObject.activeSelf) lightObject.SetActive(false);
-            text.text = "Press F to talk with";
+            text.text = "Press F to talk";
             interactObject.SetActive(true);
         }
     }
     private void OnTriggerStay(Collider other)
     {
-        if (this.enabled && other.gameObject.tag == "Player" && InputManager.instance.GetInteractPressed() && !DialogueManager.dialogueIsPlaying)
+        if (this.enabled &&
+            other.gameObject.tag == "Player" &&
+            InputManager.instance.GetInteractPressed() &&
+            !DialogueManager.dialogueIsPlaying)
         {
             AudioManager.instance.Play("talk");
             if (QuestLog.IsThereSomeQuestTalk(idx) != -1)
@@ -64,9 +71,11 @@ public class NPC : MonoBehaviour
             }
             else if (quest != null)
             {
-                Debug.Log("have quest");
-                DialogueManager.instance.EnterDialogueMode(quest);
-                quest = null;
+                if (!isSideQuest || !QuestLog.IsThereSomeSideQuestActive())
+                {
+                    DialogueManager.instance.EnterDialogueMode(quest);
+                    quest = null;
+                }
             }
             else if (inkJSON != null)
                 DialogueManager.instance.EnterDialogueMode(inkJSON);
@@ -90,6 +99,11 @@ public class NPC : MonoBehaviour
         if (inkJSON == null &&
             quest == null &&
             QuestLog.IsThereSomeQuestTalk(idx) == -1) return false;
+        else if (quest != null)
+        {
+            if (isSideQuest && QuestLog.IsThereSomeSideQuestActive()) return false;
+            return true;
+        }
         else return true;
     }
     public void Goto(Transform place)

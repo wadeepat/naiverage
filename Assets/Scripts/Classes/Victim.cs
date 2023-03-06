@@ -190,7 +190,7 @@ public class Victim : MonoBehaviour
         animator.SetTrigger("die");
         isDie = true;
         AnnouceTheDeath();
-        ActionHandler.instance.AskToRetry();
+        ActionHandler.instance.AskToRetry(49);
     }
     private void AnnouceTheDeath()
     {
