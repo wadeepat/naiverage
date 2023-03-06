@@ -104,6 +104,7 @@ public class StageHandler : MonoBehaviour
                         QuestLog.GetCompleteQuestById(49) == null &&
                         QuestLog.GetActiveQuestById(49) == null)
                         NaverTownEvents("MerchantFriend");
+                    
                 }
                 if (!PlayerManager.instance.mapEnable[SceneIndex.CalfordCastle])
                     n_calfordGate.gameObject.SetActive(false);
@@ -119,6 +120,12 @@ public class StageHandler : MonoBehaviour
                 AudioManager.instance.Play("braewoodBackground");
                 if (QuestLog.GetCompleteQuestById(19) == null && QuestLog.GetActiveQuestById(19) == null)
                     b_caveGate.gameObject.SetActive(false);
+                if (QuestLog.GetCompleteQuestById(26) != null &&
+                        QuestLog.GetCompleteQuestById(51) == null && 
+                        QuestLog.GetCompleteQuestById(53) == null &&
+                        QuestLog.GetActiveQuestById(51) == null && 
+                        QuestLog.GetActiveQuestById(53) == null)
+                        NaverTownEvents("StartFlip");
                 // if (QuestLog.GetCompleteQuestById(25) != null && QuestLog.GetCompleteQuestById(26) == null)
                 //     EventTrigger("TheManIsSaved");
                 break;
@@ -718,6 +725,35 @@ public class StageHandler : MonoBehaviour
                     }
                 }
                 break;
+            case "StartFlip":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.info == "Guard")
+                    {
+                        npc.Object.GetComponent<CapsuleCollider>().enabled = true;
+                        npc.Object.SetActive(true);
+                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(5, "GuardHelp");
+                        npc.Object.GetComponent<NPC>().isSideQuest = true;
+                        break;
+                    }
+                }
+                break;
+            case "Flip":
+                //setactive obj
+                break;
+            case "ThanksFromGuard":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.info == "Guard")
+                    {
+                        npc.Object.GetComponent<CapsuleCollider>().enabled = true;
+                        npc.Object.SetActive(true);
+                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(5, "ThanksFromGuard");
+                        npc.Object.GetComponent<NPC>().isSideQuest = true;
+                        break;
+                    }
+                }
+                break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in BraewoodEvents");
                 break;
@@ -807,6 +843,9 @@ public class StageHandler : MonoBehaviour
                     else if (npc.info == "Hurt")
                         npc.Object.SetActive(true);
                 }
+                break;
+            case "FightForGuard":
+                    SpawnMonsterAt(1, MonsterId.Skeleton, 10);
                 break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in CaveEvents");

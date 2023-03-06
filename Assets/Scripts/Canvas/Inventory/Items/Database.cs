@@ -80,7 +80,7 @@ public class Database : MonoBehaviour
         skillList.Add(new Skill(4, "SK4", "None", Resources.Load<Sprite>("sk4"), 0, false, 4, 0, 1, 2000));
         skillList.Add(new Skill(5, "SK5", "None", Resources.Load<Sprite>("sk5"), 0, false, 1, 0, 1, 2500));
         skillList.Add(new Skill(6, "SK6", "None", Resources.Load<Sprite>("sk6"), 0, false, 2, 0, 1, 3000));
-        skillList.Add(new Skill(7, "SK7", "None", Resources.Load<Sprite>("sk7"), 0, false, 3, 0, 1, 3500));
+        skillList.Add(new Skill(7, "Chicken Wings", "None", Resources.Load<Sprite>("sk7"), 0, false, 3, 0, 1, 3500));
         skillList.Add(new Skill(8, "SK8", "None", Resources.Load<Sprite>("sk8"), 0, false, 4, 0, 1, 4000));
         skillList.Add(new Skill(9, "SK9", "None", Resources.Load<Sprite>("sk9"), 0, false, 4, 0, 1, 4500));
     }
@@ -102,6 +102,7 @@ public class Database : MonoBehaviour
         itemQuestList.Add(new Item(0, "None", "None", Resources.Load<Sprite>("0"), 0));
         itemQuestList.Add(new Item(1, "Soul", "Quest", Resources.Load<Sprite>("q1"), 0));
         itemQuestList.Add(new Item(2, "Chicken", "Quest", Resources.Load<Sprite>("chick"), 0));
+        itemQuestList.Add(new Item(3, "Picture", "Quest", Resources.Load<Sprite>("q3"), 0));
     }
     private void AddPotionList()
     {
@@ -1524,7 +1525,7 @@ public class Database : MonoBehaviour
             {
                 questId = 47,
                 questName = $"ไก่เจ้าปัญหา (1/2)",
-                questDescription = $"{ColorText("char", "ชาวบ้าน")} กำลังวุ่นวายกับการจับเจ้าไก่เจ้าปัญหาในป่า {ColorText("char", "Rachne")} ช่วยเขาจับไก่แล้วนำกลับมา",
+                questDescription = $"{ColorText("char", "ชาวบ้าน")} กำลังวุ่นวายกับการจับเจ้าไก่เจ้าปัญหาในป่า {ColorText("town", "Rachne")} ช่วยเขาจับไก่แล้วนำกลับมา",
                 location = SceneIndex.Rachne,
                 MPReward = 0,
                 SBReward = "",
@@ -1566,7 +1567,8 @@ public class Database : MonoBehaviour
                 },
                 compleltedAction = () =>
                 {
-                    //TODO give spell book???
+                    InvenSkillBook add = GameObject.Find("Canvas/Panel").transform.Find("Character panel").Find("All funtion").Find("Skill").GetComponent<InvenSkillBook>();
+                    add.AddSkillBook(7);
                 }
             }
         );
@@ -1575,7 +1577,7 @@ public class Database : MonoBehaviour
             {
                 questId = 49,
                 questName = $"ช่วยเหลือ {ColorText("char", "ชาวบ้าน")} (1/2)",
-                questDescription = $"{ColorText("char", "ชาวบ้าน")} คนหนึ่งกำลังโดนเหล่ามอนสเตอร์รุมทำร้ายที่ป่า {ColorText("char", "Rachne")} ปราบศัตรูให้หมด และให้ชาวบ้านมีชีวิตรอด",
+                questDescription = $"{ColorText("char", "ชาวบ้าน")} คนหนึ่งกำลังโดนเหล่ามอนสเตอร์รุมทำร้ายที่ป่า {ColorText("town", "Rachne")} ปราบศัตรูให้หมด และให้ชาวบ้านมีชีวิตรอด",
                 location = SceneIndex.Rachne,
                 MPReward = 0,
                 SBReward = "",
@@ -1601,7 +1603,7 @@ public class Database : MonoBehaviour
             {
                 questId = 50,
                 questName = $"ช่วยเหลือ {ColorText("char", "ชาวบ้าน")} (2/2)",
-                questDescription = $"{ColorText("char", "ชาวบ้าน")} ปลอดภัยแล้วไปคุยกับเขาที่ป่า {ColorText("char", "Rachne")}",
+                questDescription = $"{ColorText("char", "ชาวบ้าน")} ปลอดภัยแล้วไปคุยกับเขาที่ป่า {ColorText("town", "Rachne")}",
                 location = SceneIndex.Rachne,
                 MPReward = 1000,
                 SBReward = "",
@@ -1621,6 +1623,122 @@ public class Database : MonoBehaviour
                     StageHandler.instance.EventTrigger("ThanksFromNPC");
                 },
             }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 51,
+                questName = $"รูปแห่งความทรงจำ (1/2)",
+                questDescription = $"ตามหารูป และประกอบให้เสร็จสมบูรณ์ที่ป่า {ColorText("town", "Braewood")}",
+                location = SceneIndex.BraewoodForest,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 1,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = 3,
+                    isQuestItem = true,
+                    type = Quest.Objective.Type.collect,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("Flip");
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("Flip");
+                },
+                compleltedAction = () =>
+                {
+                    QuestLog.AddQuest(questList[52]);
+                }
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 52,
+                questName = $"รูปแห่งความทรงจำ (2/2)",
+                questDescription = $"นำรูปไปมอบให้{ColorText("char", "ยาม")} ที่ป่า {ColorText("town", "Braewood")}",
+                location = SceneIndex.BraewoodForest,
+                MPReward = 1500,
+                SBReward = "",
+                questCategory = 1,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Villager,
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("ThanksFromGuard");
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("ThanksFromGuard");
+                },
+                compleltedAction = () =>
+                {
+                    InvenSkillBook add = GameObject.Find("Canvas/Panel").transform.Find("Character panel").Find("All funtion").Find("Skill").GetComponent<InvenSkillBook>();
+                    add.AddSkillBook(8);
+                }
+            }
+            
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 53,
+                questName = $"กำจัด{ColorText("monster", "Skeleton")}",
+                questDescription = $"ยามที่เหน็ดเหนื่อยจากการทำงาน ได้มอบหมายงานให้กำจัด{ColorText("monster", "Skeleton")}",
+                location = SceneIndex.Cave,
+                MPReward = 500,
+                SBReward = "สกิลสุดพิเศษ",
+                questCategory = 1,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)MonsterId.Skeleton,
+                    type = Quest.Objective.Type.kill,
+                    amount = 10,
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("FightForGuard");
+                },
+                compleltedAction = () =>
+                {
+                    QuestLog.AddQuest(questList[21]);
+                }
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 54,
+                questName = $"รูปแห่งความทรงจำ",
+                questDescription = $"ประกอบรูปให้เสร็จสมบูรณ์แล้วนำไปมอบให้{ColorText("char", "ชาวบ้าน")} ที่เมือง {ColorText("town", "Naver")}",
+                location = SceneIndex.BraewoodForest,
+                MPReward = 1000,
+                SBReward = "",
+                questCategory = 1,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Villager,
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("ThanksFromNPC");
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("ThanksFromNPC");
+                }
+            }
+            
         );
     }
     private string ColorText(string type, string text)

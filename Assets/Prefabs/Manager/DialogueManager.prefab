@@ -143,6 +143,10 @@ MonoBehaviour:
     json: {fileID: 4900000, guid: 73c96a80f22811943bb2d8bc22983191, type: 3}
   - name: ThanksFromNPC
     json: {fileID: 4900000, guid: 479d61323e8485547bdb59b91f9b925a, type: 3}
+  - name: ThanksFromGuard
+    json: {fileID: 4900000, guid: f4d6c9b0d4140294d8e00b023a1b93f1, type: 3}
+  - name: GuardHelp
+    json: {fileID: 4900000, guid: f4d6c9b0d4140294d8e00b023a1b93f1, type: 3}
   dialoguePanel: {fileID: 0}
   continueText: {fileID: 0}
   displayNameText: {fileID: 0}
