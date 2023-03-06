@@ -1660,10 +1660,63 @@ public class Database : MonoBehaviour
             {
                 questId = 52,
                 questName = $"รูปแห่งความทรงจำ (2/2)",
-                questDescription = $"นำรูปไปมอบให้{ColorText("char", "ยาม")} ที่ป่า {ColorText("town", "Braewood")}",
+                questDescription = $"นำรูปไปมอบให้{ColorText("char", "ยาม")} ที่เหน็ดเหนื่อยจากการทำงาน ที่ป่า {ColorText("town", "Braewood")}",
                 location = SceneIndex.BraewoodForest,
                 MPReward = 1500,
                 SBReward = "",
+                questCategory = 1,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Villager,
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("ThanksFromGuard");
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("ThanksFromGuard");
+                }
+            }
+            
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 53,
+                questName = $"กำจัด {ColorText("monster", "Skeleton")} ให้ยามที่เหนื่อย (1/2)",
+                questDescription = $"ยามที่เหน็ดเหนื่อยจากการทำงาน ได้มอบหมายงานให้กำจัด{ColorText("monster", "Skeleton")}",
+                location = SceneIndex.Cave,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 1,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)MonsterId.Skeleton,
+                    type = Quest.Objective.Type.kill,
+                    amount = 10,
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("FightForGuard");
+                },
+                compleltedAction = () =>
+                {
+                    QuestLog.AddQuest(questList[54]);
+                }
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 54,
+                questName = $"กำจัด {ColorText("monster", "Skeleton")} ให้ยามที่เหนื่อย (2/2)",
+                questDescription = $"ไปคุยกับ {ColorText("char", "ยาม")} ที่เหน็ดเหนื่อยจากการทำงาน ที่ป่า {ColorText("town", "Rachne")}",
+                location = SceneIndex.BraewoodForest,
+                MPReward = 500,
+                SBReward = "สกิลสุดพิเศษ",
                 questCategory = 1,
                 objective = new Quest.Objective()
                 {
@@ -1683,59 +1736,6 @@ public class Database : MonoBehaviour
                 {
                     InvenSkillBook add = GameObject.Find("Canvas/Panel").transform.Find("Character panel").Find("All funtion").Find("Skill").GetComponent<InvenSkillBook>();
                     add.AddSkillBook(8);
-                }
-            }
-            
-        );
-        questList.Add(
-            new Quest()
-            {
-                questId = 53,
-                questName = $"กำจัด{ColorText("monster", "Skeleton")}",
-                questDescription = $"ยามที่เหน็ดเหนื่อยจากการทำงาน ได้มอบหมายงานให้กำจัด{ColorText("monster", "Skeleton")}",
-                location = SceneIndex.Cave,
-                MPReward = 500,
-                SBReward = "สกิลสุดพิเศษ",
-                questCategory = 1,
-                objective = new Quest.Objective()
-                {
-                    objectiveId = (int)MonsterId.Skeleton,
-                    type = Quest.Objective.Type.kill,
-                    amount = 10,
-                },
-                prepareAction = () =>
-                {
-                    StageHandler.instance.EventTrigger("FightForGuard");
-                },
-                compleltedAction = () =>
-                {
-                    QuestLog.AddQuest(questList[21]);
-                }
-            }
-        );
-        questList.Add(
-            new Quest()
-            {
-                questId = 54,
-                questName = $"รูปแห่งความทรงจำ",
-                questDescription = $"ประกอบรูปให้เสร็จสมบูรณ์แล้วนำไปมอบให้{ColorText("char", "ชาวบ้าน")} ที่เมือง {ColorText("town", "Naver")}",
-                location = SceneIndex.BraewoodForest,
-                MPReward = 1000,
-                SBReward = "",
-                questCategory = 1,
-                objective = new Quest.Objective()
-                {
-                    objectiveId = (int)NPCIndex.Villager,
-                    type = Quest.Objective.Type.interact,
-                    amount = 1,
-                },
-                addAction = () =>
-                {
-                    StageHandler.instance.EventTrigger("ThanksFromNPC");
-                },
-                prepareAction = () =>
-                {
-                    StageHandler.instance.EventTrigger("ThanksFromNPC");
                 }
             }
             
