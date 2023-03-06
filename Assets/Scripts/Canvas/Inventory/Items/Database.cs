@@ -247,7 +247,7 @@ public class Database : MonoBehaviour
                 },
                 compleltedAction = () =>
                 {
-                    InvenSkillBook add = this.transform.Find("Character panel/All funtion/Skill").GetComponent<InvenSkillBook>();
+                    InvenSkillBook add = GameObject.Find("Canvas/Panel").transform.Find("Character panel").Find("All funtion").Find("Skill").GetComponent<InvenSkillBook>();
                     add.AddSkillBook(1);
                     add.AddSkillBook(2);
                     add.AddSkillBook(3);
