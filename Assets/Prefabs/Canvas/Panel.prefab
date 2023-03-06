@@ -5326,7 +5326,6 @@ GameObject:
   - component: {fileID: 1107307897535487316}
   - component: {fileID: 6724144916436294976}
   - component: {fileID: 5932458249734881183}
-  - component: {fileID: 4785904024172787449}
   - component: {fileID: 5324145848143884867}
   - component: {fileID: 4582796975659350726}
   - component: {fileID: 4786758111365979384}
@@ -5471,22 +5470,6 @@ MonoBehaviour:
   Status: {fileID: 5413318371487906009}
   UpgradeStatus: {fileID: 2603073977017459337}
   inven: 0
---- !u!114 &4785904024172787449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1633056576546316402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef356bb3353cbe440b44a9718562d11b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerLocation: 0
-  mapEnable:
-    keys: 
-    values: 
 --- !u!114 &5324145848143884867
 MonoBehaviour:
   m_ObjectHideFlags: 0
