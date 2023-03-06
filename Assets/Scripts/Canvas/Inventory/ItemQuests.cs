@@ -70,6 +70,9 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
                     yourItemQuests[i] = Database.itemQuestList[n];
                     slotStack[i] += 1;
                     break;
+                }else if(yourItemQuests[i].id == n && ItemPickUp.pick == true){
+                    slotStack[i] += 1;
+                    break;
                 }
             }
 
