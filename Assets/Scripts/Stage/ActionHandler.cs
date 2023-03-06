@@ -23,10 +23,6 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     private void Awake()
     {
         instance = this;
-
-    }
-    private void Start()
-    {
         if (SceneManager.GetActiveScene().buildIndex != (int)SceneIndex.BlackScene)
         {
             CanvasObject = GameObject.Find("Canvas");
