@@ -11,7 +11,6 @@ public class Potions : MonoBehaviour, IDataPersistence
     public int[] slotP;
     public int[] slotStack;
     public Image[] slot;
-    public Sprite[] slotSprite;
 
     [SerializeField] private Image[] slotPotion;
     [SerializeField] private Image[] slotPotionInv;
@@ -23,8 +22,8 @@ public class Potions : MonoBehaviour, IDataPersistence
 
     private GameObject x;
     private int n;
-    private int a;
-    private int b;
+    [SerializeField] private int a;
+    [SerializeField] private int b;
     private int aSlot;
     private int bSlot;
     private int slotTemporary;
@@ -39,7 +38,6 @@ public class Potions : MonoBehaviour, IDataPersistence
         b = -1;
         aSlot = -1;
         bSlot = -1;
-        UpdateSlot();
         
     }
 
@@ -54,8 +52,7 @@ public class Potions : MonoBehaviour, IDataPersistence
             }else{
                 stackText[i].text = ""+ slotStack[i];
             }
-            slot[i].sprite = slotSprite[i];
-            slotSprite[i] = yourPotions[i].itemSprite;
+            slot[i].sprite = yourPotions[i].itemSprite;
 
         }
         for(int i=0; i < 4; i++){
@@ -65,10 +62,10 @@ public class Potions : MonoBehaviour, IDataPersistence
                 continue;
             }else if(yourPotions[slotP[i]].id == 0 || slotStack[slotP[i]] == 1){
                 stackSlotPotionText[i].text = "";
-                slotPotion[i].sprite = slotSprite[slotP[i]];
+                slotPotion[i].sprite = yourPotions[slotP[i]].itemSprite;
             }else{
                 stackSlotPotionText[i].text = ""+ slotStack[slotP[i]];
-                slotPotion[i].sprite = slotSprite[slotP[i]];
+                slotPotion[i].sprite = yourPotions[slotP[i]].itemSprite;
             }
         }
         for(int i=0; i < 4; i++){
@@ -106,7 +103,6 @@ public class Potions : MonoBehaviour, IDataPersistence
             }
 
             //checkquest
-            // QuestLog.DoQuest(Quest.Objective.Type.collect, n);
             ItemPickUp.pick = false;
         }
         UpdateSlot();
@@ -152,6 +148,7 @@ public class Potions : MonoBehaviour, IDataPersistence
                 }
                 
             }else{
+
                 draggedItem[0] = yourPotions[a];
                 slotTemporary = slotStack[a];
                 yourPotions[a] = yourPotions[b];

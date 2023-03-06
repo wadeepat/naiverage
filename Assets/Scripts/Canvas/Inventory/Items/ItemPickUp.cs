@@ -13,6 +13,7 @@ public class ItemPickUp : MonoBehaviour
     public static bool pick;
     public static GameObject y;
     private GameObject Panel;
+    private GameObject MGame;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,11 +49,11 @@ public class ItemPickUp : MonoBehaviour
         {
             pick = true;
             Item = col.gameObject;
-            // canPickUp = true;
             y = col.gameObject;
             text.text = "Press F to pick up";
             pickUpText.SetActive(true);
         }else if(col.tag == "MiniGame"){
+            pick = true;
             Item = col.gameObject;
             y = col.gameObject;
             text.text = "Press F to solve puzzles";
@@ -79,10 +80,10 @@ public class ItemPickUp : MonoBehaviour
         }else if(other.tag == "MiniGame" && Item != null){
             if (InputManager.instance.GetInteractPressed())
             {
-                if(y.GetComponent<ThisMiniGame>().thisId == 1){
+                if(y.GetComponent<ThisItem>().thisId == 1){
                     var miniGame = Resources.Load("MiniGame/FlipGame");
                     game = miniGame as GameObject;
-                    GameObject flipGame = Instantiate(game,GameObject.Find("Canvas").transform);
+                    MGame = Instantiate(game,GameObject.Find("Canvas").transform);
                 }
             }
         }
@@ -100,4 +101,15 @@ public class ItemPickUp : MonoBehaviour
             pickUpText.SetActive(false);
         }
     }
+
+    public void DestroyThisOj(){
+        Panel = GameObject.Find("Canvas/Panel");
+        Panel?.transform.GetComponent<ItemQuests>().GetItemQuest();
+        Destroy(MGame);
+        Destroy(Item);
+        Item = null;
+        y = null;
+        pickUpText.SetActive(false);
+    }
+    
 }

@@ -39,6 +39,7 @@ public class UsePotions : MonoBehaviour
         }
         else
         {
+            SlotPotion.gameObject.transform.position = positionP.gameObject.transform.position;
             if (l)
             {
                 attack.attackAble = true;
@@ -46,7 +47,6 @@ public class UsePotions : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 assetsInputs.cursorInputForLook = true;
                 assetsInputs.cursorLocked = true;
-                SlotPotion.gameObject.transform.position = positionP.gameObject.transform.position;
                 l = false;
             }
         }
@@ -106,10 +106,11 @@ public class UsePotions : MonoBehaviour
                 potions.yourPotions[potions.slotP[slot]] = Database.potionList[0];
                 potions.slotStack[potions.slotP[slot]] = 0;
                 potions.slotP[slot] = -1;
-                potions.slot[slot].sprite = potions.slotSprite[0];
+                potions.slot[slot].sprite = Database.potionList[0].itemSprite;
             }
         }
         onUsePotion?.Invoke();
+        potions.UpdateSlot();
     }
 
     void SelectPotion()

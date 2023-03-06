@@ -16,7 +16,7 @@ public class TouchRotate : MonoBehaviour
     }
     public void Click(){
         if(!GameControl.youWin) transform.Rotate(0f,0f,90f);
-        GameControl.CheckWin();
+        this.transform.parent.GetComponent<GameControl>().CheckWin();
     }
     public void AddClick()
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using StarterAssets;
 using UnityEngine.UI;
 
 public class GameControl : MonoBehaviour
@@ -9,30 +10,29 @@ public class GameControl : MonoBehaviour
     [SerializeField]private static Transform[] pictures;
     // private GameObject winText;
     public static bool youWin;
-    
+    static StarterAssetsInputs assetsInputs;
     void Awake()
     {
         pictures = new Transform[15];
-        // winText.SetActive(false);
         youWin = false;
+        assetsInputs = PlayerManager.instance.player.GetComponent<StarterAssetsInputs>();
+        PlayerManager.instance.player.GetComponent<PlayerAttackController>().attackAble = false;
+        assetsInputs.cursorInputForLook = false;
+        assetsInputs.cursorLocked = false;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         for(int i=0; i < 15; i++){
             pictures[i] = this.transform.Find("castle ("+i+")");
             pictures[i].GetComponent<TouchRotate>().RotateImage();
             pictures[i].GetComponent<TouchRotate>().AddClick();
-
         }
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void Win(){
+        Destroy(this);
     }
-    public static void CheckWin(){
-        Debug.Log(pictures[0].rotation.z);
-        Debug.Log(pictures[1].rotation.z);
-        Debug.Log(pictures[2].rotation.z);
+    // Update is called once per frame
+    public void CheckWin(){
         if( pictures[0].rotation.z <= 0.1f &&
             pictures[1].rotation.z <= 0.1f &&
             pictures[2].rotation.z <= 0.1f &&
@@ -49,7 +49,13 @@ public class GameControl : MonoBehaviour
             pictures[13].rotation.z <= 0.1f &&
             pictures[14].rotation.z <= 0.1f){
             youWin = true;
-            Debug.Log("win");
+            assetsInputs = PlayerManager.instance.player.GetComponent<StarterAssetsInputs>();
+            PlayerManager.instance.player.GetComponent<PlayerAttackController>().attackAble = true;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            assetsInputs.cursorInputForLook = true;
+            assetsInputs.cursorLocked = true;
+            GameObject.Find("Player").transform.GetComponent<ItemPickUp>().DestroyThisOj();
         }
     }
 }

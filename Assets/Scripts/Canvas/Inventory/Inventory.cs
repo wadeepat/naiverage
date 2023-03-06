@@ -8,20 +8,18 @@ public class Inventory : MonoBehaviour, IDataPersistence
     public int[] slotStack;
     [SerializeField] private List<Item> draggedItem = new List<Item>();
     [SerializeField] private Image[] slot;
-    [SerializeField] private Sprite[] slotSprite;
     [SerializeField] private Text[] stackText;
 
     private GameObject x;
     private int n;
-    private int a;
-    private int b;
+    [SerializeField] private int a;
+    [SerializeField] private int b;
     private int slotTemporary;
     private int maxStacks = 99;
     private int slotsNumber = 28;
 
     void Start()
     {
-        UpdateSlot();
     }
 
     void Update()
@@ -41,8 +39,7 @@ public class Inventory : MonoBehaviour, IDataPersistence
             {
                 stackText[i].text = "" + slotStack[i];
             }
-            slot[i].sprite = slotSprite[i];
-            slotSprite[i] = yourInventory[i].itemSprite;
+            slot[i].sprite = yourInventory[i].itemSprite;
         }
     }
 
@@ -178,7 +175,7 @@ public class Inventory : MonoBehaviour, IDataPersistence
             if (yourInventory[i].id == 0) yourInventory[i] = Database.itemList[0];
         }
         slotStack = data.stackItem;
-        // UpdateSlot();
+        
     }
 
     public void SaveData(GameData data)

@@ -34,8 +34,6 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
         // slotStack[1] += 1;
         a = -1;
         b = -1;
-        UpdateSlotSprite();
-
     }
 
     void Update()
@@ -51,8 +49,7 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
             }else{
                 stackText[i].text = ""+ slotStack[i];
             }
-            slot[i].sprite = slotSprite[i];
-            slotSprite[i] = yourItemQuests[i].itemSprite;
+            slot[i].sprite = yourItemQuests[i].itemSprite;
         }
     }
 
