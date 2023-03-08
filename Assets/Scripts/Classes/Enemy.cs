@@ -102,6 +102,7 @@ public class Enemy : MonoBehaviour
         }
         healthBar.SetActive(false);
         if (normalSound) normalSound.pitch = Random.Range(0.4f, 1.0f);
+        if (monsterType == "normal") elementType = (ElementType)Random.Range(0, 4);
     }
     protected virtual void Update()
     {
