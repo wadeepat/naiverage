@@ -48,7 +48,7 @@ public class QuestLog
     public static void AddQuest(Quest quest)
     {
         // Debug.Log($"<color=#FFA>Add quest: {quest.questId}</color>");
-        AudioManager.instance.Play("addQuest");
+        // AudioManager.instance.Play("addQuest");
         quest.objective.currentAmount = 0;
         questList.Add(quest);
         // HandleOwnedItems(quest);
@@ -79,7 +79,7 @@ public class QuestLog
     public static void CompleteQuest(Quest quest)
     {
         // Debug.Log($"<color=#AEF>Complete quest: {quest.questId}</color>");
-        // AudioManager.instance.Play("completeQuest");
+        AudioManager.instance.Play("completeQuest");
         // if (quest.objective.dialogue is not null) DialogueManager.instance.EnterDialogueMode(quest.objective.dialogue);
         if (quest.objective.dialogue != null) DialogueManager.instance.EnterDialogueMode(quest.objective.dialogue);
         questList.Remove(quest);

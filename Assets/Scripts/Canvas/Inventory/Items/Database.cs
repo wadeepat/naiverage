@@ -103,6 +103,7 @@ public class Database : MonoBehaviour
         itemQuestList.Add(new Item(1, "Soul", "Quest", Resources.Load<Sprite>("q1"), 0));
         itemQuestList.Add(new Item(2, "Chicken", "Quest", Resources.Load<Sprite>("chick"), 0));
         itemQuestList.Add(new Item(3, "Picture", "Quest", Resources.Load<Sprite>("q3"), 0));
+        itemQuestList.Add(new Item(4, "Book", "Quest", Resources.Load<Sprite>("book"), 0));
     }
     private void AddPotionList()
     {
@@ -927,7 +928,7 @@ public class Database : MonoBehaviour
                 {
                     StageHandler.instance.EventTrigger("TheManIsSaved");
                 },
-                compleltedAction = () => 
+                compleltedAction = () =>
                 {
                     StageHandler.instance.EventTrigger("GuardHelp");
                 }
@@ -1013,9 +1014,9 @@ public class Database : MonoBehaviour
                 objective = new Quest.Objective()
                 {
                     objectiveId = (int)NPCIndex.Samuel,
-                    npc = NPCIndex.Samuel,
-                    dialogue = DialogueManager.instance.GetDialogueFile(4, "TheCommandment"),
-                    type = Quest.Objective.Type.talk,
+                    // npc = NPCIndex.Samuel,
+                    // dialogue = DialogueManager.instance.GetDialogueFile(4, "TheCommandment"),
+                    type = Quest.Objective.Type.interact,
                     amount = 1,
                 },
                 addAction = () =>
@@ -1684,7 +1685,7 @@ public class Database : MonoBehaviour
                     StageHandler.instance.EventTrigger("ThanksFlipGuard");
                 }
             }
-            
+
         );
         questList.Add(
             new Quest()
@@ -1742,7 +1743,7 @@ public class Database : MonoBehaviour
                     add.AddSkillBook(8);
                 }
             }
-            
+
         );
     }
     private string ColorText(string type, string text)

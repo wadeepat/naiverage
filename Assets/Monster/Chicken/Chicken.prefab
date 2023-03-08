@@ -342,8 +342,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 7
-  runSpd: 4
-  sprintSpd: 10
+  runSpd: 3.5
+  sprintSpd: 9.5
   sprintSound: {fileID: 518875198135912019}
 --- !u!95 &7541831616551032666
 Animator:

@@ -71,6 +71,9 @@ public class StageHandler : MonoBehaviour
         {
             case SceneIndex.Rachne:
                 AudioManager.instance.Play("forestBackground");
+                //TODO if have book in questItem
+                if (false)
+                    GameObject.Find("StageTrack").transform.Find("Book").gameObject.SetActive(false);
                 if (QuestLog.GetCompleteQuestById(0) == null)
                     DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(0, "Opening"));
                 if (!PlayerManager.playerEvents["finishedTutorial"])
@@ -125,9 +128,7 @@ public class StageHandler : MonoBehaviour
                         QuestLog.GetCompleteQuestById(53) == null &&
                         QuestLog.GetActiveQuestById(51) == null &&
                         QuestLog.GetActiveQuestById(53) == null)
-                        BraewoodEvents("GuardHelp");
-                // if (QuestLog.GetCompleteQuestById(25) != null && QuestLog.GetCompleteQuestById(26) == null)
-                //     EventTrigger("TheManIsSaved");
+                    BraewoodEvents("GuardHelp");
                 break;
             case SceneIndex.Cave:
                 AudioManager.instance.Play("caveBackground");
@@ -210,10 +211,6 @@ public class StageHandler : MonoBehaviour
                         player.position = n_rachneGate.position;
                         player.rotation = n_rachneGate.rotation;
                         break;
-                    // case (int)SceneIndex.NaverTown:
-                    //     player.position = n_rachneGate.position;
-                    //     player.rotation = n_rachneGate.rotation;
-                    //     break;
                     case (int)SceneIndex.CalfordCastle:
                         player.position = n_calfordGate.position;
                         player.rotation = n_calfordGate.rotation;
@@ -880,8 +877,23 @@ public class StageHandler : MonoBehaviour
                 foreach (NPC_Details npc in NPCs)
                 {
                     npc.Object.SetActive(true);
+                    if (npc.idx == NPCIndex.Samuel)
+                    {
+                        //TODO if have book
+                        if (true)
+                        {
+                            npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(4, "TheCommandment");
+                        }
+                        else
+                        {
+                            npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(4, "WithoutBook");
+                        }
+                    }
                 }
                 OtherEvents("ExitGate");
+                break;
+            case "Light":
+                ActionHandler.instance.MakeFlash();
                 break;
             case "BackToMenu":
                 SceneLoadingManager.instance.LoadScene(SceneIndex.MainMenu);
