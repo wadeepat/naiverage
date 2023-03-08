@@ -125,7 +125,7 @@ public class StageHandler : MonoBehaviour
                         QuestLog.GetCompleteQuestById(53) == null &&
                         QuestLog.GetActiveQuestById(51) == null && 
                         QuestLog.GetActiveQuestById(53) == null)
-                        NaverTownEvents("StartFlip");
+                        BraewoodEvents("GuardHelp");
                 // if (QuestLog.GetCompleteQuestById(25) != null && QuestLog.GetCompleteQuestById(26) == null)
                 //     EventTrigger("TheManIsSaved");
                 break;
@@ -725,7 +725,7 @@ public class StageHandler : MonoBehaviour
                     }
                 }
                 break;
-            case "StartFlip":
+            case "GuardHelp":
                 foreach (NPC_Details npc in NPCs)
                 {
                     if (npc.info == "Guard")
@@ -741,15 +741,28 @@ public class StageHandler : MonoBehaviour
             case "Flip":
                 //setactive obj
                 break;
-            case "ThanksFromGuard":
+            case "ThanksSkeletonGuard":
                 foreach (NPC_Details npc in NPCs)
                 {
                     if (npc.info == "Guard")
                     {
                         npc.Object.GetComponent<CapsuleCollider>().enabled = true;
                         npc.Object.SetActive(true);
-                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(5, "ThanksFromGuard");
-                        npc.Object.GetComponent<NPC>().isSideQuest = true;
+                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(5, "ThanksSkeletonGuard");
+                        npc.Object.GetComponent<NPC>().isSideQuest = false;
+                        break;
+                    }
+                }
+                break;
+            case "ThanksFlipGuard":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.info == "Guard")
+                    {
+                        npc.Object.GetComponent<CapsuleCollider>().enabled = true;
+                        npc.Object.SetActive(true);
+                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(5, "ThanksFlipGuard");
+                        npc.Object.GetComponent<NPC>().isSideQuest = false;
                         break;
                     }
                 }

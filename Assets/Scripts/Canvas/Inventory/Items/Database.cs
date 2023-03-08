@@ -927,6 +927,10 @@ public class Database : MonoBehaviour
                 {
                     StageHandler.instance.EventTrigger("TheManIsSaved");
                 },
+                compleltedAction = () => 
+                {
+                    StageHandler.instance.EventTrigger("GuardHelp");
+                }
             }
         );
         questList.Add(
@@ -1673,11 +1677,11 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
-                    StageHandler.instance.EventTrigger("ThanksFromGuard");
+                    StageHandler.instance.EventTrigger("ThanksFlipGuard");
                 },
                 prepareAction = () =>
                 {
-                    StageHandler.instance.EventTrigger("ThanksFromGuard");
+                    StageHandler.instance.EventTrigger("ThanksFlipGuard");
                 }
             }
             
@@ -1726,11 +1730,11 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
-                    StageHandler.instance.EventTrigger("ThanksFromGuard");
+                    StageHandler.instance.EventTrigger("ThanksSkeletonGuard");
                 },
                 prepareAction = () =>
                 {
-                    StageHandler.instance.EventTrigger("ThanksFromGuard");
+                    StageHandler.instance.EventTrigger("ThanksSkeletonGuard");
                 },
                 compleltedAction = () =>
                 {

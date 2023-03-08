@@ -9734,6 +9734,7 @@ MonoBehaviour:
   idx: 6
   inkJSON: {fileID: 0}
   quest: {fileID: 0}
+  isSideQuest: 0
 --- !u!65 &454521447
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15313,12 +15314,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 918113306}
-  - {fileID: 1177022772}
-  - {fileID: 642245661}
-  - {fileID: 1774078484}
-  - {fileID: 1869870006}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18590,37 +18586,6 @@ Transform:
   - {fileID: 1587324925}
   - {fileID: 1679016116}
   m_Father: {fileID: 1853934097}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &642245660
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 642245661}
-  m_Layer: 0
-  m_Name: n_frontOfRanche1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &642245661
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642245660}
-  m_LocalRotation: {x: -0, y: 0.47501028, z: -0, w: -0.87998027}
-  m_LocalPosition: {x: 87.18, y: 0, z: 51.05}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 487563767}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &644927752
@@ -22930,6 +22895,7 @@ MonoBehaviour:
   idx: 6
   inkJSON: {fileID: 0}
   quest: {fileID: 0}
+  isSideQuest: 0
 --- !u!65 &806373785
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34778,37 +34744,6 @@ Transform:
   m_Father: {fileID: 411001722}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &918113305
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 918113306}
-  m_Layer: 0
-  m_Name: mainDoor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &918113306
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918113305}
-  m_LocalRotation: {x: 0, y: 0.98167706, z: 0, w: 0.19055213}
-  m_LocalPosition: {x: 127.547, y: 0, z: 85.099}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 487563767}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 158.03, z: 0}
 --- !u!1 &918986096
 GameObject:
   m_ObjectHideFlags: 0
@@ -43570,6 +43505,7 @@ MonoBehaviour:
   idx: 6
   inkJSON: {fileID: 0}
   quest: {fileID: 0}
+  isSideQuest: 0
 --- !u!95 &1101911841
 Animator:
   serializedVersion: 4
@@ -44867,37 +44803,6 @@ Transform:
   m_Father: {fileID: 756578297}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1177022771
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1177022772}
-  m_Layer: 0
-  m_Name: n_frontOfRanche0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1177022772
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1177022771}
-  m_LocalRotation: {x: -0, y: 0.9226704, z: -0, w: 0.3855896}
-  m_LocalPosition: {x: 83.08, y: 0, z: 52.94}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 487563767}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1177742064
 GameObject:
   m_ObjectHideFlags: 0
@@ -45621,6 +45526,7 @@ MonoBehaviour:
   idx: 5
   inkJSON: {fileID: 0}
   quest: {fileID: 0}
+  isSideQuest: 0
 --- !u!95 &1199786286
 Animator:
   serializedVersion: 4
@@ -57686,6 +57592,7 @@ MonoBehaviour:
   idx: 6
   inkJSON: {fileID: 0}
   quest: {fileID: 0}
+  isSideQuest: 0
 --- !u!95 &1643592376
 Animator:
   serializedVersion: 4
@@ -60501,37 +60408,6 @@ Transform:
   m_Father: {fileID: 76740625}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1774078483
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1774078484}
-  m_Layer: 0
-  m_Name: n_frontOfCastle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1774078484
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774078483}
-  m_LocalRotation: {x: 0, y: 0.89532346, z: -0, w: -0.4454166}
-  m_LocalPosition: {x: 139.26, y: 0.262, z: 148.09}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 487563767}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 232.9, z: 0}
 --- !u!1 &1776480672
 GameObject:
   m_ObjectHideFlags: 0
@@ -62782,37 +62658,6 @@ Transform:
   m_Father: {fileID: 1544656311}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1869870005
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1869870006}
-  m_Layer: 0
-  m_Name: n_oldmanHouse
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1869870006
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1869870005}
-  m_LocalRotation: {x: 0, y: 0.7858569, z: -0, w: -0.6184084}
-  m_LocalPosition: {x: 95.17, y: 1.3, z: 85.52}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 487563767}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 256.4, z: 0}
 --- !u!1001 &1871141890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67275,6 +67120,7 @@ MonoBehaviour:
   idx: 6
   inkJSON: {fileID: 0}
   quest: {fileID: 0}
+  isSideQuest: 0
 --- !u!65 &2080780689
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -98545,6 +98391,7 @@ MonoBehaviour:
   idx: 6
   inkJSON: {fileID: 0}
   quest: {fileID: 0}
+  isSideQuest: 0
 --- !u!4 &803358140676696426
 Transform:
   m_ObjectHideFlags: 0
@@ -99557,6 +99404,7 @@ MonoBehaviour:
   idx: 6
   inkJSON: {fileID: 0}
   quest: {fileID: 0}
+  isSideQuest: 0
 --- !u!195 &8273567064073948571
 NavMeshAgent:
   m_ObjectHideFlags: 0

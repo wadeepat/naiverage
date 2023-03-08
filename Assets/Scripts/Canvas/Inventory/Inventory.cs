@@ -39,7 +39,7 @@ public class Inventory : MonoBehaviour, IDataPersistence
             {
                 stackText[i].text = "" + slotStack[i];
             }
-            slot[i].sprite = yourInventory[i].itemSprite;
+            slot[i].sprite = Database.itemList[yourInventory[i].id].itemSprite;
         }
     }
 

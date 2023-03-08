@@ -14,8 +14,9 @@ INCLUDE ../Tutorial/tutorial_globals.ink
             ->DONE
     -จะดีหรอ...ข้าเห็นเจ้าดูเหนื่่อยจากการที่ไปช่วยคนในเมืองมานะ
         +[ไม่เป็นไรให้ข้าช่วยเถอะ]
-    -ถ้าอย่างนั้น...เจ้าสนใจงานชิ้นไหนล่ะ ค่าตอบแทนดีนะ
+    -ถ้าอย่างนั้น...เจ้าสนใจงานไหนล่ะ ค่าตอบแทนดีนะ
     #speaker:quest
+    เลือกภารกิจ
         +[รูปแห่งความทรงจำ]
             #speaker:quest
             \- เควส: รูปแห่งความทรงจำ รางวัล: 1500 MP
@@ -24,7 +25,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
         +[กำจัด Skeleton]
             #speaker:quest
             \- เควส: กำจัด<color=\#FFBD39>Skeleton</color>จำนวน 10 ตัว ที่<color=\#FF7272>Cave</color> รางวัล: 500 MP และสกิลสุดพิเศษ
-            #quest:52
+            #quest:53
             ->DONE
     == Refuse==
         #speaker:ยาม

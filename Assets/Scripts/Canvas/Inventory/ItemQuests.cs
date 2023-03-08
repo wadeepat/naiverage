@@ -49,7 +49,7 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
             }else{
                 stackText[i].text = ""+ slotStack[i];
             }
-            slot[i].sprite = yourItemQuests[i].itemSprite;
+            slot[i].sprite = Database.itemList[yourItemQuests[i].id].itemSprite;
         }
     }
 
