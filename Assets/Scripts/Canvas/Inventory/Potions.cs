@@ -52,7 +52,7 @@ public class Potions : MonoBehaviour, IDataPersistence
             }else{
                 stackText[i].text = ""+ slotStack[i];
             }
-            slot[i].sprite = Database.itemList[yourPotions[i].id].itemSprite;
+            slot[i].sprite = Database.potionList[yourPotions[i].id].itemSprite;
         }
         for(int i=0; i < 4; i++){
             if(slotP[i] == -1){

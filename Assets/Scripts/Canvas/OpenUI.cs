@@ -147,6 +147,8 @@ public class OpenUI : MonoBehaviour
         Potion.SetActive(false);
         Skill.SetActive(false);
         Quest.SetActive(false);
+        Skill.GetComponent<SkillsUnlock>().UpdateSlotSkill();
+        Panel.GetComponent<Potions>().UpdateSlot();
     }
     public void showPotion()
     {

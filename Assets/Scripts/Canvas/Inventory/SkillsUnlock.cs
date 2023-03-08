@@ -40,18 +40,19 @@ public class SkillsUnlock : MonoBehaviour, IDataPersistence
     // Update is called once per frame
     void Update()
     {
+        UpdateSlotSkill();
+    }
+
+    public void UpdateSlotSkill(){
         for(int i=0; i < slotsNumber; i++){
-            slot[i].sprite = slotSprite[i];
-            slotSprite[i] = skill[i].itemSprite;
+            slot[i].sprite = Database.skillList[skill[i].id].itemSprite;
         }
         for(int i=0; i < 3; i++){
             if(slotStackSkills[i] == -1){
                 slotSkills[i].sprite = Database.skillList[0].itemSprite;
                 continue;
-            }else if(skill[slotStackSkills[i]].id == 0){
-                slotSkills[i].sprite = slotSprite[slotStackSkills[i]];
             }else{
-                slotSkills[i].sprite = slotSprite[slotStackSkills[i]];
+                slotSkills[i].sprite = skill[slotStackSkills[i]].itemSprite;
             }
         }
         for(int i=0; i < 3; i++){
