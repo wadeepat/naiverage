@@ -11,11 +11,24 @@ public class Troll : Enemy
     [SerializeField] private float[] comboCd = new float[] { 1f, 2f, 2.5f, 2.5f };
     private int comboNo;
     private ColliderObject weaponColliderScript;
-
+    private float changeTime = 3f;
+    private float changeTimer;
     protected override void Start()
     {
         base.Start();
+        changeTimer = 0;
         weaponColliderScript = weaponColliderObject.GetComponent<ColliderObject>();
+    }
+    protected override void Update()
+    {
+        base.Update();
+        if (changeTimer < changeTime) changeTimer += Time.deltaTime;
+        else
+        {
+            elementType = (ElementType)Random.Range(0, 4);
+            ShowElement(elementType);
+            changeTimer = 0;
+        }
     }
     public override void OnIdleStateEnter()
     {

@@ -80,6 +80,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Start()
     {
+        if (monsterType == "normal") elementType = (ElementType)Random.Range(0, 4);
         ShowElement(elementType);
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = stoppingDistance;
@@ -503,7 +504,7 @@ public class Enemy : MonoBehaviour
         return damageAmount * (100.0f / (100 + resist));
     }
 
-    void ShowElement(ElementType e)
+    protected void ShowElement(ElementType e)
     {
         if (e == ElementType.Fire)
         {

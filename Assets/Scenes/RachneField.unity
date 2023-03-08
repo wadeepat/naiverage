@@ -4541,12 +4541,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneIndex: 6
   NPCs:
-  - idx: 1
-    info: 
-    Object: {fileID: 1266652405}
   - idx: 2
     info: 
     Object: {fileID: 873641638}
+  - idx: 1
+    info: 
+    Object: {fileID: 1266652405}
   - idx: 3
     info: 
     Object: {fileID: 1684293779}
@@ -4558,6 +4558,7 @@ MonoBehaviour:
   t_RachneGate: {fileID: 0}
   spawn0: {fileID: 1841126652}
   spawn1: {fileID: 0}
+  spawn2: {fileID: 0}
   n_rachneGate: {fileID: 0}
   n_calfordGate: {fileID: 0}
   n_braewoodGate: {fileID: 0}
@@ -4587,6 +4588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SataKnowPlayerNameJSON: {fileID: 4900000, guid: f1c56497708dd4244a45bd769a2941ba, type: 3}
+  flash: {fileID: 1590415177872986601, guid: acdb90624a404aa438447006f1026065, type: 3}
 --- !u!1 &465547533
 GameObject:
   m_ObjectHideFlags: 0
@@ -9420,6 +9422,7 @@ MonoBehaviour:
   idx: 2
   inkJSON: {fileID: 0}
   quest: {fileID: 0}
+  isSideQuest: 0
 --- !u!4 &873641646
 Transform:
   m_ObjectHideFlags: 0
@@ -13983,6 +13986,7 @@ MonoBehaviour:
   idx: 1
   inkJSON: {fileID: 0}
   quest: {fileID: 0}
+  isSideQuest: 0
 --- !u!4 &1266652413
 Transform:
   m_ObjectHideFlags: 0
@@ -15386,15 +15390,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -80.17677
+      value: 59.99323
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.505
+      value: 1.617
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -97.56411
+      value: -29.864113
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -20845,6 +20849,7 @@ MonoBehaviour:
   idx: 3
   inkJSON: {fileID: 0}
   quest: {fileID: 0}
+  isSideQuest: 0
 --- !u!4 &1684293787
 Transform:
   m_ObjectHideFlags: 0
@@ -23735,15 +23740,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -80.17677
+      value: 59.99323
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.505
+      value: 1.617
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -97.56411
+      value: -29.864113
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -25002,7 +25007,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 2074591874}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 2
   m_Height: 2.4
   m_Direction: 1
@@ -25042,6 +25047,7 @@ MonoBehaviour:
   idx: 5
   inkJSON: {fileID: 0}
   quest: {fileID: 0}
+  isSideQuest: 0
 --- !u!4 &2074591882
 Transform:
   m_ObjectHideFlags: 0
@@ -25788,8 +25794,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934940049358838704}
-  m_LocalRotation: {x: -0, y: 0.25881588, z: -0, w: 0.9659267}
-  m_LocalPosition: {x: -78.35, y: 0.13, z: -94}
+  m_LocalRotation: {x: 0, y: 0.25881588, z: 0, w: 0.9659267}
+  m_LocalPosition: {x: 61.82, y: 0.242, z: -26.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

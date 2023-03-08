@@ -126,6 +126,8 @@ MonoBehaviour:
     json: {fileID: 4900000, guid: 4000986baacd17544b2fa8d35cdfadd4, type: 3}
   - name: TrueEnding
     json: {fileID: 4900000, guid: 8d87f4886af2a8f43beae03a834c2bc4, type: 3}
+  - name: WithoutBook
+    json: {fileID: 4900000, guid: 0ff2ba1be6b28ce4fb2075c79193dcd8, type: 3}
   - name: TheCommandment
     json: {fileID: 4900000, guid: bfb9a944ad3e2c249a9c0c9b723ce3f5, type: 3}
   - name: DefeatAbel

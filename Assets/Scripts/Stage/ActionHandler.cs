@@ -7,6 +7,7 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
 {
     [Header("INK Files")]
     [SerializeField] private TextAsset SataKnowPlayerNameJSON;
+    [SerializeField] private GameObject flash;
     public string playerName { get; private set; }
     public int playerPath { get; private set; }
     public ChapterCard chapterCardScript { get; private set; }
@@ -46,6 +47,13 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
     {
         Quest q = QuestLog.GetActiveQuestById(3);
         if (q != null) QuestLog.CompleteQuest(q);
+    }
+    public void MakeFlash()
+    {
+        Vector3 pos = PlayerManager.instance.player.transform.position;
+        GameObject light = Instantiate(flash, pos + Vector3.up * 2, flash.transform.rotation);
+        light.transform.localScale = Vector3.one * 2;
+        Destroy(light, 3);
     }
     public void ActivateTutorialCard(string cardName, bool active)
     {
