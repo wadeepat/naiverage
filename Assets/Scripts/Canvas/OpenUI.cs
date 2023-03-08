@@ -138,7 +138,8 @@ public class OpenUI : MonoBehaviour
         Potion.SetActive(false);
         Skill.SetActive(false);
         Quest.SetActive(false);
-
+        Skill.GetComponent<SkillsUnlock>().UpdateSlotSkill();
+        Panel.GetComponent<Potions>().UpdateSlot();
     }
     public void showCharacter()
     {
@@ -168,6 +169,7 @@ public class OpenUI : MonoBehaviour
         Skill.SetActive(true);
         learnSkill.SetDefault();
         Quest.SetActive(false);
+        Skill.GetComponent<SkillsUnlock>().UpdateSlotSkill();
     }
 
     public void showQuest()

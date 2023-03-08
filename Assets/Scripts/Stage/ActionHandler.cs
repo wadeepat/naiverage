@@ -221,7 +221,6 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
         // Debug.Log("Save from Action Handler");
         data.name = playerName;
         data.playerPath = playerPath;
-
         if (StageHandler.instance.activeSceneIndex != (int)SceneIndex.BlackScene)
         {
             var allQuestList = QuestLog.GetAllQuestList();

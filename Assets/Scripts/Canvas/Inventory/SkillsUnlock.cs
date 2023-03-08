@@ -35,12 +35,13 @@ public class SkillsUnlock : MonoBehaviour, IDataPersistence
         slotSkillsM[0].fillAmount = 1f;
         slotSkillsM[1].fillAmount = 1f;
         slotSkillsM[2].fillAmount = 1f;
+        UpdateSlotSkill();
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateSlotSkill();
+        // UpdateSlotSkill();
     }
 
     public void UpdateSlotSkill(){
@@ -49,15 +50,14 @@ public class SkillsUnlock : MonoBehaviour, IDataPersistence
         }
         for(int i=0; i < 3; i++){
             if(slotStackSkills[i] == -1){
+                slotSkillsM[i].sprite = Database.skillList[0].itemSprite;
+                slotSkillsInv[i].sprite = Database.skillList[0].itemSprite;
                 slotSkills[i].sprite = Database.skillList[0].itemSprite;
-                continue;
             }else{
-                slotSkills[i].sprite = skill[slotStackSkills[i]].itemSprite;
+                slotSkillsInv[i].sprite = slot[slotStackSkills[i]].sprite;
+                slotSkillsM[i].sprite = slot[slotStackSkills[i]].sprite;
+                slotSkills[i].sprite = slot[slotStackSkills[i]].sprite;
             }
-        }
-        for(int i=0; i < 3; i++){
-            slotSkillsInv[i].sprite = slotSkills[i].sprite;
-            slotSkillsM[i].sprite = slotSkills[i].sprite;
         }
     }
 
@@ -82,6 +82,7 @@ public class SkillsUnlock : MonoBehaviour, IDataPersistence
             skill[a] = skill[b];
             skill[b] = draggedSkill[0];
         }
+        UpdateSlotSkill();
         a=-1;
         b=-1;
     }
@@ -131,6 +132,7 @@ public class SkillsUnlock : MonoBehaviour, IDataPersistence
         }else if(aSlot >= 0 && bSlot == -1){
             slotStackSkills[aSlot] = -1;
         }
+        UpdateSlotSkill();
         aSlot=-1;
         bSlot=-1;
     }
@@ -143,6 +145,7 @@ public class SkillsUnlock : MonoBehaviour, IDataPersistence
         if(aSlot >= 0 && bSlot == -1){
             slotStackSkills[aSlot] = -1;
         }
+        UpdateSlotSkill();
         aSlot=-1;
         bSlot=-1;
     }
@@ -159,6 +162,7 @@ public class SkillsUnlock : MonoBehaviour, IDataPersistence
                 break;
             }
         }
+        UpdateSlotSkill();
     }
 
     public void CooldownSkill(){

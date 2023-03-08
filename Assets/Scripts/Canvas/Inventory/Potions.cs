@@ -38,7 +38,7 @@ public class Potions : MonoBehaviour, IDataPersistence
         b = -1;
         aSlot = -1;
         bSlot = -1;
-        
+        UpdateSlot();
     }
 
     void Update()
@@ -61,10 +61,10 @@ public class Potions : MonoBehaviour, IDataPersistence
                 continue;
             }else if(yourPotions[slotP[i]].id == 0 || slotStack[slotP[i]] == 1){
                 stackSlotPotionText[i].text = "";
-                slotPotion[i].sprite = yourPotions[slotP[i]].itemSprite;
+                slotPotion[i].sprite = slot[slotP[i]].sprite;
             }else{
                 stackSlotPotionText[i].text = ""+ slotStack[slotP[i]];
-                slotPotion[i].sprite = yourPotions[slotP[i]].itemSprite;
+                slotPotion[i].sprite = slot[slotP[i]].sprite;
             }
         }
         for(int i=0; i < 4; i++){

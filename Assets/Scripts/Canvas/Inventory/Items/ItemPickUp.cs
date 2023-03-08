@@ -80,7 +80,7 @@ public class ItemPickUp : MonoBehaviour
         }else if(other.tag == "MiniGame" && Item != null){
             if (InputManager.instance.GetInteractPressed())
             {
-                if(y.GetComponent<ThisItem>().thisId == 1){
+                if(y.GetComponent<ThisItem>().thisId == 3){
                     var miniGame = Resources.Load("MiniGame/FlipGame");
                     game = miniGame as GameObject;
                     MGame = Instantiate(game,GameObject.Find("Canvas").transform);

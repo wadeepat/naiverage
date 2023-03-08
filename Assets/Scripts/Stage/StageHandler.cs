@@ -740,6 +740,7 @@ public class StageHandler : MonoBehaviour
                 break;
             case "Flip":
                 //setactive obj
+                GameObject.Find("Places").transform.Find("picture").gameObject.SetActive(true);
                 break;
             case "ThanksSkeletonGuard":
                 foreach (NPC_Details npc in NPCs)

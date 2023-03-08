@@ -26,7 +26,7 @@ public class UseSkill : MonoBehaviour
         skill = GameObject.Find("Canvas/Panel/Character panel/All funtion/Skill");
         slotSkillsM = skill.GetComponent<SkillsUnlock>().slotSkillsM;
         slotStackSkills = skill.GetComponent<SkillsUnlock>().slotStackSkills;
-
+        skill.GetComponent<SkillsUnlock>().UpdateSlotSkill();
     }
 
     // Update is called once per frame

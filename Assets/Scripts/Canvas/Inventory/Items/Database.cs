@@ -1633,7 +1633,7 @@ public class Database : MonoBehaviour
             {
                 questId = 51,
                 questName = $"รูปแห่งความทรงจำ (1/2)",
-                questDescription = $"ตามหารูป และประกอบให้เสร็จสมบูรณ์ที่ป่า {ColorText("town", "Braewood")}",
+                questDescription = $"ตามหารูปภาพที่ติดอยู่ตรงผนัง และประกอบให้เสร็จสมบูรณ์ที่ป่า {ColorText("town", "Braewood")}",
                 location = SceneIndex.BraewoodForest,
                 MPReward = 0,
                 SBReward = "",
