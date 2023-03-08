@@ -49,139 +49,139 @@ MonoBehaviour:
   timeElapsed: 0.2
   sounds:
   - s_name: pick
-    clip: {fileID: 8300000, guid: a3840464804ec8541968d71104d4b108, type: 3}
+    clip: {fileID: 8300000, guid: 856511f8bc6344f44b0bf87a5a5632fc, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: usePotion
-    clip: {fileID: 8300000, guid: 218fff842682d434ca9cb64aaead80b2, type: 3}
+    clip: {fileID: 8300000, guid: 6a78888f5fceeda4ca15c5a8561ca07d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: craft
-    clip: {fileID: 8300000, guid: c3697ba960857f34ca4c997d35df97f4, type: 3}
+    clip: {fileID: 8300000, guid: b80d40c136cdb4146933769bbbc480b0, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: learn
-    clip: {fileID: 8300000, guid: 8e86f3db501cd1b4e8d9c06174e48183, type: 3}
+    clip: {fileID: 8300000, guid: ed891ae3cef0f834bb85f08642b16c10, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: click
-    clip: {fileID: 8300000, guid: a68f2e74995ff9847ab225e98148fe1e, type: 3}
+    clip: {fileID: 8300000, guid: c7ce7091a72de5149a4a14cc8eb306d1, type: 3}
     volume: 0.9
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: open
-    clip: {fileID: 8300000, guid: 5bf9389a7add6494c9dc57f68a32a2b7, type: 3}
+    clip: {fileID: 8300000, guid: 6d6d5c28ec6915e4b92164f2369d065d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: talk
-    clip: {fileID: 8300000, guid: ddaeac6ab597bcb47a3031a96d9ea079, type: 3}
+    clip: {fileID: 8300000, guid: 1022491150680594884e1bc9fe5e591d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: addQuest
-    clip: {fileID: 8300000, guid: 21fffcdd1640eb04a849700642c22f01, type: 3}
+    clip: {fileID: 8300000, guid: 8eb826bd7151dda49aa2b50728aca1fc, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: makeChoice
-    clip: {fileID: 8300000, guid: 21fffcdd1640eb04a849700642c22f01, type: 3}
+    clip: {fileID: 8300000, guid: 8eb826bd7151dda49aa2b50728aca1fc, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: completeQuest
-    clip: {fileID: 8300000, guid: 62fe596abebf07048959ebae80ef7155, type: 3}
+    clip: {fileID: 8300000, guid: ac6aff60159be4d48b49919c87bc90a9, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: save
-    clip: {fileID: 8300000, guid: 557128255e699ce41b63ab16250e7413, type: 3}
+    clip: {fileID: 8300000, guid: 132145664877f394caa3a33dc122d8cd, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: delete
-    clip: {fileID: 8300000, guid: fe7c167652895e7459a346ddb3284dd1, type: 3}
+    clip: {fileID: 8300000, guid: 9e70bb4a5f0e0d048a6ef5cc2ad1e507, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: battle
-    clip: {fileID: 8300000, guid: b1901fc206d5c7a448cab97dac41dbf2, type: 3}
+    clip: {fileID: 8300000, guid: 2512b141298794f4896233d9e61e67c6, type: 3}
     volume: 0.85
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: loading
-    clip: {fileID: 8300000, guid: 21fffcdd1640eb04a849700642c22f01, type: 3}
+    clip: {fileID: 8300000, guid: 8eb826bd7151dda49aa2b50728aca1fc, type: 3}
     volume: 0.85
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: newChapter
-    clip: {fileID: 8300000, guid: 2a2965c2452783048a21cce27b76e104, type: 3}
+    clip: {fileID: 8300000, guid: ddc5b9b1fda6ae649985b493b21dfe8a, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - s_name: medievalTheme
-    clip: {fileID: 8300000, guid: ff50389a5d7605c4d9e7cff6ca4da10f, type: 3}
+    clip: {fileID: 8300000, guid: d07e7674da4f9e446912a8c49fda3c91, type: 3}
     volume: 0.85
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: forestBackground
-    clip: {fileID: 8300000, guid: 40324742e7d740d428fc192465423902, type: 3}
+    clip: {fileID: 8300000, guid: 35eee883507c2bf439a9d30a26fb4ff5, type: 3}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: naverBackground
-    clip: {fileID: 8300000, guid: 422a91f1e9b8d9f41bfd006c08cce48e, type: 3}
+    clip: {fileID: 8300000, guid: 8a3631094ac35494cafdc70f84e2e6b8, type: 3}
     volume: 0.55
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: braewoodBackground
-    clip: {fileID: 8300000, guid: de55399a86c1d174bb2ade9b06650adc, type: 3}
+    clip: {fileID: 8300000, guid: bfbac437bd48e7d42b65bbfd767b5685, type: 3}
     volume: 0.75
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: caveBackground
-    clip: {fileID: 8300000, guid: ede44f6cfe853d84091973ab0aa74a79, type: 3}
+    clip: {fileID: 8300000, guid: d131e8d312605b44dbf933a01af38e61, type: 3}
     volume: 0.75
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: endingBackground
-    clip: {fileID: 8300000, guid: 4ff12c9f749037246a8c6bcbf3cd0e6a, type: 3}
+    clip: {fileID: 8300000, guid: 5905c9c7ad29a74419e32ff0bfe687c5, type: 3}
     volume: 0.85
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: sadness
-    clip: {fileID: 8300000, guid: a7b44ba72e760f9488101c39b5768065, type: 3}
+    clip: {fileID: 8300000, guid: 74c0b3c00bcf819448a0bc91d744416b, type: 3}
     volume: 0.9
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - s_name: singleFootstepInGrass
-    clip: {fileID: 8300000, guid: c59555e5e17f2b24db9e6235197f9db1, type: 3}
+    clip: {fileID: 8300000, guid: 98afca5fe45ce4d408dd6687b49dd94b, type: 3}
     volume: 1
     pitch: 1
     loop: 0
