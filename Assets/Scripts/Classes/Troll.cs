@@ -26,6 +26,8 @@ public class Troll : Enemy
         else
         {
             elementType = (ElementType)Random.Range(0, 4);
+            ShowElement(elementType);
+            changeTimer = 0;
         }
     }
     public override void OnIdleStateEnter()

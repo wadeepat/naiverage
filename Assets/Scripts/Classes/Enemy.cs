@@ -80,6 +80,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Start()
     {
+        if (monsterType == "normal") elementType = (ElementType)Random.Range(0, 4);
         ShowElement(elementType);
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = stoppingDistance;
@@ -102,7 +103,6 @@ public class Enemy : MonoBehaviour
         }
         healthBar.SetActive(false);
         if (normalSound) normalSound.pitch = Random.Range(0.4f, 1.0f);
-        if (monsterType == "normal") elementType = (ElementType)Random.Range(0, 4);
     }
     protected virtual void Update()
     {
@@ -504,7 +504,7 @@ public class Enemy : MonoBehaviour
         return damageAmount * (100.0f / (100 + resist));
     }
 
-    void ShowElement(ElementType e)
+    protected void ShowElement(ElementType e)
     {
         if (e == ElementType.Fire)
         {
