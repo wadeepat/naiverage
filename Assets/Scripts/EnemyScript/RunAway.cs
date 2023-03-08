@@ -19,6 +19,8 @@ public class RunAway : MonoBehaviour
     private const float SPRINT_COOLDOWN = 1.5f;
     private float sprintTimer = 0;
     private float cooldownTimer = 0;
+    private float chickTime;
+    private float chicktimer;
 
     // private GameObject waypointObject;
     // private List<Transform> waypoints = new List<Transform>();
@@ -38,8 +40,12 @@ public class RunAway : MonoBehaviour
         // {
         //     waypoints.Add(wp);
         // }
+        chickTime = Random.Range(2f, 3.5f);
+        chicktimer = 0;
         sprintTimer = 0;
         angleIdx = 0;
+        if (transform.localScale.x > 1.1) sprintSound.pitch = 0.2f;
+        else sprintSound.pitch = Random.Range(0.5f, 1.5f);
     }
     private void Update()
     {
@@ -55,6 +61,12 @@ public class RunAway : MonoBehaviour
         float dis = Vector3.Distance(transform.position, target.position);
         if (dis > distance)
         {
+            if (chicktimer < chickTime) chicktimer += Time.deltaTime;
+            else
+            {
+                sprintSound?.Play();
+                chicktimer = 0;
+            }
             animator.SetBool("Run", false);
             animator.SetBool("Eat", true);
             agent.isStopped = true;

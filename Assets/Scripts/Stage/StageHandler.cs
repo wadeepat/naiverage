@@ -104,7 +104,7 @@ public class StageHandler : MonoBehaviour
                         QuestLog.GetCompleteQuestById(49) == null &&
                         QuestLog.GetActiveQuestById(49) == null)
                         NaverTownEvents("MerchantFriend");
-                    
+
                 }
                 if (!PlayerManager.instance.mapEnable[SceneIndex.CalfordCastle])
                     n_calfordGate.gameObject.SetActive(false);
@@ -121,9 +121,9 @@ public class StageHandler : MonoBehaviour
                 if (QuestLog.GetCompleteQuestById(19) == null && QuestLog.GetActiveQuestById(19) == null)
                     b_caveGate.gameObject.SetActive(false);
                 if (QuestLog.GetCompleteQuestById(26) != null &&
-                        QuestLog.GetCompleteQuestById(51) == null && 
+                        QuestLog.GetCompleteQuestById(51) == null &&
                         QuestLog.GetCompleteQuestById(53) == null &&
-                        QuestLog.GetActiveQuestById(51) == null && 
+                        QuestLog.GetActiveQuestById(51) == null &&
                         QuestLog.GetActiveQuestById(53) == null)
                         BraewoodEvents("GuardHelp");
                 // if (QuestLog.GetCompleteQuestById(25) != null && QuestLog.GetCompleteQuestById(26) == null)
@@ -858,7 +858,7 @@ public class StageHandler : MonoBehaviour
                 }
                 break;
             case "FightForGuard":
-                    SpawnMonsterAt(1, MonsterId.Skeleton, 10);
+                SpawnMonsterAt(1, MonsterId.Skeleton, 10);
                 break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in CaveEvents");

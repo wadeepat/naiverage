@@ -38,7 +38,15 @@ public class AudioManager : MonoBehaviour
     public void Play(string name)
     {
         Sound sound = FindSoundWithName(name);
-        sound.source.Play();
+        if (!sound.source.isPlaying)
+        {
+            sound.source.Play();
+            if (name == "battle")
+            {
+                timeElapsed = 0.2f;
+                StartCoroutine(FadeIn(sound));
+            }
+        }
         if (sound.loop)
         {
             _playingSoundName = name;
@@ -47,8 +55,20 @@ public class AudioManager : MonoBehaviour
     public void Stop(string name)
     {
         Sound sound = FindSoundWithName(name);
-        sound.source.Stop();
+        if (!sound.source.isPlaying) return;
+        if (name != "battle")
+            sound.source.Stop();
+        else
+        {
+            timeElapsed = 0.2f;
+            StartCoroutine(FadeOut(sound));
+        }
         _playingSoundName = "";
+    }
+    public bool IsPlaying(string name)
+    {
+        Sound sound = FindSoundWithName(name);
+        return sound.source.isPlaying;
     }
     private Sound FindSoundWithName(string name)
     {
@@ -62,6 +82,33 @@ public class AudioManager : MonoBehaviour
     public void SwapTrack(string newSound)
     {
         StartCoroutine(FadeSound(newSound));
+    }
+    private IEnumerator FadeIn(Sound sound)
+    {
+        Debug.Log("Fade In");
+        // Sound sound = FindSoundWithName(name);
+        // float volume_temp = sound.source.volume;
+        sound.source.Play();
+        while (timeElapsed < timeToFade)
+        {
+            sound.source.volume = Mathf.Lerp(0, sound.volume, timeElapsed / timeToFade);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        // sound.source.volume = sound.volume;
+    }
+    private IEnumerator FadeOut(Sound sound)
+    {
+        Debug.Log("Fade out");
+        // Sound sound = FindSoundWithName(name);
+        while (timeElapsed < timeToFade)
+        {
+            sound.source.volume = Mathf.Lerp(sound.volume, 0, timeElapsed / timeToFade);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        sound.source.Stop();
+        sound.source.volume = sound.volume;
     }
     private IEnumerator FadeSound(string newSound)
     {
