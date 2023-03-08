@@ -42,6 +42,17 @@ public class PlayerAttackController : MonoBehaviour
     }
     void Update()
     {
+        bool isChasing = false;
+        foreach (GameObject mon in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            if (mon.GetComponent<Enemy>().isChasing())
+            {
+                isChasing = true;
+                break;
+            }
+        }
+        if (isChasing) AudioManager.instance.Play("battle");
+        else AudioManager.instance.Stop("battle");
         // Debug.Log("Elemt" + (Element)element);
         if (DialogueManager.dialogueIsPlaying ||
         ActionHandler.instance.IsSomeWindowsActivated())
@@ -58,7 +69,8 @@ public class PlayerAttackController : MonoBehaviour
             if (element == 2) element = 0;
             else element += 1;
         }
-        if(_anim.GetCurrentAnimatorStateInfo(0).IsTag("Skill")){
+        if (_anim.GetCurrentAnimatorStateInfo(0).IsTag("Skill"))
+        {
             return;
         }
         if (_anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))

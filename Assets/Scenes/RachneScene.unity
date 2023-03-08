@@ -20550,11 +20550,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7637308980367820375, guid: 7700cc2bead35e2499589845db476dd1, type: 3}
       propertyPath: runSpd
-      value: 4
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637308980367820375, guid: 7700cc2bead35e2499589845db476dd1, type: 3}
+      propertyPath: distance
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7637308980367820375, guid: 7700cc2bead35e2499589845db476dd1, type: 3}
       propertyPath: sprintSpd
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7700cc2bead35e2499589845db476dd1, type: 3}

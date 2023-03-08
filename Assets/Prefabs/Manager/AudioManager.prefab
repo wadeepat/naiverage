@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24300002, guid: 1465f4ffd9b8f5f4bb7fc140b374cde0, type: 2}
-  timeToFade: 0.8
+  timeToFade: 3
   timeElapsed: 0.2
   sounds:
   - s_name: pick
@@ -103,7 +103,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - s_name: completeQuest
-    clip: {fileID: 8300000, guid: 995162fea1a46314d89d5063d68474fa, type: 3}
+    clip: {fileID: 8300000, guid: 62fe596abebf07048959ebae80ef7155, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -120,11 +120,17 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - s_name: loading
-    clip: {fileID: 8300000, guid: ed61521fe94f7324f8ea021f36f0e376, type: 3}
+  - s_name: battle
+    clip: {fileID: 8300000, guid: b1901fc206d5c7a448cab97dac41dbf2, type: 3}
     volume: 0.85
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - s_name: loading
+    clip: {fileID: 8300000, guid: 21fffcdd1640eb04a849700642c22f01, type: 3}
+    volume: 0.85
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
   - s_name: newChapter
     clip: {fileID: 8300000, guid: 2a2965c2452783048a21cce27b76e104, type: 3}

@@ -324,9 +324,15 @@ public class Enemy : MonoBehaviour
                     animator.SetBool("isCooldown", true);
                 }
             }
-            Provoke();
         }
+        Provoke();
         damagedTimer = 0;
+    }
+    public bool isChasing()
+    {
+        if (target == null) return false;
+        float distance = Vector3.Distance(target.position, gameObject.transform.position);
+        return distance <= chaseRange && damagedTimer < RAGE_MODE_TIME;
     }
     public void Provoke()
     {
