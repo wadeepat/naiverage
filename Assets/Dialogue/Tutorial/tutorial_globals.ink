@@ -12,3 +12,4 @@ VAR cainAskToGoAgain = false
 VAR turnbacktime = false
 VAR refuseMerchant = false
 VAR refuseGuard = false
+VAR refuseOldMan = false

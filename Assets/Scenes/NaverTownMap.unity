@@ -10003,6 +10003,26 @@ PrefabInstance:
       propertyPath: choices.Array.data[3]
       value: 
       objectReference: {fileID: 772939424}
+    - target: {fileID: 1374411293204347148, guid: 4477deec801e55240838d419d582462f, type: 3}
+      propertyPath: sideQuestFiles.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374411293204347148, guid: 4477deec801e55240838d419d582462f, type: 3}
+      propertyPath: sideQuestFiles.Array.data[7].json
+      value: 
+      objectReference: {fileID: 4900000, guid: ca44180dfe5f1a5409829eb49b061889, type: 3}
+    - target: {fileID: 1374411293204347148, guid: 4477deec801e55240838d419d582462f, type: 3}
+      propertyPath: sideQuestFiles.Array.data[7].name
+      value: ThanksSkeletonGuard
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374411293204347148, guid: 4477deec801e55240838d419d582462f, type: 3}
+      propertyPath: sideQuestFiles.Array.data[8].json
+      value: 
+      objectReference: {fileID: 4900000, guid: 94777f94ee657664e84fa260739b985c, type: 3}
+    - target: {fileID: 1374411293204347148, guid: 4477deec801e55240838d419d582462f, type: 3}
+      propertyPath: sideQuestFiles.Array.data[8].name
+      value: ThanksSlide
+      objectReference: {fileID: 0}
     - target: {fileID: 1374411293204347150, guid: 4477deec801e55240838d419d582462f, type: 3}
       propertyPath: m_Name
       value: DialogueManager
@@ -52432,7 +52452,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 974623900}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 2
   m_Height: 2.4
   m_Direction: 1

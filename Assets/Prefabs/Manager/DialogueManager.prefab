@@ -151,6 +151,12 @@ MonoBehaviour:
     json: {fileID: 4900000, guid: 229b92aed6d49e747ac2403a3df10574, type: 3}
   - name: ThanksSkeletonGuard
     json: {fileID: 4900000, guid: ca44180dfe5f1a5409829eb49b061889, type: 3}
+  - name: SideC3
+    json: {fileID: 4900000, guid: c653f48904964fe43b8e5155821fa105, type: 3}
+  - name: ThanksSlide
+    json: {fileID: 4900000, guid: 94777f94ee657664e84fa260739b985c, type: 3}
+  - name: ThanksVenom
+    json: {fileID: 4900000, guid: 3d5bf4ae2aa8a4a46882198acb0ff67e, type: 3}
   dialoguePanel: {fileID: 0}
   continueText: {fileID: 0}
   displayNameText: {fileID: 0}

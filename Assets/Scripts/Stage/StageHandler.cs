@@ -107,6 +107,13 @@ public class StageHandler : MonoBehaviour
                     {
                         NaverTownEvents("FarmerProblem");
                     }
+                    if (QuestLog.GetCompleteQuestById(41) != null &&
+                        QuestLog.GetCompleteQuestById(55) == null &&
+                        QuestLog.GetCompleteQuestById(57) == null &&
+                        QuestLog.GetActiveQuestById(55) == null &&
+                        QuestLog.GetActiveQuestById(57) == null)
+                        NaverTownEvents("SideC3");
+                        
                 }
                 if (!PlayerManager.instance.mapEnable[SceneIndex.CalfordCastle])
                     n_calfordGate.gameObject.SetActive(false);
@@ -341,6 +348,10 @@ public class StageHandler : MonoBehaviour
                 victim.SetActive(true);
                 victim.GetComponent<CapsuleCollider>().enabled = true;
                 victim.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(5, "ThanksFromNPC");
+                break;
+            case "FightVenom":
+                SpawnMonsterAt(0, MonsterId.Venom, 6);
+                SpawnMonsterAt(1, MonsterId.Venom, 6);
                 break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in TutorialEvents");
@@ -597,6 +608,46 @@ public class StageHandler : MonoBehaviour
                     }
                 }
                 break;
+            case "SideC3":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.info == "Oldman")
+                    {
+                        // Debug.Log("quest");
+                        npc.Object.GetComponent<CapsuleCollider>().enabled = true;
+                        npc.Object.SetActive(true);
+                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(5, "SideC3");
+                        npc.Object.GetComponent<NPC>().isSideQuest = true;
+                        break;
+                    }
+                }
+                break;
+            case "ThanksSlide":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.info == "Oldman")
+                    {
+                        npc.Object.GetComponent<CapsuleCollider>().enabled = true;
+                        npc.Object.SetActive(true);
+                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(5, "ThanksSlide");
+                        npc.Object.GetComponent<NPC>().isSideQuest = false;
+                        break;
+                    }
+                }
+                break;
+            case "ThanksVenom":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.info == "Oldman")
+                    {
+                        npc.Object.GetComponent<CapsuleCollider>().enabled = true;
+                        npc.Object.SetActive(true);
+                        npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(5, "ThanksVenom");
+                        npc.Object.GetComponent<NPC>().isSideQuest = false;
+                        break;
+                    }
+                }
+                break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in NaverTownEvents");
                 break;
@@ -618,6 +669,9 @@ public class StageHandler : MonoBehaviour
                 {
                     if (npc.info == "Soul") npc.Object.SetActive(true);
                 }
+                break;
+            case "Slide":
+                GameObject.Find("Places").transform.Find("book").gameObject.SetActive(true);
                 break;
             default:
                 Debug.LogWarning($"There is no event name: {eventName} in CalfordEvents");

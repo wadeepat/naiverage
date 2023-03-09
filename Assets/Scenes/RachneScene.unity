@@ -1210,6 +1210,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spin Reef Flower 2B
       objectReference: {fileID: 0}
+    - target: {fileID: 2464265498899453709, guid: 8946c477c17e30c4b93568517184ddb8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2988425078948449719, guid: 8946c477c17e30c4b93568517184ddb8, type: 3}
       propertyPath: m_RootOrder
       value: 22
