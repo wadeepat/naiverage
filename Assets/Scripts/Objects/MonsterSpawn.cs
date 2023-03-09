@@ -30,7 +30,7 @@ public class MonsterSpawn : MonoBehaviour
     private float maxScale = 0.1f;
     private GameObject WaypointObject;
     private List<Transform> waypoints = new List<Transform>();
-    void Awake()
+    void Start()
     {
         WaypointObject = transform.Find("Waypoints").gameObject;
         foreach (Transform wp in WaypointObject.transform)
@@ -44,7 +44,7 @@ public class MonsterSpawn : MonoBehaviour
                 SpawnMonster((int)m.monsterId, m.amount, false);
             }
         }
-        if (isSpawn)
+        if (isSpawn && PlayerManager.playerEvents["finishedTutorial"])
         {
             foreach (MonsterAmount m in monsterSpawnLists)
             {
