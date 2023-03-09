@@ -582,6 +582,10 @@ public class Database : MonoBehaviour
                     // if (StageHandler.instance.activeSceneIndex == (int)SceneIndex.NaverTown)
                     StageHandler.instance.EventTrigger("HappyFamily");
                 },
+                compleltedAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("FarmerProblem");
+                }
             }
         );
     }
@@ -1084,6 +1088,10 @@ public class Database : MonoBehaviour
                 {
                     StageHandler.instance.EventTrigger("HappyFamily");
                 },
+                compleltedAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("MerchantFriend");
+                }
             }
         );
         questList.Add(
@@ -1117,7 +1125,7 @@ public class Database : MonoBehaviour
                 {
                     StageHandler.instance.EventTrigger("AaronAtMainDoor");
                     StageHandler.instance.EventTrigger("Army");
-                },
+                }
             }
         );
         questList.Add(

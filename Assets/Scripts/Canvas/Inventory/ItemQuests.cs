@@ -39,15 +39,26 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
     void Update()
     {
     }
-
-    public void UpdateSlotSprite(){
-        
+    public bool ishaveItem(int idx)
+    {
         for (int i = 0; i < slotsNumber; i++)
         {
-            if(yourItemQuests[i].id == 0 || slotStack[i] == 1){
-            stackText[i].text = "";
-            }else{
-                stackText[i].text = ""+ slotStack[i];
+            if (yourItemQuests[i].id == idx) return true;
+        }
+        return false;
+    }
+    public void UpdateSlotSprite()
+    {
+
+        for (int i = 0; i < slotsNumber; i++)
+        {
+            if (yourItemQuests[i].id == 0 || slotStack[i] == 1)
+            {
+                stackText[i].text = "";
+            }
+            else
+            {
+                stackText[i].text = "" + slotStack[i];
             }
             slot[i].sprite = Database.itemQuestList[yourItemQuests[i].id].itemSprite;
         }
@@ -70,7 +81,9 @@ public class ItemQuests : MonoBehaviour, IDataPersistence
                     yourItemQuests[i] = Database.itemQuestList[n];
                     slotStack[i] += 1;
                     break;
-                }else if(yourItemQuests[i].id == n && ItemPickUp.pick == true){
+                }
+                else if (yourItemQuests[i].id == n && ItemPickUp.pick == true)
+                {
                     slotStack[i] += 1;
                     break;
                 }

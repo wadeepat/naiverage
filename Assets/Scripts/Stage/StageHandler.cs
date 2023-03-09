@@ -72,7 +72,7 @@ public class StageHandler : MonoBehaviour
             case SceneIndex.Rachne:
                 AudioManager.instance.Play("forestBackground");
                 //TODO if have book in questItem
-                if (false)
+                if (GameObject.Find("Canvas/Panel").GetComponent<ItemQuests>().ishaveItem(4))
                     GameObject.Find("StageTrack").transform.Find("Book").gameObject.SetActive(false);
                 if (QuestLog.GetCompleteQuestById(0) == null)
                     DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(0, "Opening"));
@@ -89,6 +89,11 @@ public class StageHandler : MonoBehaviour
                     if (QuestLog.GetActiveQuestById(30) == null
                     && QuestLog.GetCompleteQuestById(30) == null)
                         EventTrigger("ReceiveTheBook");
+                    //*side quest:save npc
+                    if (QuestLog.GetCompleteQuestById(31) != null &&
+                        QuestLog.GetCompleteQuestById(49) == null &&
+                        QuestLog.GetActiveQuestById(49) == null)
+                        NaverTownEvents("MerchantFriend");
                 }
                 else
                 {
@@ -102,12 +107,6 @@ public class StageHandler : MonoBehaviour
                     {
                         NaverTownEvents("FarmerProblem");
                     }
-                    //*side quest:save npc
-                    if (QuestLog.GetCompleteQuestById(14) != null &&
-                        QuestLog.GetCompleteQuestById(49) == null &&
-                        QuestLog.GetActiveQuestById(49) == null)
-                        NaverTownEvents("MerchantFriend");
-
                 }
                 if (!PlayerManager.instance.mapEnable[SceneIndex.CalfordCastle])
                     n_calfordGate.gameObject.SetActive(false);
@@ -605,7 +604,6 @@ public class StageHandler : MonoBehaviour
     }
     private void CalfordEvents(string eventName)
     {
-        //TODO implement calford events
         switch (eventName)
         {
             case "Family":
@@ -832,17 +830,7 @@ public class StageHandler : MonoBehaviour
                 QuestLog.CompleteQuest(Database.questList[23]);
                 break;
             case "TrollEntrance":
-                //TODO TrollField
                 c_TrollGate.gameObject.SetActive(true);
-                // if (PlayerManager.playerEvents["backToPast"])
-                // {
-                //     QuestLog.CompleteQuest(Database.questList[37]);
-
-                // }
-                // else
-                // {
-                //     QuestLog.CompleteQuest(Database.questList[24]);
-                // }
                 break;
             case "CainAndHurt":
                 foreach (NPC_Details npc in NPCs)
@@ -884,7 +872,7 @@ public class StageHandler : MonoBehaviour
                     if (npc.idx == NPCIndex.Samuel)
                     {
                         //TODO if have book
-                        if (true)
+                        if (GameObject.Find("Canvas/Panel").GetComponent<ItemQuests>().ishaveItem(4))
                         {
                             npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(4, "TheCommandment");
                         }
