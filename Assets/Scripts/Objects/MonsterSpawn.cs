@@ -14,12 +14,18 @@ struct MonsterAmount
     public MonsterId monsterId;
     public int amount;
 }
+
 public class MonsterSpawn : MonoBehaviour
 {
     [Header("Monster Details")]
     [SerializeField] MonsterList[] monsterLists;
+    [SerializeField] public bool isSpawn = true;
     [SerializeField] private bool enableTest = false;
+    [SerializeField] private int capacity = 5;
+    [SerializeField] MonsterAmount[] monsterSpawnLists;
     [SerializeField] MonsterAmount[] monsterTestLists;
+    [SerializeField] private float spawnTimeDelay = 5f;
+    private float spawnTimer = 0;
     private float minScale = -0.1f;
     private float maxScale = 0.1f;
     private GameObject WaypointObject;
@@ -35,11 +41,37 @@ public class MonsterSpawn : MonoBehaviour
         {
             foreach (MonsterAmount m in monsterTestLists)
             {
-                SpawnMonster((int)m.monsterId, m.amount, true);
+                SpawnMonster((int)m.monsterId, m.amount, false);
+            }
+        }
+        if (isSpawn)
+        {
+            foreach (MonsterAmount m in monsterSpawnLists)
+            {
+                SpawnMonster((int)m.monsterId, m.amount, false);
             }
         }
     }
+    private void Update()
+    {
+        if (isSpawn)
+        {
+            if (spawnTimer < spawnTimeDelay) spawnTimer += Time.deltaTime;
+            else
+            {
+                if (transform.childCount < capacity + 1)
+                {
+                    SpawnMonster((int)monsterSpawnLists[Random.Range(0, monsterSpawnLists.Length)].monsterId, 1, false);
 
+                }
+                // foreach (MonsterAmount m in monsterSpawnLists)
+                // {
+                //     SpawnMonster((int)m.monsterId, m.amount, false);
+                // }
+                spawnTimer = 0;
+            }
+        }
+    }
     public void SpawnMonster(int id, int amount, bool isAttackVictim)
     {
         for (int i = 0; i < amount; i++)

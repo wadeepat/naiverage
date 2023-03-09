@@ -18303,6 +18303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SataKnowPlayerNameJSON: {fileID: 4900000, guid: f1c56497708dd4244a45bd769a2941ba, type: 3}
+  flash: {fileID: 0}
 --- !u!1 &1681107977
 GameObject:
   m_ObjectHideFlags: 0
@@ -30201,10 +30202,18 @@ MonoBehaviour:
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
   - monsterId: 8
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+  isSpawn: 1
   enableTest: 0
+  capacity: 2
+  monsterSpawnLists:
+  - monsterId: 5
+    amount: 0
+  - monsterId: 3
+    amount: 0
   monsterTestLists:
-  - monsterId: 0
+  - monsterId: 5
     amount: 1
+  spawnTimeDelay: 60
 --- !u!4 &1696428000943957710
 Transform:
   m_ObjectHideFlags: 0
@@ -30355,10 +30364,18 @@ MonoBehaviour:
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
   - monsterId: 8
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+  isSpawn: 1
   enableTest: 0
+  capacity: 5
+  monsterSpawnLists:
+  - monsterId: 5
+    amount: 2
+  - monsterId: 3
+    amount: 1
   monsterTestLists:
   - monsterId: 0
     amount: 1
+  spawnTimeDelay: 40
 --- !u!4 &1696428001075375191
 Transform:
   m_ObjectHideFlags: 0

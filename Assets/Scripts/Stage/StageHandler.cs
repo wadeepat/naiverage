@@ -284,6 +284,9 @@ public class StageHandler : MonoBehaviour
                 GameObject pickupArea = GameObject.Find("StageTrack").transform.Find("PickupArea").gameObject;
                 pickupArea.SetActive(true);
                 t_naverGate.gameObject.SetActive(false);
+                spawn0.isSpawn = false;
+                spawn1.isSpawn = false;
+                spawn2.isSpawn = false;
                 break;
             case "CompletedUsePotion":
                 DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(0, "CompletedUsePotion"));
