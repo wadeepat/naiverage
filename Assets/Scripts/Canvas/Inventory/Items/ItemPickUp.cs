@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using StarterAssets;
 using TMPro;
 public class ItemPickUp : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class ItemPickUp : MonoBehaviour
     public static GameObject y;
     private GameObject Panel;
     private GameObject MGame;
+    static StarterAssetsInputs assetsInputs;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,8 +82,18 @@ public class ItemPickUp : MonoBehaviour
         }else if(other.tag == "MiniGame" && Item != null){
             if (InputManager.instance.GetInteractPressed())
             {
+                assetsInputs = PlayerManager.instance.player.GetComponent<StarterAssetsInputs>();
+                PlayerManager.instance.player.GetComponent<PlayerAttackController>().attackAble = false;
+                assetsInputs.cursorInputForLook = false;
+                assetsInputs.cursorLocked = false;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 if(y.GetComponent<ThisItem>().thisId == 3){
                     var miniGame = Resources.Load("MiniGame/FlipGame");
+                    game = miniGame as GameObject;
+                    MGame = Instantiate(game,GameObject.Find("Canvas").transform);
+                }else if(y.GetComponent<ThisItem>().thisId == 4){
+                    var miniGame = Resources.Load("MiniGame/SlidingGame");
                     game = miniGame as GameObject;
                     MGame = Instantiate(game,GameObject.Find("Canvas").transform);
                 }
@@ -103,6 +115,12 @@ public class ItemPickUp : MonoBehaviour
     }
 
     public void DestroyThisOj(){
+        assetsInputs = PlayerManager.instance.player.GetComponent<StarterAssetsInputs>();
+        PlayerManager.instance.player.GetComponent<PlayerAttackController>().attackAble = true;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        assetsInputs.cursorInputForLook = true;
+        assetsInputs.cursorLocked = true;
         Panel = GameObject.Find("Canvas/Panel");
         Panel?.transform.GetComponent<ItemQuests>().GetItemQuest();
         Destroy(MGame);

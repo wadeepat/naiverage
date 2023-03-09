@@ -15,21 +15,11 @@ public class GameControl : MonoBehaviour
     {
         pictures = new Transform[15];
         youWin = false;
-        assetsInputs = PlayerManager.instance.player.GetComponent<StarterAssetsInputs>();
-        PlayerManager.instance.player.GetComponent<PlayerAttackController>().attackAble = false;
-        assetsInputs.cursorInputForLook = false;
-        assetsInputs.cursorLocked = false;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
         for(int i=0; i < 15; i++){
             pictures[i] = this.transform.Find("castle ("+i+")");
             pictures[i].GetComponent<TouchRotate>().RotateImage();
             pictures[i].GetComponent<TouchRotate>().AddClick();
         }
-    }
-
-    public void Win(){
-        Destroy(this);
     }
     // Update is called once per frame
     public void CheckWin(){
@@ -49,12 +39,7 @@ public class GameControl : MonoBehaviour
             pictures[13].rotation.z <= 0.1f &&
             pictures[14].rotation.z <= 0.1f){
             youWin = true;
-            assetsInputs = PlayerManager.instance.player.GetComponent<StarterAssetsInputs>();
-            PlayerManager.instance.player.GetComponent<PlayerAttackController>().attackAble = true;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            assetsInputs.cursorInputForLook = true;
-            assetsInputs.cursorLocked = true;
+            
             GameObject.Find("Player").transform.GetComponent<ItemPickUp>().DestroyThisOj();
         }
     }

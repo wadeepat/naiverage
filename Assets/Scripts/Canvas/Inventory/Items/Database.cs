@@ -103,7 +103,7 @@ public class Database : MonoBehaviour
         itemQuestList.Add(new Item(1, "Soul", "Quest", Resources.Load<Sprite>("q1"), 0));
         itemQuestList.Add(new Item(2, "Chicken", "Quest", Resources.Load<Sprite>("chick"), 0));
         itemQuestList.Add(new Item(3, "Picture", "Quest", Resources.Load<Sprite>("q3"), 0));
-        itemQuestList.Add(new Item(4, "Book", "Quest", Resources.Load<Sprite>("book"), 0));
+        itemQuestList.Add(new Item(4, "Book", "Quest", Resources.Load<Sprite>("q4"), 0));
     }
     private void AddPotionList()
     {
@@ -1745,6 +1745,123 @@ public class Database : MonoBehaviour
             }
 
         );
+        questList.Add(
+            new Quest()
+            {
+                questId = 55,
+                questName = $"บันทึกของหนังสือ (1/2)",
+                questDescription = $"ตามหาหนังสือที่ชั้นวางหนังสืออยู่ในปราสาท {ColorText("town", "Calford")}",
+                location = SceneIndex.CalfordCastle,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 1,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = 3,
+                    isQuestItem = true,
+                    type = Quest.Objective.Type.collect,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("Slide");
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("Slide");
+                },
+                compleltedAction = () =>
+                {
+                    QuestLog.AddQuest(questList[56]);
+                }
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 56,
+                questName = $"บันทึกของหนังสือ (2/2)",
+                questDescription = $"นำหนังสือไปมอบให้กับ{ColorText("char", "คุณตา")} ที่เมือง {ColorText("town", "Naver")}",
+                location = SceneIndex.NaverTown,
+                MPReward = 1500,
+                SBReward = "",
+                questCategory = 1,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Villager,
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("ThanksSlide");
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("ThanksSlide");
+                }
+            }
+
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 57,
+                questName = $"กำจัด {ColorText("monster", "Venom")} ให้{ColorText("char", "คุณตา")} (1/2)",
+                questDescription = $"คุณตาได้มอบหมายงานให้กำจัด{ColorText("monster", "Venom")}",
+                location = SceneIndex.Rachne,
+                MPReward = 0,
+                SBReward = "",
+                questCategory = 1,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)MonsterId.Skeleton,
+                    type = Quest.Objective.Type.kill,
+                    amount = 15,
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("FightForGuard");
+                },
+                compleltedAction = () =>
+                {
+                    QuestLog.AddQuest(questList[58]);
+                }
+            }
+        );
+        questList.Add(
+            new Quest()
+            {
+                questId = 58,
+                questName = $"กำจัด {ColorText("monster", "Venom")} ให้{ColorText("char", "คุณตา")} (2/2)",
+                questDescription = $"ไปคุยกับ {ColorText("char", "คุณตา")} ที่เมือง {ColorText("town", "Naver")}",
+                location = SceneIndex.NaverTown,
+                MPReward = 700,
+                SBReward = "สกิลสุดพิเศษ",
+                questCategory = 1,
+                objective = new Quest.Objective()
+                {
+                    objectiveId = (int)NPCIndex.Villager,
+                    type = Quest.Objective.Type.interact,
+                    amount = 1,
+                },
+                addAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("ThanksVenom");
+                },
+                prepareAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("ThanksVenom");
+                },
+                compleltedAction = () =>
+                {
+                    InvenSkillBook add = GameObject.Find("Canvas/Panel").transform.Find("Character panel").Find("All funtion").Find("Skill").GetComponent<InvenSkillBook>();
+                    add.AddSkillBook(9);
+                }
+            }
+
+        );
+        
     }
     private string ColorText(string type, string text)
     {
