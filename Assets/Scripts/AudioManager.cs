@@ -85,7 +85,7 @@ public class AudioManager : MonoBehaviour
     }
     private IEnumerator FadeIn(Sound sound)
     {
-        Debug.Log("Fade In");
+        // Debug.Log("Fade In");
         // Sound sound = FindSoundWithName(name);
         // float volume_temp = sound.source.volume;
         sound.source.Play();
@@ -99,7 +99,7 @@ public class AudioManager : MonoBehaviour
     }
     private IEnumerator FadeOut(Sound sound)
     {
-        Debug.Log("Fade out");
+        // Debug.Log("Fade out");
         // Sound sound = FindSoundWithName(name);
         while (timeElapsed < timeToFade)
         {

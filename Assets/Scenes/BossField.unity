@@ -11027,6 +11027,7 @@ MonoBehaviour:
   t_RachneGate: {fileID: 0}
   spawn0: {fileID: 1878787633}
   spawn1: {fileID: 0}
+  spawn2: {fileID: 0}
   n_rachneGate: {fileID: 0}
   n_calfordGate: {fileID: 0}
   n_braewoodGate: {fileID: 0}
@@ -11056,6 +11057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SataKnowPlayerNameJSON: {fileID: 4900000, guid: f1c56497708dd4244a45bd769a2941ba, type: 3}
+  flash: {fileID: 0}
 --- !u!1 &593761178
 GameObject:
   m_ObjectHideFlags: 0
@@ -39701,10 +39703,20 @@ MonoBehaviour:
     model: {fileID: 6051786700028988739, guid: 509a8df841b78f94a9864f85c412e51e, type: 3}
   - monsterId: 8
     model: {fileID: 924416398459543054, guid: 27e63aa5babe5e247917dbe7356a2360, type: 3}
+  isSpawn: 1
   enableTest: 0
+  capacity: 5
+  monsterSpawnLists:
+  - monsterId: 5
+    amount: 0
+  - monsterId: 5
+    amount: 0
+  - monsterId: 3
+    amount: 0
   monsterTestLists:
   - monsterId: 8
     amount: 1
+  spawnTimeDelay: 20
 --- !u!4 &1878787634
 Transform:
   m_ObjectHideFlags: 0
