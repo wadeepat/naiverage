@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: f5d5476abf694584f94c89f9c31f699b, type: 2}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: e3d07f6114a0a9f439968c38c21be329, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -10018,7 +10018,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.7169812, g: 0.64306056, b: 0.4295123, a: 0.8862745}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -18303,6 +18303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SataKnowPlayerNameJSON: {fileID: 4900000, guid: f1c56497708dd4244a45bd769a2941ba, type: 3}
+  flash: {fileID: 0}
 --- !u!1 &1681107977
 GameObject:
   m_ObjectHideFlags: 0
@@ -18446,7 +18447,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1690726411
 Transform:
   m_ObjectHideFlags: 0
