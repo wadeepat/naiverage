@@ -30,7 +30,7 @@ public class MonsterSpawn : MonoBehaviour
     private float maxScale = 0.1f;
     private GameObject WaypointObject;
     private List<Transform> waypoints = new List<Transform>();
-    void Start()
+    void Awake()
     {
         WaypointObject = transform.Find("Waypoints").gameObject;
         foreach (Transform wp in WaypointObject.transform)
