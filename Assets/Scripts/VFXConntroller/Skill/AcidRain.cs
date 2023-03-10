@@ -16,36 +16,16 @@ public class AcidRain : MonoBehaviour
         Destroy(gameObject, time);
     }
 
-    // void OnTriggerEnter(Collider col)
-    // {
-    //     if (col.tag == "item")
-    //     {
-    //         Item = col.gameObject;
-    //         // canPickUp = true;
-    //         y = col.gameObject;
-    //         text.text = "Press F to pick up";
-    //         pickUpText.SetActive(true);
-    //     }
-    // }
     private void OnTriggerStay(Collider target)
     {
         if (target.gameObject.tag.Contains("Enemy"))
         {
-            // if (Time.time > nextActionTime ) {
-            //     nextActionTime += period;
-            //     int damage = PlayerStatus.damageSkill(70);
-            //     target.gameObject.GetComponent<Spider>().TakeDamage(70*Time.deltaTime);
-            // }else if(Time.time > cooldownTime){
-            //     cooldownTime += periodC;
-            // }else{
-            //     nextActionTime = 0.0f;
-            //     cooldownTime = 0.0f;
-            // }
+
             if (Time.time > nextActionTime ) {
                 nextActionTime += period;
-                // int damage = PlayerStatus.damageSkill(70);
+                int damage = PlayerStatus.damageSkill(1);
                 target.gameObject.GetComponent<Enemy>().Poison();
-                // Instantiate(hit, gameObject.transform.position, gameObject.transform.rotation);
+                target.gameObject.GetComponent<Enemy>().TakeDamaged(damage*Time.deltaTime,ElementType.Water);
             }else if(Time.time > cooldownTime){
                 cooldownTime += periodC;
             }else{

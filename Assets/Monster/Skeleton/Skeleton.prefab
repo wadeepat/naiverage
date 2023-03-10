@@ -3246,13 +3246,13 @@ MonoBehaviour:
   attackType: close
   monsterType: normal
   monsterElement: 0
-  defense: 0
-  resist: 0
+  defense: 20
+  resist: 20
   elementType: 3
   imageElement: {fileID: 0}
   projectileObj: {fileID: 0}
   firePoint: {fileID: 0}
-  maxHealthPoint: 100
+  maxHealthPoint: 200
   attackCooldown: 1
   stayCooldown: 3
   chaseSpeed: 3

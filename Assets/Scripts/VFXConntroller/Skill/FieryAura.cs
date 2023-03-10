@@ -30,19 +30,8 @@ public class FieryAura : MonoBehaviour
     {
         if (target.gameObject.tag.Contains("Enemy"))
         {
-            // if (Time.time > nextActionTime ) {
-            //     nextActionTime += period;
-            //     int damage = PlayerStatus.damageSkill(70);
-            //     target.gameObject.GetComponent<Spider>().TakeDamage(70*Time.deltaTime);
-            // }else if(Time.time > cooldownTime){
-            //     cooldownTime += periodC;
-            // }else{
-            //     nextActionTime = 0.0f;
-            //     cooldownTime = 0.0f;
-            // }
             if (Time.time > nextActionTime ) {
                 nextActionTime += period;
-                // int damage = PlayerStatus.damageSkill(70);
                 target.gameObject.GetComponent<Enemy>().TakeDamaged(0.1f, ElementType.Fire);
             }else if(Time.time > cooldownTime){
                 cooldownTime += periodC;

@@ -2260,8 +2260,8 @@ MonoBehaviour:
   attackType: close
   monsterType: normal
   monsterElement: 0
-  defense: 0
-  resist: 0
+  defense: 10
+  resist: 10
   elementType: 0
   imageElement: {fileID: 0}
   projectileObj: {fileID: 0}
@@ -2271,7 +2271,7 @@ MonoBehaviour:
   stayCooldown: 2
   chaseSpeed: 3.5
   chaseRange: 8
-  stoppingDistance: 1
+  stoppingDistance: 1.3
   normalSound: {fileID: -6298485271774624607}
   attackSound: {fileID: -1868899086871226501}
 --- !u!95 &8733751807225445106
