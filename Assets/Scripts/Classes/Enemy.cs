@@ -283,6 +283,7 @@ public class Enemy : MonoBehaviour
     }
     public void Died()
     {
+        MagicPearls.GetPearl(20);
         agent.enabled = false;
         if (monsterType == "normal") Destroy(gameObject, 7f);
         isDie = true;

@@ -102,8 +102,8 @@ public class Database : MonoBehaviour
         itemQuestList.Add(new Item(0, "None", "None", Resources.Load<Sprite>("0"), 0));
         itemQuestList.Add(new Item(1, "Soul", "Quest", Resources.Load<Sprite>("q1"), 0));
         itemQuestList.Add(new Item(2, "Chicken", "Quest", Resources.Load<Sprite>("chick"), 0));
-        itemQuestList.Add(new Item(3, "Picture", "Quest", Resources.Load<Sprite>("q3"), 0));
-        itemQuestList.Add(new Item(4, "Book", "Quest", Resources.Load<Sprite>("q4"), 0));
+        itemQuestList.Add(new Item(3, "Picture", "Quest", Resources.Load<Sprite>("skb2"), 0));
+        itemQuestList.Add(new Item(4, "Book", "Quest", Resources.Load<Sprite>("skb2"), 0));
     }
     private void AddPotionList()
     {
@@ -1757,7 +1757,7 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 55,
-                questName = $"บันทึกของหนังสือ (1/2)",
+                questName = $"บันทึกจากหนังสือ (1/2)",
                 questDescription = $"ตามหาหนังสือที่ชั้นวางหนังสืออยู่ในปราสาท {ColorText("town", "Calford")}",
                 location = SceneIndex.CalfordCastle,
                 MPReward = 0,
@@ -1765,7 +1765,7 @@ public class Database : MonoBehaviour
                 questCategory = 1,
                 objective = new Quest.Objective()
                 {
-                    objectiveId = 3,
+                    objectiveId = 4,
                     isQuestItem = true,
                     type = Quest.Objective.Type.collect,
                     amount = 1,
@@ -1788,7 +1788,7 @@ public class Database : MonoBehaviour
             new Quest()
             {
                 questId = 56,
-                questName = $"บันทึกของหนังสือ (2/2)",
+                questName = $"บันทึกจากหนังสือ (2/2)",
                 questDescription = $"นำหนังสือไปมอบให้กับ{ColorText("char", "คุณตา")} ที่เมือง {ColorText("town", "Naver")}",
                 location = SceneIndex.NaverTown,
                 MPReward = 1500,
@@ -1823,13 +1823,13 @@ public class Database : MonoBehaviour
                 questCategory = 1,
                 objective = new Quest.Objective()
                 {
-                    objectiveId = (int)MonsterId.Skeleton,
+                    objectiveId = (int)MonsterId.Venom,
                     type = Quest.Objective.Type.kill,
                     amount = 15,
                 },
                 prepareAction = () =>
                 {
-                    StageHandler.instance.EventTrigger("FightForGuard");
+                    StageHandler.instance.EventTrigger("FightVenom");
                 },
                 compleltedAction = () =>
                 {
@@ -1844,8 +1844,8 @@ public class Database : MonoBehaviour
                 questName = $"กำจัด {ColorText("monster", "Venom")} ให้{ColorText("char", "คุณตา")} (2/2)",
                 questDescription = $"ไปคุยกับ {ColorText("char", "คุณตา")} ที่เมือง {ColorText("town", "Naver")}",
                 location = SceneIndex.NaverTown,
-                MPReward = 700,
-                SBReward = "สกิลสุดพิเศษ",
+                MPReward = 1000,
+                SBReward = "หนังสือสกิล",
                 questCategory = 1,
                 objective = new Quest.Objective()
                 {
