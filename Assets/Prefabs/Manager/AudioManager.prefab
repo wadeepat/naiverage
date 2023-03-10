@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24300002, guid: 1465f4ffd9b8f5f4bb7fc140b374cde0, type: 2}
-  timeToFade: 3
+  timeToFade: 4
   timeElapsed: 0.2
   sounds:
   - s_name: pick
@@ -122,7 +122,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - s_name: battle
     clip: {fileID: 8300000, guid: 2512b141298794f4896233d9e61e67c6, type: 3}
-    volume: 0.85
+    volume: 0.75
     pitch: 1
     loop: 1
     source: {fileID: 0}

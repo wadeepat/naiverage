@@ -292,7 +292,6 @@ public class Enemy : MonoBehaviour
     {
         StayThisPosition();
         hp -= CalDamage(damageAmount, element);
-        Debug.Log(damageAmount);
         if (hp <= 0)
         {
             hp = 0;

@@ -2417,8 +2417,8 @@ MonoBehaviour:
   attackType: range
   monsterType: normal
   monsterElement: 0
-  defense: 0
-  resist: 0
+  defense: 10
+  resist: 10
   elementType: 2
   imageElement: {fileID: 0}
   projectileObj: {fileID: 436235605249735183, guid: e89459fd413e0da40a2d85b5fb697439, type: 3}
@@ -2429,6 +2429,8 @@ MonoBehaviour:
   chaseSpeed: 2.5
   chaseRange: 10
   stoppingDistance: 1
+  normalSound: {fileID: 0}
+  attackSound: {fileID: 0}
 --- !u!95 &9202913227313693670
 Animator:
   serializedVersion: 4

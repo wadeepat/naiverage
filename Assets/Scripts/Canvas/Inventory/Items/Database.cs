@@ -74,15 +74,15 @@ public class Database : MonoBehaviour
     private void AddSkillList()
     {
         skillList.Add(new Skill(0, " ", " ", Resources.Load<Sprite>("0"), 0, true, 0, 0, 0, 0));
-        skillList.Add(new Skill(1, "SK1", "None", Resources.Load<Sprite>("sk1"), 0, false, 1, 0, 1, 500));
-        skillList.Add(new Skill(2, "SK2", "None", Resources.Load<Sprite>("sk2"), 0, false, 2, 0, 1, 1000));
-        skillList.Add(new Skill(3, "SK3", "None", Resources.Load<Sprite>("sk3"), 0, false, 3, 0, 1, 1500));
-        skillList.Add(new Skill(4, "SK4", "None", Resources.Load<Sprite>("sk4"), 0, false, 4, 0, 1, 2000));
-        skillList.Add(new Skill(5, "SK5", "None", Resources.Load<Sprite>("sk5"), 0, false, 1, 0, 1, 2500));
-        skillList.Add(new Skill(6, "SK6", "None", Resources.Load<Sprite>("sk6"), 0, false, 2, 0, 1, 3000));
+        skillList.Add(new Skill(1, "Blaze", "None", Resources.Load<Sprite>("sk1"), 0, false, 1, 0, 1, 500));
+        skillList.Add(new Skill(2, "Rain Fall", "None", Resources.Load<Sprite>("sk2"), 0, false, 2, 0, 1, 1000));
+        skillList.Add(new Skill(3, "Breeze", "None", Resources.Load<Sprite>("sk3"), 0, false, 3, 0, 1, 1500));
+        skillList.Add(new Skill(4, "Fire High", "None", Resources.Load<Sprite>("sk4"), 0, false, 4, 0, 1, 2000));
+        skillList.Add(new Skill(5, "Wind Stun", "None", Resources.Load<Sprite>("sk5"), 0, false, 1, 0, 1, 2500));
+        skillList.Add(new Skill(6, "Burn", "None", Resources.Load<Sprite>("sk6"), 0, false, 2, 0, 1, 3000));
         skillList.Add(new Skill(7, "Chicken Wings", "None", Resources.Load<Sprite>("sk7"), 0, false, 3, 0, 1, 3500));
-        skillList.Add(new Skill(8, "SK8", "None", Resources.Load<Sprite>("sk8"), 0, false, 4, 0, 1, 4000));
-        skillList.Add(new Skill(9, "SK9", "None", Resources.Load<Sprite>("sk9"), 0, false, 4, 0, 1, 4500));
+        skillList.Add(new Skill(8, "Slash", "None", Resources.Load<Sprite>("sk8"), 0, false, 4, 0, 1, 4000));
+        skillList.Add(new Skill(9, "Acid Aura", "None", Resources.Load<Sprite>("sk9"), 0, false, 4, 0, 1, 4500));
     }
     private void AddSkillbookList()
     {
@@ -253,6 +253,12 @@ public class Database : MonoBehaviour
                     add.AddSkillBook(1);
                     add.AddSkillBook(2);
                     add.AddSkillBook(3);
+                    // add.AddSkillBook(4);
+                    // add.AddSkillBook(5);
+                    // add.AddSkillBook(6);
+                    // add.AddSkillBook(7);
+                    // add.AddSkillBook(8);
+                    // add.AddSkillBook(9);
                     ActionHandler.instance.ActivateTutorialCard("UsePotion", false);
                     // DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetTutorialFiles("CompletedUsePotion"));
                     DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(0, "CompletedUsePotion"));

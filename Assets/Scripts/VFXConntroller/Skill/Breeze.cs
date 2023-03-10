@@ -29,8 +29,8 @@ public class Breeze : MonoBehaviour
         {
             if (Time.time > nextActionTime ) {
                 nextActionTime += period;
-                int damage = PlayerStatus.damageSkill(70);
-                target.gameObject.GetComponent<Enemy>().TakeDamaged(70*Time.deltaTime,ElementType.Wind);
+                int damage = PlayerStatus.damageSkill(10);
+                target.gameObject.GetComponent<Enemy>().TakeDamaged(damage*Time.deltaTime,ElementType.Wind);
 
             }else if(Time.time > cooldownTime){
                 cooldownTime += periodC;

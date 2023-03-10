@@ -11,39 +11,25 @@ public class Slash : MonoBehaviour
     float period = 0.5f;
     float cooldownTime = 0.0f;
     float periodC = 0.5f;
+    private bool hit;
     void Start()
-    {
+    {   
+        hit = true;
         Destroy(gameObject, time);
     }
 
-    // void OnTriggerEnter(Collider col)
-    // {
-    //     if (col.tag == "item")
-    //     {
-    //         Item = col.gameObject;
-    //         // canPickUp = true;
-    //         y = col.gameObject;
-    //         text.text = "Press F to pick up";
-    //         pickUpText.SetActive(true);
-    //     }
-    // }
     private void OnTriggerStay(Collider target)
     {
         if (target.gameObject.tag.Contains("Enemy"))
         {
-            // if (Time.time > nextActionTime ) {
-            //     nextActionTime += period;
-            //     int damage = PlayerStatus.damageSkill(70);
-            //     target.gameObject.GetComponent<Spider>().TakeDamage(70*Time.deltaTime);
-            // }else if(Time.time > cooldownTime){
-            //     cooldownTime += periodC;
-            // }else{
-            //     nextActionTime = 0.0f;
-            //     cooldownTime = 0.0f;
-            // }
+
             if (Time.time > nextActionTime ) {
                 nextActionTime += period;
-                // int damage = PlayerStatus.damageSkill(70);
+                if(hit){
+                    int damage = PlayerStatus.damageSkill(30);
+                    target.gameObject.GetComponent<Enemy>().TakeDamaged(damage,ElementType.Physical);
+                    hit = false;
+                }
                 target.gameObject.GetComponent<Enemy>().Agony();
                 // Instantiate(hit, gameObject.transform.position, gameObject.transform.rotation);
             }else if(Time.time > cooldownTime){

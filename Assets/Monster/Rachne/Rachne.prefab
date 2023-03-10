@@ -590,18 +590,20 @@ MonoBehaviour:
   attackType: range
   monsterType: boss
   monsterElement: 0
-  defense: 0
-  resist: 0
+  defense: 50
+  resist: 50
   elementType: 2
   imageElement: {fileID: 0}
   projectileObj: {fileID: 100006, guid: 97afcf5b381c6aa4a95aed170483c974, type: 3}
   firePoint: {fileID: 2207599077941749408}
-  maxHealthPoint: 300
+  maxHealthPoint: 500
   attackCooldown: 2
   stayCooldown: 4
   chaseSpeed: 2.5
   chaseRange: 15
   stoppingDistance: 5
+  normalSound: {fileID: 0}
+  attackSound: {fileID: 0}
   comboCd:
   - 2
   - 3
