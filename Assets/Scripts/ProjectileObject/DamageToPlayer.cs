@@ -7,7 +7,7 @@ public class DamageToPlayer : MonoBehaviour
     [SerializeField] public int damageAmount = 20;
     [SerializeField] private GameObject explosionFx;
     // [SerializeField] private AudioClip explosionClip;
-    [SerializeField] private AudioClip explosionSound;
+    [SerializeField] private AudioSource explosionSound;
     public void SetDamage(int damage)
     {
         this.damageAmount = damage;
@@ -25,13 +25,7 @@ public class DamageToPlayer : MonoBehaviour
             if (explosionFx)
             {
                 GameObject explosion = Instantiate(explosionFx, transform.position, transform.rotation);
-                if (explosionSound)
-                {
-                    AudioSource sound = explosion.AddComponent<AudioSource>();
-                    sound.clip = explosionSound;
-                    sound.volume = 0.35f;
-                    sound.Play();
-                }
+                if (explosionSound) explosionSound.Play();
                 Destroy(explosion, 1);
                 Destroy(gameObject);
             }

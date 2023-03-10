@@ -39703,7 +39703,7 @@ MonoBehaviour:
     model: {fileID: 6051786700028988739, guid: 509a8df841b78f94a9864f85c412e51e, type: 3}
   - monsterId: 8
     model: {fileID: 924416398459543054, guid: 27e63aa5babe5e247917dbe7356a2360, type: 3}
-  isSpawn: 1
+  isSpawn: 0
   enableTest: 0
   capacity: 5
   monsterSpawnLists:
@@ -39714,9 +39714,9 @@ MonoBehaviour:
   - monsterId: 3
     amount: 0
   monsterTestLists:
-  - monsterId: 8
+  - monsterId: 7
     amount: 1
-  spawnTimeDelay: 20
+  spawnTimeDelay: 30
 --- !u!4 &1878787634
 Transform:
   m_ObjectHideFlags: 0

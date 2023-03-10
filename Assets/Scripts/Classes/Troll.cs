@@ -9,9 +9,11 @@ public class Troll : Enemy
     [Header("Troll details")]
     [SerializeField] private GameObject weaponColliderObject;
     [SerializeField] private float[] comboCd = new float[] { 1f, 2f, 2.5f, 2.5f };
+    [SerializeField] private AudioSource lowSound;
+    [SerializeField] private AudioSource heavySound;
     private int comboNo;
     private ColliderObject weaponColliderScript;
-    private float changeTime = 3f;
+    private float changeTime = 5f;
     private float changeTimer;
     protected override void Start()
     {
@@ -66,7 +68,7 @@ public class Troll : Enemy
             animator.SetFloat("accelerate", (agent.speed - moveSpeed) / (chaseSpeed - moveSpeed));
 
             agent.SetDestination(target.position);
-            float distance = Vector2.Distance(target.position, gameObject.transform.position);
+            float distance = Vector3.Distance(target.position, transform.position);
             if (distance < agent.stoppingDistance)
             {
                 TrollCombo(comboNo);
@@ -113,28 +115,30 @@ public class Troll : Enemy
     }
     private bool LowAttack(int damage = 10)
     {
-        if (target) return false;
+        if (lowSound) lowSound.Play();
+        if (target == null) return false;
 
         if (weaponColliderScript.isCollided)
         {
             // Debug.LogWarning("Low Attack hit");
             if (target.gameObject.tag == "Player")
-                target.gameObject.GetComponent<PlayerStatus>().TakeDamaged(damage);
-            else target.gameObject.GetComponent<Victim>().TakeDamaged(damage, elementType);
+                target.gameObject.GetComponent<PlayerStatus>().TakeDamaged(atk);
+            else target.gameObject.GetComponent<Victim>().TakeDamaged(atk, elementType);
             return true;
         }
         return false;
     }
     private bool HeavyAttack(int damage = 20)
     {
-        if (target) return false;
+        if (heavySound) heavySound.Play();
+        if (target == null) return false;
         // transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y - 25, transform.rotation.z);
         if (weaponColliderScript.isCollided)
         {
             // Debug.LogWarning("Heavt Attack hit");
             if (target.gameObject.tag == "Player")
-                target.gameObject.GetComponent<PlayerStatus>().TakeDamaged(damage);
-            else target.gameObject.GetComponent<Victim>().TakeDamaged(damage, elementType);
+                target.gameObject.GetComponent<PlayerStatus>().TakeDamaged(atk + 10);
+            else target.gameObject.GetComponent<Victim>().TakeDamaged(atk + 10, elementType);
             return true;
         }
         return false;

@@ -64,10 +64,6 @@ public class MonsterSpawn : MonoBehaviour
                     SpawnMonster((int)monsterSpawnLists[Random.Range(0, monsterSpawnLists.Length)].monsterId, 1, false);
 
                 }
-                // foreach (MonsterAmount m in monsterSpawnLists)
-                // {
-                //     SpawnMonster((int)m.monsterId, m.amount, false);
-                // }
                 spawnTimer = 0;
             }
         }

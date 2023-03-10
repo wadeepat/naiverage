@@ -18,7 +18,7 @@ public class ConfirmationPopupMenu : MonoBehaviour
     }
     private void Update()
     {
-        if (InputManager.instance.GetBackPressed()) cancelBtn.onClick.Invoke();
+        if (InputManager.instance.GetBackPressed() && cancelBtn.gameObject.activeSelf) cancelBtn.onClick.Invoke();
         else if (InputManager.instance.GetSubmitPressed()) confirmBtn.onClick.Invoke();
     }
     public void ActivateMenu(string displayText, bool enableCancelBtn, UnityAction confirmAction, UnityAction cancelAction)

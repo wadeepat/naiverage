@@ -83,10 +83,54 @@ public class Boss : Enemy
             }
         }
     }
+    protected override float CalDamage(float damageAmount, ElementType element)
+    {
+        // return base.CalDamage(damageAmount, element);
+        bool win = false;
+        switch (element)
+        {
+            case ElementType.Physical:
+                return damageAmount * (100.0f / (100 + defense + DefIncrease()));
+            case ElementType.Fire:
+                if (elementType == ElementType.Water) win = false;
+                else if (elementType == ElementType.Wind) win = true;
+                else return damageAmount * (100.0f / (100 + resist + DefIncrease()));
+                break;
+            case ElementType.Water:
+                if (elementType == ElementType.Wind) win = false;
+                else if (elementType == ElementType.Fire) win = true;
+                else return damageAmount * (100.0f / (100 + resist + DefIncrease()));
+                break;
+            case ElementType.Wind:
+                if (elementType == ElementType.Fire) win = false;
+                else if (elementType == ElementType.Water) win = true;
+                else return damageAmount * (100.0f / (100 + resist + DefIncrease()));
+                break;
+        }
+        int num = Random.Range(1, 101);
+        if (!win)
+        {
+            if (num <= 50)
+            {
+                return 0f;
+            }
+            else
+            {
+                return damageAmount * (100.0f / (100 + (resist * 2f)));
+            }
+        }
+        else
+        {
+            if (num <= 70)
+            {
+                return damageAmount * 100.0f / (100 + (resist)) * 2f;
+            }
+        }
+        return damageAmount * (100.0f / (100 + resist));
+    }
     public override void OnCooldownStateEnter()
     {
         // base.OnCooldownStateEnter();
-        Debug.Log("cooldown from boss");
         ResetCombo();
         NextTurn();
     }
@@ -126,6 +170,8 @@ public class Boss : Enemy
     {
         if (target) transform.LookAt(target);
         GameObject cainFire = Instantiate(fireObject[no], firePoint.position, transform.rotation);
+
+        cainFire.GetComponent<DamageToPlayer>().SetDamage(CriDmg() + atk + no * 5);
     }
     public void Ultimate()
     {
@@ -133,6 +179,7 @@ public class Boss : Enemy
         {
             if (target) transform.LookAt(target);
             GameObject ultimate = Instantiate(ultiObject, firePoint.position, transform.rotation);
+            ultimate.GetComponent<DamageToPlayer>().SetDamage((int)(atk * 1.3f) + CriDmg());
         }
         else
         {
@@ -160,6 +207,19 @@ public class Boss : Enemy
             criDamageBuff = true;
         }
         // NextTurn();
+    }
+    private int CriDmg()
+    {
+        if (criDamageBuff)
+        {
+            if (Random.Range(0, 10) < 3) return (int)(atk * 0.3f);
+        }
+        return 0;
+    }
+    private int DefIncrease()
+    {
+        if (defBuff) return (int)(defense * 0.2);
+        return 0;
     }
     private void NextTurn()
     {

@@ -23,8 +23,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected string attackType = "close";
     [SerializeField] protected string monsterType = "normal"; //normal will patrol, boss/mini boss won't
     [SerializeField] protected int monsterElement = 0; // 0 = normal, 1 = fire, 2 = water, 3 = wind 
-    [SerializeField] protected int defense;
-    [SerializeField] protected int resist;
+
     [SerializeField] protected ElementType elementType;
     [SerializeField] protected Image imageElement;
 
@@ -34,6 +33,9 @@ public class Enemy : MonoBehaviour
 
     [Header("Enemy Stats")]
     [SerializeField] protected float maxHealthPoint;
+    [SerializeField] protected int atk = 20;
+    [SerializeField] protected int defense;
+    [SerializeField] protected int resist;
 
     [Header("Enemy States")]
     [SerializeField] protected float attackCooldown = 2f;
@@ -103,6 +105,7 @@ public class Enemy : MonoBehaviour
         }
         healthBar.SetActive(false);
         if (normalSound) normalSound.pitch = Random.Range(0.4f, 1.0f);
+        if (PlayerManager.playerEvents["backToPast"]) { atk *= 2; }
     }
     protected virtual void Update()
     {
@@ -155,14 +158,14 @@ public class Enemy : MonoBehaviour
     {
         if (target != null)
         {
-            attackSound?.Play();
+            if (attackSound) attackSound.Play();
             transform.LookAt(target);
             float distance = Vector2.Distance(target.position, transform.position);
 
             if (distance < attackRange)
             {
                 //TODO attack target
-                AttackTargetInRange(attackRange, 20);
+                AttackTargetInRange(attackRange, atk);
                 // attackTimer = 0;
             }
 
@@ -179,7 +182,9 @@ public class Enemy : MonoBehaviour
     }
     public virtual void ShootProjectileObject()
     {
+        if (attackSound) attackSound.Play();
         GameObject pObject = Instantiate(projectileObj, firePoint.position, transform.rotation);
+        pObject.GetComponent<DamageToPlayer>().SetDamage(atk);
         cooldownTimer = 0;
         cooldownTime = attackCooldown;
         animator.SetBool("isAttacking", false);
@@ -285,6 +290,7 @@ public class Enemy : MonoBehaviour
     {
         MagicPearls.GetPearl(20);
         agent.enabled = false;
+        if (normalSound) normalSound.Stop();
         if (monsterType == "normal") Destroy(gameObject, 7f);
         isDie = true;
     }
@@ -343,7 +349,7 @@ public class Enemy : MonoBehaviour
         // Collider[] colliders = Physics.OverlapSphere(transform.position, 7f, LayerMask.NameToLayer("Enemy"));
         foreach (GameObject col in enemies)
         {
-            if (Vector3.Distance(transform.position, col.transform.position) <= 7f)
+            if (Vector3.Distance(transform.position, col.transform.position) <= 8f)
             {
                 // Debug.Log("Provoke: " + col.name);
                 col.GetComponent<Enemy>()?.Provoked();
@@ -458,7 +464,7 @@ public class Enemy : MonoBehaviour
         agent.speed = moveSpeed;
 
     }
-    public float CalDamage(float damageAmount, ElementType element)
+    virtual protected float CalDamage(float damageAmount, ElementType element)
     {
         // 0 = normal, 1 = fire, 2 = water, 3 = wind 
         bool win = false;

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Rachne : Enemy
 {
+    [Header("Rachne combo")]
     [SerializeField] private float[] comboCd = new float[] { 2f, 3f };
     private MonsterSpawn monsterSpawn;
     private int comboCounter = -1;
@@ -80,6 +81,8 @@ public class Rachne : Enemy
     public override void ShootProjectileObject()
     {
         GameObject poision = Instantiate(projectileObj, firePoint.position, transform.rotation);
+        poision.GetComponent<DamageToPlayer>().SetDamage(atk);
+        poision.transform.LookAt(target);
         // cooldownTimer = 0;
     }
     public void SummonHenchman()

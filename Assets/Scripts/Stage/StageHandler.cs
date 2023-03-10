@@ -113,7 +113,7 @@ public class StageHandler : MonoBehaviour
                         QuestLog.GetActiveQuestById(55) == null &&
                         QuestLog.GetActiveQuestById(57) == null)
                         NaverTownEvents("SideC3");
-                        
+
                 }
                 if (!PlayerManager.instance.mapEnable[SceneIndex.CalfordCastle])
                     n_calfordGate.gameObject.SetActive(false);
@@ -152,7 +152,10 @@ public class StageHandler : MonoBehaviour
                 AudioManager.instance.Play("caveBackground");
                 if (QuestLog.GetActiveQuestById(24) != null ||
                     QuestLog.GetActiveQuestById(37) != null)
+                {
                     SpawnMonsterAt(0, MonsterId.Troll, 1);
+                    spawn0.isSpawn = true;
+                }
                 break;
             case SceneIndex.BlackScene:
                 AudioManager.instance.Play("endingBackground");
