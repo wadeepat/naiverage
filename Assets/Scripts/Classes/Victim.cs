@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
-
+using TMPro;
 public class Victim : MonoBehaviour
 {
+    [Header("Stats")]
     [SerializeField] private int hpMax;
 
     [SerializeField] protected int defense;
@@ -15,6 +16,8 @@ public class Victim : MonoBehaviour
     [SerializeField] private const float randomAngleTime = 1f;
     [SerializeField] private const float STAY_TIME = 1.5f;
     [SerializeField] private const float WALK_TIME = 3f;
+    [Header("Floating UI")]
+    [SerializeField] protected GameObject floatingDamage;
 
     //components
     private NavMeshAgent agent;
@@ -114,13 +117,20 @@ public class Victim : MonoBehaviour
     public void TakeDamaged(float damageAmount, ElementType element)
     {
         hp -= CalDamage(damageAmount, element);
-        Debug.Log(damageAmount);
+        if (floatingDamage) ShowFloatingDamage((int)CalDamage(damageAmount, element));
+        // Debug.Log(damageAmount);
         if (hp <= 0)
         {
             hp = 0;
             healthBar.SetActive(false);
             Died();
         }
+    }
+    private void ShowFloatingDamage(int damage)
+    {
+        var text = Instantiate(floatingDamage, transform.position, Quaternion.identity, transform);
+        if (damage == 0) text.GetComponent<TextMeshPro>().text = "miss";
+        else text.GetComponent<TextMeshPro>().text = damage.ToString();
     }
     public float CalDamage(float damageAmount, ElementType element)
     {

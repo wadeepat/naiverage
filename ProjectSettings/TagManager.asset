@@ -16,6 +16,7 @@ TagManager:
   - Trigger
   - MiniGame
   - Victim
+  - Text
   layers:
   - Default
   - TransparentFX

@@ -606,6 +606,7 @@ MonoBehaviour:
   stoppingDistance: 5
   normalSound: {fileID: 0}
   attackSound: {fileID: 313401008548443309}
+  floatingDamage: {fileID: 3945471509416292733, guid: fc04917d95066fb47a55d5e4afa8f8b9, type: 3}
   comboCd:
   - 2
   - 3

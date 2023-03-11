@@ -362,6 +362,7 @@ MonoBehaviour:
   stoppingDistance: 1.5
   normalSound: {fileID: 0}
   attackSound: {fileID: 2759140761180830173}
+  floatingDamage: {fileID: 3945471509416292733, guid: fc04917d95066fb47a55d5e4afa8f8b9, type: 3}
 --- !u!95 &5339342570760661774
 Animator:
   serializedVersion: 4

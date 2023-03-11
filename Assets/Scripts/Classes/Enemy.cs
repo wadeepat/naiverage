@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Collider))]
@@ -47,6 +48,8 @@ public class Enemy : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] protected AudioSource normalSound;
     [SerializeField] protected AudioSource attackSound;
+    [Header("Floating UI")]
+    [SerializeField] protected GameObject floatingDamage;
     //objects
     protected Transform target;
     protected NavMeshAgent agent;
@@ -298,6 +301,7 @@ public class Enemy : MonoBehaviour
     {
         StayThisPosition();
         hp -= CalDamage(damageAmount, element);
+        if (floatingDamage) ShowFloatingDamage((int)CalDamage(damageAmount, element));
         if (hp <= 0)
         {
             hp = 0;
@@ -530,6 +534,12 @@ public class Enemy : MonoBehaviour
         }
         imageElement = this.transform.Find("Canvas/HealthBar/Element/type").GetComponent<Image>();
         imageElement.sprite = spriteElement;
+    }
+    protected void ShowFloatingDamage(int damage)
+    {
+        var text = Instantiate(floatingDamage, transform.position, Quaternion.identity, transform);
+        if (damage == 0) text.GetComponent<TextMeshPro>().text = "miss";
+        else text.GetComponent<TextMeshPro>().text = damage.ToString();
     }
     public void AttackVictim()
     {

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
@@ -205,8 +206,18 @@ namespace StarterAssets
             }
             else if (InputManager.instance.GetMapPressed())
             {
-                // map.ActivateMenu();
-                map.ActivateMenu();
+                if (StageHandler.instance.activeSceneIndex < (int)SceneIndex.RachneField)
+                    map.ActivateMenu();
+                else
+                {
+                    if (GameObject.FindGameObjectWithTag("Text") == null)
+                    {
+                        var floatingText = Resources.Load("GUIs/FloatingText");
+                        GameObject game = floatingText as GameObject;
+                        var text = Instantiate(game, GameObject.Find("Canvas").transform);
+                        text.GetComponent<TextMeshProUGUI>().text = "ไม่สามาถใช้ map ได้ในสถานที่นี้";
+                    }
+                }
             }
             // Debug.Log("test" + _attackInfo.noOfClicks);
 

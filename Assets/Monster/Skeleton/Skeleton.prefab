@@ -3262,6 +3262,7 @@ MonoBehaviour:
   stoppingDistance: 1.5
   normalSound: {fileID: 0}
   attackSound: {fileID: 7487203842204513269}
+  floatingDamage: {fileID: 3945471509416292733, guid: fc04917d95066fb47a55d5e4afa8f8b9, type: 3}
 --- !u!82 &7487203842204513269
 AudioSource:
   m_ObjectHideFlags: 0
