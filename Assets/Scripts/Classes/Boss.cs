@@ -171,7 +171,7 @@ public class Boss : Enemy
         if (target) transform.LookAt(target);
         GameObject cainFire = Instantiate(fireObject[no], firePoint.position, transform.rotation);
 
-        cainFire.GetComponent<DamageToPlayer>().SetDamage(CriDmg() + atk + no * 5);
+        cainFire.transform.Find("Collider").GetComponent<DamageToPlayer>().SetDamage(CriDmg() + atk + no * 5);
     }
     public void Ultimate()
     {
