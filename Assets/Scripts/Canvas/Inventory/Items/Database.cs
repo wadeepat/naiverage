@@ -883,6 +883,8 @@ public class Database : MonoBehaviour
                 {
 
                     StageHandler.instance.EventTrigger("ExitGate");
+                    InvenSkillBook add = GameObject.Find("Canvas/Panel").transform.Find("Character panel").Find("All funtion").Find("Skill").GetComponent<InvenSkillBook>();
+                    add.AddSkillBook(5);
                     QuestLog.AddQuest(questList[25]);
                 },
             }
@@ -1272,6 +1274,8 @@ public class Database : MonoBehaviour
                 },
                 compleltedAction = () =>
                 {
+                    InvenSkillBook add = GameObject.Find("Canvas/Panel").transform.Find("Character panel").Find("All funtion").Find("Skill").GetComponent<InvenSkillBook>();
+                    add.AddSkillBook(6);
                     StageHandler.instance.EventTrigger("ExitGate");
                     QuestLog.AddQuest(questList[38]);
                 },
@@ -1417,6 +1421,8 @@ public class Database : MonoBehaviour
                 },
                 compleltedAction = () =>
                 {
+                    InvenSkillBook add = GameObject.Find("Canvas/Panel").transform.Find("Character panel").Find("All funtion").Find("Skill").GetComponent<InvenSkillBook>();
+                    add.AddSkillBook(6);
                     QuestLog.AddQuest(questList[43]);
                 }
             }
