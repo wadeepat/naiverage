@@ -37,6 +37,10 @@ public class MonsterSpawn : MonoBehaviour
         {
             waypoints.Add(wp);
         }
+
+    }
+    private void Start()
+    {
         if (enableTest)
         {
             foreach (MonsterAmount m in monsterTestLists)
@@ -48,6 +52,7 @@ public class MonsterSpawn : MonoBehaviour
         {
             foreach (MonsterAmount m in monsterSpawnLists)
             {
+                if (transform.childCount >= capacity + 1) break;
                 SpawnMonster((int)m.monsterId, m.amount, false);
             }
         }
