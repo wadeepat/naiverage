@@ -541,7 +541,7 @@ MonoBehaviour:
   projectileObj: {fileID: 0}
   firePoint: {fileID: 8744896438955046005}
   maxHealthPoint: 1500
-  atk: 20
+  atk: 13
   defense: 80
   resist: 80
   attackCooldown: 2
@@ -553,10 +553,10 @@ MonoBehaviour:
   attackSound: {fileID: 0}
   floatingDamage: {fileID: 3945471509416292733, guid: fc04917d95066fb47a55d5e4afa8f8b9, type: 3}
   comboCd:
-  - 0.75
-  - 1.5
-  - 0.25
-  - 2.5
+  - 1.2
+  - 2
+  - 1
+  - 3
   fireObject:
   - {fileID: 2681805889513376796, guid: 44d01d48237d4f54995c90f3b5fffe00, type: 3}
   - {fileID: 844755845074389993, guid: 56f45c323942cf247a62fcd8df761319, type: 3}

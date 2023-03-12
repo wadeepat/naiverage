@@ -110,7 +110,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     เจ้ากล้าหันหลังให้กลับข้าอย่างนั้นหรือ!!!
     กล้าดีอย่างไร!!!
     //#action:Ending1
-    #event:FightWithAbel
+    #eventEnd:FightWithAbel
 ->DONE
 ===DefeatAbel===
     #speaker:Abel
@@ -124,7 +124,7 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     ช่วยไม่ได้นะ
     ข้าไม่คิดเลยว่าเราจะต้องต่อสู้กันแบบนี้
     เอาล่ะ เรามาตัดสินกัน
-    #event:FightWithCain
+    #eventEnd:FightWithCain
 ->DONE
 ===DefeatCain===
     #speaker:Cain 

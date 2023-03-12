@@ -42,7 +42,7 @@ public class PlayerManager : MonoBehaviour, IDataPersistence
     }
     public void LoadData(GameData data)
     {
-        Debug.Log("Load from PlayerManager");
+        // Debug.Log("Load from PlayerManager");
         this.playerLocation = data.playerLocation;
         // Debug.Log(this.playerLocation);
         this.mapEnable = data.mapEnable;

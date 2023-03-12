@@ -996,10 +996,10 @@ MonoBehaviour:
   attackSound: {fileID: 0}
   floatingDamage: {fileID: 3945471509416292733, guid: fc04917d95066fb47a55d5e4afa8f8b9, type: 3}
   comboCd:
-  - 0.75
-  - 1.5
-  - 0.25
-  - 2.5
+  - 1
+  - 2
+  - 1
+  - 3
   fireObject:
   - {fileID: 2681805889513376796, guid: 26e707f6d8398a74eafb62633b0e2c86, type: 3}
   - {fileID: 844755845074389993, guid: a66400593a906fa458e7ff06935ba5ea, type: 3}

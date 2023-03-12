@@ -31,6 +31,7 @@ public class SettingsMenu : MonoBehaviour
     }
     public void onBackClicked()
     {
+        Debug.Log("disable at setting");
         this.DeactivateMenu();
         mainMenu?.ActivateMenu();
     }

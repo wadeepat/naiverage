@@ -2265,7 +2265,7 @@ MonoBehaviour:
   projectileObj: {fileID: 0}
   firePoint: {fileID: 0}
   maxHealthPoint: 100
-  atk: 20
+  atk: 15
   defense: 10
   resist: 10
   attackCooldown: 1

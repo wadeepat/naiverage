@@ -13382,7 +13382,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 358447440}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 2
   m_Height: 2.4
   m_Direction: 1
@@ -13419,8 +13419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c08b19ec3a84874dbc1f24d90567dc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idx: 6
-  inkJSON: {fileID: 4900000, guid: bf211ca00c0fd034bbe09a175e02fc14, type: 3}
+  idx: 3
+  inkJSON: {fileID: 0}
   quest: {fileID: 0}
   isSideQuest: 0
 --- !u!4 &358447449

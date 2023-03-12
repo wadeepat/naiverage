@@ -109,7 +109,6 @@ public class Crafting : MonoBehaviour
 
         if (a >= Database.potionList[craftableItemId].q1 && b >= Database.potionList[craftableItemId].q2 && c >= Database.potionList[craftableItemId].q3)
         {
-            AudioManager.instance.Play("craft");
             return true;
         }
         else
@@ -125,6 +124,7 @@ public class Crafting : MonoBehaviour
         int craftableItemId = craft[button].craftableItemId;
         if (CraftAbleFunction(craftableItemId))
         {
+            AudioManager.instance.Play("craft");
             a = Database.potionList[craftableItemId].q1;
             b = Database.potionList[craftableItemId].q2;
             c = Database.potionList[craftableItemId].q3;
