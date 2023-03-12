@@ -37,6 +37,10 @@ public class MonsterSpawn : MonoBehaviour
         {
             waypoints.Add(wp);
         }
+
+    }
+    private void Start()
+    {
         if (enableTest)
         {
             foreach (MonsterAmount m in monsterTestLists)

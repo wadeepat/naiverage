@@ -5485,11 +5485,11 @@ Avatar:
     988509136: Root/Global/Position/Hips/LowerBack/Spine/Spine1/Neck/Head/RightEyebrowMiddle/RightEyebrowMiddleAdjust
     793309915: Root/Global/Position/Hips/LowerBack/Spine/Spine1/Neck/Head/Mandible/LeftLipsInferior
     1609010662: Root/Global/Position/Hips/LowerBack/Spine/Spine1/Neck/Head/HeadAdjust
-    689321054: Root/Global/Position/Hips/LowerBack/Spine/Spine1/Neck/Head/LeftEye/LeftEyeGlobe
+    1523076325: Root/Global/Position/Hips/LowerBack/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightForeArmTwist/RightForeArmTwistAdjust
     3769711243: Root/Global/Position/Hips/LowerBack/Spine/Spine1/Neck/Head/NoseBase/NoseBaseAdjust
     3648415805: Root/Global/Position/Hips/LowerBack/Spine/Spine1/Neck/Head/LeftEye/LeftLowerLid
-    1523076325: Root/Global/Position/Hips/LowerBack/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightForeArmTwist/RightForeArmTwistAdjust
     1291033261: Root/Global/Position/Hips/LowerBack/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandFinger01_01/RightHandFinger01_02/RightHandFinger01_03
+    689321054: Root/Global/Position/Hips/LowerBack/Spine/Spine1/Neck/Head/LeftEye/LeftEyeGlobe
     1164066602: Root/Global/Position/Hips/LowerBack/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandFinger02_01/LeftHandFinger02_02/LeftHandFinger02_03
     1266469188: Root/Global/Position/Hips/LowerBack/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandFinger05_01/LeftHandFinger05_02
     3352536891: Root/Global/Position/Hips/LowerBack/Spine/Spine1/Neck/Head/LeftLowCheek
@@ -5536,8 +5536,8 @@ Avatar:
     224542192: Root/Global/Position/Hips/LeftUpLeg/LeftUpLegAdjust
     1378625489: Root/Global/Position/Hips/LowerBack/Spine/Spine1/Neck/Head/Mandible/LeftLips
     518646176: Root/Global/Position/Hips/LowerBack/Spine/Spine1/Neck/Head/NoseMiddle/NoseMiddleAdjust
-    1621067818: Root/Global/Position/Hips/LowerBack/Spine/Spine1/RightShoulder
     3404025121: Root/Global/Position/Hips/LowerBack/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandFinger02_01
+    1621067818: Root/Global/Position/Hips/LowerBack/Spine/Spine1/RightShoulder
     2161737935: Root/Global/Position/Hips/LowerBack/Spine/Spine1/Neck/Head/LeftEye/LeftUpperLid/LeftUpperLidAdjust
     4216412548: Root/Global/Position/Hips/LowerBack/LowerBackAdjust
     3535411670: Root/Global/Position/Hips/LowerBack/Spine/Spine1/Neck/Head/LeftNose/LeftNoseAdjust

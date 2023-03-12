@@ -19,6 +19,10 @@ public class InputTextUI : MonoBehaviour
     //     cancelBtn = transform.Find("CancelBtn").GetComponent<Button>();
     //     DeactivateMenu();
     // }
+    private void Update()
+    {
+        if (InputManager.instance.GetSubmitPressed()) confirmBtn.onClick.Invoke();
+    }
     public void ActivateMenu(string title, UnityAction<string> confirmAction, UnityAction cancelAction, string confirmText = "ยืนยัน", string cancelText = "เคลียร์")
     {
         Cursor.visible = true;
