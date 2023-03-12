@@ -36061,7 +36061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4484610305670636220, guid: b42ff388c9672a74e9d73f0115b502a4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CraftAbleFunction
+      value: CraftItem
       objectReference: {fileID: 0}
     - target: {fileID: 4484610305670636220, guid: b42ff388c9672a74e9d73f0115b502a4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
