@@ -26,5 +26,6 @@ public class FloatingText : MonoBehaviour
             transform.LookAt(target);
             transform.Rotate(new Vector3(0, 180, 0));
         }
+        transform.localPosition += new Vector3(0, 0.005f, 0);
     }
 }

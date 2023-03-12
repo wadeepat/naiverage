@@ -540,7 +540,7 @@ public class Enemy : MonoBehaviour
     {
         var text = Instantiate(floatingDamage, transform.position, Quaternion.identity, transform);
         if (damage == 0) text.GetComponent<TextMeshPro>().text = "miss";
-        else text.GetComponent<TextMeshPro>().text = damage.ToString();
+        else text.GetComponent<TextMeshPro>().text = damage.ToString("0.00");
     }
     public void AttackVictim()
     {
