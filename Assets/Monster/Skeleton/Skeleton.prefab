@@ -3258,7 +3258,7 @@ MonoBehaviour:
   attackCooldown: 2
   stayCooldown: 3
   chaseSpeed: 3
-  chaseRange: 7
+  chaseRange: 8.5
   stoppingDistance: 1.5
   normalSound: {fileID: 0}
   attackSound: {fileID: 7487203842204513269}

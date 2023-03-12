@@ -185,6 +185,7 @@ public class Enemy : MonoBehaviour
     }
     public virtual void ShootProjectileObject()
     {
+        if (target) transform.LookAt(target);
         if (attackSound) attackSound.Play();
         GameObject pObject = Instantiate(projectileObj, firePoint.position, transform.rotation);
         pObject.GetComponent<DamageToPlayer>().SetDamage(atk);
@@ -195,7 +196,7 @@ public class Enemy : MonoBehaviour
     }
     public virtual void OnCooldownStateEnter()
     {
-        //for other enemy
+        //for other enemy don't delete
     }
     public virtual void OnCooldownStateUpdate()
     {
@@ -300,8 +301,9 @@ public class Enemy : MonoBehaviour
     public void TakeDamaged(float damageAmount, ElementType element)
     {
         StayThisPosition();
-        hp -= CalDamage(damageAmount, element);
-        if (floatingDamage) ShowFloatingDamage((int)CalDamage(damageAmount, element));
+        float dam = CalDamage(damageAmount, element);
+        hp -= dam;
+        if (floatingDamage) ShowFloatingDamage(dam);
         if (hp <= 0)
         {
             hp = 0;
@@ -466,7 +468,6 @@ public class Enemy : MonoBehaviour
     public virtual void SetToWalk()
     {
         agent.speed = moveSpeed;
-
     }
     virtual protected float CalDamage(float damageAmount, ElementType element)
     {
@@ -535,7 +536,7 @@ public class Enemy : MonoBehaviour
         imageElement = this.transform.Find("Canvas/HealthBar/Element/type").GetComponent<Image>();
         imageElement.sprite = spriteElement;
     }
-    protected void ShowFloatingDamage(int damage)
+    protected void ShowFloatingDamage(float damage)
     {
         var text = Instantiate(floatingDamage, transform.position, Quaternion.identity, transform);
         if (damage == 0) text.GetComponent<TextMeshPro>().text = "miss";

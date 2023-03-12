@@ -116,8 +116,9 @@ public class Victim : MonoBehaviour
     }
     public void TakeDamaged(float damageAmount, ElementType element)
     {
-        hp -= CalDamage(damageAmount, element);
-        if (floatingDamage) ShowFloatingDamage((int)CalDamage(damageAmount, element));
+        float dam = CalDamage(damageAmount, element);
+        hp -= dam;
+        if (floatingDamage) ShowFloatingDamage(dam);
         // Debug.Log(damageAmount);
         if (hp <= 0)
         {
@@ -126,7 +127,7 @@ public class Victim : MonoBehaviour
             Died();
         }
     }
-    private void ShowFloatingDamage(int damage)
+    private void ShowFloatingDamage(float damage)
     {
         var text = Instantiate(floatingDamage, transform.position, Quaternion.identity, transform);
         if (damage == 0) text.GetComponent<TextMeshPro>().text = "miss";
