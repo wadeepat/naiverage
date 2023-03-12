@@ -52,9 +52,15 @@ public class ItemPickUp : MonoBehaviour
             pick = true;
             Item = col.gameObject;
             y = col.gameObject;
-            text.text = "Press F to pick up";
+
+            int itemIdx = col.gameObject.GetComponent<ThisItem>().thisId;
+            if (col.gameObject.GetComponent<ThisItem>().type == TypeItem.Quest)
+                text.text = "Press F to pick up " + $"<color=#40FF6F>{Database.itemQuestList[itemIdx].name}</color>";
+            else text.text = "Press F to pick up " + $"<color=#40FF6F>{Database.itemList[itemIdx].name}</color>";
             pickUpText.SetActive(true);
-        }else if(col.tag == "MiniGame"){
+        }
+        else if (col.tag == "MiniGame")
+        {
             pick = true;
             Item = col.gameObject;
             y = col.gameObject;
@@ -79,7 +85,9 @@ public class ItemPickUp : MonoBehaviour
                 y = null;
                 pickUpText.SetActive(false);
             }
-        }else if(other.tag == "MiniGame" && Item != null){
+        }
+        else if (other.tag == "MiniGame" && Item != null)
+        {
             if (InputManager.instance.GetInteractPressed())
             {
                 assetsInputs = PlayerManager.instance.player.GetComponent<StarterAssetsInputs>();
@@ -88,14 +96,17 @@ public class ItemPickUp : MonoBehaviour
                 assetsInputs.cursorLocked = false;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
-                if(y.GetComponent<ThisItem>().thisId == 3){
+                if (y.GetComponent<ThisItem>().thisId == 3)
+                {
                     var miniGame = Resources.Load("MiniGame/FlipGame");
                     game = miniGame as GameObject;
-                    MGame = Instantiate(game,GameObject.Find("Canvas").transform);
-                }else if(y.GetComponent<ThisItem>().thisId == 4){
+                    MGame = Instantiate(game, GameObject.Find("Canvas").transform);
+                }
+                else if (y.GetComponent<ThisItem>().thisId == 4)
+                {
                     var miniGame = Resources.Load("MiniGame/SlidingGame");
                     game = miniGame as GameObject;
-                    MGame = Instantiate(game,GameObject.Find("Canvas").transform);
+                    MGame = Instantiate(game, GameObject.Find("Canvas").transform);
                 }
             }
         }
@@ -107,14 +118,17 @@ public class ItemPickUp : MonoBehaviour
             Item = null;
             y = null;
             pickUpText.SetActive(false);
-        }else if(col.tag == "MiniGame"){
+        }
+        else if (col.tag == "MiniGame")
+        {
             Item = null;
             y = null;
             pickUpText.SetActive(false);
         }
     }
 
-    public void DestroyThisOj(){
+    public void DestroyThisOj()
+    {
         assetsInputs = PlayerManager.instance.player.GetComponent<StarterAssetsInputs>();
         PlayerManager.instance.player.GetComponent<PlayerAttackController>().attackAble = true;
         Cursor.visible = false;
@@ -129,5 +143,5 @@ public class ItemPickUp : MonoBehaviour
         y = null;
         pickUpText.SetActive(false);
     }
-    
+
 }

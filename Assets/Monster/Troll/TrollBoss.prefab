@@ -2955,7 +2955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterId: 6
-  moveSpeed: 2
+  moveSpeed: 3
   attackRange: 2.5
   attackType: close
   monsterType: boss
@@ -2970,7 +2970,7 @@ MonoBehaviour:
   resist: 100
   attackCooldown: 2
   stayCooldown: 2
-  chaseSpeed: 4
+  chaseSpeed: 5
   chaseRange: 15
   stoppingDistance: 2
   normalSound: {fileID: 0}

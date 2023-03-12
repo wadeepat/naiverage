@@ -22,6 +22,11 @@ public class InputTextUI : MonoBehaviour
     private void Update()
     {
         if (InputManager.instance.GetSubmitPressed()) confirmBtn.onClick.Invoke();
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
     public void ActivateMenu(string title, UnityAction<string> confirmAction, UnityAction cancelAction, string confirmText = "ยืนยัน", string cancelText = "เคลียร์")
     {

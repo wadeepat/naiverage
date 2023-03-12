@@ -70,13 +70,15 @@ public class Quest
             switch (type)
             {
                 case Type.kill:
-                    return "Kill " + /* MonsterList.MonsterNameFromID(objectiveId) + " " +*/ currentAmount + " / " + amount;
+                    return "Kill " + $"<color=#FFBD39>{((MonsterId)objectiveId).ToString()}</color>" + currentAmount + " / " + amount;
                 case Type.talk:
-                    return "Talk to " /* + NpcList.NpcName(objectiveId) + ""+*/;
+                    return "Talk to " + $"<color=#FFD495>{((NPCIndex)objectiveId).ToString()}</color>";
                 case Type.collect:
-                    return "Collect " + /*itemList.ItemName(objectiveId) + " " + */ Database.itemList[objectiveId].name + " " + currentAmount + " / " + amount;
+                    if (isQuestItem)
+                        return "Collect " + $"<color=#40FF6F>{Database.itemQuestList[objectiveId].name}</color>" + " " + currentAmount + " / " + amount;
+                    else return "Collect " + $"<color=#40FF6F>{Database.itemList[objectiveId].name}</color>" + " " + currentAmount + " / " + amount;
                 case Type.interact:
-                    return "Interact to press or walk to";
+                    return "";
             }
             return "";
         }

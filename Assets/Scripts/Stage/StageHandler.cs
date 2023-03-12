@@ -332,8 +332,9 @@ public class StageHandler : MonoBehaviour
                 }
                 break;
             case "Spawn10Webster":
-                SpawnMonsterAt(0, MonsterId.Webster, 5);
-                SpawnMonsterAt(1, MonsterId.Webster, 5);
+                SpawnMonsterAt(0, MonsterId.Webster, 3);
+                SpawnMonsterAt(1, MonsterId.Webster, 3);
+                SpawnMonsterAt(2, MonsterId.Webster, 2);
                 break;
             case "RachneEntrance":
                 t_RachneGate.gameObject.SetActive(true);
@@ -343,6 +344,10 @@ public class StageHandler : MonoBehaviour
                 break;
             case "SaveNPC":
                 GameObject.Find("StageTrack").transform.Find("Victim").gameObject.SetActive(true);
+                spawn0.isSpawn = false;
+                spawn1.isSpawn = false;
+                spawn2.isSpawn = false;
+                SpawnMonsterToVictim(1, MonsterId.Webster, 1);
                 SpawnMonsterToVictim(2, MonsterId.Webster, 1);
                 SpawnMonsterToVictim(2, MonsterId.Venom, 2);
                 break;
@@ -492,6 +497,10 @@ public class StageHandler : MonoBehaviour
                         npc.Object.transform.position = n_oldmanHouse.transform.position;
                         npc.Object.transform.rotation = n_oldmanHouse.transform.rotation;
                         npc.Object.SetActive(true);
+                    }
+                    if (npc.info == "Oldman")
+                    {
+                        npc.Object.GetComponent<CapsuleCollider>().enabled = false;
                         break;
                     }
                 }

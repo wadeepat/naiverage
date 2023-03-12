@@ -139,7 +139,38 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
             cancelAction: () => { ResetForDeactivateUI(); }
         );
     }
-
+    public void AskToBoss(SceneIndex moveTo)
+    {
+        SetForActivateUI();
+        confirmationPopup.ActivateMenu(
+                displayText: $"ยืนยันที่จะเข้าไปสู้กับ <color={Database.COLORS["monster"]}>Boss</color> ใช่หรือไม่?",
+                enableCancelBtn: true,
+                confirmAction: () =>
+                {
+                    confirmationPopup.ActivateMenu(
+                        displayText: $"ต้องการจะบันทึกเกมก่อนเข้าต่อสู้หรือไม่?",
+                        enableCancelBtn: true,
+                        confirmAction: () =>
+                        {
+                            AudioManager.instance.Play("save");
+                            DataPersistenceManager.instance.SaveGame(true);
+                            DataPersistenceManager.instance.LoadGame(true);
+                            ResetForDeactivateUI();
+                            SceneLoadingManager.instance.LoadScene(moveTo);
+                        },
+                        cancelAction: () =>
+                        {
+                            ResetForDeactivateUI();
+                            SceneLoadingManager.instance.LoadScene(moveTo);
+                        }
+                    );
+                },
+                cancelAction: () =>
+                {
+                    ResetForDeactivateUI();
+                }
+            );
+    }
     public void AskToLoad()
     {
         AudioManager.instance.StopAllTrack();

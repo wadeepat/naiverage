@@ -100,6 +100,7 @@ public class DialogueManager : MonoBehaviour
     }
     private void Update()
     {
+        // Debug.Log("cursor visible: " + Cursor.visible + "lockState: " + Cursor.lockState.ToString());
         if (!dialogueIsPlaying)
         {
             return;
@@ -112,6 +113,10 @@ public class DialogueManager : MonoBehaviour
         {
             ContinueStory();
         }
+        if (dialoguePanel.activeSelf &&
+            currentStory.currentChoices.Count > 0
+            && Cursor.lockState == CursorLockMode.Locked)
+            EnablePlayerControll();
     }
     public void SaveDialogue()
     {
@@ -123,6 +128,7 @@ public class DialogueManager : MonoBehaviour
     }
     public void EnterDialogueMode(TextAsset inkJSON)
     {
+        Debug.Log("enter dialogue");
         _player = GameObject.FindGameObjectWithTag("Player");
         _thirdPersonController = _player?.GetComponent<ThirdPersonController>();
 
@@ -256,6 +262,10 @@ public class DialogueManager : MonoBehaviour
                     QuestLog.CompleteQuest(Database.questList[int.Parse(tagValue)]);
                     break;
                 case EVENT_TAG:
+                    StageHandler.instance.EventTrigger(tagValue);
+                    break;
+                case "eventEnd":
+                    EndTheDialogue();
                     StageHandler.instance.EventTrigger(tagValue);
                     break;
                 case SOUND_TAG:

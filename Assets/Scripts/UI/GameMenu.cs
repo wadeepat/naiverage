@@ -13,10 +13,17 @@ public class GameMenu : MonoBehaviour
     //     _player = GameObject.FindGameObjectWithTag("Player");
     //     _thirdPersonController = _player.GetComponent<ThirdPersonController>();
     // }
+    private void Start()
+    {
+        settingsMenu.DeactivateMenu();
+    }
     private void Update()
     {
-        if (!settingsMenu.IsActivated() &&
-            InputManager.instance.GetBackPressed()) this.DeactivateMenu();
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
     public void ClickedResume()
     {
@@ -69,7 +76,8 @@ public class GameMenu : MonoBehaviour
         {
             if (this.gameObject.activeSelf)
             {
-                this.DeactivateMenu();
+                if (settingsMenu.IsActivated()) settingsMenu.DeactivateMenu();
+                else this.DeactivateMenu();
             }
         }
         else

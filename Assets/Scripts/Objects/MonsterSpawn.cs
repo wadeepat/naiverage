@@ -48,14 +48,15 @@ public class MonsterSpawn : MonoBehaviour
                 SpawnMonster((int)m.monsterId, m.amount, false);
             }
         }
-        if (isSpawn && PlayerManager.playerEvents["finishedTutorial"])
-        {
-            foreach (MonsterAmount m in monsterSpawnLists)
-            {
-                if (transform.childCount >= capacity + 1) break;
-                SpawnMonster((int)m.monsterId, m.amount, false);
-            }
-        }
+        spawnTimer = spawnTimeDelay;
+        // if (isSpawn && PlayerManager.playerEvents["finishedTutorial"])
+        // {
+        //     foreach (MonsterAmount m in monsterSpawnLists)
+        //     {
+        //         if (transform.childCount >= capacity + 1) break;
+        //         SpawnMonster((int)m.monsterId, m.amount, false);
+        //     }
+        // }
     }
     private void Update()
     {

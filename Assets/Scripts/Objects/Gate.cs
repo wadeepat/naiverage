@@ -18,7 +18,7 @@ public class Gate : MonoBehaviour
     {
         if (this.enabled && collider.gameObject.tag == "Player")
         {
-            text.text = "Press F to enter " + toScene.ToString();
+            text.text = "Press F to enter " + $"<color=#FF7272>{toScene.ToString()}</color>";
             interactObject.SetActive(true);
         }
     }
@@ -28,8 +28,12 @@ public class Gate : MonoBehaviour
         {
             interactObject.SetActive(false);
             AudioManager.instance.Play("click");
-            gameObject.GetComponent<BoxCollider>().enabled = false;
-            SceneLoadingManager.instance.LoadScene(toScene);
+            // gameObject.GetComponent<BoxCollider>().enabled = false;
+            if ((int)toScene > (int)SceneIndex.Cave &&
+                QuestLog.GetActiveQuestById(29) == null &&
+                QuestLog.GetActiveQuestById(43) == null)
+                ActionHandler.instance.AskToBoss(toScene);
+            else SceneLoadingManager.instance.LoadScene(toScene);
         }
     }
     private void OnTriggerExit(Collider collider)

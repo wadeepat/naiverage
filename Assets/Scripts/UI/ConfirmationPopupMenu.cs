@@ -20,6 +20,12 @@ public class ConfirmationPopupMenu : MonoBehaviour
     {
         if (InputManager.instance.GetBackPressed() && cancelBtn.gameObject.activeSelf) cancelBtn.onClick.Invoke();
         else if (InputManager.instance.GetSubmitPressed()) confirmBtn.onClick.Invoke();
+
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
     public void ActivateMenu(string displayText, bool enableCancelBtn, UnityAction confirmAction, UnityAction cancelAction)
     {

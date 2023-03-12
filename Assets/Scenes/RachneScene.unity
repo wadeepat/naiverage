@@ -7419,11 +7419,11 @@ MonoBehaviour:
   - monsterId: 5
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
   - monsterId: 6
-    model: {fileID: 1862107410815556, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
+    model: {fileID: 1518672436894999060, guid: b3a899cd32f663a44afd0d4fe2a3f924, type: 3}
   - monsterId: 7
-    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+    model: {fileID: 6051786700028988739, guid: 509a8df841b78f94a9864f85c412e51e, type: 3}
   - monsterId: 8
-    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+    model: {fileID: 924416398459543054, guid: 27e63aa5babe5e247917dbe7356a2360, type: 3}
   isSpawn: 1
   enableTest: 0
   capacity: 5
@@ -7435,7 +7435,7 @@ MonoBehaviour:
   monsterTestLists:
   - monsterId: 0
     amount: 1
-  spawnTimeDelay: 30
+  spawnTimeDelay: 45
 --- !u!1001 &905028987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16617,11 +16617,11 @@ MonoBehaviour:
   - monsterId: 5
     model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
   - monsterId: 6
-    model: {fileID: 1862107410815556, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
+    model: {fileID: 1518672436894999060, guid: b3a899cd32f663a44afd0d4fe2a3f924, type: 3}
   - monsterId: 7
-    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+    model: {fileID: 6051786700028988739, guid: 509a8df841b78f94a9864f85c412e51e, type: 3}
   - monsterId: 8
-    model: {fileID: 8335477362465318730, guid: b227b7fb3d372194dbaeaff88384004c, type: 3}
+    model: {fileID: 924416398459543054, guid: 27e63aa5babe5e247917dbe7356a2360, type: 3}
   isSpawn: 1
   enableTest: 0
   capacity: 5
@@ -16633,7 +16633,7 @@ MonoBehaviour:
   monsterTestLists:
   - monsterId: 0
     amount: 1
-  spawnTimeDelay: 30
+  spawnTimeDelay: 45
 --- !u!1 &1356784213
 GameObject:
   m_ObjectHideFlags: 0
@@ -17160,7 +17160,7 @@ MonoBehaviour:
   monsterTestLists:
   - monsterId: 7
     amount: 1
-  spawnTimeDelay: 30
+  spawnTimeDelay: 40
 --- !u!4 &1445208601
 Transform:
   m_ObjectHideFlags: 0

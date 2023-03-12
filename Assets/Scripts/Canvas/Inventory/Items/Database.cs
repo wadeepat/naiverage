@@ -100,10 +100,10 @@ public class Database : MonoBehaviour
     private void AddItemQuestList()
     {
         itemQuestList.Add(new Item(0, "None", "None", Resources.Load<Sprite>("0"), 0));
-        itemQuestList.Add(new Item(1, "Soul", "Quest", Resources.Load<Sprite>("q1"), 0));
+        itemQuestList.Add(new Item(1, "Soul", "Quest", Resources.Load<Sprite>("soul"), 0));
         itemQuestList.Add(new Item(2, "Chicken", "Quest", Resources.Load<Sprite>("chick"), 0));
         itemQuestList.Add(new Item(3, "Picture", "Quest", Resources.Load<Sprite>("skb2"), 0));
-        itemQuestList.Add(new Item(4, "Book", "Quest", Resources.Load<Sprite>("skb2"), 0));
+        itemQuestList.Add(new Item(4, "Weird Book", "Quest", Resources.Load<Sprite>("book"), 0));
     }
     private void AddPotionList()
     {
@@ -1460,7 +1460,7 @@ public class Database : MonoBehaviour
             {
                 questId = 44,
                 questName = $"ต่อสู้กับ {ColorText("char", "Abel")}",
-                questDescription = $"เจ้าเลือกที่จะช่วยเหลือ {ColorText("char", "Cain")} ดังนั้นต่อสู่กับ {ColorText("char", "Abel")} เพื่อช่วยเหลือเขา",
+                questDescription = $"เจ้าเลือกที่จะช่วยเหลือ {ColorText("char", "Cain")} ดังนั้นต่อสู้กับ {ColorText("char", "Abel")} เพื่อช่วยเหลือเขา",
                 location = SceneIndex.TrollField,
                 MPReward = 0,
                 SBReward = "",
@@ -1486,7 +1486,7 @@ public class Database : MonoBehaviour
             {
                 questId = 45,
                 questName = $"ต่อสู้กับ {ColorText("char", "Cain")}",
-                questDescription = $"เจ้าเลือกที่จะช่วยเหลือ {ColorText("char", "Abel")} ดังนั้นต่อสู่กับ {ColorText("char", "Cain")} เพื่อช่วยเหลือเขา",
+                questDescription = $"เจ้าเลือกที่จะช่วยเหลือ {ColorText("char", "Abel")} ดังนั้นต่อสู้กับ {ColorText("char", "Cain")} เพื่อช่วยเหลือเขา",
                 location = SceneIndex.TrollField,
                 MPReward = 0,
                 SBReward = "",
@@ -1881,7 +1881,7 @@ public class Database : MonoBehaviour
             }
 
         );
-        
+
     }
     private string ColorText(string type, string text)
     {
