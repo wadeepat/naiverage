@@ -129,7 +129,13 @@ public class StageHandler : MonoBehaviour
                 AudioManager.instance.Play("braewoodBackground");
                 if (QuestLog.GetCompleteQuestById(19) == null && QuestLog.GetActiveQuestById(19) == null)
                     b_caveGate.gameObject.SetActive(false);
-                if (QuestLog.GetCompleteQuestById(26) != null && QuestLog.GetCompleteQuestById(27) == null)
+                if (QuestLog.GetCompleteQuestById(26) != null &&
+                    (QuestLog.GetCompleteQuestById(27) == null ||
+                    QuestLog.GetActiveQuestById(27) == null))
+                    EventTrigger("TheManIsSaved");
+                if (QuestLog.GetCompleteQuestById(39) != null &&
+                    (QuestLog.GetCompleteQuestById(40) == null ||
+                    QuestLog.GetActiveQuestById(40) == null))
                     EventTrigger("TheManIsSaved");
                 if (QuestLog.GetCompleteQuestById(26) != null &&
                         QuestLog.GetCompleteQuestById(51) == null &&

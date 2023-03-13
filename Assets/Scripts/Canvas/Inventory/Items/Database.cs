@@ -909,7 +909,6 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
-                    //! remove when implement troll field
                     StageHandler.instance.EventTrigger("CainAndHurt");
                 },
                 prepareAction = () =>
@@ -1301,7 +1300,6 @@ public class Database : MonoBehaviour
                 },
                 addAction = () =>
                 {
-                    //! remove when implement troll field
                     StageHandler.instance.EventTrigger("CainAndHurt");
                 },
                 prepareAction = () =>
