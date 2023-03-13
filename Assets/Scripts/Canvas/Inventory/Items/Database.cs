@@ -74,15 +74,15 @@ public class Database : MonoBehaviour
     private void AddSkillList()
     {
         skillList.Add(new Skill(0, " ", " ", Resources.Load<Sprite>("0"), 0, true, 0, 0, 0, 0));
-        skillList.Add(new Skill(1, "Blaze", "None", Resources.Load<Sprite>("sk1"), 0, false, 1, 0, 1, 500));
-        skillList.Add(new Skill(2, "Rain Fall", "None", Resources.Load<Sprite>("sk2"), 0, false, 2, 0, 1, 1000));
-        skillList.Add(new Skill(3, "Breeze", "None", Resources.Load<Sprite>("sk3"), 0, false, 3, 0, 1, 1500));
-        skillList.Add(new Skill(4, "Fire High", "None", Resources.Load<Sprite>("sk4"), 0, false, 4, 0, 1, 2000));
-        skillList.Add(new Skill(5, "Wind Stun", "None", Resources.Load<Sprite>("sk5"), 0, false, 1, 0, 1, 2500));
-        skillList.Add(new Skill(6, "Burn", "None", Resources.Load<Sprite>("sk6"), 0, false, 2, 0, 1, 3000));
-        skillList.Add(new Skill(7, "Chicken Wings", "None", Resources.Load<Sprite>("sk7"), 0, false, 3, 0, 1, 3500));
-        skillList.Add(new Skill(8, "Slash", "None", Resources.Load<Sprite>("sk8"), 0, false, 4, 0, 1, 4000));
-        skillList.Add(new Skill(9, "Acid Aura", "None", Resources.Load<Sprite>("sk9"), 0, false, 4, 0, 1, 4500));
+        skillList.Add(new Skill(1, "Blaze", "None", Resources.Load<Sprite>("sk1"), 0, false, 1, 0, 1, 700));
+        skillList.Add(new Skill(2, "Rain Fall", "None", Resources.Load<Sprite>("sk2"), 0, false, 2, 0, 1, 700));
+        skillList.Add(new Skill(3, "Breeze", "None", Resources.Load<Sprite>("sk3"), 0, false, 3, 0, 1, 700));
+        skillList.Add(new Skill(4, "Fire High", "None", Resources.Load<Sprite>("sk4"), 0, false, 4, 0, 1, 1000));
+        skillList.Add(new Skill(5, "Wind Stun", "None", Resources.Load<Sprite>("sk5"), 0, false, 1, 0, 1, 1000));
+        skillList.Add(new Skill(6, "Burn", "None", Resources.Load<Sprite>("sk6"), 0, false, 2, 0, 1, 1500));
+        skillList.Add(new Skill(7, "Chicken Wings", "None", Resources.Load<Sprite>("sk7"), 0, false, 3, 0, 1, 1500));
+        skillList.Add(new Skill(8, "Slash", "None", Resources.Load<Sprite>("sk8"), 0, false, 4, 0, 1, 2000));
+        skillList.Add(new Skill(9, "Acid Aura", "None", Resources.Load<Sprite>("sk9"), 0, false, 4, 0, 1, 2500));
     }
     private void AddSkillbookList()
     {
@@ -110,13 +110,13 @@ public class Database : MonoBehaviour
         potionList.Add(new Potion(0, "None", "None", Resources.Load<Sprite>("0"), 0, true, 0, 0, 0, 0, 0, 0));
         potionList.Add(new Potion(1, "HP(S)", "Potion", Resources.Load<Sprite>("Potions/p1"), 0, true, 1, 2, 0, 2, 2, 0));
         potionList.Add(new Potion(2, "MP(S)", "Potion", Resources.Load<Sprite>("Potions/p2"), 0, true, 1, 2, 3, 3, 2, 2));
-        potionList.Add(new Potion(3, "Flask of Poison", "Potion", Resources.Load<Sprite>("Potions/p3"), 0, true, 1, 4, 0, 4, 3, 0));
-        potionList.Add(new Potion(4, "Flask of Illusion", "Potion", Resources.Load<Sprite>("Potions/p4"), 0, true, 1, 2, 5, 4, 3, 2));
+        potionList.Add(new Potion(3, "Poison", "Potion", Resources.Load<Sprite>("Potions/p3"), 0, true, 1, 4, 0, 4, 3, 0));
+        potionList.Add(new Potion(4, "Illusion", "Potion", Resources.Load<Sprite>("Potions/p4"), 0, true, 1, 2, 5, 4, 3, 2));
         potionList.Add(new Potion(5, "HP(M)", "Potion", Resources.Load<Sprite>("Potions/p5"), 0, true, 2, 6, 0, 6, 3, 0));
         potionList.Add(new Potion(6, "MP(M)", "Potion", Resources.Load<Sprite>("Potions/p6"), 0, true, 2, 7, 0, 6, 3, 0));
-        potionList.Add(new Potion(7, "Phial of Freedom", "Potion", Resources.Load<Sprite>("Potions/p7"), 0, true, 3, 8, 0, 5, 2, 0));
-        potionList.Add(new Potion(8, "Flask of Agony", "Potion", Resources.Load<Sprite>("Potions/p8"), 0, true, 4, 5, 6, 3, 3, 4));
-        potionList.Add(new Potion(9, "Elixir of Rage", "Potion", Resources.Load<Sprite>("Potions/p9"), 0, true, 9, 10, 0, 3, 2, 0));
+        potionList.Add(new Potion(7, "Freedom", "Potion", Resources.Load<Sprite>("Potions/p7"), 0, true, 3, 8, 0, 5, 2, 0));
+        potionList.Add(new Potion(8, "Agony", "Potion", Resources.Load<Sprite>("Potions/p8"), 0, true, 4, 5, 6, 3, 3, 4));
+        potionList.Add(new Potion(9, "Elixir", "Potion", Resources.Load<Sprite>("Potions/p9"), 0, true, 9, 10, 0, 3, 2, 0));
         potionList.Add(new Potion(10, "HP(L)", "Potion", Resources.Load<Sprite>("Potions/p10"), 0, true, 1, 6, 11, 8, 1, 2));
         potionList.Add(new Potion(11, "MP(L)", "Potion", Resources.Load<Sprite>("Potions/p11"), 0, true, 3, 7, 10, 5, 3, 2));
         potionList.Add(new Potion(12, "Holy water", "Potion", Resources.Load<Sprite>("Potions/p12"), 0, true, 1, 2, 12, 10, 10, 2));
@@ -1421,8 +1421,6 @@ public class Database : MonoBehaviour
                 },
                 compleltedAction = () =>
                 {
-                    InvenSkillBook add = GameObject.Find("Canvas/Panel").transform.Find("Character panel").Find("All funtion").Find("Skill").GetComponent<InvenSkillBook>();
-                    add.AddSkillBook(6);
                     QuestLog.AddQuest(questList[43]);
                 }
             }
