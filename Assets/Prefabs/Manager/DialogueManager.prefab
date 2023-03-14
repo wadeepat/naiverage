@@ -130,8 +130,12 @@ MonoBehaviour:
     json: {fileID: 4900000, guid: 0ff2ba1be6b28ce4fb2075c79193dcd8, type: 3}
   - name: TheCommandment
     json: {fileID: 4900000, guid: bfb9a944ad3e2c249a9c0c9b723ce3f5, type: 3}
+  - name: TalkWithAbel
+    json: {fileID: 4900000, guid: 7b81e8193e3a81a4cb11e8d9e98486ee, type: 3}
   - name: DefeatAbel
     json: {fileID: 4900000, guid: e4078c042c9f1914daf038b7736600b4, type: 3}
+  - name: TalkWithCain
+    json: {fileID: 4900000, guid: a9418fe9a68cef4448ef35111632a3b2, type: 3}
   - name: DefeatCain
     json: {fileID: 4900000, guid: 6616a8d7fbfde3b4e9e76826e809d304, type: 3}
   - name: FoundTheSoul

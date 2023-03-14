@@ -156,6 +156,12 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - s_name: castleBackground
+    clip: {fileID: 8300000, guid: 31a709b2ab1e7914181068a6ed84b0ff, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
   - s_name: braewoodBackground
     clip: {fileID: 8300000, guid: bfbac437bd48e7d42b65bbfd767b5685, type: 3}
     volume: 0.75
@@ -170,7 +176,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - s_name: endingBackground
     clip: {fileID: 8300000, guid: 5905c9c7ad29a74419e32ff0bfe687c5, type: 3}
-    volume: 0.85
+    volume: 0.9
     pitch: 1
     loop: 1
     source: {fileID: 0}

@@ -31,8 +31,12 @@ public class Gate : MonoBehaviour
             // gameObject.GetComponent<BoxCollider>().enabled = false;
             if ((int)toScene > (int)SceneIndex.Cave &&
                 QuestLog.GetActiveQuestById(29) == null &&
-                QuestLog.GetActiveQuestById(43) == null)
+                QuestLog.GetActiveQuestById(43) == null &&
+                QuestLog.GetActiveQuestById(44) == null &&
+                QuestLog.GetActiveQuestById(45) == null)
+            {
                 ActionHandler.instance.AskToBoss(toScene);
+            }
             else SceneLoadingManager.instance.LoadScene(toScene);
         }
     }

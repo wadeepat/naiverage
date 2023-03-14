@@ -177,17 +177,30 @@ public class ActionHandler : MonoBehaviour, IDataPersistence
         AudioManager.instance.Play("sadness");
         SetForActivateUI();
         confirmationPopup.ActivateMenu(
-            displayText: $"เจ้าได้ต่อสู้จนถึงแก่ความตาย\nจึงต้องกลับไปเริ่มใหม่ยังจุดที่ save ล่าสุด",
+            displayText: $"เจ้าได้ต่อสู้จนถึงแก่ความตาย\nจึงต้องกลับไป",
             enableCancelBtn: false,
             confirmAction: () =>
             {
                 AudioManager.instance.Play("save");
-                DataPersistenceManager.instance.LoadGame(true);
+                DataPersistenceManager.instance.LoadGame(false);
                 ResetForDeactivateUI();
                 SceneLoadingManager.instance.LoadScene(PlayerManager.instance.playerLocation);
             },
             cancelAction: () => { ResetForDeactivateUI(); }
         );
+        // SetForActivateUI();
+        // confirmationPopup.ActivateMenu(
+        //     displayText: $"เจ้าได้ต่อสู้จนถึงแก่ความตาย\nจึงต้องกลับไปเริ่มใหม่ยังจุดที่ save ล่าสุด",
+        //     enableCancelBtn: false,
+        //     confirmAction: () =>
+        //     {
+        //         AudioManager.instance.Play("save");
+        //         DataPersistenceManager.instance.LoadGame(true);
+        //         ResetForDeactivateUI();
+        //         SceneLoadingManager.instance.LoadScene(PlayerManager.instance.playerLocation);
+        //     },
+        //     cancelAction: () => { ResetForDeactivateUI(); }
+        // );
     }
     public void AskToRetry(int questIdx)
     {

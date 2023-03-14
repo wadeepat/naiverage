@@ -1,7 +1,7 @@
 INCLUDE tutorial_globals.ink
 === Opening ===
     #speaker:Me
-    (ที่นี่น่าจะเป็นป่า Rache ตามที่แผนที่บอก)
+    (ที่นี่น่าจะเป็นป่า <color=\#FF7272>Rache</color> ตามที่แผนที่บอก)
     (อีกไม่นานคงจะใกล้ถึงเมือง <color=\#FF7272>Naver</color> แล้วสินะ)
     (ก่อนอื่นต้องทำยาสมานแผลก่อน น่าจะต้องไปหา <color=\#40FF6F>"Spindlewit"</color> แล้วสิ)
     (แย่หละสิ ตอนนี้ใกล้จะมืดแล้วด้วย คงต้องรีบแล้ว)
@@ -54,7 +54,7 @@ INCLUDE tutorial_globals.ink
     #action:GetPlayerName
 ->DONE
 == SataRecallName ==
-    ว้าว!! ชื่อเท่ดีนิ เหมาะกับเจ้าดี {name}
+    ว้าว!! ชื่อเท่ดีนิ เหมาะกับเจ้าดี <color=\#FFD495>{name}</color>
 ->SataIntroduction
 === SataIntroduction ===
     ~toldName = true
@@ -95,7 +95,7 @@ INCLUDE tutorial_globals.ink
 
 === FinishedWebsterQ ===
     #speaker:Sata
-    ได้มาแล้วเหรอ ขอบคุณเจ้ามาก ๆ 
+    เสร็จแล้วเหรอ ขอบคุณเจ้ามาก ๆ 
     -> GoToNaver
 === GoToNaver ===
     #speaker:Sata

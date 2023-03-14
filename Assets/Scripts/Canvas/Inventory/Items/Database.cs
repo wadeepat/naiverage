@@ -103,7 +103,8 @@ public class Database : MonoBehaviour
         itemQuestList.Add(new Item(1, "Soul", "Quest", Resources.Load<Sprite>("soul"), 0));
         itemQuestList.Add(new Item(2, "Chicken", "Quest", Resources.Load<Sprite>("chick"), 0));
         itemQuestList.Add(new Item(3, "Picture", "Quest", Resources.Load<Sprite>("skb2"), 0));
-        itemQuestList.Add(new Item(4, "Weird Book", "Quest", Resources.Load<Sprite>("book"), 0));
+        itemQuestList.Add(new Item(4, "Book", "Quest", Resources.Load<Sprite>("skb5"), 0));
+        itemQuestList.Add(new Item(5, "Weird Book", "Quest", Resources.Load<Sprite>("book"), 0));
     }
     private void AddPotionList()
     {
@@ -630,6 +631,10 @@ public class Database : MonoBehaviour
                     StageHandler.instance.EventTrigger("AaronAtMainDoor");
                     StageHandler.instance.EventTrigger("Army");
                 },
+                compleltedAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("UnlockBraewood");
+                }
             }
         );
         questList.Add(
@@ -647,10 +652,6 @@ public class Database : MonoBehaviour
                     objectiveId = (int)SceneIndex.BraewoodForest,
                     type = Quest.Objective.Type.interact,
                     amount = 1,
-                },
-                addAction = () =>
-                {
-                    StageHandler.instance.EventTrigger("UnlockBraewood");
                 },
                 prepareAction = () =>
                 {
@@ -1132,7 +1133,11 @@ public class Database : MonoBehaviour
                 {
                     StageHandler.instance.EventTrigger("AaronAtMainDoor");
                     StageHandler.instance.EventTrigger("Army");
-                }
+                },
+                compleltedAction = () =>
+                {
+                    StageHandler.instance.EventTrigger("UnlockBraewood");
+                },
             }
         );
         questList.Add(
@@ -1150,10 +1155,6 @@ public class Database : MonoBehaviour
                     objectiveId = (int)SceneIndex.Cave,
                     type = Quest.Objective.Type.interact,
                     amount = 1,
-                },
-                addAction = () =>
-                {
-                    StageHandler.instance.EventTrigger("UnlockBraewood");
                 },
                 prepareAction = () =>
                 {
@@ -1456,7 +1457,7 @@ public class Database : MonoBehaviour
             {
                 questId = 44,
                 questName = $"ต่อสู้กับ {ColorText("char", "Abel")}",
-                questDescription = $"เจ้าเลือกที่จะช่วยเหลือ {ColorText("char", "Cain")} ดังนั้นต่อสู้กับ {ColorText("char", "Abel")} เพื่อช่วยเหลือเขา",
+                questDescription = $"เจ้าเลือกที่จะช่วยเหลือ {ColorText("char", "Cain")} ดังนั้นไปคุยกับ {ColorText("char", "Abel")} ที่ {ColorText("town", "Rachne Field")} เพื่อต่อสู้กับเขา",
                 location = SceneIndex.TrollField,
                 MPReward = 0,
                 SBReward = "",
@@ -1482,7 +1483,7 @@ public class Database : MonoBehaviour
             {
                 questId = 45,
                 questName = $"ต่อสู้กับ {ColorText("char", "Cain")}",
-                questDescription = $"เจ้าเลือกที่จะช่วยเหลือ {ColorText("char", "Abel")} ดังนั้นต่อสู้กับ {ColorText("char", "Cain")} เพื่อช่วยเหลือเขา",
+                questDescription = $"เจ้าเลือกที่จะช่วยเหลือ {ColorText("char", "Abel")} ดังนั้นไปคุยกับ {ColorText("char", "Cain")} ที่ {ColorText("town", "Rachne Field")} เพื่อต่อสู้กับเขา",
                 location = SceneIndex.TrollField,
                 MPReward = 0,
                 SBReward = "",

@@ -71,15 +71,17 @@ public class StageHandler : MonoBehaviour
         {
             case SceneIndex.Rachne:
                 AudioManager.instance.Play("forestBackground");
-                //TODO if have book in questItem
-                if (GameObject.Find("Canvas/Panel").GetComponent<ItemQuests>().ishaveItem(4))
+                if (GameObject.Find("Canvas/Panel").GetComponent<ItemQuests>().ishaveItem(5))
                     GameObject.Find("StageTrack").transform.Find("Book").gameObject.SetActive(false);
                 if (QuestLog.GetCompleteQuestById(0) == null)
                     DialogueManager.instance.EnterDialogueMode(DialogueManager.instance.GetDialogueFile(0, "Opening"));
                 if (!PlayerManager.playerEvents["finishedTutorial"])
                     EventTrigger("SetupForTutorial");
                 if (QuestLog.GetActiveQuestById(29) != null ||
-                    QuestLog.GetActiveQuestById(43) != null)
+                    QuestLog.GetActiveQuestById(43) != null ||
+                    QuestLog.GetActiveQuestById(44) != null ||
+                    QuestLog.GetActiveQuestById(45) != null
+                    )
                     t_RachneGate.gameObject.SetActive(true);
                 break;
             case SceneIndex.NaverTown:
@@ -107,7 +109,7 @@ public class StageHandler : MonoBehaviour
                     {
                         NaverTownEvents("FarmerProblem");
                     }
-                    if (QuestLog.GetCompleteQuestById(41) != null &&
+                    if (QuestLog.GetCompleteQuestById(28) != null &&
                         QuestLog.GetCompleteQuestById(55) == null &&
                         QuestLog.GetCompleteQuestById(57) == null &&
                         QuestLog.GetActiveQuestById(55) == null &&
@@ -124,18 +126,19 @@ public class StageHandler : MonoBehaviour
                     GameObject.Find("Places").transform.Find("Checkpoint").gameObject.SetActive(false);
                 break;
             case SceneIndex.CalfordCastle:
+                AudioManager.instance.Play("castleBackground");
                 break;
             case SceneIndex.BraewoodForest:
                 AudioManager.instance.Play("braewoodBackground");
                 if (QuestLog.GetCompleteQuestById(19) == null && QuestLog.GetActiveQuestById(19) == null)
                     b_caveGate.gameObject.SetActive(false);
                 if (QuestLog.GetCompleteQuestById(26) != null &&
-                    (QuestLog.GetCompleteQuestById(27) == null ||
-                    QuestLog.GetActiveQuestById(27) == null))
+                    QuestLog.GetCompleteQuestById(27) == null &&
+                    QuestLog.GetActiveQuestById(27) == null)
                     EventTrigger("TheManIsSaved");
                 if (QuestLog.GetCompleteQuestById(39) != null &&
-                    (QuestLog.GetCompleteQuestById(40) == null ||
-                    QuestLog.GetActiveQuestById(40) == null))
+                    QuestLog.GetCompleteQuestById(40) == null &&
+                    QuestLog.GetActiveQuestById(40) == null)
                     EventTrigger("TheManIsSaved");
                 if (QuestLog.GetCompleteQuestById(26) != null &&
                         QuestLog.GetCompleteQuestById(51) == null &&
@@ -155,6 +158,10 @@ public class StageHandler : MonoBehaviour
                 if (QuestLog.GetActiveQuestById(13) != null ||
                     QuestLog.GetActiveQuestById(30) != null)
                     EventTrigger("SpawnRachne");
+                if (QuestLog.GetActiveQuestById(44) != null)
+                    OtherEvents("SetAbel");
+                else if (QuestLog.GetActiveQuestById(45) != null)
+                    OtherEvents("SetCain");
                 break;
             case SceneIndex.TrollField:
                 AudioManager.instance.Play("caveBackground");
@@ -164,6 +171,7 @@ public class StageHandler : MonoBehaviour
                     SpawnMonsterAt(0, MonsterId.Troll, 1);
                     spawn0.isSpawn = true;
                 }
+
                 break;
             case SceneIndex.BlackScene:
                 AudioManager.instance.Play("endingBackground");
@@ -633,7 +641,7 @@ public class StageHandler : MonoBehaviour
                 {
                     if (npc.info == "Oldman")
                     {
-                        // Debug.Log("quest");
+                        Debug.Log("Do here");
                         npc.Object.GetComponent<CapsuleCollider>().enabled = true;
                         npc.Object.SetActive(true);
                         npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(5, "SideC3");
@@ -945,8 +953,7 @@ public class StageHandler : MonoBehaviour
                     npc.Object.SetActive(true);
                     if (npc.idx == NPCIndex.Samuel)
                     {
-                        //TODO if have book
-                        if (GameObject.Find("Canvas/Panel").GetComponent<ItemQuests>().ishaveItem(4))
+                        if (GameObject.Find("Canvas/Panel").GetComponent<ItemQuests>().ishaveItem(5))
                         {
                             npc.Object.GetComponent<NPC>().quest = DialogueManager.instance.GetDialogueFile(4, "TheCommandment");
                         }
@@ -971,21 +978,66 @@ public class StageHandler : MonoBehaviour
                 PlayerManager.instance.mapEnable[SceneIndex.Cave] = false;
                 SceneLoadingManager.instance.LoadScene(SceneIndex.NaverTown);
                 break;
+            case "SetAbel":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    npc.Object.SetActive(true);
+                    if (npc.idx == NPCIndex.Abel)
+                    {
+                        npc.Object.GetComponent<CapsuleCollider>().enabled = true;
+                        npc.Object.GetComponent<NPC>().inkJSON = DialogueManager.instance.GetDialogueFile(4, "TalkWithAbel");
+                    }
+                }
+                OtherEvents("ExitGate");
+                break;
+            case "SetCain":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    npc.Object.SetActive(true);
+                    if (npc.idx == NPCIndex.Cain)
+                    {
+                        npc.Object.GetComponent<CapsuleCollider>().enabled = true;
+                        npc.Object.GetComponent<NPC>().inkJSON = DialogueManager.instance.GetDialogueFile(4, "TalkWithCain");
+                    }
+                }
+                OtherEvents("ExitGate");
+                break;
+            case "FightWithBro":
+                ActionHandler.instance.AskToBoss(SceneIndex.TrollField);
+                break;
             case "FightWithAbel":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Samuel)
+                    {
+                        npc.Object.GetComponent<CapsuleCollider>().enabled = false;
+                        break;
+                    }
+                }
                 ActionHandler.instance.SetPath(1);
-                LockAllMap();
-                PlayerManager.instance.playerLocation = SceneIndex.TrollField;
+                // LockAllMap();
+                // PlayerManager.instance.playerLocation = SceneIndex.TrollField;
                 QuestLog.AddQuest(Database.questList[44]);
                 DataPersistenceManager.instance.SaveGame(true);
-                SceneLoadingManager.instance.LoadScene(SceneIndex.TrollField);
+                OtherEvents("SetAbel");
+                // SceneLoadingManager.instance.LoadScene(SceneIndex.TrollField);
                 break;
             case "FightWithCain":
+                foreach (NPC_Details npc in NPCs)
+                {
+                    if (npc.idx == NPCIndex.Samuel)
+                    {
+                        npc.Object.GetComponent<CapsuleCollider>().enabled = false;
+                        break;
+                    }
+                }
                 ActionHandler.instance.SetPath(2);
-                LockAllMap();
-                PlayerManager.instance.playerLocation = SceneIndex.TrollField;
+                // LockAllMap();
+                // PlayerManager.instance.playerLocation = SceneIndex.TrollField;
                 QuestLog.AddQuest(Database.questList[45]);
                 DataPersistenceManager.instance.SaveGame(true);
-                SceneLoadingManager.instance.LoadScene(SceneIndex.TrollField);
+                OtherEvents("SetCain");
+                // SceneLoadingManager.instance.LoadScene(SceneIndex.TrollField);
                 break;
             case "Abel":
                 SpawnMonsterAt(0, MonsterId.Abel, 1);

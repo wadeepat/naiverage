@@ -44,7 +44,7 @@ public class RunAway : MonoBehaviour
         chicktimer = 0;
         sprintTimer = 0;
         angleIdx = 0;
-        if (transform.localScale.x > 1.1) sprintSound.pitch = 0.2f;
+        if (transform.localScale.x > 1.1) sprintSound.pitch = 0.45f;
         else sprintSound.pitch = Random.Range(0.5f, 1.5f);
     }
     private void Update()

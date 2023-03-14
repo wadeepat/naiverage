@@ -80,6 +80,7 @@ public class NPC : MonoBehaviour
             else if (inkJSON != null)
                 DialogueManager.instance.EnterDialogueMode(inkJSON);
             else return;
+            interactObject.SetActive(false);
             if (!ThereisAnyTalk()) interactObject.SetActive(false);
         }
     }

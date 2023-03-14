@@ -102,15 +102,19 @@ INCLUDE ../Tutorial/tutorial_globals.ink
         +[เลือกที่จะไปกับหนังสือ]
             ->ChooseTheBook
         +[ไม่เอาสักทาง]
-            ->DontChoose
+            ->DontChoose    
 ->DONE
 
 ===ChooseCain===
     #speaker:Abel
     เจ้ากล้าหันหลังให้กลับข้าอย่างนั้นหรือ!!!
     กล้าดีอย่างไร!!!
-    //#action:Ending1
     #eventEnd:FightWithAbel
+->DONE
+===TalkWithAbel===
+    #speaker:Abel
+    เรามาตัดสินกันเลย ข้าไม่ออมมือให้หรอกนะ
+    #eventEnd:FightWithBro
 ->DONE
 ===DefeatAbel===
     #speaker:Abel
@@ -125,6 +129,11 @@ INCLUDE ../Tutorial/tutorial_globals.ink
     ข้าไม่คิดเลยว่าเราจะต้องต่อสู้กันแบบนี้
     เอาล่ะ เรามาตัดสินกัน
     #eventEnd:FightWithCain
+->DONE
+===TalkWithCain===
+    #speaker:Cain
+    ข้าไม่อยากสู้กับเจ้าเลย แต่ช่วยไม่ได้ล่ะนะ
+    #eventEnd:FightWithBro
 ->DONE
 ===DefeatCain===
     #speaker:Cain 

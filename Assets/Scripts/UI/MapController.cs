@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using StarterAssets;
 public class MapController : MonoBehaviour
 {
     private int activeSceneIndex;
@@ -23,12 +24,8 @@ public class MapController : MonoBehaviour
         SceneIndex scene = (SceneIndex)System.Enum.Parse(typeof(SceneIndex), sceneName);
         if ((int)scene != activeSceneIndex)
         {
-            // if (PlayerManager.instance.mapEnable[scene])
-            // {
-            // Debug.Log("loading" + sceneName);
             DeactivateMenu();
             SceneLoadingManager.instance.LoadScene(scene);
-            // }
         }
     }
     public void ActivateMenu()
@@ -44,29 +41,22 @@ public class MapController : MonoBehaviour
         }
         else
         {
-            // Cursor.visible = true;
-            // Cursor.lockState = CursorLockMode.None;
-            // DialogueManager.dialogueIsPlaying = true;
             DialogueManager.dialogueIsPlaying = true;
-            DialogueManager.instance.LockCamera();
-            DialogueManager.instance.EnablePlayerControll();
-
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            PlayerManager.instance.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(true);
             activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
             this.gameObject.SetActive(true);
 
-            //TODO: set only map that able to warp
             SetEnableMapInteract();
-            // SetAllButtonsInteract(true);
         }
     }
     public void DeactivateMenu()
     {
-        // Cursor.visible = false;
-        // Cursor.lockState = CursorLockMode.Locked;
-        // DialogueManager.dialogueIsPlaying = false;
         DialogueManager.dialogueIsPlaying = false;
-        DialogueManager.instance.UnlockCamera();
-        DialogueManager.instance.DisablePlayerControll();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        PlayerManager.instance.player.GetComponent<ThirdPersonController>().SetLockCameraPosition(false);
         this.gameObject.SetActive(false);
         SetAllButtonsInteract(false);
     }

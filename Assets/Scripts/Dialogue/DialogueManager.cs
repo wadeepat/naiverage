@@ -128,7 +128,6 @@ public class DialogueManager : MonoBehaviour
     }
     public void EnterDialogueMode(TextAsset inkJSON)
     {
-        Debug.Log("enter dialogue");
         _player = GameObject.FindGameObjectWithTag("Player");
         _thirdPersonController = _player?.GetComponent<ThirdPersonController>();
 
